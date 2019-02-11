@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6720891270199158892}
   - component: {fileID: 6720891270199158893}
-  - component: {fileID: 8925814095109800637}
+  - component: {fileID: 8598283281268113705}
+  - component: {fileID: 5932716685314068101}
   m_Layer: 0
-  m_Name: EnemyUnit
-  m_TagString: Untagged
+  m_Name: D_6
+  m_TagString: PlayerUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,7 +81,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8925814095109800637
+--- !u!50 &8598283281268113705
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6720891270199158890}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &5932716685314068101
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,11 +111,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6720891270199158890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba71f6b22a8729b458136039365e8374, type: 3}
+  m_Script: {fileID: 11500000, guid: 9aad526c72b13c64a8b3c42f9d2b560e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   DisplayName: 
   MovementSpeed: 0
-  health: 0
-  armor: 0
-  waypoints: []
+  rank: 0
+  attackDamage: 0
+  attackSpeed: 0
+  attackType: 0

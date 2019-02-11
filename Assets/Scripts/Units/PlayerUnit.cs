@@ -5,8 +5,8 @@ public class PlayerUnit : Unit, IClickableUnit {
     public PlayerUnitRank rank;
     public float attackDamage;
     public float attackSpeed;
+    public AttackType attackType;
     // TODO reference to the projectile prefab
-    // TODO attack type field
 
 
     //---------- Methods ----------
@@ -15,12 +15,12 @@ public class PlayerUnit : Unit, IClickableUnit {
         Debug.Log("Player Unit Details");
     }
 
-    public void InitializeProperties() {
-        this.DisplayName = "Test";
-        this.MovementSpeed = 1.5f;
-        this.rank = PlayerUnitRank.D;
-        this.attackDamage = 5.0f;
-        this.attackSpeed = 1.0f;
+    public void InitializeProperties(PlayerUnitData playerUnitData) {
+        this.DisplayName = playerUnitData.GetDisplayName();
+        this.MovementSpeed = playerUnitData.GetMovementSpeed();
+        this.rank = playerUnitData.GetRank();
+        this.attackDamage = playerUnitData.GetAttackDamage();
+        this.attackSpeed = playerUnitData.GetAttackSpeed();
+        this.attackType = playerUnitData.GetAttackType();
     }
-
 }

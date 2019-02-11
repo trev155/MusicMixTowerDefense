@@ -60,16 +60,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Admin.cs" />
+    <Compile Include="Assets\Scripts\ClickHandler.cs" />
     <Compile Include="Assets\Scripts\GameEngine.cs" />
+    <Compile Include="Assets\Scripts\GameplayException.cs" />
     <Compile Include="Assets\Scripts\HUDManager.cs" />
     <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\UnitMixer.cs" />
+    <Compile Include="Assets\Scripts\Units\AttackType.cs" />
     <Compile Include="Assets\Scripts\Units\ClickableUnit.cs" />
     <Compile Include="Assets\Scripts\Units\EnemyAbilities.cs" />
     <Compile Include="Assets\Scripts\Units\EnemyUnit.cs" />
+    <Compile Include="Assets\Scripts\Units\EnemyUnitData.cs" />
     <Compile Include="Assets\Scripts\Units\PlayerUnit.cs" />
+    <Compile Include="Assets\Scripts\Units\PlayerUnitData.cs" />
     <Compile Include="Assets\Scripts\Units\PlayerUnitRank.cs" />
     <Compile Include="Assets\Scripts\Units\Unit.cs" />
+    <Compile Include="Assets\Scripts\Units\UnitFactory.cs" />
     <Compile Include="Assets\Scripts\UnitSpawner.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Trevor/Documents/MusicMixTowerDefense/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
