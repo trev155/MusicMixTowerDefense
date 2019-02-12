@@ -68,10 +68,10 @@
     <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\UnitMixer.cs" />
     <Compile Include="Assets\Scripts\Units\AttackType.cs" />
-    <Compile Include="Assets\Scripts\Units\ClickableUnit.cs" />
     <Compile Include="Assets\Scripts\Units\EnemyAbilities.cs" />
     <Compile Include="Assets\Scripts\Units\EnemyUnit.cs" />
     <Compile Include="Assets\Scripts\Units\EnemyUnitData.cs" />
+    <Compile Include="Assets\Scripts\Units\IClickableUnit.cs" />
     <Compile Include="Assets\Scripts\Units\PlayerUnit.cs" />
     <Compile Include="Assets\Scripts\Units\PlayerUnitData.cs" />
     <Compile Include="Assets\Scripts\Units\PlayerUnitRank.cs" />

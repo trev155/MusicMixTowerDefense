@@ -13,9 +13,8 @@ public class EnemyUnit : Unit, IClickableUnit {
     private int currentWaypointDestinationIndex = -1;
 
     //---------- Methods ----------
-    public void GetUnitDetails() {
-        // this should probably return a string, or a map of strings
-        Debug.Log("Enemy Unit Details");
+    public string GetUnitTypeString() {
+        return "Enemy Unit";
     }
 
     public void InitializeProperties(EnemyUnitData enemyUnitData) {

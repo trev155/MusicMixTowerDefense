@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public class PlayerUnit : Unit, IClickableUnit {
+﻿public class PlayerUnit : Unit, IClickableUnit {
     //---------- Fields ----------
     public PlayerUnitRank rank;
     public float attackDamage;
@@ -8,11 +6,10 @@ public class PlayerUnit : Unit, IClickableUnit {
     public AttackType attackType;
     // TODO reference to the projectile prefab
 
-
+    
     //---------- Methods ----------
-    public void GetUnitDetails() {
-        // this should probably return a string, or a map of strings
-        Debug.Log("Player Unit Details");
+    public string GetUnitTypeString() {
+        return "Player Unit";
     }
 
     public void InitializeProperties(PlayerUnitData playerUnitData) {
