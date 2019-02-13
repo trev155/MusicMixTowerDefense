@@ -1,14 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+
 
 public class HUDManager : MonoBehaviour {
     // ---------- Fields ----------
+    public RectTransform UnitSelectionPanel;
     public Text titleData;
     public Text basicUnitData;
     public Text typeSpecificUnitData;
-    
+
+    public bool unitIsSelected = false;
 
     // ---------- Methods ----------
+    private void Awake() {
+        // Hide by default
+        UnitSelectionPanel.gameObject.SetActive(false);
+    }
+
     // Temporary buttons for unit creation
     public void SpawnPlayerUnit() {
         GameEngine.Instance.unitSpawner.CreateRandomDUnit();
@@ -35,5 +44,16 @@ public class HUDManager : MonoBehaviour {
 
     public void DisplayTypeSpecificUnitData(IClickableUnit unit) {
         typeSpecificUnitData.text = unit.GetAdvancedUnitData();
+    }
+
+    // Show and hide unit selection panel.
+    public void ShowUnitSelectionPanel() {
+        UnitSelectionPanel.gameObject.SetActive(true);
+    }
+
+    public void HideUnitSelectionPanel() {
+        if (!unitIsSelected) {
+            UnitSelectionPanel.gameObject.SetActive(false);
+        }
     }
 }

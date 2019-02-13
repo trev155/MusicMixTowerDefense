@@ -2,6 +2,7 @@
  * The ClickHandler listens for screen touches and reacts appropriately.
  */
 using UnityEngine;
+using System;
 using System.Collections;
 
 
@@ -20,6 +21,9 @@ public class ClickHandler : MonoBehaviour {
             if (screenIsTouched) {
                 return;
             }
+            GameEngine.Instance.hudManager.unitIsSelected = false;
+            StartCoroutine(HidePanel());
+
             screenIsTouched = true;
             Vector2 touchedPosition = GetTouchedPosition();
 
@@ -58,6 +62,11 @@ public class ClickHandler : MonoBehaviour {
     IEnumerator RemoveGameObjectAfterTime(GameObject obj, float time) {
         yield return new WaitForSeconds(time);
         Destroy(obj);
+    }
+
+    IEnumerator HidePanel() {
+        yield return new WaitForSeconds(0.6f);
+        GameEngine.Instance.hudManager.HideUnitSelectionPanel();
     }
 }
 

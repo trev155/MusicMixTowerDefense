@@ -194,7 +194,7 @@
         switch (level) {
             case 1:
                 displayName = "Reaver";
-                movementSpeed = 1.0f;
+                movementSpeed = 0.5f;
                 health = 120.0f;
                 armor = 0;
                 unitLevel = 1;

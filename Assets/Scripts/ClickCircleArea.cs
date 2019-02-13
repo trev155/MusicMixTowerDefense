@@ -7,23 +7,17 @@
 using UnityEngine;
 
 public class ClickCircleArea : MonoBehaviour {
-    private bool unitIsSelected = false;
-
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (unitIsSelected) {
-            return;
-        } else {
-            // Update HUD
-            if (collision.gameObject.tag == "PlayerUnit") {
-                PlayerUnit playerUnit = (PlayerUnit)collision.gameObject.GetComponent<PlayerUnit>();
-                GameEngine.Instance.hudManager.UpdateSelectedUnitData(playerUnit);
-            } else if (collision.gameObject.tag == "EnemyUnit") {
-                EnemyUnit enemyUnit = (EnemyUnit)collision.gameObject.GetComponent<EnemyUnit>();
-                GameEngine.Instance.hudManager.UpdateSelectedUnitData(enemyUnit);
-            }
+        GameEngine.Instance.hudManager.unitIsSelected = true;
+        GameEngine.Instance.hudManager.ShowUnitSelectionPanel();
 
-            // TODO this should be called only when you click off the unit
-            unitIsSelected = true;
-        }    
+        // Update HUD
+        if (collision.gameObject.tag == "PlayerUnit") {
+            PlayerUnit playerUnit = (PlayerUnit)collision.gameObject.GetComponent<PlayerUnit>();
+            GameEngine.Instance.hudManager.UpdateSelectedUnitData(playerUnit);
+        } else if (collision.gameObject.tag == "EnemyUnit") {
+            EnemyUnit enemyUnit = (EnemyUnit)collision.gameObject.GetComponent<EnemyUnit>();
+            GameEngine.Instance.hudManager.UpdateSelectedUnitData(enemyUnit);
+        }     
     }
 }
