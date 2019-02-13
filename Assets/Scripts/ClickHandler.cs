@@ -1,9 +1,12 @@
-﻿using UnityEngine; 
+﻿/*
+ * The ClickHandler listens for screen touches and reacts appropriately.
+ */
+using UnityEngine;
+using System.Collections;
 
 
 public class ClickHandler : MonoBehaviour {
     // ---------- Fields ----------
-    private static readonly float CLICK_SEARCH_RADIUS = 1.2f;
     private static readonly bool ISCLICK = true;   // temp control variable
 
     public Transform clickCircle;
@@ -20,12 +23,8 @@ public class ClickHandler : MonoBehaviour {
             screenIsTouched = true;
             Vector2 touchedPosition = GetTouchedPosition();
 
-            IClickableUnit unitSelection = GetClosestClickableUnitToPosition(touchedPosition);
-
-            // TODO pull up a UI panel displaying this info
-            // TODO store unit selection, give ability to move
-            string unit = unitSelection.GetUnitTypeString();
-            Debug.Log(unit);
+            Transform spawnedCircle = CreateClickCircle(touchedPosition);
+            StartCoroutine(RemoveGameObjectAfterTime(spawnedCircle.gameObject, 0.1f)); 
         } else {
             screenIsTouched = false;
         }
@@ -46,9 +45,9 @@ public class ClickHandler : MonoBehaviour {
             return Input.GetTouch(0).position;
         }
     }
-
-    private Transform SpawnCircleOnPosition(Vector2 touchedPosition) {
-        clickCirclePosition.position = Camera.main.ScreenToWorldPoint(touchedPosition);
+    
+    private Transform CreateClickCircle(Vector2 screenPosition) {
+        clickCirclePosition.position = Camera.main.ScreenToWorldPoint(screenPosition);
         Vector3 tempPosition = clickCirclePosition.position;
         tempPosition[2] = 0;
         clickCirclePosition.position = tempPosition;
@@ -56,10 +55,9 @@ public class ClickHandler : MonoBehaviour {
         return spawnedCircle;
     }
 
-    IClickableUnit GetClosestClickableUnitToPosition(Vector2 touchedPosition) {
-        Transform spawnedCircle = SpawnCircleOnPosition(touchedPosition);
-        Collider2D closestClickableUnitToPosition = Physics2D.OverlapCircle(spawnedCircle.position, CLICK_SEARCH_RADIUS);
-        IClickableUnit unitClicked = closestClickableUnitToPosition.gameObject.GetComponent<IClickableUnit>();
-        return unitClicked;
+    IEnumerator RemoveGameObjectAfterTime(GameObject obj, float time) {
+        yield return new WaitForSeconds(time);
+        Destroy(obj);
     }
 }
+

@@ -9,13 +9,28 @@ public class EnemyUnit : Unit, IClickableUnit {
     public EnemyAbilities abilities;
 
     private List<Transform> waypoints = new List<Transform>();
-    private Transform currentWaypointDestination; 
+    private Transform currentWaypointDestination;
 
     //---------- Methods ----------
-    public string GetUnitTypeString() {
-        return "Enemy Unit";
+    public string GetTitleData() {
+        return "Enemy: " + this.DisplayName;
     }
 
+    public string GetBasicUnitData() {
+        string data = "";
+        data += "Health: " + this.health + "\n";
+        data += "Armor: " + this.armor + "\n";
+        data += "Level: " + this.level + "\n";
+        data += "Movement Speed: " + this.MovementSpeed + "\n";
+        return data;
+    }
+
+    public string GetAdvancedUnitData() {
+        string data = "";
+        data += "Abilities: " + this.abilities.ToString() + "\n";
+        return data;
+    }
+    
     public void InitializeProperties(EnemyUnitData enemyUnitData) {
         this.DisplayName = enemyUnitData.GetDisplayName();
         this.MovementSpeed = enemyUnitData.GetMovementSpeed();

@@ -8,8 +8,23 @@
 
     
     //---------- Methods ----------
-    public string GetUnitTypeString() {
-        return "Player Unit";
+    public string GetTitleData() {
+        return "[" + this.rank + " Rank Unit] " + this.DisplayName;
+    }
+
+    public string GetBasicUnitData() {
+        string data = "";
+        data += "Rank: " + this.rank + "\n";
+        data += "Attack Damage: " + this.attackDamage + "\n";
+        data += "Attack Speed: " + this.attackSpeed + "\n";
+        data += "Movement Speed: " + this.MovementSpeed + "\n";
+        return data;
+    }
+
+    public string GetAdvancedUnitData() {
+        string data = "";
+        data += "Attack Type: " + this.attackType.ToString() + "\n";
+        return data;
     }
 
     public void InitializeProperties(PlayerUnitData playerUnitData) {
