@@ -9,8 +9,7 @@ public class EnemyUnit : Unit, IClickableUnit {
     public EnemyAbilities abilities;
 
     private List<Transform> waypoints = new List<Transform>();
-    private Transform currentWaypointDestination;
-    private int currentWaypointDestinationIndex = -1;
+    private Transform currentWaypointDestination; 
 
     //---------- Methods ----------
     public string GetUnitTypeString() {
@@ -39,7 +38,6 @@ public class EnemyUnit : Unit, IClickableUnit {
                 Debug.LogWarning("Less than 2 waypoints found. This unit will not move.");
             } else {
                 currentWaypointDestination = waypoints[0];
-                currentWaypointDestinationIndex = 0;
             }
         }
     }
@@ -52,27 +50,15 @@ public class EnemyUnit : Unit, IClickableUnit {
         if (!WaypointsExist()) {
             return;
         }
-        if (WaypointDestinationReached()) {
-            UpdateToNextWaypointDestination();
-        }
         MoveToNextWaypoint();
     }
 
     private bool WaypointsExist() {
-        return currentWaypointDestinationIndex >= 0;
+        return waypoints.Count > 0;
     }
 
-    private bool WaypointDestinationReached() {
-        return transform.position == currentWaypointDestination.position;
-    }
-
-    private void UpdateToNextWaypointDestination() {
-        if (currentWaypointDestinationIndex == waypoints.Count - 1) {
-            currentWaypointDestinationIndex = 0;
-        } else {
-            currentWaypointDestinationIndex += 1;
-        }
-        currentWaypointDestination = waypoints[currentWaypointDestinationIndex];
+    public void UpdateWaypointDestination(Transform destination) {
+        currentWaypointDestination = destination;
     }
 
     private void MoveToNextWaypoint() {
