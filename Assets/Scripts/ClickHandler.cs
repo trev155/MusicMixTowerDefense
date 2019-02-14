@@ -2,7 +2,6 @@
  * The ClickHandler listens for screen touches and reacts appropriately.
  */
 using UnityEngine;
-using System;
 using System.Collections;
 
 
