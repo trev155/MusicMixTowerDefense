@@ -48,8 +48,6 @@ public class UnitSpawner : MonoBehaviour {
 
     // Enemy Unit Creation Functions
     public void CreateEnemyUnit() {
-        Debug.Log("Create Enemy Unit");
-
         // TODO level should be a parameter passed in from the game engine
         int level = 1;
         EnemyUnitData enemyUnitData = unitFactory.CreateEnemyUnitData(level);

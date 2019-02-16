@@ -61,12 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Admin.cs" />
-    <Compile Include="Assets\Scripts\ClickCircleArea.cs" />
-    <Compile Include="Assets\Scripts\ClickHandler.cs" />
     <Compile Include="Assets\Scripts\GameEngine.cs" />
     <Compile Include="Assets\Scripts\GameplayException.cs" />
     <Compile Include="Assets\Scripts\HUDManager.cs" />
     <Compile Include="Assets\Scripts\MainMenuManager.cs" />
+    <Compile Include="Assets\Scripts\MoveableArea.cs" />
     <Compile Include="Assets\Scripts\UnitMixer.cs" />
     <Compile Include="Assets\Scripts\Units\AttackType.cs" />
     <Compile Include="Assets\Scripts\Units\EnemyAbilities.cs" />

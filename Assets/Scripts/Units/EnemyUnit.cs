@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 
-public class EnemyUnit : Unit, IClickableUnit {
+public class EnemyUnit : Unit {
     //---------- Fields ----------
     public float health;
     public float armor;
@@ -10,12 +11,20 @@ public class EnemyUnit : Unit, IClickableUnit {
 
     private Transform currentWaypointDestination;
 
+
     //---------- Methods ----------
-    public string GetTitleData() {
+    public override void OnPointerClick(PointerEventData pointerEventData) {
+        if (GameEngine.Instance.playerUnitMovementAllowed) {
+            return;
+        }
+        GameEngine.Instance.hudManager.ShowUnitSelectionPanel(this);
+    }
+
+    public override string GetTitleData() {
         return "Enemy: " + this.DisplayName;
     }
 
-    public string GetBasicUnitData() {
+    public override string GetBasicUnitData() {
         string data = "";
         data += "Health: " + this.health + "\n";
         data += "Armor: " + this.armor + "\n";
@@ -24,7 +33,7 @@ public class EnemyUnit : Unit, IClickableUnit {
         return data;
     }
 
-    public string GetAdvancedUnitData() {
+    public override string GetAdvancedUnitData() {
         string data = "";
         data += "Abilities: " + this.abilities.ToString() + "\n";
         return data;

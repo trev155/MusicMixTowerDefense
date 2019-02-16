@@ -14,6 +14,10 @@ public class GameEngine : MonoBehaviour {
     public HUDManager hudManager;
     public UnitSpawner unitSpawner;
 
+    // Other fields
+    public bool playerUnitMovementAllowed = false;
+    public PlayerUnit playerUnitSelected;
+
     private void Awake() {
         // singleton initialization
         if (Instance != null && Instance != this) {
@@ -22,5 +26,21 @@ public class GameEngine : MonoBehaviour {
         } else {
             Instance = this;
         }
+    }
+
+
+    //---------------------
+    public void EnablePlayerUnitMovement() {
+        playerUnitMovementAllowed = true;
+        hudManager.moveUnitButtonText.text = "Disable Unit Movement";
+        hudManager.moveUnitInstruction.gameObject.SetActive(true);
+        hudManager.HighlightMoveableAreaAlpha();
+    }
+
+    public void DisablePlayerUnitMovement() {
+        playerUnitMovementAllowed = false;
+        hudManager.moveUnitButtonText.text = "Enable Unit Movement";
+        hudManager.moveUnitInstruction.gameObject.SetActive(false);
+        hudManager.UnhighlightMoveableAreaAlpha();
     }
 }

@@ -1,18 +1,28 @@
-﻿public class PlayerUnit : Unit, IClickableUnit {
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
+
+
+public class PlayerUnit : Unit {
     //---------- Fields ----------
     public PlayerUnitRank rank;
     public float attackDamage;
     public float attackSpeed;
     public AttackType attackType;
-    // TODO reference to the projectile prefab
 
-    
+    public bool movementEnabled = false;
+    public Vector2 movementDestination;
+
+
     //---------- Methods ----------
-    public string GetTitleData() {
+    public override void OnPointerClick(PointerEventData pointerEventData) {
+        GameEngine.Instance.hudManager.ShowUnitSelectionPanel(this);
+    }
+
+    public override string GetTitleData() {
         return "[" + this.rank + " Rank Unit] " + this.DisplayName;
     }
 
-    public string GetBasicUnitData() {
+    public override string GetBasicUnitData() {
         string data = "";
         data += "Rank: " + this.rank + "\n";
         data += "Attack Damage: " + this.attackDamage + "\n";
@@ -21,7 +31,7 @@
         return data;
     }
 
-    public string GetAdvancedUnitData() {
+    public override string GetAdvancedUnitData() {
         string data = "";
         data += "Attack Type: " + this.attackType.ToString() + "\n";
         return data;
@@ -34,5 +44,21 @@
         this.attackDamage = playerUnitData.GetAttackDamage();
         this.attackSpeed = playerUnitData.GetAttackSpeed();
         this.attackType = playerUnitData.GetAttackType();
+    }
+
+    // Click movement
+    private void Update() {
+        if (movementEnabled) {
+            Move();
+        }
+    }
+
+    private void Move() {
+        if ((Vector2)this.transform.position == movementDestination) {
+            movementEnabled = false;
+            return;
+        } else {
+            this.transform.position = Vector2.MoveTowards(this.transform.position, movementDestination, Time.deltaTime * 3.0f * this.MovementSpeed);
+        }
     }
 }
