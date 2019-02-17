@@ -54,11 +54,16 @@ public class PlayerUnit : Unit {
     }
 
     private void Move() {
-        if ((Vector2)this.transform.position == movementDestination) {
+        if (Vector2.Distance((Vector2)this.transform.position, movementDestination) < 0.1f) {
             movementEnabled = false;
             return;
         } else {
-            this.transform.position = Vector2.MoveTowards(this.transform.position, movementDestination, Time.deltaTime * 3.0f * this.MovementSpeed);
+            this.transform.position = Vector2.MoveTowards(this.transform.position, this.movementDestination, Time.deltaTime * 2.0f * this.MovementSpeed);
         }
+    }
+
+    // Collisions 
+    private void OnCollisionEnter2D(Collision2D collision) {
+        this.movementEnabled = false;
     }
 }

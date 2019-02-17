@@ -23,6 +23,7 @@ public class HUDManager : MonoBehaviour {
     private void Awake() {
         // Hide by default
         unitSelectionPanel.gameObject.SetActive(false);
+        moveUnitInstruction.gameObject.SetActive(false);
     }
 
     // Temporary buttons for unit creation
@@ -48,6 +49,11 @@ public class HUDManager : MonoBehaviour {
 
     public void HideUnitSelectionPanel() {
         unitSelectionPanel.gameObject.SetActive(false);
+    }
+
+    public void CloseUnitSelectionPanelButton() {
+        HideUnitSelectionPanel();
+        GameEngine.Instance.DisablePlayerUnitMovement();
     }
 
     // Functions for updating HUD

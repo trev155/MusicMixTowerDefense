@@ -29,7 +29,7 @@ public class GameEngine : MonoBehaviour {
     }
 
 
-    //---------------------
+    //---------- Methods ----------
     public void EnablePlayerUnitMovement() {
         playerUnitMovementAllowed = true;
         hudManager.moveUnitButtonText.text = "Disable Unit Movement";
