@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\MoveableArea.cs" />
     <Compile Include="Assets\Scripts\UnitMixer.cs" />
+    <Compile Include="Assets\Scripts\Units\AttackRangeCircle.cs" />
     <Compile Include="Assets\Scripts\Units\AttackType.cs" />
     <Compile Include="Assets\Scripts\Units\EnemyAbilities.cs" />
     <Compile Include="Assets\Scripts\Units\EnemyUnit.cs" />

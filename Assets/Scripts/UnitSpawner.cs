@@ -8,6 +8,7 @@ public class UnitSpawner : MonoBehaviour {
     public Transform enemyUnitSpawnLocation;
     public Transform playerUnit;
     public Transform enemyUnit;
+    public Transform playerUnitSelectionCircle;
 
     private static int uid = 0;
     private UnitFactory unitFactory;
@@ -23,11 +24,14 @@ public class UnitSpawner : MonoBehaviour {
     // Player Unit Creation Functions
     public void CreateRandomDUnit() {
         int selection = random.Next(0, 6);
+
         PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(PlayerUnitRank.D, selection);
-        // TODO the prefab to initialize should vary based on the playerunitdata
-        PlayerUnit p = (PlayerUnit)Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
-        p.InitializeProperties(playerUnitData);
-        SetObjectName(p.gameObject);
+
+        PlayerUnit player = (PlayerUnit)Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
+
+        player.InitializeProperties(playerUnitData);
+        SetObjectName(player.gameObject);
+        CreatePlayerUnitRangeCircle(player);
     }        
     
     public void CreateRandomCUnit() {
@@ -48,10 +52,8 @@ public class UnitSpawner : MonoBehaviour {
 
     // Enemy Unit Creation Functions
     public void CreateEnemyUnit() {
-        // TODO level should be a parameter passed in from the game engine
         int level = 1;
         EnemyUnitData enemyUnitData = unitFactory.CreateEnemyUnitData(level);
-        // TODO the prefab to initialize should depend on the level
         EnemyUnit e = (EnemyUnit)Instantiate(enemyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
         e.InitializeProperties(enemyUnitData);
         SetObjectName(e.gameObject);
@@ -61,5 +63,11 @@ public class UnitSpawner : MonoBehaviour {
     private void SetObjectName(GameObject obj) {
         obj.name = uid + "";
         uid += 1;
+    }
+
+    private void CreatePlayerUnitRangeCircle(PlayerUnit playerUnit) {
+        Transform playerUnitRangeCircle = Instantiate(playerUnitSelectionCircle, playerUnit.gameObject.transform);
+        playerUnitRangeCircle.localScale = new Vector2(playerUnitRangeCircle.localScale.x * playerUnit.attackRange, playerUnitRangeCircle.localScale.y * playerUnit.attackRange);
+        playerUnit.attackRangeCircle = playerUnitRangeCircle.GetComponent<AttackRangeCircle>();
     }
 }

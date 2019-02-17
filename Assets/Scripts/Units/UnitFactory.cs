@@ -25,6 +25,7 @@
         PlayerUnitRank rank = PlayerUnitRank.D;
         float attackDamage;
         float attackSpeed;
+        float attackRange;
         AttackType attackType;
 
         switch (selection) {
@@ -33,6 +34,7 @@
                 movementSpeed = 2.0f;
                 attackDamage = 5.0f;
                 attackSpeed = 3.0f;
+                attackRange = 2.6f;
                 attackType = AttackType.NORMAL;
                 break;
             case 1:
@@ -40,6 +42,7 @@
                 movementSpeed = 0.5f;
                 attackDamage = 10.0f;
                 attackSpeed = 0.8f;
+                attackRange = 5.0f;
                 attackType = AttackType.LARGE_SPLASH;
                 break;
             case 2:
@@ -47,6 +50,7 @@
                 movementSpeed = 1.0f;
                 attackDamage = 12.0f;
                 attackSpeed = 1.2f;
+                attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
             case 3:
@@ -54,6 +58,7 @@
                 movementSpeed = 1.0f;
                 attackDamage = 14.0f;
                 attackSpeed = 1.5f;
+                attackRange = 1.8f;
                 attackType = AttackType.SPLASH;
                 break;
             case 4:
@@ -61,6 +66,7 @@
                 movementSpeed = 1.5f;
                 attackDamage = 7.0f;
                 attackSpeed = 2.0f;
+                attackRange = 2.1f;
                 attackType = AttackType.NORMAL;
                 break;
             case 5:
@@ -68,21 +74,23 @@
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
                 attackSpeed = 4.0f;
+                attackRange = 2.4f;
                 attackType = AttackType.NORMAL;
                 break;
             default:
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
     }
 
     private PlayerUnitData CreateC(int selection) {
         string displayName;
         float movementSpeed;
-        PlayerUnitRank rank = PlayerUnitRank.D;
+        PlayerUnitRank rank = PlayerUnitRank.C;
         float attackDamage;
         float attackSpeed;
+        float attackRange;
         AttackType attackType;
 
         switch (selection) {
@@ -91,19 +99,21 @@
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
                 attackSpeed = 4.0f;
+                attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
     }
 
     private PlayerUnitData CreateB(int selection) {
         string displayName;
         float movementSpeed;
-        PlayerUnitRank rank = PlayerUnitRank.D;
+        PlayerUnitRank rank = PlayerUnitRank.B;
         float attackDamage;
         float attackSpeed;
+        float attackRange;
         AttackType attackType;
 
         switch (selection) {
@@ -112,19 +122,21 @@
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
                 attackSpeed = 4.0f;
+                attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
     }
 
     private PlayerUnitData CreateA(int selection) {
         string displayName;
         float movementSpeed;
-        PlayerUnitRank rank = PlayerUnitRank.D;
+        PlayerUnitRank rank = PlayerUnitRank.A;
         float attackDamage;
         float attackSpeed;
+        float attackRange;
         AttackType attackType;
 
         switch (selection) {
@@ -133,19 +145,21 @@
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
                 attackSpeed = 4.0f;
+                attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
     }
 
     private PlayerUnitData CreateS(int selection) {
         string displayName;
         float movementSpeed;
-        PlayerUnitRank rank = PlayerUnitRank.D;
+        PlayerUnitRank rank = PlayerUnitRank.S;
         float attackDamage;
         float attackSpeed;
+        float attackRange;
         AttackType attackType;
 
         switch (selection) {
@@ -154,19 +168,21 @@
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
                 attackSpeed = 4.0f;
+                attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
     }
 
     private PlayerUnitData CreateX(int selection) {
         string displayName;
         float movementSpeed;
-        PlayerUnitRank rank = PlayerUnitRank.D;
+        PlayerUnitRank rank = PlayerUnitRank.X;
         float attackDamage;
         float attackSpeed;
+        float attackRange;
         AttackType attackType;
 
         switch (selection) {
@@ -175,18 +191,20 @@
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
                 attackSpeed = 4.0f;
+                attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
     }
 
     // ---------- Enemy Unit Creation ----------
     public EnemyUnitData CreateEnemyUnitData(int level) {
         string displayName;
         float movementSpeed;
-        float health;
+        float maxHealth;
+        float currentHealth;
         float armor;
         int unitLevel;
         EnemyAbilities enemyAbilities;
@@ -195,7 +213,8 @@
             case 1:
                 displayName = "Reaver";
                 movementSpeed = 0.7f;
-                health = 120.0f;
+                maxHealth = 120.0f;
+                currentHealth = maxHealth;
                 armor = 0;
                 unitLevel = 1;
                 enemyAbilities = EnemyAbilities.NONE;
@@ -204,7 +223,7 @@
                 throw new GameplayException("Unrecognized level value. Cannot create enemy user.");
         }
 
-        return new EnemyUnitData(displayName, movementSpeed, health, armor, unitLevel, enemyAbilities);
+        return new EnemyUnitData(displayName, movementSpeed, maxHealth, armor, unitLevel, enemyAbilities);
     }
 
     public EnemyUnitData CreateBossUnit(int level) {

@@ -7,15 +7,26 @@ public class PlayerUnit : Unit {
     public PlayerUnitRank rank;
     public float attackDamage;
     public float attackSpeed;
+    public float attackRange;
     public AttackType attackType;
 
     public bool movementEnabled = false;
     public Vector2 movementDestination;
 
+    public AttackRangeCircle attackRangeCircle;
 
     //---------- Methods ----------
+    /*
+     * Handler for unit selection. Show unit selection panel data. Save unit selected in game engine. 
+     */ 
     public override void OnPointerClick(PointerEventData pointerEventData) {
         GameEngine.Instance.hudManager.ShowUnitSelectionPanel(this);
+        
+        if (GameEngine.Instance.playerUnitSelected != null) {
+            GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
+        }
+        GameEngine.Instance.playerUnitSelected = this;
+        GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.SELECTED_ALPHA);
     }
 
     public override string GetTitleData() {
@@ -43,6 +54,7 @@ public class PlayerUnit : Unit {
         this.rank = playerUnitData.GetRank();
         this.attackDamage = playerUnitData.GetAttackDamage();
         this.attackSpeed = playerUnitData.GetAttackSpeed();
+        this.attackRange = playerUnitData.GetAttackRange();
         this.attackType = playerUnitData.GetAttackType();
     }
 

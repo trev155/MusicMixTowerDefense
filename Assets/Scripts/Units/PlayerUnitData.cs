@@ -4,6 +4,7 @@
     private readonly PlayerUnitRank rank;
     private readonly float attackDamage;
     private readonly float attackSpeed;
+    private readonly float attackRange;
     private readonly AttackType attackType;
 
     public PlayerUnitData(
@@ -12,12 +13,14 @@
         PlayerUnitRank rank,
         float attackDamage,
         float attackSpeed,
+        float attackRange,
         AttackType attackType) {
         this.displayName = displayName;
         this.movementSpeed = movementSpeed;
         this.rank = rank;
         this.attackDamage = attackDamage;
         this.attackSpeed = attackSpeed;
+        this.attackRange = attackRange;
         this.attackType = attackType;
     }
 
@@ -39,6 +42,10 @@
     
     public float GetAttackSpeed() {
         return this.attackSpeed;
+    }
+
+    public float GetAttackRange() {
+        return this.attackRange;
     }
 
     public AttackType GetAttackType() {

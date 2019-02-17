@@ -1,7 +1,7 @@
 ﻿public class EnemyUnitData {
     private readonly string displayName;
     private readonly float movementSpeed;
-    private readonly float health;
+    private readonly float maxHealth;
     private readonly float armor;
     private readonly int level;
     private readonly EnemyAbilities enemyAbilities;
@@ -9,13 +9,13 @@
     public EnemyUnitData(
         string displayName, 
         float movementSpeed, 
-        float health, 
+        float maxHealth, 
         float armor,
         int level,
         EnemyAbilities enemyAbilities) {
         this.displayName = displayName;
         this.movementSpeed = movementSpeed;
-        this.health = health;
+        this.maxHealth = maxHealth;
         this.armor = armor;
         this.level = level;
         this.enemyAbilities = enemyAbilities;
@@ -29,8 +29,8 @@
         return this.movementSpeed;
     }
 
-    public float GetHealth() {
-        return this.health;
+    public float GetMaxHealth() {
+        return this.maxHealth;
     }
 
     public float GetArmor() {

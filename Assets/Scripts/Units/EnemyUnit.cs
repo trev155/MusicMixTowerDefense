@@ -42,7 +42,7 @@ public class EnemyUnit : Unit {
     public void InitializeProperties(EnemyUnitData enemyUnitData) {
         this.DisplayName = enemyUnitData.GetDisplayName();
         this.MovementSpeed = enemyUnitData.GetMovementSpeed();
-        this.health = enemyUnitData.GetHealth();
+        this.health = enemyUnitData.GetMaxHealth();
         this.armor = enemyUnitData.GetArmor();
         this.level = enemyUnitData.GetLevel();
         this.abilities = enemyUnitData.GetEnemyAbilities();

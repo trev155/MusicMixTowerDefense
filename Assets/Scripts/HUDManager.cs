@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour {
     // ---------- Constants ----------
-    public readonly float HIGHLIGHTED_ALPHA = 0.8f;
-    public readonly float UNHIGHLIGHTED_ALPHA = 0.1f;
+    private static readonly float HIGHLIGHTED_ALPHA = 0.4f;
+    private static readonly float UNHIGHLIGHTED_ALPHA = 0.05f;
 
 
     // ---------- Fields ----------
@@ -40,7 +40,6 @@ public class HUDManager : MonoBehaviour {
         unitSelectionPanel.gameObject.SetActive(true);
         UpdateSelectedUnitDataPanel(unit);
         if (unit is PlayerUnit) {
-            GameEngine.Instance.playerUnitSelected = (PlayerUnit)unit;
             moveUnitButton.gameObject.SetActive(true);
         } else {
             moveUnitButton.gameObject.SetActive(false);
@@ -54,6 +53,7 @@ public class HUDManager : MonoBehaviour {
     public void CloseUnitSelectionPanelButton() {
         HideUnitSelectionPanel();
         GameEngine.Instance.DisablePlayerUnitMovement();
+        GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
     }
 
     // Functions for updating HUD
