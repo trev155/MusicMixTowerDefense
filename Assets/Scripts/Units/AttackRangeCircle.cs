@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 
@@ -9,9 +10,10 @@ public class AttackRangeCircle : MonoBehaviour {
     public PlayerUnit playerUnit;
     public Transform projectile;
 
-    private List<EnemyUnit> enemyUnitsInRange = new List<EnemyUnit>();
-    private EnemyUnit currentTarget;
-    private bool isAttacking = false;
+    public List<EnemyUnit> enemyUnitsInRange = new List<EnemyUnit>();
+    public EnemyUnit currentTarget;
+    public bool isAttacking = false;
+    public Coroutine currentAttackLoop;
     
 
     public void SetAlpha(float alpha) {
@@ -19,9 +21,9 @@ public class AttackRangeCircle : MonoBehaviour {
             Debug.LogWarning("Cannot set moveable area alpha. Value of " + alpha + " was invalid.");
             return;
         }
-        Color circleColor = this.GetComponent<SpriteRenderer>().color;
+        Color circleColor = GetComponent<SpriteRenderer>().color;
         circleColor.a = alpha;
-        this.GetComponent<SpriteRenderer>().color = circleColor;
+        GetComponent<SpriteRenderer>().color = circleColor;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -36,22 +38,39 @@ public class AttackRangeCircle : MonoBehaviour {
         }
     }
 
+    /*
+     * If no units in range:
+     * - check to see if we are currently attacking and if so, stop
+     * - don't do anything in any case
+     * If units are in range, and we have a target set:
+     * - if we currently have a target set (isAttacking = true), don't do anything
+     * - otherwise start attacking
+     * Otherwise, we don't have a target set, so find a new target
+     * - stop the current attack routine
+     * - indicate that we are not attacking anymore
+     */
     private void Update() {
         if (enemyUnitsInRange.Count == 0) {
+            if (currentAttackLoop != null) {
+                StopCoroutine(currentAttackLoop);
+                isAttacking = false;
+            }
             return;
         }
-
-        // Debug.Log("Current Target: " + currentTarget);
         
         if (enemyUnitsInRange.Contains(currentTarget)) {
             if (isAttacking) {
                 return;
             }
-            AttackTarget();
+            
+            currentAttackLoop = StartCoroutine(AttackTargetLoop(playerUnit.attackCooldown));
             isAttacking = true;
         } else {
-            SetTargetToClosestUnitInRange();
+            if (currentAttackLoop != null) {
+                StopCoroutine(currentAttackLoop);
+            }
             isAttacking = false;
+            SetTargetToClosestUnitInRange();
         }
     }
 
@@ -60,19 +79,26 @@ public class AttackRangeCircle : MonoBehaviour {
         EnemyUnit lowestDistanceEnemy = null;
 
         foreach (EnemyUnit enemyUnit in enemyUnitsInRange) {
-            float distanceToEnemy = Vector2.Distance(enemyUnit.transform.position, this.transform.position);
+            float distanceToEnemy = Vector2.Distance(enemyUnit.transform.position, transform.position);
             if (distanceToEnemy < lowestDistance) {
                 lowestDistance = distanceToEnemy;
                 lowestDistanceEnemy = enemyUnit;
             }
         }
 
-        this.currentTarget = lowestDistanceEnemy;
+        currentTarget = lowestDistanceEnemy;
     }
 
     private void AttackTarget() {
-        // do this in a looped coroutine - speed determined by player unit's speed
-        Projectile proj = (Projectile)Instantiate(projectile, this.transform).GetComponent<Projectile>();
-        proj.InitializeProperties(this.currentTarget, this.playerUnit, this.playerUnit.attackDamage);
+        Projectile proj = (Projectile)Instantiate(projectile, transform).GetComponent<Projectile>();
+        proj.InitializeProperties(currentTarget, playerUnit, playerUnit.attackDamage);
+    }
+
+    IEnumerator AttackTargetLoop(float cooldown) {
+        yield return new WaitForSeconds(cooldown / 2);
+        while (true) {
+            AttackTarget();
+            yield return new WaitForSeconds(cooldown);
+        }
     }
 }

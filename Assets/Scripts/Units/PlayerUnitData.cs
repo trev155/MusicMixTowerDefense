@@ -3,7 +3,7 @@
     private readonly float movementSpeed;
     private readonly PlayerUnitRank rank;
     private readonly float attackDamage;
-    private readonly float attackSpeed;
+    private readonly float attackCooldown;
     private readonly float attackRange;
     private readonly AttackType attackType;
 
@@ -19,7 +19,7 @@
         this.movementSpeed = movementSpeed;
         this.rank = rank;
         this.attackDamage = attackDamage;
-        this.attackSpeed = attackSpeed;
+        this.attackCooldown = attackSpeed;
         this.attackRange = attackRange;
         this.attackType = attackType;
     }
@@ -41,7 +41,7 @@
     }
     
     public float GetAttackSpeed() {
-        return this.attackSpeed;
+        return this.attackCooldown;
     }
 
     public float GetAttackRange() {

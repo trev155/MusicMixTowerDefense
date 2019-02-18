@@ -24,7 +24,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.D;
         float attackDamage;
-        float attackSpeed;
+        float attackCooldown;
         float attackRange;
         AttackType attackType;
 
@@ -33,7 +33,7 @@
                 displayName = "Infantry";
                 movementSpeed = 2.0f;
                 attackDamage = 5.0f;
-                attackSpeed = 3.0f;
+                attackCooldown = 0.4f;
                 attackRange = 2.6f;
                 attackType = AttackType.NORMAL;
                 break;
@@ -41,7 +41,7 @@
                 displayName = "Mech";
                 movementSpeed = 0.5f;
                 attackDamage = 10.0f;
-                attackSpeed = 0.8f;
+                attackCooldown = 3.0f;
                 attackRange = 5.0f;
                 attackType = AttackType.LARGE_SPLASH;
                 break;
@@ -49,7 +49,7 @@
                 displayName = "Laser";
                 movementSpeed = 1.0f;
                 attackDamage = 12.0f;
-                attackSpeed = 1.2f;
+                attackCooldown = 1.5f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
@@ -57,7 +57,7 @@
                 displayName = "Psionic";
                 movementSpeed = 1.0f;
                 attackDamage = 14.0f;
-                attackSpeed = 1.5f;
+                attackCooldown = 0.8f;
                 attackRange = 1.8f;
                 attackType = AttackType.SPLASH;
                 break;
@@ -65,7 +65,7 @@
                 displayName = "Acid";
                 movementSpeed = 1.5f;
                 attackDamage = 7.0f;
-                attackSpeed = 2.0f;
+                attackCooldown = 0.5f;
                 attackRange = 2.1f;
                 attackType = AttackType.NORMAL;
                 break;
@@ -73,7 +73,7 @@
                 displayName = "Blade";
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
-                attackSpeed = 4.0f;
+                attackCooldown = 1.0f;
                 attackRange = 2.4f;
                 attackType = AttackType.NORMAL;
                 break;
@@ -81,7 +81,7 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateC(int selection) {
@@ -89,7 +89,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.C;
         float attackDamage;
-        float attackSpeed;
+        float attackCooldown;
         float attackRange;
         AttackType attackType;
 
@@ -98,13 +98,13 @@
                 displayName = "Blade";
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
-                attackSpeed = 4.0f;
+                attackCooldown = 4.0f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateB(int selection) {
@@ -112,7 +112,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.B;
         float attackDamage;
-        float attackSpeed;
+        float attackCooldown;
         float attackRange;
         AttackType attackType;
 
@@ -121,13 +121,13 @@
                 displayName = "Blade";
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
-                attackSpeed = 4.0f;
+                attackCooldown = 4.0f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateA(int selection) {
@@ -135,7 +135,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.A;
         float attackDamage;
-        float attackSpeed;
+        float attackCooldown;
         float attackRange;
         AttackType attackType;
 
@@ -144,13 +144,13 @@
                 displayName = "Blade";
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
-                attackSpeed = 4.0f;
+                attackCooldown = 4.0f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateS(int selection) {
@@ -158,7 +158,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.S;
         float attackDamage;
-        float attackSpeed;
+        float attackCooldown;
         float attackRange;
         AttackType attackType;
 
@@ -167,13 +167,13 @@
                 displayName = "Blade";
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
-                attackSpeed = 4.0f;
+                attackCooldown = 4.0f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateX(int selection) {
@@ -181,7 +181,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.X;
         float attackDamage;
-        float attackSpeed;
+        float attackCooldown;
         float attackRange;
         AttackType attackType;
 
@@ -190,13 +190,13 @@
                 displayName = "Blade";
                 movementSpeed = 4.0f;
                 attackDamage = 3.5f;
-                attackSpeed = 4.0f;
+                attackCooldown = 4.0f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackSpeed, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
     }
 
     // ---------- Enemy Unit Creation ----------

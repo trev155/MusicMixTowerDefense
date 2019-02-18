@@ -6,7 +6,7 @@ public class PlayerUnit : Unit {
     //---------- Fields ----------
     public PlayerUnitRank rank;
     public float attackDamage;
-    public float attackSpeed;
+    public float attackCooldown;
     public float attackRange;
     public AttackType attackType;
 
@@ -37,7 +37,7 @@ public class PlayerUnit : Unit {
         string data = "";
         data += "Rank: " + this.rank + "\n";
         data += "Attack Damage: " + this.attackDamage + "\n";
-        data += "Attack Speed: " + this.attackSpeed + "\n";
+        data += "Attack Speed: " + this.attackCooldown + "\n";
         data += "Movement Speed: " + this.MovementSpeed + "\n";
         return data;
     }
@@ -53,7 +53,7 @@ public class PlayerUnit : Unit {
         this.MovementSpeed = playerUnitData.GetMovementSpeed();
         this.rank = playerUnitData.GetRank();
         this.attackDamage = playerUnitData.GetAttackDamage();
-        this.attackSpeed = playerUnitData.GetAttackSpeed();
+        this.attackCooldown = playerUnitData.GetAttackSpeed();
         this.attackRange = playerUnitData.GetAttackRange();
         this.attackType = playerUnitData.GetAttackType();
     }
