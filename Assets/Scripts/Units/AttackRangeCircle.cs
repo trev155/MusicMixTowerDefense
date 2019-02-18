@@ -13,7 +13,6 @@ public class AttackRangeCircle : MonoBehaviour {
     public List<EnemyUnit> enemyUnitsInRange = new List<EnemyUnit>();
     public EnemyUnit currentTarget;
     public bool isAttacking = false;
-    public Coroutine currentAttackLoop;
     
 
     public void SetAlpha(float alpha) {
@@ -38,40 +37,13 @@ public class AttackRangeCircle : MonoBehaviour {
         }
     }
 
-    /*
-     * If no units in range:
-     * - check to see if we are currently attacking and if so, stop
-     * - don't do anything in any case
-     * If units are in range, and we have a target set:
-     * - if we currently have a target set (isAttacking = true), don't do anything
-     * - otherwise start attacking
-     * Otherwise, we don't have a target set, so find a new target
-     * - stop the current attack routine
-     * - indicate that we are not attacking anymore
-     */
+
     private void Update() {
-        if (enemyUnitsInRange.Count == 0) {
-            if (currentAttackLoop != null) {
-                StopCoroutine(currentAttackLoop);
-                isAttacking = false;
-            }
+        if (enemyUnitsInRange.Count == 0 || isAttacking) {
             return;
         }
-        
-        if (enemyUnitsInRange.Contains(currentTarget)) {
-            if (isAttacking) {
-                return;
-            }
-            
-            currentAttackLoop = StartCoroutine(AttackTargetLoop(playerUnit.attackCooldown));
-            isAttacking = true;
-        } else {
-            if (currentAttackLoop != null) {
-                StopCoroutine(currentAttackLoop);
-            }
-            isAttacking = false;
-            SetTargetToClosestUnitInRange();
-        }
+        SetTargetToClosestUnitInRange();
+        StartCoroutine(AttackTargetLoop(playerUnit.attackCooldown));
     }
 
     private void SetTargetToClosestUnitInRange() {
@@ -89,16 +61,20 @@ public class AttackRangeCircle : MonoBehaviour {
         currentTarget = lowestDistanceEnemy;
     }
 
-    private void AttackTarget() {
-        Projectile proj = (Projectile)Instantiate(projectile, transform).GetComponent<Projectile>();
-        proj.InitializeProperties(currentTarget, playerUnit, playerUnit.attackDamage);
-    }
-
     IEnumerator AttackTargetLoop(float cooldown) {
-        yield return new WaitForSeconds(cooldown / 2);
+        isAttacking = true;
         while (true) {
+            if (!enemyUnitsInRange.Contains(currentTarget)) {
+                break;
+            }
             AttackTarget();
             yield return new WaitForSeconds(cooldown);
         }
+        isAttacking = false;
+    }
+
+    private void AttackTarget() {
+        Projectile proj = (Projectile)Instantiate(projectile, transform).GetComponent<Projectile>();
+        proj.InitializeProperties(currentTarget, playerUnit, playerUnit.attackDamage);
     }
 }
