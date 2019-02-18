@@ -67,7 +67,10 @@ public class UnitSpawner : MonoBehaviour {
 
     private void CreatePlayerUnitRangeCircle(PlayerUnit playerUnit) {
         Transform playerUnitRangeCircle = Instantiate(playerUnitSelectionCircle, playerUnit.gameObject.transform);
+
         playerUnitRangeCircle.localScale = new Vector2(playerUnitRangeCircle.localScale.x * playerUnit.attackRange, playerUnitRangeCircle.localScale.y * playerUnit.attackRange);
+
         playerUnit.attackRangeCircle = playerUnitRangeCircle.GetComponent<AttackRangeCircle>();
+        playerUnit.attackRangeCircle.playerUnit = playerUnit;
     }
 }
