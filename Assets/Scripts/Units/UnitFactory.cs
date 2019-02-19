@@ -213,7 +213,7 @@
             case 1:
                 displayName = "Reaver";
                 movementSpeed = 0.7f;
-                maxHealth = 120.0f;
+                maxHealth = 25.0f;
                 currentHealth = maxHealth;
                 armor = 0;
                 unitLevel = 1;

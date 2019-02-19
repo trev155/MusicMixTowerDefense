@@ -16,7 +16,10 @@ public class HUDManager : MonoBehaviour {
     public Button moveUnitButton;
     public Text moveUnitButtonText;
     public Text moveUnitInstruction;
+
     public Transform moveableArea;
+
+    public Text killCounter;
 
 
     // ---------- Methods ----------
@@ -56,7 +59,7 @@ public class HUDManager : MonoBehaviour {
         GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
     }
 
-    // Functions for updating HUD
+    // Unit selection panel data
     public void UpdateSelectedUnitDataPanel(IClickableUnit unit) {
         DisplayTitleData(unit);
         DisplayBasicUnitData(unit);
@@ -100,5 +103,9 @@ public class HUDManager : MonoBehaviour {
         Color moveableAreaColor = moveableArea.GetComponent<SpriteRenderer>().color;
         moveableAreaColor.a = alpha;
         moveableArea.GetComponent<SpriteRenderer>().color = moveableAreaColor;
+    }
+
+    public void UpdateKillCounter(int kills) {
+        killCounter.text = "Enemy Units Killed: " + kills;
     }
 }

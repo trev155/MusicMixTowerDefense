@@ -13,6 +13,7 @@ public class AttackRangeCircle : MonoBehaviour {
     public List<EnemyUnit> enemyUnitsInRange = new List<EnemyUnit>();
     public EnemyUnit currentTarget;
     public bool isAttacking = false;
+    public bool switchTargets = false;
     
 
     public void SetAlpha(float alpha) {
@@ -64,7 +65,8 @@ public class AttackRangeCircle : MonoBehaviour {
     IEnumerator AttackTargetLoop(float cooldown) {
         isAttacking = true;
         while (true) {
-            if (!enemyUnitsInRange.Contains(currentTarget)) {
+            if (!enemyUnitsInRange.Contains(currentTarget) || switchTargets) {
+                switchTargets = false;
                 break;
             }
             AttackTarget();

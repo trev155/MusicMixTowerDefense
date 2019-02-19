@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EnemyUnit
   - PlayerUnit
+  - Projectile
   layers:
   - Default
   - TransparentFX

@@ -10,14 +10,6 @@ public class GameEngine : MonoBehaviour {
     // Singleton field
     public static GameEngine Instance { get; private set; } = null;
 
-    // References to other management objects
-    public HUDManager hudManager;
-    public UnitSpawner unitSpawner;
-
-    // Other fields
-    public bool playerUnitMovementAllowed = false;
-    public PlayerUnit playerUnitSelected;
-
     private void Awake() {
         // singleton initialization
         if (Instance != null && Instance != this) {
@@ -28,19 +20,36 @@ public class GameEngine : MonoBehaviour {
         }
     }
 
+    // References to other management objects
+    public HUDManager hudManager;
+    public UnitSpawner unitSpawner;
+    
+    // Player Unit Movement
+    public bool playerUnitMovementAllowed = false;
+    public PlayerUnit playerUnitSelected;
+
+    // Gameplay stats
+    public int level;
+    public int kills;
+
 
     //---------- Methods ----------
     public void EnablePlayerUnitMovement() {
-        playerUnitMovementAllowed = true;
-        hudManager.moveUnitButtonText.text = "Disable Unit Movement";
-        hudManager.moveUnitInstruction.gameObject.SetActive(true);
-        hudManager.HighlightMoveableAreaAlpha();
+        this.playerUnitMovementAllowed = true;
+        this.hudManager.moveUnitButtonText.text = "Disable Unit Movement";
+        this.hudManager.moveUnitInstruction.gameObject.SetActive(true);
+        this.hudManager.HighlightMoveableAreaAlpha();
     }
 
     public void DisablePlayerUnitMovement() {
-        playerUnitMovementAllowed = false;
-        hudManager.moveUnitButtonText.text = "Enable Unit Movement";
-        hudManager.moveUnitInstruction.gameObject.SetActive(false);
-        hudManager.UnhighlightMoveableAreaAlpha();
+        this.playerUnitMovementAllowed = false;
+        this.hudManager.moveUnitButtonText.text = "Enable Unit Movement";
+        this.hudManager.moveUnitInstruction.gameObject.SetActive(false);
+        this.hudManager.UnhighlightMoveableAreaAlpha();
+    }
+
+    public void IncrementKills() {
+        this.kills += 1;
+        this.hudManager.UpdateKillCounter(this.kills);
     }
 }

@@ -4,7 +4,8 @@ using UnityEngine.EventSystems;
 
 public class EnemyUnit : Unit {
     //---------- Fields ----------
-    public float health;
+    public float maxHealth;
+    public float currentHealth;
     public float armor;
     public int level;
     public EnemyAbilities abilities;
@@ -26,7 +27,7 @@ public class EnemyUnit : Unit {
 
     public override string GetBasicUnitData() {
         string data = "";
-        data += "Health: " + this.health + "\n";
+        data += "Health: " + this.currentHealth + " / " + this.maxHealth + "\n";
         data += "Armor: " + this.armor + "\n";
         data += "Level: " + this.level + "\n";
         data += "Movement Speed: " + this.MovementSpeed + "\n";
@@ -42,7 +43,8 @@ public class EnemyUnit : Unit {
     public void InitializeProperties(EnemyUnitData enemyUnitData) {
         this.DisplayName = enemyUnitData.GetDisplayName();
         this.MovementSpeed = enemyUnitData.GetMovementSpeed();
-        this.health = enemyUnitData.GetMaxHealth();
+        this.maxHealth = enemyUnitData.GetMaxHealth();
+        this.currentHealth = enemyUnitData.GetMaxHealth();
         this.armor = enemyUnitData.GetArmor();
         this.level = enemyUnitData.GetLevel();
         this.abilities = enemyUnitData.GetEnemyAbilities();
