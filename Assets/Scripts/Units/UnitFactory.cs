@@ -32,15 +32,15 @@
             case 0:
                 displayName = "Infantry";
                 movementSpeed = 2.0f;
-                attackDamage = 5.0f;
-                attackCooldown = 0.4f;
-                attackRange = 2.6f;
+                attackDamage = 9.0f;
+                attackCooldown = 0.6f;
+                attackRange = 2.2f;
                 attackType = AttackType.NORMAL;
                 break;
             case 1:
                 displayName = "Mech";
                 movementSpeed = 0.5f;
-                attackDamage = 10.0f;
+                attackDamage = 36.0f;
                 attackCooldown = 3.0f;
                 attackRange = 5.0f;
                 attackType = AttackType.LARGE_SPLASH;
@@ -57,22 +57,22 @@
                 displayName = "Psionic";
                 movementSpeed = 1.0f;
                 attackDamage = 14.0f;
-                attackCooldown = 0.8f;
+                attackCooldown = 1.2f;
                 attackRange = 1.8f;
                 attackType = AttackType.SPLASH;
                 break;
             case 4:
                 displayName = "Acid";
                 movementSpeed = 1.5f;
-                attackDamage = 7.0f;
-                attackCooldown = 0.5f;
+                attackDamage = 13.0f;
+                attackCooldown = 0.9f;
                 attackRange = 2.1f;
                 attackType = AttackType.NORMAL;
                 break;
             case 5:
                 displayName = "Blade";
-                movementSpeed = 4.0f;
-                attackDamage = 3.5f;
+                movementSpeed = 3.0f;
+                attackDamage = 11.0f;
                 attackCooldown = 1.0f;
                 attackRange = 2.4f;
                 attackType = AttackType.NORMAL;
@@ -94,14 +94,56 @@
         AttackType attackType;
 
         switch (selection) {
-            default:
-                displayName = "Blade";
-                movementSpeed = 4.0f;
-                attackDamage = 3.5f;
-                attackCooldown = 4.0f;
+            case 0:
+                displayName = "Infantry";
+                movementSpeed = 2.0f;
+                attackDamage = 19.0f;
+                attackCooldown = 0.6f;
+                attackRange = 2.2f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 1:
+                displayName = "Mech";
+                movementSpeed = 0.5f;
+                attackDamage = 82.0f;
+                attackCooldown = 3.0f;
+                attackRange = 5.0f;
+                attackType = AttackType.LARGE_SPLASH;
+                break;
+            case 2:
+                displayName = "Laser";
+                movementSpeed = 1.0f;
+                attackDamage = 27.0f;
+                attackCooldown = 1.5f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
+            case 3:
+                displayName = "Psionic";
+                movementSpeed = 1.0f;
+                attackDamage = 32.0f;
+                attackCooldown = 1.2f;
+                attackRange = 1.8f;
+                attackType = AttackType.SPLASH;
+                break;
+            case 4:
+                displayName = "Acid";
+                movementSpeed = 1.5f;
+                attackDamage = 28.0f;
+                attackCooldown = 0.9f;
+                attackRange = 2.1f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 5:
+                displayName = "Blade";
+                movementSpeed = 3.0f;
+                attackDamage = 23.0f;
+                attackCooldown = 1.0f;
+                attackRange = 2.4f;
+                attackType = AttackType.NORMAL;
+                break;
+            default:
+                throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
         return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
@@ -117,14 +159,72 @@
         AttackType attackType;
 
         switch (selection) {
-            default:
-                displayName = "Blade";
-                movementSpeed = 4.0f;
-                attackDamage = 3.5f;
-                attackCooldown = 4.0f;
+            case 0:
+                displayName = "Infantry";
+                movementSpeed = 2.0f;
+                attackDamage = 62.0f;
+                attackCooldown = 0.6f;
+                attackRange = 2.2f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 1:
+                displayName = "Mech";
+                movementSpeed = 0.5f;
+                attackDamage = 226.0f;
+                attackCooldown = 3.0f;
+                attackRange = 5.0f;
+                attackType = AttackType.LARGE_SPLASH;
+                break;
+            case 2:
+                displayName = "Laser";
+                movementSpeed = 1.0f;
+                attackDamage = 71.0f;
+                attackCooldown = 1.5f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
+            case 3:
+                displayName = "Psionic";
+                movementSpeed = 1.0f;
+                attackDamage = 102.0f;
+                attackCooldown = 1.2f;
+                attackRange = 1.8f;
+                attackType = AttackType.SPLASH;
+                break;
+            case 4:
+                displayName = "Acid";
+                movementSpeed = 1.5f;
+                attackDamage = 74.0f;
+                attackCooldown = 0.9f;
+                attackRange = 2.1f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 5:
+                displayName = "Blade";
+                movementSpeed = 3.0f;
+                attackDamage = 66.0f;
+                attackCooldown = 1.0f;
+                attackRange = 2.4f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 6:
+                displayName = "Magic (Rare)";
+                movementSpeed = 1.5f;
+                attackDamage = 500.0f;
+                attackCooldown = 7.0f;
+                attackRange = 1.5f;
+                attackType = AttackType.SPLASH;
+                break;
+            case 7:
+                displayName = "Flame (Rare)";
+                movementSpeed = 1.2f;
+                attackDamage = 90.0f;
+                attackCooldown = 2.0f;
+                attackRange = 1.0f;
+                attackType = AttackType.LARGE_SPLASH;
+                break;
+            default:
+                throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
         return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
@@ -140,14 +240,72 @@
         AttackType attackType;
 
         switch (selection) {
-            default:
-                displayName = "Blade";
-                movementSpeed = 4.0f;
-                attackDamage = 3.5f;
-                attackCooldown = 4.0f;
+            case 0:
+                displayName = "Infantry";
+                movementSpeed = 2.0f;
+                attackDamage = 134.0f;
+                attackCooldown = 0.6f;
+                attackRange = 2.2f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 1:
+                displayName = "Mech";
+                movementSpeed = 0.5f;
+                attackDamage = 514.0f;
+                attackCooldown = 3.0f;
+                attackRange = 5.0f;
+                attackType = AttackType.LARGE_SPLASH;
+                break;
+            case 2:
+                displayName = "Laser";
+                movementSpeed = 1.0f;
+                attackDamage = 166.0f;
+                attackCooldown = 1.5f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
+            case 3:
+                displayName = "Psionic";
+                movementSpeed = 1.0f;
+                attackDamage = 232.0f;
+                attackCooldown = 1.2f;
+                attackRange = 1.8f;
+                attackType = AttackType.SPLASH;
+                break;
+            case 4:
+                displayName = "Acid";
+                movementSpeed = 1.5f;
+                attackDamage = 171.0f;
+                attackCooldown = 0.9f;
+                attackRange = 2.1f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 5:
+                displayName = "Blade";
+                movementSpeed = 3.0f;
+                attackDamage = 145.0f;
+                attackCooldown = 1.0f;
+                attackRange = 2.4f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 6:
+                displayName = "Magic (Rare)";
+                movementSpeed = 1.5f;
+                attackDamage = 900.0f;
+                attackCooldown = 5.0f;
+                attackRange = 2.0f;
+                attackType = AttackType.SPLASH;
+                break;
+            case 7:
+                displayName = "Flame (Rare)";
+                movementSpeed = 1.2f;
+                attackDamage = 210.0f;
+                attackCooldown = 1.8f;
+                attackRange = 1.2f;
+                attackType = AttackType.LARGE_SPLASH;
+                break;
+            default:
+                throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
         return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
@@ -163,14 +321,72 @@
         AttackType attackType;
 
         switch (selection) {
-            default:
-                displayName = "Blade";
-                movementSpeed = 4.0f;
-                attackDamage = 3.5f;
-                attackCooldown = 4.0f;
+            case 0:
+                displayName = "Infantry";
+                movementSpeed = 2.0f;
+                attackDamage = 291.0f;
+                attackCooldown = 0.5f;
+                attackRange = 2.2f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 1:
+                displayName = "Mech";
+                movementSpeed = 0.5f;
+                attackDamage = 1568.0f;
+                attackCooldown = 3.0f;
+                attackRange = 5.0f;
+                attackType = AttackType.LARGE_SPLASH;
+                break;
+            case 2:
+                displayName = "Laser";
+                movementSpeed = 1.0f;
+                attackDamage = 364.0f;
+                attackCooldown = 1.2f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
                 break;
+            case 3:
+                displayName = "Psionic";
+                movementSpeed = 1.0f;
+                attackDamage = 645.0f;
+                attackCooldown = 1.2f;
+                attackRange = 2.0f;
+                attackType = AttackType.SPLASH;
+                break;
+            case 4:
+                displayName = "Acid";
+                movementSpeed = 1.5f;
+                attackDamage = 409.0f;
+                attackCooldown = 0.8f;
+                attackRange = 2.3f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 5:
+                displayName = "Blade";
+                movementSpeed = 3.0f;
+                attackDamage = 364.0f;
+                attackCooldown = 0.8f;
+                attackRange = 2.4f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 6:
+                displayName = "Magic (Rare)";
+                movementSpeed = 1.5f;
+                attackDamage = 2200.0f;
+                attackCooldown = 5.0f;
+                attackRange = 2.0f;
+                attackType = AttackType.SPLASH;
+                break;
+            case 7:
+                displayName = "Flame (Rare)";
+                movementSpeed = 1.2f;
+                attackDamage = 660.0f;
+                attackCooldown = 1.8f;
+                attackRange = 1.3f;
+                attackType = AttackType.LARGE_SPLASH;
+                break;
+            default:
+                throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
         return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
@@ -186,14 +402,73 @@
         AttackType attackType;
 
         switch (selection) {
-            default:
-                displayName = "Blade";
-                movementSpeed = 4.0f;
-                attackDamage = 3.5f;
-                attackCooldown = 4.0f;
-                attackRange = 3.0f;
+            case 0:
+                displayName = "Infantry";
+                movementSpeed = 2.0f;
+                attackDamage = 565.0f;
+                attackCooldown = 0.45f;
+                attackRange = 2.3f;
                 attackType = AttackType.NORMAL;
                 break;
+            case 1:
+                displayName = "Mech";
+                movementSpeed = 0.5f;
+                attackDamage = 4000.0f;
+                attackCooldown = 3.0f;
+                attackRange = 5.5f;
+                attackType = AttackType.LARGE_SPLASH;
+                break;
+            case 2:
+                displayName = "Laser";
+                movementSpeed = 1.0f;
+                attackDamage = 920.0f;
+                attackCooldown = 1.2f;
+                attackRange = 4.0f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 3:
+                displayName = "Psionic";
+                movementSpeed = 1.0f;
+                attackDamage = 1420.0f;
+                attackCooldown = 1.2f;
+                attackRange = 2.5f;
+                attackType = AttackType.SPLASH;
+                break;
+            case 4:
+                displayName = "Acid";
+                movementSpeed = 1.5f;
+                attackDamage = 1102.0f;
+                attackCooldown = 0.7f;
+                attackRange = 2.3f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 5:
+                displayName = "Blade";
+                movementSpeed = 3.0f;
+                attackDamage = 745.0f;
+                attackCooldown = 0.6f;
+                attackRange = 2.5f;
+                attackType = AttackType.NORMAL;
+                break;
+            case 6:
+                displayName = "Magic (Rare)";
+                movementSpeed = 1.5f;
+                attackDamage = 4620.0f;
+                attackCooldown = 4.0f;
+                attackRange = 2.4f;
+                attackType = AttackType.SPLASH;
+                break;
+            case 7:
+                displayName = "Flame (Rare)";
+                movementSpeed = 1.2f;
+                attackDamage = 660.0f;
+                // upgrade is 3x of S rank
+                attackCooldown = 1.6f;
+                attackRange = 1.4f;
+                attackType = AttackType.LARGE_SPLASH;
+                break;
+            default:
+                throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
         return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
@@ -212,11 +487,47 @@
         switch (level) {
             case 1:
                 displayName = "Reaver";
-                movementSpeed = 0.7f;
-                maxHealth = 25.0f;
+                movementSpeed = 0.4f;
+                maxHealth = 105.0f;
                 currentHealth = maxHealth;
                 armor = 0;
                 unitLevel = 1;
+                enemyAbilities = EnemyAbilities.NONE;
+                break;
+            case 2:
+                displayName = "Archon";
+                movementSpeed = 1.2f;
+                maxHealth = 196.0f;
+                currentHealth = maxHealth;
+                armor = 0;
+                unitLevel = 2;
+                enemyAbilities = EnemyAbilities.NONE;
+                break;
+            case 3:
+                displayName = "Dragoon";
+                movementSpeed = 1.4f;
+                maxHealth = 324.0f;
+                currentHealth = maxHealth;
+                armor = 1;
+                unitLevel = 3;
+                enemyAbilities = EnemyAbilities.NONE;
+                break;
+            case 4:
+                displayName = "Templar";
+                movementSpeed = 1.2f;
+                maxHealth = 398.0f;
+                currentHealth = maxHealth;
+                armor = 2;
+                unitLevel = 4;
+                enemyAbilities = EnemyAbilities.NONE;
+                break;
+            case 5:
+                displayName = "Vulture";
+                movementSpeed = 2.1f;
+                maxHealth = 476.0f;
+                currentHealth = maxHealth;
+                armor = 2;
+                unitLevel = 5;
                 enemyAbilities = EnemyAbilities.NONE;
                 break;
             default:

@@ -74,10 +74,6 @@ public class HUDManager : MonoBehaviour {
         textSlot5.text = "";
         textSlot6.text = "";
 
-        foreach (string s in unitData) {
-            Debug.Log(s);
-        }
-
         if (unitData.Count > 0) {
             textSlot1.text = unitData[0];
         }
