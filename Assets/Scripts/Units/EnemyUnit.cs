@@ -14,6 +14,16 @@ public class EnemyUnit : Unit {
 
 
     //---------- Methods ----------
+    public void InitializeProperties(EnemyUnitData enemyUnitData) {
+        this.DisplayName = enemyUnitData.GetDisplayName();
+        this.MovementSpeed = enemyUnitData.GetMovementSpeed();
+        this.maxHealth = enemyUnitData.GetMaxHealth();
+        this.currentHealth = enemyUnitData.GetMaxHealth();
+        this.armor = enemyUnitData.GetArmor();
+        this.level = enemyUnitData.GetLevel();
+        this.abilities = enemyUnitData.GetEnemyAbilities();
+    }
+
     public override void OnPointerClick(PointerEventData pointerEventData) {
         if (GameEngine.Instance.playerUnitMovementAllowed) {
             return;
@@ -40,16 +50,6 @@ public class EnemyUnit : Unit {
         return data;
     }
     
-    public void InitializeProperties(EnemyUnitData enemyUnitData) {
-        this.DisplayName = enemyUnitData.GetDisplayName();
-        this.MovementSpeed = enemyUnitData.GetMovementSpeed();
-        this.maxHealth = enemyUnitData.GetMaxHealth();
-        this.currentHealth = enemyUnitData.GetMaxHealth();
-        this.armor = enemyUnitData.GetArmor();
-        this.level = enemyUnitData.GetLevel();
-        this.abilities = enemyUnitData.GetEnemyAbilities();
-    }
-
     private void Update() {
         if (currentWaypointDestination != null) {
             MoveToNextWaypoint();

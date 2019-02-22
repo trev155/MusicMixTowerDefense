@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 
 public class PlayerUnit : Unit {
@@ -14,11 +15,23 @@ public class PlayerUnit : Unit {
     public Vector2 movementDestination;
 
     public AttackRangeCircle attackRangeCircle;
+    public Projectile projectile;
+
+    public EnemyUnit currentTarget;
+    public bool isAttacking = false;
+    public bool switchTargets = false;
 
     //---------- Methods ----------
-    /*
-     * Handler for unit selection. Show unit selection panel data. Save unit selected in game engine. 
-     */ 
+    public void InitializeProperties(PlayerUnitData playerUnitData) {
+        this.DisplayName = playerUnitData.GetDisplayName();
+        this.MovementSpeed = playerUnitData.GetMovementSpeed();
+        this.rank = playerUnitData.GetRank();
+        this.attackDamage = playerUnitData.GetAttackDamage();
+        this.attackCooldown = playerUnitData.GetAttackSpeed();
+        this.attackRange = playerUnitData.GetAttackRange();
+        this.attackType = playerUnitData.GetAttackType();
+    }
+
     public override void OnPointerClick(PointerEventData pointerEventData) {
         GameEngine.Instance.hudManager.ShowUnitSelectionPanel(this);
         
@@ -48,23 +61,25 @@ public class PlayerUnit : Unit {
         return data;
     }
 
-    public void InitializeProperties(PlayerUnitData playerUnitData) {
-        this.DisplayName = playerUnitData.GetDisplayName();
-        this.MovementSpeed = playerUnitData.GetMovementSpeed();
-        this.rank = playerUnitData.GetRank();
-        this.attackDamage = playerUnitData.GetAttackDamage();
-        this.attackCooldown = playerUnitData.GetAttackSpeed();
-        this.attackRange = playerUnitData.GetAttackRange();
-        this.attackType = playerUnitData.GetAttackType();
+    // Collisions 
+    private void OnCollisionEnter2D(Collision2D collision) {
+        this.movementEnabled = false;
     }
 
-    // Click movement
+    // Update per frame
     private void Update() {
         if (movementEnabled) {
             Move();
         }
+
+        if (attackRangeCircle.enemyUnitsInRange.Count > 0 && !isAttacking) {
+            SetTargetToClosestUnitInRange();
+            StartCoroutine(AttackTargetLoop(this.attackCooldown));
+        }
+
     }
 
+    // Click Movement
     private void Move() {
         if (Vector2.Distance((Vector2)this.transform.position, movementDestination) < 0.1f) {
             movementEnabled = false;
@@ -74,8 +89,37 @@ public class PlayerUnit : Unit {
         }
     }
 
-    // Collisions 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        this.movementEnabled = false;
+    // Attacking
+    private void SetTargetToClosestUnitInRange() {
+        float lowestDistance = float.MaxValue;
+        EnemyUnit lowestDistanceEnemy = null;
+
+        foreach (EnemyUnit enemyUnit in attackRangeCircle.enemyUnitsInRange) {
+            float distanceToEnemy = Vector2.Distance(enemyUnit.transform.position, transform.position);
+            if (distanceToEnemy < lowestDistance) {
+                lowestDistance = distanceToEnemy;
+                lowestDistanceEnemy = enemyUnit;
+            }
+        }
+
+        currentTarget = lowestDistanceEnemy;
+    }
+
+    IEnumerator AttackTargetLoop(float cooldown) {
+        isAttacking = true;
+        while (true) {
+            if (!attackRangeCircle.enemyUnitsInRange.Contains(currentTarget) || switchTargets) {
+                switchTargets = false;
+                break;
+            }
+            AttackTarget();
+            yield return new WaitForSeconds(cooldown);
+        }
+        isAttacking = false;
+    }
+
+    private void AttackTarget() {
+        Projectile proj = (Projectile)Instantiate(projectile, transform).GetComponent<Projectile>();
+        proj.InitializeProperties(currentTarget, this, this.attackDamage);
     }
 }

@@ -135,8 +135,11 @@ MonoBehaviour:
   MovementSpeed: 0
   rank: 0
   attackDamage: 0
-  attackSpeed: 0
+  attackCooldown: 0
   attackRange: 0
   attackType: 0
   movementEnabled: 0
   movementDestination: {x: 0, y: 0}
+  attackRangeCircle: {fileID: 0}
+  projectile: {fileID: 2577056161673162234, guid: 1375a58e29161084ea559ba100c35e03,
+    type: 3}

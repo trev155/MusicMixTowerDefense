@@ -2,12 +2,13 @@
 
 
 public class Projectile : MonoBehaviour {
+    //---------- Fields ----------
     public Unit targetUnit;
     public PlayerUnit origin;
     public float movementSpeed;
     public float attackDamage;
 
-
+    //---------- Methods ----------
     public void InitializeProperties(Unit targetUnit, PlayerUnit origin, float attackDamage) {
         this.targetUnit = targetUnit;
         this.origin = origin;
@@ -48,10 +49,13 @@ public class Projectile : MonoBehaviour {
         GameObject[] playerUnits = GameObject.FindGameObjectsWithTag("PlayerUnit");
         foreach (GameObject playerUnit in playerUnits) {
             PlayerUnit p = playerUnit.GetComponent<PlayerUnit>();
-            if (p.attackRangeCircle.currentTarget == this.targetUnit) {
+            if (p.currentTarget == this.targetUnit) {
                 p.attackRangeCircle.enemyUnitsInRange.Remove(targetEnemyUnit);
-                p.attackRangeCircle.currentTarget = null;
-                p.attackRangeCircle.switchTargets = true;
+                p.currentTarget = null;
+                p.switchTargets = true;
+            }
+            if (p.attackRangeCircle.enemyUnitsInRange.Contains(targetEnemyUnit)) {
+                p.attackRangeCircle.enemyUnitsInRange.Remove(targetEnemyUnit);
             }
         }
     }
