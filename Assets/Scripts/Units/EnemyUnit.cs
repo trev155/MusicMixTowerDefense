@@ -26,7 +26,10 @@ public class EnemyUnit : Unit {
 
     public override void OnPointerClick(PointerEventData pointerEventData) {
         if (GameEngine.Instance.playerUnitMovementAllowed) {
-            return;
+            GameEngine.Instance.DisablePlayerUnitMovement();
+        }
+        if (GameEngine.Instance.playerUnitSelected != null) {
+            GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
         }
         GameEngine.Instance.hudManager.ShowUnitSelectionPanel(this);
     }
