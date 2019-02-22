@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
+
 
 public abstract class Unit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
-    public string DisplayName;
-    public float MovementSpeed;
+    public string displayName;
+    public float movementSpeed;
 
-    public abstract string GetTitleData();
-    public abstract string GetBasicUnitData();
-    public abstract string GetAdvancedUnitData();
-
+    public abstract List<string> GetDisplayUnitData();
     public abstract void OnPointerClick(PointerEventData eventData);
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 
 public class HUDManager : MonoBehaviour {
@@ -10,9 +11,12 @@ public class HUDManager : MonoBehaviour {
 
     // ---------- Fields ----------
     public RectTransform unitSelectionPanel;
-    public Text titleData;
-    public Text basicUnitData;
-    public Text typeSpecificUnitData;
+    public Text textSlot1;
+    public Text textSlot2;
+    public Text textSlot3;
+    public Text textSlot4;
+    public Text textSlot5;
+    public Text textSlot6;
     public Button moveUnitButton;
     public Text moveUnitButtonText;
     public Text moveUnitInstruction;
@@ -61,23 +65,39 @@ public class HUDManager : MonoBehaviour {
 
     // Unit selection panel data
     public void UpdateSelectedUnitDataPanel(IClickableUnit unit) {
-        DisplayTitleData(unit);
-        DisplayBasicUnitData(unit);
-        DisplayTypeSpecificUnitData(unit);
-    }
+        List<string> unitData = unit.GetDisplayUnitData();
 
-    public void DisplayTitleData(IClickableUnit unit) {
-        titleData.text = unit.GetTitleData();
+        textSlot1.text = "";
+        textSlot2.text = "";
+        textSlot3.text = "";
+        textSlot4.text = "";
+        textSlot5.text = "";
+        textSlot6.text = "";
+
+        foreach (string s in unitData) {
+            Debug.Log(s);
+        }
+
+        if (unitData.Count > 0) {
+            textSlot1.text = unitData[0];
+        }
+        if (unitData.Count > 1) {
+            textSlot2.text = unitData[1];
+        }
+        if (unitData.Count > 2) {
+            textSlot3.text = unitData[2];
+        }
+        if (unitData.Count > 3) {
+            textSlot4.text = unitData[3];
+        }
+        if (unitData.Count > 4) {
+            textSlot5.text = unitData[4];
+        }
+        if (unitData.Count > 5) {
+            textSlot6.text = unitData[5];
+        }
     }
     
-    public void DisplayBasicUnitData(IClickableUnit unit) {
-        basicUnitData.text = unit.GetBasicUnitData();
-    }
-
-    public void DisplayTypeSpecificUnitData(IClickableUnit unit) {
-        typeSpecificUnitData.text = unit.GetAdvancedUnitData();
-    }
-
     // Player Unit Selection movement
     public void MoveUnitButton() {
         if (GameEngine.Instance.playerUnitMovementAllowed) {

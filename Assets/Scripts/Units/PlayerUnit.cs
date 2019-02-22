@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class PlayerUnit : Unit {
@@ -23,8 +24,8 @@ public class PlayerUnit : Unit {
 
     //---------- Methods ----------
     public void InitializeProperties(PlayerUnitData playerUnitData) {
-        this.DisplayName = playerUnitData.GetDisplayName();
-        this.MovementSpeed = playerUnitData.GetMovementSpeed();
+        this.displayName = playerUnitData.GetDisplayName();
+        this.movementSpeed = playerUnitData.GetMovementSpeed();
         this.rank = playerUnitData.GetRank();
         this.attackDamage = playerUnitData.GetAttackDamage();
         this.attackCooldown = playerUnitData.GetAttackSpeed();
@@ -42,25 +43,23 @@ public class PlayerUnit : Unit {
         GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.SELECTED_ALPHA);
     }
 
-    public override string GetTitleData() {
-        return "[" + this.rank + " Rank Unit] " + this.DisplayName;
-    }
+    public override List<string> GetDisplayUnitData() {
+        List<string> unitData = new List<string>();
+        string title = "[" + this.rank + " Rank Unit] " + this.displayName;
+        string attackDamage = "Attack Damage: " + this.attackDamage;
+        string attackSpeed = "Attack Speed: " + this.attackCooldown;
+        string movementSpeed = "Movement Speed: " + this.movementSpeed;
+        string attackType = "Attack Type: " + this.attackType.ToString();
 
-    public override string GetBasicUnitData() {
-        string data = "";
-        data += "Rank: " + this.rank + "\n";
-        data += "Attack Damage: " + this.attackDamage + "\n";
-        data += "Attack Speed: " + this.attackCooldown + "\n";
-        data += "Movement Speed: " + this.MovementSpeed + "\n";
-        return data;
-    }
+        unitData.Add(title);
+        unitData.Add(attackDamage);
+        unitData.Add(attackSpeed);
+        unitData.Add(movementSpeed);
+        unitData.Add(attackType);
 
-    public override string GetAdvancedUnitData() {
-        string data = "";
-        data += "Attack Type: " + this.attackType.ToString() + "\n";
-        return data;
+        return unitData;
     }
-
+    
     // Collisions 
     private void OnCollisionEnter2D(Collision2D collision) {
         this.movementEnabled = false;
@@ -85,7 +84,7 @@ public class PlayerUnit : Unit {
             movementEnabled = false;
             return;
         } else {
-            this.transform.position = Vector2.MoveTowards(this.transform.position, this.movementDestination, Time.deltaTime * 2.0f * this.MovementSpeed);
+            this.transform.position = Vector2.MoveTowards(this.transform.position, this.movementDestination, Time.deltaTime * 2.0f * this.movementSpeed);
         }
     }
 

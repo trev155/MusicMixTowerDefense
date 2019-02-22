@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 
 public class EnemyUnit : Unit {
@@ -15,8 +16,8 @@ public class EnemyUnit : Unit {
 
     //---------- Methods ----------
     public void InitializeProperties(EnemyUnitData enemyUnitData) {
-        this.DisplayName = enemyUnitData.GetDisplayName();
-        this.MovementSpeed = enemyUnitData.GetMovementSpeed();
+        this.displayName = enemyUnitData.GetDisplayName();
+        this.movementSpeed = enemyUnitData.GetMovementSpeed();
         this.maxHealth = enemyUnitData.GetMaxHealth();
         this.currentHealth = enemyUnitData.GetMaxHealth();
         this.armor = enemyUnitData.GetArmor();
@@ -34,23 +35,23 @@ public class EnemyUnit : Unit {
         GameEngine.Instance.hudManager.ShowUnitSelectionPanel(this);
     }
 
-    public override string GetTitleData() {
-        return "Enemy: " + this.DisplayName;
-    }
+    public override List<string> GetDisplayUnitData() {
+        List<string> unitData = new List<string>();
+        string title = "Enemy: " + this.displayName;
+        string attackDamage = "Health: " + this.currentHealth + " / " + this.maxHealth;
+        string attackSpeed = "Armor: " + this.armor;
+        string movementSpeed = "Level: " + this.level;
+        string attackType = "Movement Speed: " + this.movementSpeed;
+        string abilities = "Abilities: " + this.abilities.ToString();
 
-    public override string GetBasicUnitData() {
-        string data = "";
-        data += "Health: " + this.currentHealth + " / " + this.maxHealth + "\n";
-        data += "Armor: " + this.armor + "\n";
-        data += "Level: " + this.level + "\n";
-        data += "Movement Speed: " + this.MovementSpeed + "\n";
-        return data;
-    }
+        unitData.Add(title);
+        unitData.Add(attackDamage);
+        unitData.Add(attackSpeed);
+        unitData.Add(movementSpeed);
+        unitData.Add(attackType);
+        unitData.Add(abilities);
 
-    public override string GetAdvancedUnitData() {
-        string data = "";
-        data += "Abilities: " + this.abilities.ToString() + "\n";
-        return data;
+        return unitData;
     }
     
     private void Update() {
@@ -64,6 +65,6 @@ public class EnemyUnit : Unit {
     }
 
     private void MoveToNextWaypoint() {
-        transform.position = Vector2.MoveTowards(transform.position, currentWaypointDestination.position, MovementSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, currentWaypointDestination.position, movementSpeed * Time.deltaTime);
     }
 }
