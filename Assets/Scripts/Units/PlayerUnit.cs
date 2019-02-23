@@ -42,6 +42,7 @@ public class PlayerUnit : Unit {
             GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
         }
         GameEngine.Instance.playerUnitSelected = this;
+        GameEngine.Instance.enemyUnitSelected = null;
         GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.SELECTED_ALPHA);
     }
 

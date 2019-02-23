@@ -28,6 +28,8 @@ public class GameEngine : MonoBehaviour {
     public bool playerUnitMovementAllowed = false;
     public PlayerUnit playerUnitSelected;
 
+    public EnemyUnit enemyUnitSelected;
+
     // Gameplay stats
     public int level;
     public int kills;
@@ -46,6 +48,11 @@ public class GameEngine : MonoBehaviour {
         this.hudManager.moveUnitButtonText.text = "Enable Unit Movement";
         this.hudManager.moveUnitInstruction.gameObject.SetActive(false);
         this.hudManager.UnhighlightMoveableAreaAlpha();
+    }
+
+    public void ClearUnitSelectionObjects() {
+        this.playerUnitSelected = null;
+        this.enemyUnitSelected = null;
     }
 
     public void IncrementKills() {

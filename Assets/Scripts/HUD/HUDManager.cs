@@ -52,6 +52,7 @@ public class HUDManager : MonoBehaviour {
         HideUnitSelectionPanel();
         GameEngine.Instance.DisablePlayerUnitMovement();
         GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
+        GameEngine.Instance.ClearUnitSelectionObjects();
     }
 
     // Unit selection panel data

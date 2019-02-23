@@ -32,6 +32,11 @@ public class EnemyUnit : Unit {
         if (GameEngine.Instance.playerUnitSelected != null) {
             GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
         }
+
+        if (GameEngine.Instance.enemyUnitSelected != this) {
+            GameEngine.Instance.enemyUnitSelected = this;
+        }
+        
         GameEngine.Instance.hudManager.ShowUnitSelectionPanel(this);
     }
 
