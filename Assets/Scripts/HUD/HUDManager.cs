@@ -33,15 +33,6 @@ public class HUDManager : MonoBehaviour {
         moveUnitInstruction.gameObject.SetActive(false);
     }
 
-    // Temporary buttons for unit creation
-    public void SpawnPlayerUnit() {
-        GameEngine.Instance.unitSpawner.CreateRandomDUnit();
-    }
-
-    public void SpawnEnemyUnit() {
-        GameEngine.Instance.unitSpawner.CreateEnemyUnit();
-    }
-
     // Show and hide unit selection panel.
     public void ShowUnitSelectionPanel(IClickableUnit unit) {
         unitSelectionPanel.gameObject.SetActive(true);
@@ -121,6 +112,7 @@ public class HUDManager : MonoBehaviour {
         moveableArea.GetComponent<SpriteRenderer>().color = moveableAreaColor;
     }
 
+    // Game data Panel
     public void UpdateKillCounter(int kills) {
         killCounter.text = "Enemy Units Killed: " + kills;
     }

@@ -63,10 +63,10 @@
     <Compile Include="Assets\Scripts\Admin.cs" />
     <Compile Include="Assets\Scripts\GameEngine.cs" />
     <Compile Include="Assets\Scripts\GameplayException.cs" />
-    <Compile Include="Assets\Scripts\HUDManager.cs" />
-    <Compile Include="Assets\Scripts\MainMenuManager.cs" />
+    <Compile Include="Assets\Scripts\HUD\AdminPanel.cs" />
+    <Compile Include="Assets\Scripts\HUD\HUDManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\MoveableArea.cs" />
-    <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\UnitMixer.cs" />
     <Compile Include="Assets\Scripts\Units\AttackRangeCircle.cs" />
     <Compile Include="Assets\Scripts\Units\AttackType.cs" />
@@ -77,10 +77,11 @@
     <Compile Include="Assets\Scripts\Units\PlayerUnit.cs" />
     <Compile Include="Assets\Scripts\Units\PlayerUnitData.cs" />
     <Compile Include="Assets\Scripts\Units\PlayerUnitRank.cs" />
+    <Compile Include="Assets\Scripts\Units\Projectile.cs" />
     <Compile Include="Assets\Scripts\Units\Unit.cs" />
     <Compile Include="Assets\Scripts\Units\UnitFactory.cs" />
+    <Compile Include="Assets\Scripts\Units\Waypoint.cs" />
     <Compile Include="Assets\Scripts\UnitSpawner.cs" />
-    <Compile Include="Assets\Scripts\Waypoint.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Trevor/Documents/MusicMixTowerDefense/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

@@ -24,6 +24,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.D;
         float attackDamage;
+        float attackUpgrade;
         float attackCooldown;
         float attackRange;
         AttackType attackType;
@@ -33,6 +34,7 @@
                 displayName = "Infantry";
                 movementSpeed = 2.0f;
                 attackDamage = 9.0f;
+                attackUpgrade = 1.0f;
                 attackCooldown = 0.6f;
                 attackRange = 2.2f;
                 attackType = AttackType.NORMAL;
@@ -41,6 +43,7 @@
                 displayName = "Mech";
                 movementSpeed = 0.5f;
                 attackDamage = 36.0f;
+                attackUpgrade = 7.0f;
                 attackCooldown = 3.0f;
                 attackRange = 5.0f;
                 attackType = AttackType.LARGE_SPLASH;
@@ -49,6 +52,7 @@
                 displayName = "Laser";
                 movementSpeed = 1.0f;
                 attackDamage = 12.0f;
+                attackUpgrade = 1.0f;
                 attackCooldown = 1.5f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
@@ -57,6 +61,7 @@
                 displayName = "Psionic";
                 movementSpeed = 1.0f;
                 attackDamage = 14.0f;
+                attackUpgrade = 3.0f;
                 attackCooldown = 1.2f;
                 attackRange = 1.8f;
                 attackType = AttackType.SPLASH;
@@ -65,6 +70,7 @@
                 displayName = "Acid";
                 movementSpeed = 1.5f;
                 attackDamage = 13.0f;
+                attackUpgrade = 2.0f;
                 attackCooldown = 0.9f;
                 attackRange = 2.1f;
                 attackType = AttackType.NORMAL;
@@ -73,6 +79,7 @@
                 displayName = "Blade";
                 movementSpeed = 3.0f;
                 attackDamage = 11.0f;
+                attackUpgrade = 2.0f;
                 attackCooldown = 1.0f;
                 attackRange = 2.4f;
                 attackType = AttackType.NORMAL;
@@ -81,7 +88,7 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateC(int selection) {
@@ -89,6 +96,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.C;
         float attackDamage;
+        float attackUpgrade;
         float attackCooldown;
         float attackRange;
         AttackType attackType;
@@ -98,6 +106,7 @@
                 displayName = "Infantry";
                 movementSpeed = 2.0f;
                 attackDamage = 19.0f;
+                attackUpgrade = 3.0f;
                 attackCooldown = 0.6f;
                 attackRange = 2.2f;
                 attackType = AttackType.NORMAL;
@@ -106,6 +115,7 @@
                 displayName = "Mech";
                 movementSpeed = 0.5f;
                 attackDamage = 82.0f;
+                attackUpgrade = 18.0f;
                 attackCooldown = 3.0f;
                 attackRange = 5.0f;
                 attackType = AttackType.LARGE_SPLASH;
@@ -114,6 +124,7 @@
                 displayName = "Laser";
                 movementSpeed = 1.0f;
                 attackDamage = 27.0f;
+                attackUpgrade = 4.0f;
                 attackCooldown = 1.5f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
@@ -122,6 +133,7 @@
                 displayName = "Psionic";
                 movementSpeed = 1.0f;
                 attackDamage = 32.0f;
+                attackUpgrade = 6.0f;
                 attackCooldown = 1.2f;
                 attackRange = 1.8f;
                 attackType = AttackType.SPLASH;
@@ -130,6 +142,7 @@
                 displayName = "Acid";
                 movementSpeed = 1.5f;
                 attackDamage = 28.0f;
+                attackUpgrade = 5.0f;
                 attackCooldown = 0.9f;
                 attackRange = 2.1f;
                 attackType = AttackType.NORMAL;
@@ -138,6 +151,7 @@
                 displayName = "Blade";
                 movementSpeed = 3.0f;
                 attackDamage = 23.0f;
+                attackUpgrade = 4.0f;
                 attackCooldown = 1.0f;
                 attackRange = 2.4f;
                 attackType = AttackType.NORMAL;
@@ -146,7 +160,7 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateB(int selection) {
@@ -154,6 +168,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.B;
         float attackDamage;
+        float attackUpgrade;
         float attackCooldown;
         float attackRange;
         AttackType attackType;
@@ -163,6 +178,7 @@
                 displayName = "Infantry";
                 movementSpeed = 2.0f;
                 attackDamage = 62.0f;
+                attackUpgrade = 6.0f;
                 attackCooldown = 0.6f;
                 attackRange = 2.2f;
                 attackType = AttackType.NORMAL;
@@ -171,6 +187,7 @@
                 displayName = "Mech";
                 movementSpeed = 0.5f;
                 attackDamage = 226.0f;
+                attackUpgrade = 38.0f;
                 attackCooldown = 3.0f;
                 attackRange = 5.0f;
                 attackType = AttackType.LARGE_SPLASH;
@@ -179,6 +196,7 @@
                 displayName = "Laser";
                 movementSpeed = 1.0f;
                 attackDamage = 71.0f;
+                attackUpgrade = 7.0f;
                 attackCooldown = 1.5f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
@@ -187,6 +205,7 @@
                 displayName = "Psionic";
                 movementSpeed = 1.0f;
                 attackDamage = 102.0f;
+                attackUpgrade = 15.0f;
                 attackCooldown = 1.2f;
                 attackRange = 1.8f;
                 attackType = AttackType.SPLASH;
@@ -195,6 +214,7 @@
                 displayName = "Acid";
                 movementSpeed = 1.5f;
                 attackDamage = 74.0f;
+                attackUpgrade = 8.0f;
                 attackCooldown = 0.9f;
                 attackRange = 2.1f;
                 attackType = AttackType.NORMAL;
@@ -203,6 +223,7 @@
                 displayName = "Blade";
                 movementSpeed = 3.0f;
                 attackDamage = 66.0f;
+                attackUpgrade = 7.0f;
                 attackCooldown = 1.0f;
                 attackRange = 2.4f;
                 attackType = AttackType.NORMAL;
@@ -211,6 +232,7 @@
                 displayName = "Magic (Rare)";
                 movementSpeed = 1.5f;
                 attackDamage = 500.0f;
+                attackUpgrade = 30.0f;
                 attackCooldown = 7.0f;
                 attackRange = 1.5f;
                 attackType = AttackType.SPLASH;
@@ -219,6 +241,7 @@
                 displayName = "Flame (Rare)";
                 movementSpeed = 1.2f;
                 attackDamage = 90.0f;
+                attackUpgrade = 9.0f;
                 attackCooldown = 2.0f;
                 attackRange = 1.0f;
                 attackType = AttackType.LARGE_SPLASH;
@@ -227,7 +250,7 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateA(int selection) {
@@ -235,6 +258,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.A;
         float attackDamage;
+        float attackUpgrade;
         float attackCooldown;
         float attackRange;
         AttackType attackType;
@@ -244,6 +268,7 @@
                 displayName = "Infantry";
                 movementSpeed = 2.0f;
                 attackDamage = 134.0f;
+                attackUpgrade = 9.0f;
                 attackCooldown = 0.6f;
                 attackRange = 2.2f;
                 attackType = AttackType.NORMAL;
@@ -252,6 +277,7 @@
                 displayName = "Mech";
                 movementSpeed = 0.5f;
                 attackDamage = 514.0f;
+                attackUpgrade = 77.0f;
                 attackCooldown = 3.0f;
                 attackRange = 5.0f;
                 attackType = AttackType.LARGE_SPLASH;
@@ -260,6 +286,7 @@
                 displayName = "Laser";
                 movementSpeed = 1.0f;
                 attackDamage = 166.0f;
+                attackUpgrade = 14.0f;
                 attackCooldown = 1.5f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
@@ -268,6 +295,7 @@
                 displayName = "Psionic";
                 movementSpeed = 1.0f;
                 attackDamage = 232.0f;
+                attackUpgrade = 23.0f;
                 attackCooldown = 1.2f;
                 attackRange = 1.8f;
                 attackType = AttackType.SPLASH;
@@ -276,6 +304,7 @@
                 displayName = "Acid";
                 movementSpeed = 1.5f;
                 attackDamage = 171.0f;
+                attackUpgrade = 18.0f;
                 attackCooldown = 0.9f;
                 attackRange = 2.1f;
                 attackType = AttackType.NORMAL;
@@ -284,6 +313,7 @@
                 displayName = "Blade";
                 movementSpeed = 3.0f;
                 attackDamage = 145.0f;
+                attackUpgrade = 15.0f;
                 attackCooldown = 1.0f;
                 attackRange = 2.4f;
                 attackType = AttackType.NORMAL;
@@ -292,6 +322,7 @@
                 displayName = "Magic (Rare)";
                 movementSpeed = 1.5f;
                 attackDamage = 900.0f;
+                attackUpgrade = 60.0f;
                 attackCooldown = 5.0f;
                 attackRange = 2.0f;
                 attackType = AttackType.SPLASH;
@@ -300,6 +331,7 @@
                 displayName = "Flame (Rare)";
                 movementSpeed = 1.2f;
                 attackDamage = 210.0f;
+                attackUpgrade = 16.0f;
                 attackCooldown = 1.8f;
                 attackRange = 1.2f;
                 attackType = AttackType.LARGE_SPLASH;
@@ -308,7 +340,7 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateS(int selection) {
@@ -316,6 +348,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.S;
         float attackDamage;
+        float attackUpgrade;
         float attackCooldown;
         float attackRange;
         AttackType attackType;
@@ -325,6 +358,7 @@
                 displayName = "Infantry";
                 movementSpeed = 2.0f;
                 attackDamage = 291.0f;
+                attackUpgrade = 21.0f;
                 attackCooldown = 0.5f;
                 attackRange = 2.2f;
                 attackType = AttackType.NORMAL;
@@ -333,6 +367,7 @@
                 displayName = "Mech";
                 movementSpeed = 0.5f;
                 attackDamage = 1568.0f;
+                attackUpgrade = 121.0f;
                 attackCooldown = 3.0f;
                 attackRange = 5.0f;
                 attackType = AttackType.LARGE_SPLASH;
@@ -341,6 +376,7 @@
                 displayName = "Laser";
                 movementSpeed = 1.0f;
                 attackDamage = 364.0f;
+                attackUpgrade = 35.0f;
                 attackCooldown = 1.2f;
                 attackRange = 3.0f;
                 attackType = AttackType.NORMAL;
@@ -349,6 +385,7 @@
                 displayName = "Psionic";
                 movementSpeed = 1.0f;
                 attackDamage = 645.0f;
+                attackUpgrade = 52.0f;
                 attackCooldown = 1.2f;
                 attackRange = 2.0f;
                 attackType = AttackType.SPLASH;
@@ -357,6 +394,7 @@
                 displayName = "Acid";
                 movementSpeed = 1.5f;
                 attackDamage = 409.0f;
+                attackUpgrade = 40.0f;
                 attackCooldown = 0.8f;
                 attackRange = 2.3f;
                 attackType = AttackType.NORMAL;
@@ -365,6 +403,7 @@
                 displayName = "Blade";
                 movementSpeed = 3.0f;
                 attackDamage = 364.0f;
+                attackUpgrade = 36.0f;
                 attackCooldown = 0.8f;
                 attackRange = 2.4f;
                 attackType = AttackType.NORMAL;
@@ -373,6 +412,7 @@
                 displayName = "Magic (Rare)";
                 movementSpeed = 1.5f;
                 attackDamage = 2200.0f;
+                attackUpgrade = 150.0f;
                 attackCooldown = 5.0f;
                 attackRange = 2.0f;
                 attackType = AttackType.SPLASH;
@@ -381,6 +421,7 @@
                 displayName = "Flame (Rare)";
                 movementSpeed = 1.2f;
                 attackDamage = 660.0f;
+                attackUpgrade = 25.0f;
                 attackCooldown = 1.8f;
                 attackRange = 1.3f;
                 attackType = AttackType.LARGE_SPLASH;
@@ -389,7 +430,7 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateX(int selection) {
@@ -397,6 +438,7 @@
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.X;
         float attackDamage;
+        float attackUpgrade;
         float attackCooldown;
         float attackRange;
         AttackType attackType;
@@ -406,6 +448,7 @@
                 displayName = "Infantry";
                 movementSpeed = 2.0f;
                 attackDamage = 565.0f;
+                attackUpgrade = 44.0f;
                 attackCooldown = 0.45f;
                 attackRange = 2.3f;
                 attackType = AttackType.NORMAL;
@@ -414,6 +457,7 @@
                 displayName = "Mech";
                 movementSpeed = 0.5f;
                 attackDamage = 4000.0f;
+                attackUpgrade = 200.0f;
                 attackCooldown = 3.0f;
                 attackRange = 5.5f;
                 attackType = AttackType.LARGE_SPLASH;
@@ -422,6 +466,7 @@
                 displayName = "Laser";
                 movementSpeed = 1.0f;
                 attackDamage = 920.0f;
+                attackUpgrade = 56.0f;
                 attackCooldown = 1.2f;
                 attackRange = 4.0f;
                 attackType = AttackType.NORMAL;
@@ -430,6 +475,7 @@
                 displayName = "Psionic";
                 movementSpeed = 1.0f;
                 attackDamage = 1420.0f;
+                attackUpgrade = 80.0f;
                 attackCooldown = 1.2f;
                 attackRange = 2.5f;
                 attackType = AttackType.SPLASH;
@@ -438,6 +484,7 @@
                 displayName = "Acid";
                 movementSpeed = 1.5f;
                 attackDamage = 1102.0f;
+                attackUpgrade = 71.0f;
                 attackCooldown = 0.7f;
                 attackRange = 2.3f;
                 attackType = AttackType.NORMAL;
@@ -446,6 +493,7 @@
                 displayName = "Blade";
                 movementSpeed = 3.0f;
                 attackDamage = 745.0f;
+                attackUpgrade = 68.0f;
                 attackCooldown = 0.6f;
                 attackRange = 2.5f;
                 attackType = AttackType.NORMAL;
@@ -454,6 +502,7 @@
                 displayName = "Magic (Rare)";
                 movementSpeed = 1.5f;
                 attackDamage = 4620.0f;
+                attackUpgrade = 310.0f;
                 attackCooldown = 4.0f;
                 attackRange = 2.4f;
                 attackType = AttackType.SPLASH;
@@ -462,7 +511,7 @@
                 displayName = "Flame (Rare)";
                 movementSpeed = 1.2f;
                 attackDamage = 660.0f;
-                // upgrade is 3x of S rank
+                attackUpgrade = 75.0f;
                 attackCooldown = 1.6f;
                 attackRange = 1.4f;
                 attackType = AttackType.LARGE_SPLASH;
@@ -471,7 +520,7 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     // ---------- Enemy Unit Creation ----------

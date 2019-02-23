@@ -22,37 +22,48 @@ public class UnitSpawner : MonoBehaviour {
     }
 
     // Player Unit Creation Functions
-    public void CreateRandomDUnit() {
-        int selection = random.Next(0, 6);
-
-        PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(PlayerUnitRank.D, selection);
-
+    public void CreatePlayerUnit(PlayerUnitRank rank, int seed) {
+        PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, seed);
         PlayerUnit player = (PlayerUnit)Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
-
         player.InitializeProperties(playerUnitData);
+
         SetObjectName(player.gameObject);
         CreatePlayerUnitRangeCircle(player);
+    }
+    
+
+    public void CreateRandomDUnit() {
+        int selection = random.Next(0, 6);
+        CreatePlayerUnit(PlayerUnitRank.D, selection);
     }        
     
     public void CreateRandomCUnit() {
-
+        int selection = random.Next(0, 6);
+        CreatePlayerUnit(PlayerUnitRank.C, selection);
     }
 
     public void CreateRandomBUnit() {
-
+        int selection = random.Next(0, 8);
+        CreatePlayerUnit(PlayerUnitRank.B, selection);
     }
 
     public void CreateRandomAUnit() {
-
+        int selection = random.Next(0, 8);
+        CreatePlayerUnit(PlayerUnitRank.A, selection);
     }
 
     public void CreateRandomSUnit() {
+        int selection = random.Next(0, 8);
+        CreatePlayerUnit(PlayerUnitRank.S, selection);
+    }
 
+    public void CreateRandomXUnit() {
+        int selection = random.Next(0, 8);
+        CreatePlayerUnit(PlayerUnitRank.X, selection);
     }
 
     // Enemy Unit Creation Functions
-    public void CreateEnemyUnit() {
-        int level = 1;
+    public void CreateEnemyUnit(int level) {
         EnemyUnitData enemyUnitData = unitFactory.CreateEnemyUnitData(level);
         EnemyUnit e = (EnemyUnit)Instantiate(enemyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
         e.InitializeProperties(enemyUnitData);

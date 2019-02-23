@@ -8,6 +8,7 @@ public class PlayerUnit : Unit {
     //---------- Fields ----------
     public PlayerUnitRank rank;
     public float attackDamage;
+    public float attackUpgrade;
     public float attackCooldown;
     public float attackRange;
     public AttackType attackType;
@@ -28,6 +29,7 @@ public class PlayerUnit : Unit {
         this.movementSpeed = playerUnitData.GetMovementSpeed();
         this.rank = playerUnitData.GetRank();
         this.attackDamage = playerUnitData.GetAttackDamage();
+        this.attackUpgrade = playerUnitData.GetAttackUpgrade();
         this.attackCooldown = playerUnitData.GetAttackSpeed();
         this.attackRange = playerUnitData.GetAttackRange();
         this.attackType = playerUnitData.GetAttackType();
@@ -47,12 +49,14 @@ public class PlayerUnit : Unit {
         List<string> unitData = new List<string>();
         string title = "[" + this.rank + " Rank Unit] " + this.displayName;
         string attackDamage = "Attack Damage: " + this.attackDamage;
+        string attackUpgrade = "Attack Upgrade: " + this.attackUpgrade;
         string attackSpeed = "Attack Speed: " + this.attackCooldown;
         string movementSpeed = "Movement Speed: " + this.movementSpeed;
         string attackType = "Attack Type: " + this.attackType.ToString();
 
         unitData.Add(title);
         unitData.Add(attackDamage);
+        unitData.Add(attackUpgrade);
         unitData.Add(attackSpeed);
         unitData.Add(movementSpeed);
         unitData.Add(attackType);
