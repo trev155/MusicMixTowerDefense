@@ -63,11 +63,11 @@
     <Compile Include="Assets\Scripts\Admin.cs" />
     <Compile Include="Assets\Scripts\GameEngine.cs" />
     <Compile Include="Assets\Scripts\GameplayException.cs" />
+    <Compile Include="Assets\Scripts\GlobalTimer.cs" />
     <Compile Include="Assets\Scripts\HUD\AdminPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\HUDManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\MoveableArea.cs" />
-    <Compile Include="Assets\Scripts\Timer.cs" />
     <Compile Include="Assets\Scripts\UnitMixer.cs" />
     <Compile Include="Assets\Scripts\Units\AttackRangeCircle.cs" />
     <Compile Include="Assets\Scripts\Units\AttackType.cs" />

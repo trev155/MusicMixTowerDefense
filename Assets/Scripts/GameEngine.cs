@@ -23,7 +23,6 @@ public class GameEngine : MonoBehaviour {
     // References to other management objects
     public HUDManager hudManager;
     public UnitSpawner unitSpawner;
-    public Timer globalTimer;
     
     // Player Unit Movement
     public bool playerUnitMovementAllowed = false;
