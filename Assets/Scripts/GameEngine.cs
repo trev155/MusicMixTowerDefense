@@ -23,6 +23,7 @@ public class GameEngine : MonoBehaviour {
     // References to other management objects
     public HUDManager hudManager;
     public UnitSpawner unitSpawner;
+    public LevelManager levelManager;
     
     // Player Unit Movement
     public bool playerUnitMovementAllowed = false;
@@ -58,5 +59,9 @@ public class GameEngine : MonoBehaviour {
     public void IncrementKills() {
         this.kills += 1;
         this.hudManager.UpdateKillCounter(this.kills);
+    }
+
+    public void PlayLevel() {
+        levelManager.StartLevel(this.level);
     }
 }

@@ -24,13 +24,14 @@ public class HUDManager : MonoBehaviour {
     public Transform moveableArea;
 
     public Text killCounter;
+    public Text levelTimer;
 
 
     // ---------- Methods ----------
     private void Awake() {
-        // Hide by default
         unitSelectionPanel.gameObject.SetActive(false);
         moveUnitInstruction.gameObject.SetActive(false);
+        levelTimer.text = "";
     }
 
     // Show and hide unit selection panel.
@@ -116,5 +117,9 @@ public class HUDManager : MonoBehaviour {
     // Game data Panel
     public void UpdateKillCounter(int kills) {
         killCounter.text = "Enemy Units Killed: " + kills;
+    }
+
+    public void SetLevelTimer(string timeStr) {
+        levelTimer.text = "Time left in level: " + timeStr;
     }
 }

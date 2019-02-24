@@ -8,10 +8,14 @@ public class AdminPanel : MonoBehaviour {
     private int curNum = 0;
     private PlayerUnitRank curRank;
     private int enemyLevel = 1;
+    private const int MAX_LEVELS = 40;
+    private int nextLevel = 1;
 
     public Text rankText;
     public Text numberText;
-
+    public Text enemyLevelText;
+    public Text nextLevelText;
+    
 
     private void Awake() {
         rankToNumberMappings.Add(PlayerUnitRank.D, 6);
@@ -23,6 +27,8 @@ public class AdminPanel : MonoBehaviour {
 
         rankText.text = curRank.ToString();
         numberText.text = curNum + "";
+        enemyLevelText.text = enemyLevel + "";
+        nextLevelText.text = nextLevel + "";
     }
 
     public void CreatePlayerUnit() {
@@ -79,5 +85,41 @@ public class AdminPanel : MonoBehaviour {
         }
 
         numberText.text = curNum + "";
+    }
+
+    public void ScrollLevelLeft() {
+        if (enemyLevel > 1) {
+            enemyLevel -= 1;
+        }
+
+        enemyLevelText.text = enemyLevel + "";
+    }
+
+    public void ScrollLevelRight() {
+        if (enemyLevel < MAX_LEVELS) {
+            enemyLevel += 1;
+        }
+
+        enemyLevelText.text = enemyLevel + "";
+    }
+
+    public void ScrollNextLevelLeft() {
+        if (nextLevel > 1) {
+            nextLevel -= 1;
+        }
+
+        nextLevelText.text = nextLevel + "";
+    }
+
+    public void ScrollNextLevelRight() {
+        if (nextLevel < MAX_LEVELS) {
+            nextLevel += 1;
+        }
+
+        nextLevelText.text = nextLevel + "";
+    }
+
+    public void ActivateNextLevel() {
+        GameEngine.Instance.levelManager.StartLevel(nextLevel);
     }
 }
