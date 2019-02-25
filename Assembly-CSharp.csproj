@@ -81,9 +81,11 @@
     <Compile Include="Assets\Scripts\Units\PlayerUnitRank.cs" />
     <Compile Include="Assets\Scripts\Units\Projectile.cs" />
     <Compile Include="Assets\Scripts\Units\Unit.cs" />
+    <Compile Include="Assets\Scripts\Units\UnitClass.cs" />
     <Compile Include="Assets\Scripts\Units\UnitFactory.cs" />
     <Compile Include="Assets\Scripts\Units\Waypoint.cs" />
     <Compile Include="Assets\Scripts\UnitSpawner.cs" />
+    <Compile Include="Assets\Scripts\UpgradeManager.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/Trevor/Documents/MusicMixTowerDefense/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

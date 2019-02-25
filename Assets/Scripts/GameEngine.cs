@@ -24,6 +24,8 @@ public class GameEngine : MonoBehaviour {
     public HUDManager hudManager;
     public UnitSpawner unitSpawner;
     public LevelManager levelManager;
+    public UpgradeManager upgradeManager;
+
     
     // Player Unit Movement
     public bool playerUnitMovementAllowed = false;

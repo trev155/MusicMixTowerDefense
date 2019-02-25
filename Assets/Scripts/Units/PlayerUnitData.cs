@@ -1,5 +1,6 @@
 ﻿public class PlayerUnitData {
     private readonly string displayName;
+    private readonly UnitClass unitClass;
     private readonly float movementSpeed;
     private readonly PlayerUnitRank rank;
     private readonly float attackDamage;
@@ -10,6 +11,7 @@
 
     public PlayerUnitData(
         string displayName,
+        UnitClass unitClass,
         float movementSpeed,
         PlayerUnitRank rank,
         float attackDamage,
@@ -18,6 +20,7 @@
         float attackRange,
         AttackType attackType) {
         this.displayName = displayName;
+        this.unitClass = unitClass;
         this.movementSpeed = movementSpeed;
         this.rank = rank;
         this.attackDamage = attackDamage;
@@ -29,6 +32,10 @@
 
     public string GetDisplayName() {
         return this.displayName;
+    }
+
+    public UnitClass GetUnitClass() {
+        return this.unitClass;
     }
 
     public float GetMovementSpeed() {

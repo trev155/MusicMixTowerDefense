@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class PlayerUnit : Unit {
     //---------- Fields ----------
+    public UnitClass unitClass;
     public PlayerUnitRank rank;
     public float attackDamage;
     public float attackUpgrade;
@@ -26,6 +27,7 @@ public class PlayerUnit : Unit {
     //---------- Methods ----------
     public void InitializeProperties(PlayerUnitData playerUnitData) {
         this.displayName = playerUnitData.GetDisplayName();
+        this.unitClass = playerUnitData.GetUnitClass();
         this.movementSpeed = playerUnitData.GetMovementSpeed();
         this.rank = playerUnitData.GetRank();
         this.attackDamage = playerUnitData.GetAttackDamage();
@@ -48,8 +50,12 @@ public class PlayerUnit : Unit {
 
     public override List<string> GetDisplayUnitData() {
         List<string> unitData = new List<string>();
-        string title = "[" + this.rank + " Rank Unit] " + this.displayName;
+        string title = "[" + this.rank + " Rank] " + this.displayName;
         string attackDamage = "Attack Damage: " + this.attackDamage;
+        int numUpgrades = GameEngine.Instance.upgradeManager.GetNumUpgrades(this.unitClass);
+        if (numUpgrades > 0) {
+            attackDamage += " (+ " + this.attackUpgrade * numUpgrades + ")";
+        }
         string attackUpgrade = "Attack Upgrade: " + this.attackUpgrade;
         string attackSpeed = "Attack Speed: " + this.attackCooldown;
         string movementSpeed = "Movement Speed: " + this.movementSpeed;
@@ -124,6 +130,7 @@ public class PlayerUnit : Unit {
 
     private void AttackTarget() {
         Projectile proj = (Projectile)Instantiate(projectile, transform).GetComponent<Projectile>();
-        proj.InitializeProperties(currentTarget, this, this.attackDamage);
+        float projectileDamage = this.attackDamage + (GameEngine.Instance.upgradeManager.GetNumUpgrades(this.unitClass) * this.attackUpgrade);
+        proj.InitializeProperties(currentTarget, this, projectileDamage);
     }
 }

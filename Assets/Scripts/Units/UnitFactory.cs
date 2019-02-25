@@ -21,6 +21,7 @@
 
     private PlayerUnitData CreateD(int selection) {
         string displayName;
+        UnitClass unitClass;
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.D;
         float attackDamage;
@@ -32,6 +33,7 @@
         switch (selection) {
             case 0:
                 displayName = "Infantry";
+                unitClass = UnitClass.INFANTRY;
                 movementSpeed = 2.0f;
                 attackDamage = 9.0f;
                 attackUpgrade = 1.0f;
@@ -41,6 +43,7 @@
                 break;
             case 1:
                 displayName = "Mech";
+                unitClass = UnitClass.MECH;
                 movementSpeed = 0.5f;
                 attackDamage = 36.0f;
                 attackUpgrade = 7.0f;
@@ -50,6 +53,7 @@
                 break;
             case 2:
                 displayName = "Laser";
+                unitClass = UnitClass.LASER;
                 movementSpeed = 1.0f;
                 attackDamage = 12.0f;
                 attackUpgrade = 1.0f;
@@ -59,6 +63,7 @@
                 break;
             case 3:
                 displayName = "Psionic";
+                unitClass = UnitClass.PSIONIC;
                 movementSpeed = 1.0f;
                 attackDamage = 14.0f;
                 attackUpgrade = 3.0f;
@@ -68,6 +73,7 @@
                 break;
             case 4:
                 displayName = "Acid";
+                unitClass = UnitClass.ACID;
                 movementSpeed = 1.5f;
                 attackDamage = 13.0f;
                 attackUpgrade = 2.0f;
@@ -77,6 +83,7 @@
                 break;
             case 5:
                 displayName = "Blade";
+                unitClass = UnitClass.BLADE;
                 movementSpeed = 3.0f;
                 attackDamage = 11.0f;
                 attackUpgrade = 2.0f;
@@ -88,11 +95,12 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, unitClass, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateC(int selection) {
         string displayName;
+        UnitClass unitClass;
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.C;
         float attackDamage;
@@ -104,6 +112,7 @@
         switch (selection) {
             case 0:
                 displayName = "Infantry";
+                unitClass = UnitClass.INFANTRY;
                 movementSpeed = 2.0f;
                 attackDamage = 19.0f;
                 attackUpgrade = 3.0f;
@@ -113,6 +122,7 @@
                 break;
             case 1:
                 displayName = "Mech";
+                unitClass = UnitClass.MECH;
                 movementSpeed = 0.5f;
                 attackDamage = 82.0f;
                 attackUpgrade = 18.0f;
@@ -122,6 +132,7 @@
                 break;
             case 2:
                 displayName = "Laser";
+                unitClass = UnitClass.LASER;
                 movementSpeed = 1.0f;
                 attackDamage = 27.0f;
                 attackUpgrade = 4.0f;
@@ -131,6 +142,7 @@
                 break;
             case 3:
                 displayName = "Psionic";
+                unitClass = UnitClass.PSIONIC;
                 movementSpeed = 1.0f;
                 attackDamage = 32.0f;
                 attackUpgrade = 6.0f;
@@ -140,6 +152,7 @@
                 break;
             case 4:
                 displayName = "Acid";
+                unitClass = UnitClass.ACID;
                 movementSpeed = 1.5f;
                 attackDamage = 28.0f;
                 attackUpgrade = 5.0f;
@@ -149,6 +162,7 @@
                 break;
             case 5:
                 displayName = "Blade";
+                unitClass = UnitClass.BLADE;
                 movementSpeed = 3.0f;
                 attackDamage = 23.0f;
                 attackUpgrade = 4.0f;
@@ -160,11 +174,12 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, unitClass, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateB(int selection) {
         string displayName;
+        UnitClass unitClass;
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.B;
         float attackDamage;
@@ -176,6 +191,7 @@
         switch (selection) {
             case 0:
                 displayName = "Infantry";
+                unitClass = UnitClass.INFANTRY;
                 movementSpeed = 2.0f;
                 attackDamage = 62.0f;
                 attackUpgrade = 6.0f;
@@ -185,6 +201,7 @@
                 break;
             case 1:
                 displayName = "Mech";
+                unitClass = UnitClass.MECH;
                 movementSpeed = 0.5f;
                 attackDamage = 226.0f;
                 attackUpgrade = 38.0f;
@@ -194,6 +211,7 @@
                 break;
             case 2:
                 displayName = "Laser";
+                unitClass = UnitClass.LASER;
                 movementSpeed = 1.0f;
                 attackDamage = 71.0f;
                 attackUpgrade = 7.0f;
@@ -203,6 +221,7 @@
                 break;
             case 3:
                 displayName = "Psionic";
+                unitClass = UnitClass.PSIONIC;
                 movementSpeed = 1.0f;
                 attackDamage = 102.0f;
                 attackUpgrade = 15.0f;
@@ -212,6 +231,7 @@
                 break;
             case 4:
                 displayName = "Acid";
+                unitClass = UnitClass.ACID;
                 movementSpeed = 1.5f;
                 attackDamage = 74.0f;
                 attackUpgrade = 8.0f;
@@ -221,6 +241,7 @@
                 break;
             case 5:
                 displayName = "Blade";
+                unitClass = UnitClass.BLADE;
                 movementSpeed = 3.0f;
                 attackDamage = 66.0f;
                 attackUpgrade = 7.0f;
@@ -230,6 +251,7 @@
                 break;
             case 6:
                 displayName = "Magic (Rare)";
+                unitClass = UnitClass.MAGIC;
                 movementSpeed = 1.5f;
                 attackDamage = 500.0f;
                 attackUpgrade = 30.0f;
@@ -239,6 +261,7 @@
                 break;
             case 7:
                 displayName = "Flame (Rare)";
+                unitClass = UnitClass.FLAME;
                 movementSpeed = 1.2f;
                 attackDamage = 90.0f;
                 attackUpgrade = 9.0f;
@@ -250,11 +273,12 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, unitClass, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateA(int selection) {
         string displayName;
+        UnitClass unitClass;
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.A;
         float attackDamage;
@@ -266,6 +290,7 @@
         switch (selection) {
             case 0:
                 displayName = "Infantry";
+                unitClass = UnitClass.INFANTRY;
                 movementSpeed = 2.0f;
                 attackDamage = 134.0f;
                 attackUpgrade = 9.0f;
@@ -275,6 +300,7 @@
                 break;
             case 1:
                 displayName = "Mech";
+                unitClass = UnitClass.MECH;
                 movementSpeed = 0.5f;
                 attackDamage = 514.0f;
                 attackUpgrade = 77.0f;
@@ -284,6 +310,7 @@
                 break;
             case 2:
                 displayName = "Laser";
+                unitClass = UnitClass.LASER;
                 movementSpeed = 1.0f;
                 attackDamage = 166.0f;
                 attackUpgrade = 14.0f;
@@ -293,6 +320,7 @@
                 break;
             case 3:
                 displayName = "Psionic";
+                unitClass = UnitClass.PSIONIC;
                 movementSpeed = 1.0f;
                 attackDamage = 232.0f;
                 attackUpgrade = 23.0f;
@@ -302,6 +330,7 @@
                 break;
             case 4:
                 displayName = "Acid";
+                unitClass = UnitClass.ACID;
                 movementSpeed = 1.5f;
                 attackDamage = 171.0f;
                 attackUpgrade = 18.0f;
@@ -311,6 +340,7 @@
                 break;
             case 5:
                 displayName = "Blade";
+                unitClass = UnitClass.BLADE;
                 movementSpeed = 3.0f;
                 attackDamage = 145.0f;
                 attackUpgrade = 15.0f;
@@ -320,6 +350,7 @@
                 break;
             case 6:
                 displayName = "Magic (Rare)";
+                unitClass = UnitClass.MAGIC;
                 movementSpeed = 1.5f;
                 attackDamage = 900.0f;
                 attackUpgrade = 60.0f;
@@ -329,6 +360,7 @@
                 break;
             case 7:
                 displayName = "Flame (Rare)";
+                unitClass = UnitClass.FLAME;
                 movementSpeed = 1.2f;
                 attackDamage = 210.0f;
                 attackUpgrade = 16.0f;
@@ -340,11 +372,12 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, unitClass, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateS(int selection) {
         string displayName;
+        UnitClass unitClass;
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.S;
         float attackDamage;
@@ -356,6 +389,7 @@
         switch (selection) {
             case 0:
                 displayName = "Infantry";
+                unitClass = UnitClass.INFANTRY;
                 movementSpeed = 2.0f;
                 attackDamage = 291.0f;
                 attackUpgrade = 21.0f;
@@ -365,6 +399,7 @@
                 break;
             case 1:
                 displayName = "Mech";
+                unitClass = UnitClass.MECH;
                 movementSpeed = 0.5f;
                 attackDamage = 1568.0f;
                 attackUpgrade = 121.0f;
@@ -374,6 +409,7 @@
                 break;
             case 2:
                 displayName = "Laser";
+                unitClass = UnitClass.LASER;
                 movementSpeed = 1.0f;
                 attackDamage = 364.0f;
                 attackUpgrade = 35.0f;
@@ -383,6 +419,7 @@
                 break;
             case 3:
                 displayName = "Psionic";
+                unitClass = UnitClass.PSIONIC;
                 movementSpeed = 1.0f;
                 attackDamage = 645.0f;
                 attackUpgrade = 52.0f;
@@ -392,6 +429,7 @@
                 break;
             case 4:
                 displayName = "Acid";
+                unitClass = UnitClass.ACID;
                 movementSpeed = 1.5f;
                 attackDamage = 409.0f;
                 attackUpgrade = 40.0f;
@@ -401,6 +439,7 @@
                 break;
             case 5:
                 displayName = "Blade";
+                unitClass = UnitClass.BLADE;
                 movementSpeed = 3.0f;
                 attackDamage = 364.0f;
                 attackUpgrade = 36.0f;
@@ -410,6 +449,7 @@
                 break;
             case 6:
                 displayName = "Magic (Rare)";
+                unitClass = UnitClass.MAGIC;
                 movementSpeed = 1.5f;
                 attackDamage = 2200.0f;
                 attackUpgrade = 150.0f;
@@ -419,6 +459,7 @@
                 break;
             case 7:
                 displayName = "Flame (Rare)";
+                unitClass = UnitClass.FLAME;
                 movementSpeed = 1.2f;
                 attackDamage = 660.0f;
                 attackUpgrade = 25.0f;
@@ -430,11 +471,12 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, unitClass, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     private PlayerUnitData CreateX(int selection) {
         string displayName;
+        UnitClass unitClass;
         float movementSpeed;
         PlayerUnitRank rank = PlayerUnitRank.X;
         float attackDamage;
@@ -446,6 +488,7 @@
         switch (selection) {
             case 0:
                 displayName = "Infantry";
+                unitClass = UnitClass.INFANTRY;
                 movementSpeed = 2.0f;
                 attackDamage = 565.0f;
                 attackUpgrade = 44.0f;
@@ -455,6 +498,7 @@
                 break;
             case 1:
                 displayName = "Mech";
+                unitClass = UnitClass.MECH;
                 movementSpeed = 0.5f;
                 attackDamage = 4000.0f;
                 attackUpgrade = 200.0f;
@@ -464,6 +508,7 @@
                 break;
             case 2:
                 displayName = "Laser";
+                unitClass = UnitClass.LASER;
                 movementSpeed = 1.0f;
                 attackDamage = 920.0f;
                 attackUpgrade = 56.0f;
@@ -473,6 +518,7 @@
                 break;
             case 3:
                 displayName = "Psionic";
+                unitClass = UnitClass.PSIONIC;
                 movementSpeed = 1.0f;
                 attackDamage = 1420.0f;
                 attackUpgrade = 80.0f;
@@ -482,6 +528,7 @@
                 break;
             case 4:
                 displayName = "Acid";
+                unitClass = UnitClass.ACID;
                 movementSpeed = 1.5f;
                 attackDamage = 1102.0f;
                 attackUpgrade = 71.0f;
@@ -491,6 +538,7 @@
                 break;
             case 5:
                 displayName = "Blade";
+                unitClass = UnitClass.BLADE;
                 movementSpeed = 3.0f;
                 attackDamage = 745.0f;
                 attackUpgrade = 68.0f;
@@ -500,6 +548,7 @@
                 break;
             case 6:
                 displayName = "Magic (Rare)";
+                unitClass = UnitClass.MAGIC;
                 movementSpeed = 1.5f;
                 attackDamage = 4620.0f;
                 attackUpgrade = 310.0f;
@@ -509,6 +558,7 @@
                 break;
             case 7:
                 displayName = "Flame (Rare)";
+                unitClass = UnitClass.FLAME;
                 movementSpeed = 1.2f;
                 attackDamage = 660.0f;
                 attackUpgrade = 75.0f;
@@ -520,7 +570,7 @@
                 throw new GameplayException("Selection value was invalid, cannot create unit.");
         }
 
-        return new PlayerUnitData(displayName, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
+        return new PlayerUnitData(displayName, unitClass, movementSpeed, rank, attackDamage, attackUpgrade, attackCooldown, attackRange, attackType);
     }
 
     // ---------- Enemy Unit Creation ----------
