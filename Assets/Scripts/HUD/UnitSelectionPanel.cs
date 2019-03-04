@@ -48,9 +48,9 @@ public class UnitSelectionPanel : MonoBehaviour {
 
     public void CloseUnitSelectionPanelButton() {
         HideUnitSelectionPanel();
-        GameEngine.Instance.DisablePlayerUnitMovement();
-        GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
-        GameEngine.Instance.ClearUnitSelectionObjects();
+        GameEngine.GetInstance().DisablePlayerUnitMovement();
+        GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
+        GameEngine.GetInstance().ClearUnitSelectionObjects();
     }
 
     // Unit selection panel data
@@ -86,10 +86,10 @@ public class UnitSelectionPanel : MonoBehaviour {
 
     // Player Unit Selection movement
     public void MoveUnitButton() {
-        if (GameEngine.Instance.playerUnitMovementAllowed) {
-            GameEngine.Instance.DisablePlayerUnitMovement();
+        if (GameEngine.GetInstance().playerUnitMovementAllowed) {
+            GameEngine.GetInstance().DisablePlayerUnitMovement();
         } else {
-            GameEngine.Instance.EnablePlayerUnitMovement();
+            GameEngine.GetInstance().EnablePlayerUnitMovement();
         }
     }
 

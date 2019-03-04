@@ -37,17 +37,17 @@ public class Projectile : MonoBehaviour {
     private void InflictDamage(EnemyUnit enemyUnit, float damage) {
         enemyUnit.currentHealth -= (damage - enemyUnit.armor);
         
-        if (GameEngine.Instance.enemyUnitSelected == enemyUnit) {
-            GameEngine.Instance.unitSelectionPanel.UpdateSelectedUnitDataPanel(enemyUnit);
+        if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
+            GameEngine.GetInstance().unitSelectionPanel.UpdateSelectedUnitDataPanel(enemyUnit);
         }
         
         if (enemyUnit.currentHealth <= 0) {
-            GameEngine.Instance.IncrementKills();
+            GameEngine.GetInstance().IncrementKills();
             RemoveCurrentTargetForAllUnitsAttackingTarget(enemyUnit);
             Destroy(enemyUnit.gameObject);
 
-            if (GameEngine.Instance.enemyUnitSelected == enemyUnit) {
-                GameEngine.Instance.unitSelectionPanel.HideUnitSelectionPanel();
+            if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
+                GameEngine.GetInstance().unitSelectionPanel.HideUnitSelectionPanel();
             }
         }
     }

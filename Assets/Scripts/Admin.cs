@@ -5,7 +5,7 @@ public class Admin : MonoBehaviour {
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Alpha1)) {
             Debug.Log("Admin Route");
 
-            GameEngine.Instance.upgradeManager.PrintAllUpgrades();
+            GameEngine.GetInstance().upgradeManager.PrintAllUpgrades();
 
         }
     }

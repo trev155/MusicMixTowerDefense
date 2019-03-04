@@ -26,18 +26,18 @@ public class EnemyUnit : Unit {
     }
 
     public override void OnPointerClick(PointerEventData pointerEventData) {
-        if (GameEngine.Instance.playerUnitMovementAllowed) {
-            GameEngine.Instance.DisablePlayerUnitMovement();
+        if (GameEngine.GetInstance().playerUnitMovementAllowed) {
+            GameEngine.GetInstance().DisablePlayerUnitMovement();
         }
-        if (GameEngine.Instance.playerUnitSelected != null) {
-            GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
+        if (GameEngine.GetInstance().playerUnitSelected != null) {
+            GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
         }
 
-        if (GameEngine.Instance.enemyUnitSelected != this) {
-            GameEngine.Instance.enemyUnitSelected = this;
+        if (GameEngine.GetInstance().enemyUnitSelected != this) {
+            GameEngine.GetInstance().enemyUnitSelected = this;
         }
         
-        GameEngine.Instance.unitSelectionPanel.ShowUnitSelectionPanel(this);
+        GameEngine.GetInstance().unitSelectionPanel.ShowUnitSelectionPanel(this);
     }
 
     public override List<string> GetDisplayUnitData() {

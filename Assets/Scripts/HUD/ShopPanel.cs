@@ -16,14 +16,14 @@ public class ShopPanel : MonoBehaviour {
     }
 
     public void CreateRandomDUnit() {
-        if (GameEngine.Instance.tokenCount == 0) {
+        if (GameEngine.GetInstance().tokenCount == 0) {
             Debug.Log("Could not purchase a D unit. Requires 1 token.");
             return;
         }
 
-        GameEngine.Instance.unitSpawner.CreateRandomDUnit();
-        GameEngine.Instance.tokenCount--;
-        GameEngine.Instance.gameDataPanel.UpdateTokenCount(GameEngine.Instance.tokenCount);
+        GameEngine.GetInstance().unitSpawner.CreateRandomDUnit();
+        GameEngine.GetInstance().tokenCount--;
+        GameEngine.GetInstance().gameDataPanel.UpdateTokenCount(GameEngine.GetInstance().tokenCount);
     }
 
     public void ScrollItemLeft() {

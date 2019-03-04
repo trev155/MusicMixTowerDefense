@@ -38,21 +38,23 @@ public class PlayerUnit : Unit {
     }
 
     public override void OnPointerClick(PointerEventData pointerEventData) {
-        GameEngine.Instance.unitSelectionPanel.ShowUnitSelectionPanel(this);
+        Debug.Log(pointerEventData);
+
+        GameEngine.GetInstance().unitSelectionPanel.ShowUnitSelectionPanel(this);
         
-        if (GameEngine.Instance.playerUnitSelected != null) {
-            GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
+        if (GameEngine.GetInstance().playerUnitSelected != null) {
+            GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
         }
-        GameEngine.Instance.playerUnitSelected = this;
-        GameEngine.Instance.enemyUnitSelected = null;
-        GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.SELECTED_ALPHA);
+        GameEngine.GetInstance().playerUnitSelected = this;
+        GameEngine.GetInstance().enemyUnitSelected = null;
+        GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.SELECTED_ALPHA);
     }
 
     public override List<string> GetDisplayUnitData() {
         List<string> unitData = new List<string>();
         string title = "[" + this.rank + " Rank] " + this.displayName;
         string attackDamage = "Attack Damage: " + this.attackDamage;
-        int numUpgrades = GameEngine.Instance.upgradeManager.GetNumUpgrades(this.unitClass);
+        int numUpgrades = GameEngine.GetInstance().upgradeManager.GetNumUpgrades(this.unitClass);
         if (numUpgrades > 0) {
             attackDamage += " (+ " + this.attackUpgrade * numUpgrades + ")";
         }
@@ -130,7 +132,7 @@ public class PlayerUnit : Unit {
 
     private void AttackTarget() {
         Projectile proj = (Projectile)Instantiate(projectile, transform).GetComponent<Projectile>();
-        float projectileDamage = this.attackDamage + (GameEngine.Instance.upgradeManager.GetNumUpgrades(this.unitClass) * this.attackUpgrade);
+        float projectileDamage = this.attackDamage + (GameEngine.GetInstance().upgradeManager.GetNumUpgrades(this.unitClass) * this.attackUpgrade);
         proj.InitializeProperties(currentTarget, this, projectileDamage);
     }
 }

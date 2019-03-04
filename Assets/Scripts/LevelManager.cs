@@ -18,7 +18,7 @@ public class LevelManager : MonoBehaviour {
     private void Update() {
         if (levelHasStarted) {
             timeLeftInLevel -= Time.deltaTime;
-            GameEngine.Instance.gameDataPanel.SetLevelTimer(ConvertTimeToString(timeLeftInLevel));
+            GameEngine.GetInstance().gameDataPanel.SetLevelTimer(ConvertTimeToString(timeLeftInLevel));
         }
 
         if (timeLeftInLevel <= 0) {
@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour {
 
     IEnumerator StartLevelLoop(int level) {
         while (true) {
-            GameEngine.Instance.unitSpawner.CreateEnemyUnit(level);
+            GameEngine.GetInstance().unitSpawner.CreateEnemyUnit(level);
             numUnitsSpawned += 1;
 
             if (numUnitsSpawned == numUnitsPerLevel) {

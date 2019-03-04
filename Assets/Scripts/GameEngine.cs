@@ -9,6 +9,9 @@ using UnityEngine;
 public class GameEngine : MonoBehaviour {
     // Singleton field
     public static GameEngine Instance { get; private set; } = null;
+    public static GameEngine GetInstance() {
+        return Instance;
+    }
 
     // References to other management objects
     public UnitSpawner unitSpawner;

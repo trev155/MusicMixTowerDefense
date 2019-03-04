@@ -13,7 +13,7 @@ public class MoveableArea : MonoBehaviour, IPointerClickHandler {
 
     //---------- Methods ----------
     public void OnPointerClick(PointerEventData eventData) {
-        if (GameEngine.Instance.playerUnitMovementAllowed) {
+        if (GameEngine.GetInstance().playerUnitMovementAllowed) {
             Vector2 touchedPosition = Camera.main.ScreenToWorldPoint(eventData.position);
 
             UpdatePlayerDestination(touchedPosition);
@@ -22,7 +22,7 @@ public class MoveableArea : MonoBehaviour, IPointerClickHandler {
     }
 
     private void UpdatePlayerDestination(Vector2 destination) {
-        PlayerUnit playerUnit = GameEngine.Instance.playerUnitSelected;
+        PlayerUnit playerUnit = GameEngine.GetInstance().playerUnitSelected;
         playerUnit.movementEnabled = true;
         playerUnit.movementDestination = destination;
     }
