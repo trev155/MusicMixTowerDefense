@@ -31,7 +31,6 @@ public class UnitSpawner : MonoBehaviour {
         CreatePlayerUnitRangeCircle(player);
     }
     
-
     public void CreateRandomDUnit() {
         int selection = random.Next(0, 6);
         CreatePlayerUnit(PlayerUnitRank.D, selection);

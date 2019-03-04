@@ -38,7 +38,7 @@ public class PlayerUnit : Unit {
     }
 
     public override void OnPointerClick(PointerEventData pointerEventData) {
-        GameEngine.Instance.hudManager.ShowUnitSelectionPanel(this);
+        GameEngine.Instance.unitSelectionPanel.ShowUnitSelectionPanel(this);
         
         if (GameEngine.Instance.playerUnitSelected != null) {
             GameEngine.Instance.playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);

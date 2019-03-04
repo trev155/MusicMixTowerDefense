@@ -65,7 +65,9 @@
     <Compile Include="Assets\Scripts\GameplayException.cs" />
     <Compile Include="Assets\Scripts\GlobalTimer.cs" />
     <Compile Include="Assets\Scripts\HUD\AdminPanel.cs" />
-    <Compile Include="Assets\Scripts\HUD\HUDManager.cs" />
+    <Compile Include="Assets\Scripts\HUD\GameDataPanel.cs" />
+    <Compile Include="Assets\Scripts\HUD\ShopPanel.cs" />
+    <Compile Include="Assets\Scripts\HUD\UnitSelectionPanel.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\MoveableArea.cs" />

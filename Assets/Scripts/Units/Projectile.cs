@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour {
         enemyUnit.currentHealth -= (damage - enemyUnit.armor);
         
         if (GameEngine.Instance.enemyUnitSelected == enemyUnit) {
-            GameEngine.Instance.hudManager.UpdateSelectedUnitDataPanel(enemyUnit);
+            GameEngine.Instance.unitSelectionPanel.UpdateSelectedUnitDataPanel(enemyUnit);
         }
         
         if (enemyUnit.currentHealth <= 0) {
@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour {
             Destroy(enemyUnit.gameObject);
 
             if (GameEngine.Instance.enemyUnitSelected == enemyUnit) {
-                GameEngine.Instance.hudManager.HideUnitSelectionPanel();
+                GameEngine.Instance.unitSelectionPanel.HideUnitSelectionPanel();
             }
         }
     }

@@ -37,7 +37,7 @@ public class EnemyUnit : Unit {
             GameEngine.Instance.enemyUnitSelected = this;
         }
         
-        GameEngine.Instance.hudManager.ShowUnitSelectionPanel(this);
+        GameEngine.Instance.unitSelectionPanel.ShowUnitSelectionPanel(this);
     }
 
     public override List<string> GetDisplayUnitData() {

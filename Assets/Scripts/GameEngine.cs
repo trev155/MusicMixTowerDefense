@@ -10,8 +10,48 @@ public class GameEngine : MonoBehaviour {
     // Singleton field
     public static GameEngine Instance { get; private set; } = null;
 
+    // References to other management objects
+    public UnitSpawner unitSpawner;
+    public LevelManager levelManager;
+    public UpgradeManager upgradeManager;
+
+    public UnitSelectionPanel unitSelectionPanel;
+    public ShopPanel shopPanel;
+    public GameDataPanel gameDataPanel;
+
+    // Unit Selection
+    public bool playerUnitMovementAllowed = false;
+    public PlayerUnit playerUnitSelected;
+    public EnemyUnit enemyUnitSelected;
+
+    // Gameplay stats
+    public int level;
+    public int kills;
+    public int tokenCount;
+
+    public bool hasPiano = false;
+    public bool hasDrum = false;
+    public int harvesterCount;
+
+
+    //---------- Initialization ----------
     private void Awake() {
-        // singleton initialization
+        InitializeSingleton();
+
+        this.playerUnitMovementAllowed = false;
+        this.playerUnitSelected = null;
+        this.enemyUnitSelected = null;
+        this.level = 0;
+        this.kills = 0;
+        this.tokenCount = 4;
+        this.hasPiano = false;
+        this.hasDrum = false;
+        this.harvesterCount = 0;
+
+        this.gameDataPanel.UpdateTokenCount(this.tokenCount);
+    }
+
+    private void InitializeSingleton() {
         if (Instance != null && Instance != this) {
             Destroy(this.gameObject);
             return;
@@ -20,37 +60,19 @@ public class GameEngine : MonoBehaviour {
         }
     }
 
-    // References to other management objects
-    public HUDManager hudManager;
-    public UnitSpawner unitSpawner;
-    public LevelManager levelManager;
-    public UpgradeManager upgradeManager;
-
-    
-    // Player Unit Movement
-    public bool playerUnitMovementAllowed = false;
-    public PlayerUnit playerUnitSelected;
-
-    public EnemyUnit enemyUnitSelected;
-
-    // Gameplay stats
-    public int level;
-    public int kills;
-
-
     //---------- Methods ----------
     public void EnablePlayerUnitMovement() {
         this.playerUnitMovementAllowed = true;
-        this.hudManager.moveUnitButtonText.text = "Disable Unit Movement";
-        this.hudManager.moveUnitInstruction.gameObject.SetActive(true);
-        this.hudManager.HighlightMoveableAreaAlpha();
+        this.unitSelectionPanel.moveUnitButtonText.text = "Disable Unit Movement";
+        this.unitSelectionPanel.moveUnitInstruction.gameObject.SetActive(true);
+        this.unitSelectionPanel.HighlightMoveableAreaAlpha();
     }
 
     public void DisablePlayerUnitMovement() {
         this.playerUnitMovementAllowed = false;
-        this.hudManager.moveUnitButtonText.text = "Enable Unit Movement";
-        this.hudManager.moveUnitInstruction.gameObject.SetActive(false);
-        this.hudManager.UnhighlightMoveableAreaAlpha();
+        this.unitSelectionPanel.moveUnitButtonText.text = "Enable Unit Movement";
+        this.unitSelectionPanel.moveUnitInstruction.gameObject.SetActive(false);
+        this.unitSelectionPanel.UnhighlightMoveableAreaAlpha();
     }
 
     public void ClearUnitSelectionObjects() {
@@ -60,7 +82,7 @@ public class GameEngine : MonoBehaviour {
 
     public void IncrementKills() {
         this.kills += 1;
-        this.hudManager.UpdateKillCounter(this.kills);
+        this.gameDataPanel.UpdateKillCounter(this.kills);
     }
 
     public void PlayLevel() {
