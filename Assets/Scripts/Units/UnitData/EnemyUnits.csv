@@ -1,0 +1,31 @@
+unitLevel,displayName,movementSpeed,maxHealth,armor,enemyAbilities
+1,Reaver,0.4,105,0,None
+2,Archon,1.2,196,0,None
+3,Dragoon,1.4,324,1,None
+4,Dark Templar,1.2,398,2,None
+5,Vulture,2.1,476,2,None
+6,High Templar,0.8,602,0,None
+7,Medic,1.0,742,0,None
+8,Marine,1.0,857,0,None
+9,Drone,1.3,934,0,None
+10,Zergling,1.8,976,0,None
+11,Broodling,1.5,1124,0,None
+12,Zeratul,1.2,1386,0,None
+13,Kerrigan,1.0,1564,0,None
+14,SCV,1.3,1835,0,None
+15,Zealot,1.7,1964,0,None
+16,Devouring One,2.5,2033,0,None
+
+21,Probe,1.3,3102.0,0,None
+
+34,TassadarArchon,1.2,15000,5,None
+
+38,Probe,1.3,18000,9,None
+39,Edmund Duke,0.9,19000,14,None
+40,Raynor Vulture,2.4,23000,16,None
+
+0,BonusQueen,2.0,7.0,999999,HealthRegeneration
+0,DarkArchon,0,1000,0,None
+
+0,Time,1.2,15000,3,None
+0,Naruto,1.2,46000,4,None

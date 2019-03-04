@@ -6,6 +6,7 @@ public class Admin : MonoBehaviour {
             Debug.Log("Admin Route");
 
             GameEngine.Instance.upgradeManager.PrintAllUpgrades();
+
         }
     }
 }

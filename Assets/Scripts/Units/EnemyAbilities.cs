@@ -1,5 +1,4 @@
 ﻿public enum EnemyAbilities {
     NONE,
-    TEST1,
-    TEST2
+    HEALTH_REGEN
 }
