@@ -22,51 +22,61 @@ public class UnitSpawner : MonoBehaviour {
     }
 
     // Player Unit Creation Functions
-    public void CreatePlayerUnit(PlayerUnitRank rank, int seed) {
+    public PlayerUnit CreatePlayerUnit(PlayerUnitRank rank, int seed) {
         PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, seed);
         PlayerUnit player = (PlayerUnit)Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
         player.InitializeProperties(playerUnitData);
 
         SetObjectName(player.gameObject);
         CreatePlayerUnitRangeCircle(player);
+
+        return player;
     }
     
-    public void CreateRandomDUnit() {
+    public PlayerUnit CreateRandomDUnit() {
         int selection = random.Next(0, 6);
-        CreatePlayerUnit(PlayerUnitRank.D, selection);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.D, selection);
+        return playerUnit;
     }        
     
-    public void CreateRandomCUnit() {
+    public PlayerUnit CreateRandomCUnit() {
         int selection = random.Next(0, 6);
-        CreatePlayerUnit(PlayerUnitRank.C, selection);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.C, selection);
+        return playerUnit;
     }
 
-    public void CreateRandomBUnit() {
+    public PlayerUnit CreateRandomBUnit() {
         int selection = random.Next(0, 8);
-        CreatePlayerUnit(PlayerUnitRank.B, selection);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.B, selection);
+        return playerUnit;
     }
 
-    public void CreateRandomAUnit() {
+    public PlayerUnit CreateRandomAUnit() {
         int selection = random.Next(0, 8);
-        CreatePlayerUnit(PlayerUnitRank.A, selection);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.A, selection);
+        return playerUnit;
     }
 
-    public void CreateRandomSUnit() {
+    public PlayerUnit CreateRandomSUnit() {
         int selection = random.Next(0, 8);
-        CreatePlayerUnit(PlayerUnitRank.S, selection);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.S, selection);
+        return playerUnit;
     }
 
-    public void CreateRandomXUnit() {
+    public PlayerUnit CreateRandomXUnit() {
         int selection = random.Next(0, 8);
-        CreatePlayerUnit(PlayerUnitRank.X, selection);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, selection);
+        return playerUnit;
     }
 
     // Enemy Unit Creation Functions
-    public void CreateEnemyUnit(int level) {
+    public EnemyUnit CreateEnemyUnit(int level) {
         EnemyUnitData enemyUnitData = unitFactory.CreateEnemyUnitData(level);
         EnemyUnit e = (EnemyUnit)Instantiate(enemyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
         e.InitializeProperties(enemyUnitData);
         SetObjectName(e.gameObject);
+
+        return e;
     }
 
     // Other

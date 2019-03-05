@@ -8,9 +8,12 @@ public class ShopPanel : MonoBehaviour {
 
     private int shopItemOption;
 
+    private System.Random random;
 
     // ---------- Methods ----------
     private void Awake() {
+        random = new System.Random();
+
         shopItemText.text = "Piano (2 Token)";
         shopItemOption = 0;
     }
@@ -21,9 +24,38 @@ public class ShopPanel : MonoBehaviour {
             return;
         }
 
-        GameEngine.GetInstance().unitSpawner.CreateRandomDUnit();
+        PlayerUnit p = GameEngine.GetInstance().unitSpawner.CreateRandomDUnit();
         GameEngine.GetInstance().tokenCount--;
         GameEngine.GetInstance().gameDataPanel.UpdateTokenCount(GameEngine.GetInstance().tokenCount);
+
+        Debug.Log("[D Unit - " + p.displayName + "]");
+    }
+
+    public void PurchaseGas() {
+        if (GameEngine.GetInstance().tokenCount == 0) {
+            Debug.Log("Could not purchase vespene gas. Requires 1 token.");
+            return;
+        }
+
+        int vespeneIncrement;
+        int option = random.Next(1, 10);
+        if (option <= 4) {
+            vespeneIncrement = 40;
+        } else if (option <= 7) {
+            vespeneIncrement = 60;
+        } else if (option <= 9) {
+            vespeneIncrement = 80;
+        } else {
+            vespeneIncrement = 100;
+        }
+        
+        GameEngine.GetInstance().tokenCount--;
+        GameEngine.GetInstance().gameDataPanel.UpdateTokenCount(GameEngine.GetInstance().tokenCount);
+
+        GameEngine.GetInstance().IncreaseVespene(vespeneIncrement);
+        GameEngine.GetInstance().menuPanel.UpdateVespeneText(GameEngine.GetInstance().vespene);
+
+        Debug.Log("[+" + vespeneIncrement + " Vespene]");
     }
 
     public void ScrollItemLeft() {

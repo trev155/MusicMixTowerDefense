@@ -21,6 +21,7 @@ public class GameEngine : MonoBehaviour {
     public UnitSelectionPanel unitSelectionPanel;
     public ShopPanel shopPanel;
     public GameDataPanel gameDataPanel;
+    public MenuPanel menuPanel;
 
     // Unit Selection
     public bool playerUnitMovementAllowed = false;
@@ -36,6 +37,8 @@ public class GameEngine : MonoBehaviour {
     public bool hasDrum = false;
     public int harvesterCount;
 
+    public int minerals;
+    public int vespene;
 
     //---------- Initialization ----------
     private void Awake() {
@@ -50,6 +53,8 @@ public class GameEngine : MonoBehaviour {
         this.hasPiano = false;
         this.hasDrum = false;
         this.harvesterCount = 0;
+        this.minerals = 0;
+        this.vespene = 0;
 
         this.gameDataPanel.UpdateTokenCount(this.tokenCount);
     }
@@ -90,5 +95,20 @@ public class GameEngine : MonoBehaviour {
 
     public void PlayLevel() {
         levelManager.StartLevel(this.level);
+    }
+
+    public void IncreaseMinerals(int val) {
+        this.minerals += val;
+        if (this.minerals >= 160) {
+            // TODO display message
+            Debug.Log("160 Minerals = 1 Token");
+            this.minerals -= 160;
+        }
+
+        this.menuPanel.UpdateMineralsText(this.minerals);
+    }
+
+    public void IncreaseVespene(int val) {
+        this.vespene += val;
     }
 }
