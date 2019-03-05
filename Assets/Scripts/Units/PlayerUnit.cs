@@ -38,7 +38,11 @@ public class PlayerUnit : Unit {
     }
 
     public override void OnPointerClick(PointerEventData pointerEventData) {
-        Debug.Log(pointerEventData);
+        bool clickedOnPlayerUnit = pointerEventData.pointerEnter.gameObject.name == this.name;
+        if (!clickedOnPlayerUnit) {
+            // as opposed to any of its children
+            return;
+        }
 
         GameEngine.GetInstance().unitSelectionPanel.ShowUnitSelectionPanel(this);
         
