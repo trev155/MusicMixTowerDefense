@@ -8,13 +8,11 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour {
     private float spawnDelay = 2.0f;
-    private int numUnitsSpawned = 0;
     public bool levelHasStarted = false;
     private readonly int numUnitsPerLevel = 40;
+    public float timeLeftInLevel;
 
-    private float timeLeftInLevel;
-
-
+       
     private void Update() {
         if (levelHasStarted) {
             timeLeftInLevel -= Time.deltaTime;
@@ -38,6 +36,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     IEnumerator StartLevelLoop(int level) {
+        int numUnitsSpawned = 0;
         while (true) {
             GameEngine.GetInstance().unitSpawner.CreateEnemyUnit(level);
             numUnitsSpawned += 1;

@@ -21,6 +21,7 @@ public class GameEngine : MonoBehaviour {
     public UnitSelectionPanel unitSelectionPanel;
     public ShopPanel shopPanel;
     public GameDataPanel gameDataPanel;
+    public UpgradePanel upgradePanel;
 
     // Unit Selection
     public bool playerUnitMovementAllowed = false;
