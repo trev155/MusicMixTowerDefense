@@ -53,7 +53,7 @@ public class ShopPanel : MonoBehaviour {
         GameEngine.GetInstance().gameDataPanel.UpdateTokenCount(GameEngine.GetInstance().tokenCount);
 
         GameEngine.GetInstance().IncreaseVespene(vespeneIncrement);
-        GameEngine.GetInstance().menuPanel.UpdateVespeneText(GameEngine.GetInstance().vespene);
+        GameEngine.GetInstance().gameDataPanel.UpdateVespeneText(GameEngine.GetInstance().vespene);
 
         Debug.Log("[+" + vespeneIncrement + " Vespene]");
     }

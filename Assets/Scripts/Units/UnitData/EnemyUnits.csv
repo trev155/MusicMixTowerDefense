@@ -1,9 +1,9 @@
 unitLevel,displayName,movementSpeed,maxHealth,armor,enemyAbilities
 1,Reaver,0.4,105,0,None
 2,Archon,1.2,196,0,None
-3,Dragoon,1.4,324,1,None
-4,Dark Templar,1.2,398,2,None
-5,Vulture,2.1,476,2,None
+3,Dragoon,1.4,324,0,None
+4,Dark Templar,1.2,398,0,None
+5,Vulture,2.1,476,0,None
 6,High Templar,0.8,602,0,None
 7,Medic,1.0,742,0,None
 8,Marine,1.0,857,0,None

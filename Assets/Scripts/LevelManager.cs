@@ -9,8 +9,8 @@ using System.Collections;
 public class LevelManager : MonoBehaviour {
     private float spawnDelay = 2.0f;
     private int numUnitsSpawned = 0;
-    private bool levelHasStarted = false;
-    private int numUnitsPerLevel = 20;
+    public bool levelHasStarted = false;
+    private readonly int numUnitsPerLevel = 40;
 
     private float timeLeftInLevel;
 
@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour {
 
         levelHasStarted = true;
         StartCoroutine(StartLevelLoop(level));
-        timeLeftInLevel = 50.0f;
+        timeLeftInLevel = 80.0f;
     }
 
     IEnumerator StartLevelLoop(int level) {

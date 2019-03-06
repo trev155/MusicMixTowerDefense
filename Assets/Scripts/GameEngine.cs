@@ -21,7 +21,6 @@ public class GameEngine : MonoBehaviour {
     public UnitSelectionPanel unitSelectionPanel;
     public ShopPanel shopPanel;
     public GameDataPanel gameDataPanel;
-    public MenuPanel menuPanel;
 
     // Unit Selection
     public bool playerUnitMovementAllowed = false;
@@ -91,6 +90,12 @@ public class GameEngine : MonoBehaviour {
     public void IncrementKills() {
         this.kills += 1;
         this.gameDataPanel.UpdateKillCounter(this.kills);
+
+        if (this.kills % 20 == 0) {
+            Debug.Log("20 Kills = 1 Token");
+            this.tokenCount += 1;
+            this.gameDataPanel.UpdateTokenCount(this.tokenCount);
+        }
     }
 
     public void PlayLevel() {
@@ -105,7 +110,7 @@ public class GameEngine : MonoBehaviour {
             this.minerals -= 160;
         }
 
-        this.menuPanel.UpdateMineralsText(this.minerals);
+        this.gameDataPanel.UpdateMineralsText(this.minerals);
     }
 
     public void IncreaseVespene(int val) {
