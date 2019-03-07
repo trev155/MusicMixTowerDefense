@@ -26,13 +26,20 @@ public class UpgradeManager : MonoBehaviour {
         upgradeMap[unitClass] = numUpgrades;
     }
 
-    public void IncrementUpgradeClass(UnitClass unitClass) {
+    public int IncrementUpgradeClass(UnitClass unitClass) {
         upgradeMap[unitClass] += 1;
+        return upgradeMap[unitClass];
     }
 
     public void PrintAllUpgrades() {
         foreach (KeyValuePair<UnitClass, int> entry in upgradeMap) {
             Debug.Log(entry.Value.ToString() + ": " + entry.Key);
         }
+    }
+
+    public int GetUpgradeCost(UnitClass unitClass) {
+        int currentUpgradeLevel = upgradeMap[unitClass];
+        int upgradeCost = currentUpgradeLevel + 10;
+        return upgradeCost;
     }
 }

@@ -116,5 +116,11 @@ public class GameEngine : MonoBehaviour {
 
     public void IncreaseVespene(int val) {
         this.vespene += val;
+        this.gameDataPanel.UpdateVespeneText(this.vespene);
+    }
+
+    public void DecreaseVespene(int val) {
+        this.vespene -= val;
+        this.gameDataPanel.UpdateVespeneText(this.vespene);
     }
 }
