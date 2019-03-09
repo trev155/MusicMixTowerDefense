@@ -1,6 +1,5 @@
 ﻿// Controller for spawning units of any kind
 using UnityEngine;
-using System;
 
 public class UnitSpawner : MonoBehaviour {
     // ---------- Fields ----------
@@ -18,6 +17,7 @@ public class UnitSpawner : MonoBehaviour {
     // ---------- Methods ----------
     private void Awake() {
         random = new System.Random();
+        this.unitFactory = new UnitFactory();
     }
 
     // Player Unit Creation Functions

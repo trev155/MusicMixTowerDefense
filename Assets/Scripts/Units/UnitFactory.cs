@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-public class UnitFactory : MonoBehaviour {
+public class UnitFactory {
     private static readonly string PLAYER_UNIT_DATA_PATH = "UnitData/PlayerUnits";
     private static readonly string ENEMY_UNIT_DATA_PATH = "UnitData/EnemyUnits";
 
@@ -10,7 +10,7 @@ public class UnitFactory : MonoBehaviour {
     private Dictionary<int, EnemyUnitData> allEnemyData;
 
     // ---------- Initialization ----------
-    private void Awake() {
+    public UnitFactory() {
         InitializePlayerUnitDataDictionary();
         InitializeEnemyUnitDataDictionary();
     }
