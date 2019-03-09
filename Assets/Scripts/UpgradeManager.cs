@@ -24,7 +24,9 @@ public class UpgradeManager : MonoBehaviour {
 
     public int IncrementUpgradeClass(UnitClass unitClass) {
         upgradeMap[unitClass] += 1;
-        GameEngine.GetInstance().unitSelectionPanel.UpdateSelectedUnitDataPanel(GameEngine.GetInstance().playerUnitSelected);
+        if (GameEngine.GetInstance().playerUnitSelected != null) {
+            GameEngine.GetInstance().unitSelectionPanel.UpdateSelectedUnitDataPanel(GameEngine.GetInstance().playerUnitSelected);
+        }
         return upgradeMap[unitClass];
     }
 

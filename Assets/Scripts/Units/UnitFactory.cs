@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 
 
-public class UnitFactory {
-    private static readonly string PLAYER_UNIT_DATA_PATH = "Assets/Scripts/Units/UnitData/PlayerUnits.csv";
-    private static readonly string ENEMY_UNIT_DATA_PATH = "Assets/Scripts/Units/UnitData/EnemyUnits.csv";
+public class UnitFactory : MonoBehaviour {
+    private static readonly string PLAYER_UNIT_DATA_PATH = "UnitData/PlayerUnits";
+    private static readonly string ENEMY_UNIT_DATA_PATH = "UnitData/EnemyUnits";
 
     private Dictionary<PlayerUnitRank, Dictionary<UnitClass, PlayerUnitData>> allPlayerData;
     private Dictionary<int, EnemyUnitData> allEnemyData;
 
     // ---------- Initialization ----------
-    public UnitFactory() {
+    private void Awake() {
         InitializePlayerUnitDataDictionary();
         InitializeEnemyUnitDataDictionary();
     }
@@ -34,17 +34,18 @@ public class UnitFactory {
         float attackUpgrade;
         float attackCooldown;
         float attackRange;
-
-        string line;
+        
         int lineIndex = 0;
-        System.IO.StreamReader file = new System.IO.StreamReader(PLAYER_UNIT_DATA_PATH);
-        while ((line = file.ReadLine()) != null) {
+        TextAsset playerData = Resources.Load<TextAsset>(PLAYER_UNIT_DATA_PATH);
+        string[] lines = playerData.text.Split('\n');
+        
+        foreach (string line in lines) {
             if (lineIndex == 0) {
                 lineIndex++;
                 continue;   // skip file header
             }
 
-            string[] lineTokens = line.Split(',');
+            string[] lineTokens = line.Trim().Split(',');
             if (lineTokens.Length <= 1) {
                 continue;
             }
@@ -140,16 +141,16 @@ public class UnitFactory {
         float armor;
         EnemyAbilities enemyAbilities;
 
-        string line;
         int lineIndex = 0;
-        System.IO.StreamReader file = new System.IO.StreamReader(ENEMY_UNIT_DATA_PATH);
-        while ((line = file.ReadLine()) != null) {
+        TextAsset playerData = Resources.Load<TextAsset>(ENEMY_UNIT_DATA_PATH);
+        string[] lines = playerData.text.Split('\n');
+        foreach (string line in lines) {
             if (lineIndex == 0) {
                 lineIndex++;
                 continue;   // skip file header
             }
 
-            string[] lineTokens = line.Split(',');
+            string[] lineTokens = line.Trim().Split(',');
             if (lineTokens.Length <= 1) {
                 continue;
             }

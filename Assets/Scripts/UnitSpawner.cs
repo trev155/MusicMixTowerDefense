@@ -1,24 +1,22 @@
 ﻿// Controller for spawning units of any kind
 using UnityEngine;
-
+using System;
 
 public class UnitSpawner : MonoBehaviour {
     // ---------- Fields ----------
+    public UnitFactory unitFactory;
     public Transform playerUnitSpawnLocation;
     public Transform enemyUnitSpawnLocation;
     public Transform playerUnit;
     public Transform enemyUnit;
     public Transform playerUnitSelectionCircle;
     public Transform enemyUnitSelectedCircle;
-
+    
     private static int uid = 0;
-    private UnitFactory unitFactory;
     private System.Random random;
-
 
     // ---------- Methods ----------
     private void Awake() {
-        unitFactory = new UnitFactory();
         random = new System.Random();
     }
 
@@ -30,7 +28,7 @@ public class UnitSpawner : MonoBehaviour {
 
         SetObjectName(player.gameObject);
         CreatePlayerUnitRangeCircle(player);
-
+        
         return player;
     }
     

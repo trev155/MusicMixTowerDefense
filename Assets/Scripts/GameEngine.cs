@@ -38,13 +38,11 @@ public class GameEngine : MonoBehaviour {
     public int tokenCount;
     public int kills;
     public GlobalTimer globalTimer;
-
-    public bool hasPiano = false;
-    public bool hasDrum = false;
     public int mineralHarvesters;
     public int gasHarvesters;
 
-
+    public bool hasPiano;
+    public bool hasDrum;
 
     //---------- Initialization ----------
     private void Awake() {
@@ -54,16 +52,18 @@ public class GameEngine : MonoBehaviour {
         this.playerUnitMovementAllowed = false;
         this.playerUnitSelected = null;
         this.enemyUnitSelected = null;
+
+        this.minerals = 0;
+        this.gas = 0;
         this.level = 0;
         this.kills = 0;
         this.tokenCount = INITIAL_TOKEN_COUNT;
-        this.hasPiano = false;
-        this.hasDrum = false;
         this.mineralHarvesters = 0;
         this.gasHarvesters = 0;
-        this.minerals = 0;
-        this.gas = 0;
 
+        this.hasPiano = false;
+        this.hasDrum = false;
+        
         this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
     }
 
