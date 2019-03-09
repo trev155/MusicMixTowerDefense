@@ -48,7 +48,12 @@ public class UnitSelectionPanel : MonoBehaviour {
     public void CloseUnitSelectionPanelButton() {
         HideUnitSelectionPanel();
         GameEngine.GetInstance().DisablePlayerUnitMovement();
-        GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
+        if (GameEngine.GetInstance().playerUnitSelected != null) {
+            Utils.SetAlpha(GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.transform, PlayerUnit.UNSELECTED_ALPHA);
+        }
+        if (GameEngine.GetInstance().enemyUnitSelected != null) {
+            Utils.SetAlpha(GameEngine.GetInstance().enemyUnitSelected.selectedUnitCircle, EnemyUnit.UNSELECTED_ALPHA);
+        }
         GameEngine.GetInstance().ClearUnitSelectionObjects();
     }
 

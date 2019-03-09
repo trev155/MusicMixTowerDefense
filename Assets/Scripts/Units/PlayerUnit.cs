@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 
 public class PlayerUnit : Unit {
+    //---------- Constants ----------
+    public static readonly float SELECTED_ALPHA = 0.8f;
+    public static readonly float UNSELECTED_ALPHA = 0.2f;
+
     //---------- Fields ----------
     public UnitClass unitClass;
     public PlayerUnitRank rank;
@@ -38,20 +42,30 @@ public class PlayerUnit : Unit {
     }
 
     public override void OnPointerClick(PointerEventData pointerEventData) {
+        // Check that we actually selected the unit, as opposed to any of its child objects
         bool clickedOnPlayerUnit = pointerEventData.pointerEnter.gameObject.name == this.name;
         if (!clickedOnPlayerUnit) {
-            // as opposed to any of its children
             return;
         }
 
-        GameEngine.GetInstance().unitSelectionPanel.ShowUnitSelectionPanel(this);
-        
+        // Clear alpha of previously selected units
         if (GameEngine.GetInstance().playerUnitSelected != null) {
-            GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
+            Utils.SetAlpha(GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.transform, UNSELECTED_ALPHA);
+            
         }
+        if (GameEngine.GetInstance().enemyUnitSelected != null) {
+            Utils.SetAlpha(GameEngine.GetInstance().enemyUnitSelected.selectedUnitCircle, EnemyUnit.UNSELECTED_ALPHA);
+        }
+
+        // Update references to objects in the game engine
         GameEngine.GetInstance().playerUnitSelected = this;
         GameEngine.GetInstance().enemyUnitSelected = null;
-        GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.SELECTED_ALPHA);
+
+        // Set alpha value
+        Utils.SetAlpha(GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.transform, SELECTED_ALPHA);
+
+        // Show data on unit selection panel
+        GameEngine.GetInstance().unitSelectionPanel.ShowUnitSelectionPanel(this);
     }
 
     public override List<string> GetDisplayUnitData() {

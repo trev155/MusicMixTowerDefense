@@ -321,6 +321,8 @@ MonoBehaviour:
     type: 3}
   playerUnitSelectionCircle: {fileID: 1013747370527916468, guid: 95bf2094c250e56428e4802c84c8f04c,
     type: 3}
+  enemyUnitSelectedCircle: {fileID: 1013747370527916468, guid: 4c8ea6360f889244ea4f163d71b1bbf4,
+    type: 3}
 --- !u!1 &47248690
 GameObject:
   m_ObjectHideFlags: 0
@@ -6671,7 +6673,6 @@ Transform:
   - {fileID: 728473047}
   - {fileID: 111293270}
   - {fileID: 673329867}
-  - {fileID: 1859340370}
   - {fileID: 1615835357}
   m_Father: {fileID: 1598103777}
   m_RootOrder: 0
@@ -10645,8 +10646,9 @@ Transform:
   - {fileID: 535768739}
   - {fileID: 1727314146}
   - {fileID: 391245736}
+  - {fileID: 1859340370}
   m_Father: {fileID: 1055173339}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1617973829
 GameObject:
@@ -12258,8 +12260,8 @@ Transform:
   - {fileID: 800860667}
   - {fileID: 266214052}
   - {fileID: 116090580}
-  m_Father: {fileID: 1055173339}
-  m_RootOrder: 4
+  m_Father: {fileID: 1615835357}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1863845714
 GameObject:

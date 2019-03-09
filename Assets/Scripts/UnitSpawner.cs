@@ -9,6 +9,7 @@ public class UnitSpawner : MonoBehaviour {
     public Transform playerUnit;
     public Transform enemyUnit;
     public Transform playerUnitSelectionCircle;
+    public Transform enemyUnitSelectedCircle;
 
     private static int uid = 0;
     private UnitFactory unitFactory;
@@ -72,11 +73,14 @@ public class UnitSpawner : MonoBehaviour {
     // Enemy Unit Creation Functions
     public EnemyUnit CreateEnemyUnit(int level) {
         EnemyUnitData enemyUnitData = unitFactory.CreateEnemyUnitData(level);
-        EnemyUnit e = (EnemyUnit)Instantiate(enemyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
-        e.InitializeProperties(enemyUnitData);
-        SetObjectName(e.gameObject);
+        EnemyUnit enemy = (EnemyUnit)Instantiate(enemyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
+        enemy.InitializeProperties(enemyUnitData);
+        SetObjectName(enemy.gameObject);
 
-        return e;
+        Transform enemyUnitCircle = Instantiate(enemyUnitSelectedCircle, enemy.transform);
+        enemy.selectedUnitCircle = enemyUnitCircle;
+
+        return enemy;
     }
 
     // Other
@@ -86,7 +90,7 @@ public class UnitSpawner : MonoBehaviour {
     }
 
     private void CreatePlayerUnitRangeCircle(PlayerUnit playerUnit) {
-        Transform playerUnitRangeCircle = Instantiate(playerUnitSelectionCircle, playerUnit.gameObject.transform);
+        Transform playerUnitRangeCircle = Instantiate(playerUnitSelectionCircle, playerUnit.transform);
 
         playerUnitRangeCircle.localScale = new Vector2(playerUnitRangeCircle.localScale.x * playerUnit.attackRange, playerUnitRangeCircle.localScale.y * playerUnit.attackRange);
 

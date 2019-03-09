@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 
 public class EnemyUnit : Unit {
+    //---------- Constants ----------
+    public static readonly float SELECTED_ALPHA = 0.8f;
+    public static readonly float UNSELECTED_ALPHA = 0;
+
     //---------- Fields ----------
     public float maxHealth;
     public float currentHealth;
@@ -11,8 +15,10 @@ public class EnemyUnit : Unit {
     public int level;
     public EnemyAbilities abilities;
 
-    private Transform currentWaypointDestination;
+    public Transform selectedUnitCircle;
 
+    private Transform currentWaypointDestination;
+    
 
     //---------- Methods ----------
     public void InitializeProperties(EnemyUnitData enemyUnitData) {
@@ -26,17 +32,27 @@ public class EnemyUnit : Unit {
     }
 
     public override void OnPointerClick(PointerEventData pointerEventData) {
+        // If currently selected a player unit, adjust accordingly
         if (GameEngine.GetInstance().playerUnitMovementAllowed) {
             GameEngine.GetInstance().DisablePlayerUnitMovement();
         }
+
+        // Clear alpha of previously selected units
         if (GameEngine.GetInstance().playerUnitSelected != null) {
-            GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.SetAlpha(AttackRangeCircle.UNSELECTED_ALPHA);
+            Utils.SetAlpha(GameEngine.GetInstance().playerUnitSelected.attackRangeCircle.transform, PlayerUnit.UNSELECTED_ALPHA);
+        }
+        if (GameEngine.GetInstance().enemyUnitSelected != null) {
+            Utils.SetAlpha(GameEngine.GetInstance().enemyUnitSelected.selectedUnitCircle, UNSELECTED_ALPHA);
         }
 
-        if (GameEngine.GetInstance().enemyUnitSelected != this) {
-            GameEngine.GetInstance().enemyUnitSelected = this;
-        }
+        // Update references to objects in the game engine
+        GameEngine.GetInstance().playerUnitSelected = null;
+        GameEngine.GetInstance().enemyUnitSelected = this;
+
+        // Set alpha value
+        Utils.SetAlpha(this.selectedUnitCircle, SELECTED_ALPHA);
         
+        // Show data on unit selection panel
         GameEngine.GetInstance().unitSelectionPanel.ShowUnitSelectionPanel(this);
     }
 
