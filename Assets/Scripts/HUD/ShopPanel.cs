@@ -26,36 +26,36 @@ public class ShopPanel : MonoBehaviour {
 
         PlayerUnit p = GameEngine.GetInstance().unitSpawner.CreateRandomDUnit();
         GameEngine.GetInstance().tokenCount--;
-        GameEngine.GetInstance().gameDataPanel.UpdateTokenCount(GameEngine.GetInstance().tokenCount);
+        GameEngine.GetInstance().gameDataPanel.UpdateTokenCountText(GameEngine.GetInstance().tokenCount);
 
         Debug.Log("[D Unit - " + p.displayName + "]");
     }
 
     public void PurchaseGas() {
         if (GameEngine.GetInstance().tokenCount == 0) {
-            Debug.Log("Could not purchase vespene gas. Requires 1 token.");
+            Debug.Log("Could not purchase gas. Requires 1 token.");
             return;
         }
 
-        int vespeneIncrement;
+        int gasIncrement;
         int option = random.Next(1, 10);
         if (option <= 4) {
-            vespeneIncrement = 40;
+            gasIncrement = 40;
         } else if (option <= 7) {
-            vespeneIncrement = 60;
+            gasIncrement = 60;
         } else if (option <= 9) {
-            vespeneIncrement = 80;
+            gasIncrement = 80;
         } else {
-            vespeneIncrement = 100;
+            gasIncrement = 100;
         }
         
         GameEngine.GetInstance().tokenCount--;
-        GameEngine.GetInstance().gameDataPanel.UpdateTokenCount(GameEngine.GetInstance().tokenCount);
+        GameEngine.GetInstance().gameDataPanel.UpdateTokenCountText(GameEngine.GetInstance().tokenCount);
 
-        GameEngine.GetInstance().IncreaseVespene(vespeneIncrement);
-        GameEngine.GetInstance().gameDataPanel.UpdateVespeneText(GameEngine.GetInstance().vespene);
+        GameEngine.GetInstance().IncreaseGas(gasIncrement);
+        GameEngine.GetInstance().gameDataPanel.UpdateGasText(GameEngine.GetInstance().gas);
 
-        Debug.Log("[+" + vespeneIncrement + " Vespene]");
+        Debug.Log("[+" + gasIncrement + " Gas]");
     }
 
     public void ScrollItemLeft() {

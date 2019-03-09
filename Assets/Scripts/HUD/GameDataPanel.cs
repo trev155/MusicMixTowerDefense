@@ -5,38 +5,58 @@ using UnityEngine.UI;
 public class GameDataPanel : MonoBehaviour {
     // ---------- Fields ----------
     public Text mineralsText;
-    public Text vespeneText;
-    public Text killCounter;
-    public Text levelTimer;
-    public Text tokenCount;
+    public Text gasText;
+    public Text levelText;
+    public Text tokenCountText;
+    public Text killCounterText;
+    public Text globalGameTimerText;
+    public Text levelTimerText;
+    public Text harvesterCountsText;
 
 
     // ---------- Methods ----------
     private void Awake() {
         mineralsText.text = "Minerals: 0";
-        vespeneText.text = "Vespene: 0";
-        killCounter.text = "Kills: 0";
-        levelTimer.text = "Level Time Left: ";
-        tokenCount.text = "Tokens: 0";
+        gasText.text = "Gas: 0";
+        killCounterText.text = "Kills: 0";
+        levelTimerText.text = "Level Time Left: ";
+        tokenCountText.text = "Tokens: 0";
+        harvesterCountsText.text = "Harvesters: 0 / 0\n(Minerals / Gas)";
     }
 
     public void UpdateMineralsText(int minerals) {
         mineralsText.text = "Minerals: " + minerals;
     }
 
-    public void UpdateVespeneText(int vespene) {
-        vespeneText.text = "Vespene: " + vespene;
+    public void UpdateGasText(int gas) {
+        gasText.text = "Gas: " + gas;
     }
 
-    public void UpdateKillCounter(int kills) {
-        killCounter.text = "Kills: " + kills;
+    public void UpdateLevelText(int level) {
+        levelText.text = "Level: " + level;
     }
 
-    public void SetLevelTimer(string timeStr) {
-        levelTimer.text = "Level Time Left: " + timeStr;
+    public void UpdateTokenCountText(int tokens) {
+        tokenCountText.text = "Tokens: " + tokens;
     }
 
-    public void UpdateTokenCount(int tokens) {
-        tokenCount.text = "Tokens: " + tokens;
+    public void UpdateKillCounterText(int kills) {
+        killCounterText.text = "Kills: " + kills;
+    }
+
+    public void UpdateGlobalGameTimeText(string timeStr) {
+        globalGameTimerText.text = "Game Time: " + timeStr;
+    }
+
+    public void SetLevelTimerText(string timeStr) {
+        levelTimerText.text = "Level Time Left: " + timeStr;
+    }
+    
+    public void UpdateHarvesterCountsText(int mineralHarvesters, int gasHarvesters) {
+        harvesterCountsText.text = "Harvesters: " + mineralHarvesters + " / " + gasHarvesters + "\n(Minerals / Gas)";
+    }
+
+    public void UpdateAddonsText() {
+    
     }
 }

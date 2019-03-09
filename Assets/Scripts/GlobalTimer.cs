@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class GlobalTimer : MonoBehaviour {
-    public Text globalTimer;
+    private bool globalTimerStarted = false;
     public float globalTime;
     
-    void Update() {
-        globalTime += Time.deltaTime;
-        globalTimer.text = "Game Time: " + ConvertTimeToString(globalTime);
+    private void Update() {
+        if (globalTimerStarted) {
+            globalTime += Time.deltaTime;
+            GameEngine.GetInstance().gameDataPanel.UpdateGlobalGameTimeText(ConvertTimeToString(globalTime));
+        }
     }
 
     private string ConvertTimeToString(float time) {
@@ -25,5 +26,9 @@ public class GlobalTimer : MonoBehaviour {
         }
 
         return minutesString + ":" + secondsString;
+    }
+
+    public void BeginGlobalGameTimer() {
+        this.globalTimerStarted = true;
     }
 }

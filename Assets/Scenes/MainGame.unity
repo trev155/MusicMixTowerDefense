@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 39206477}
   - component: {fileID: 39206476}
   m_Layer: 5
-  m_Name: LevelTime
+  m_Name: LevelTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,8 +225,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 958.46, y: -29.25}
-  m_SizeDelta: {x: 228.63, y: 58.5}
+  m_AnchoredPosition: {x: 917.9, y: -29.25}
+  m_SizeDelta: {x: 217.9, y: 58.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &39206476
 MonoBehaviour:
@@ -299,7 +299,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 619477378}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &40258355
 MonoBehaviour:
@@ -3421,10 +3421,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mineralsText: {fileID: 1541269313}
-  vespeneText: {fileID: 1294943220}
-  killCounter: {fileID: 1748457408}
-  levelTimer: {fileID: 39206476}
-  tokenCount: {fileID: 797695610}
+  gasText: {fileID: 1294943220}
+  levelText: {fileID: 1786690109}
+  tokenCountText: {fileID: 797695610}
+  killCounterText: {fileID: 1748457408}
+  globalGameTimerText: {fileID: 1246214799}
+  levelTimerText: {fileID: 39206476}
+  harvesterCountsText: {fileID: 647874377}
 --- !u!1 &535204039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,7 +3671,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1243641833}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &552634954
 MonoBehaviour:
@@ -3714,7 +3717,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 619477378}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &580455629
 MonoBehaviour:
@@ -4095,8 +4098,9 @@ Transform:
   - {fileID: 1639642030}
   - {fileID: 1673155384}
   - {fileID: 1243641833}
-  - {fileID: 40258354}
+  - {fileID: 998200809}
   - {fileID: 113860762}
+  - {fileID: 40258354}
   - {fileID: 580455628}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -4529,7 +4533,7 @@ GameObject:
   - component: {fileID: 647874378}
   - component: {fileID: 647874377}
   m_Layer: 5
-  m_Name: Harvesters
+  m_Name: HarvesterCounts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4551,8 +4555,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1152.5, y: -29.25}
-  m_SizeDelta: {x: 159.44, y: 58.5}
+  m_AnchoredPosition: {x: 1120.5, y: -29.25}
+  m_SizeDelta: {x: 187.2, y: 58.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &647874377
 MonoBehaviour:
@@ -4587,7 +4591,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Harvesters: 10'
+  m_Text: 'Harvesters: 10 / 5
+
+    (Minerals / Gas)'
 --- !u!222 &647874378
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5149,8 +5155,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1316.1, y: -29.25}
-  m_SizeDelta: {x: 167.8, y: 58.5}
+  m_AnchoredPosition: {x: 1307.1, y: -29.25}
+  m_SizeDelta: {x: 185.9, y: 58.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &760144470
 MonoBehaviour:
@@ -5496,7 +5502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 466, y: -29.25}
+  m_AnchoredPosition: {x: 430.84998, y: -29.25}
   m_SizeDelta: {x: 116.2, y: 58.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &797695610
@@ -6311,8 +6317,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 5
+  m_Father: {fileID: 619477378}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &998200810
 MonoBehaviour:
@@ -6326,7 +6332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a2a724e3b9e6f543afe21e7e866b418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalTimer: {fileID: 1246214799}
   globalTime: 0
 --- !u!1 &1016836770
 GameObject:
@@ -7456,7 +7461,6 @@ Transform:
   - {fileID: 510120067}
   - {fileID: 1259011804}
   - {fileID: 1938995067}
-  - {fileID: 998200809}
   - {fileID: 552634953}
   m_Father: {fileID: 619477378}
   m_RootOrder: 2
@@ -7574,7 +7578,7 @@ GameObject:
   - component: {fileID: 1246214800}
   - component: {fileID: 1246214799}
   m_Layer: 5
-  m_Name: GameTime
+  m_Name: GlobalGameTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7596,7 +7600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 739.5, y: -29.25}
+  m_AnchoredPosition: {x: 704.25, y: -29.25}
   m_SizeDelta: {x: 209.4, y: 58.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1246214799
@@ -7887,7 +7891,7 @@ GameObject:
   - component: {fileID: 1294943221}
   - component: {fileID: 1294943220}
   m_Layer: 5
-  m_Name: Vespene
+  m_Name: Gas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7909,8 +7913,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -484, y: 0}
-  m_SizeDelta: {x: 156.5, y: 58.5}
+  m_AnchoredPosition: {x: -501.6, y: 0}
+  m_SizeDelta: {x: 121.3, y: 58.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1294943220
 MonoBehaviour:
@@ -7945,7 +7949,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Vespene: 1000'
+  m_Text: 'Gas: 1000'
 --- !u!222 &1294943221
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11027,18 +11031,20 @@ MonoBehaviour:
   unitSelectionPanel: {fileID: 1259011805}
   shopPanel: {fileID: 1949779998}
   gameDataPanel: {fileID: 510120068}
-  upgradePanel: {fileID: 0}
+  upgradePanel: {fileID: 1938995068}
   playerUnitMovementAllowed: 0
   playerUnitSelected: {fileID: 0}
   enemyUnitSelected: {fileID: 0}
+  minerals: 0
+  gas: 0
   level: 0
-  kills: 0
   tokenCount: 0
+  kills: 0
+  globalTimer: {fileID: 998200810}
   hasPiano: 0
   hasDrum: 0
-  harvesterCount: 0
-  minerals: 0
-  vespene: 0
+  mineralHarvesters: 0
+  gasHarvesters: 0
 --- !u!4 &1673155384
 Transform:
   m_ObjectHideFlags: 0
@@ -11409,7 +11415,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 579.5, y: -29.25}
+  m_AnchoredPosition: {x: 544.24994, y: -29.25}
   m_SizeDelta: {x: 110.6, y: 58.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1748457408
@@ -11646,7 +11652,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 351.1, y: -29.25}
+  m_AnchoredPosition: {x: 315.9, y: -29.25}
   m_SizeDelta: {x: 113.7, y: 58.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1786690109

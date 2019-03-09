@@ -7,6 +7,9 @@ using UnityEngine;
 
 
 public class GameEngine : MonoBehaviour {
+    // Constants
+    private readonly int INITIAL_TOKEN_COUNT = 12;
+
     // Singleton field
     public static GameEngine Instance { get; private set; } = null;
     public static GameEngine GetInstance() {
@@ -29,34 +32,39 @@ public class GameEngine : MonoBehaviour {
     public EnemyUnit enemyUnitSelected;
 
     // Gameplay stats
+    public int minerals;
+    public int gas;
     public int level;
-    public int kills;
     public int tokenCount;
+    public int kills;
+    public GlobalTimer globalTimer;
 
     public bool hasPiano = false;
     public bool hasDrum = false;
-    public int harvesterCount;
+    public int mineralHarvesters;
+    public int gasHarvesters;
 
-    public int minerals;
-    public int vespene;
+
 
     //---------- Initialization ----------
     private void Awake() {
         InitializeSingleton();
+        globalTimer.BeginGlobalGameTimer();
 
         this.playerUnitMovementAllowed = false;
         this.playerUnitSelected = null;
         this.enemyUnitSelected = null;
         this.level = 0;
         this.kills = 0;
-        this.tokenCount = 4;
+        this.tokenCount = INITIAL_TOKEN_COUNT;
         this.hasPiano = false;
         this.hasDrum = false;
-        this.harvesterCount = 0;
+        this.mineralHarvesters = 0;
+        this.gasHarvesters = 0;
         this.minerals = 0;
-        this.vespene = 0;
+        this.gas = 0;
 
-        this.gameDataPanel.UpdateTokenCount(this.tokenCount);
+        this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
     }
 
     private void InitializeSingleton() {
@@ -90,12 +98,12 @@ public class GameEngine : MonoBehaviour {
 
     public void IncrementKills() {
         this.kills += 1;
-        this.gameDataPanel.UpdateKillCounter(this.kills);
+        this.gameDataPanel.UpdateKillCounterText(this.kills);
 
         if (this.kills % 20 == 0) {
             Debug.Log("20 Kills = 1 Token");
             this.tokenCount += 1;
-            this.gameDataPanel.UpdateTokenCount(this.tokenCount);
+            this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
         }
     }
 
@@ -106,7 +114,6 @@ public class GameEngine : MonoBehaviour {
     public void IncreaseMinerals(int val) {
         this.minerals += val;
         if (this.minerals >= 160) {
-            // TODO display message
             Debug.Log("160 Minerals = 1 Token");
             this.minerals -= 160;
         }
@@ -114,13 +121,13 @@ public class GameEngine : MonoBehaviour {
         this.gameDataPanel.UpdateMineralsText(this.minerals);
     }
 
-    public void IncreaseVespene(int val) {
-        this.vespene += val;
-        this.gameDataPanel.UpdateVespeneText(this.vespene);
+    public void IncreaseGas(int val) {
+        this.gas += val;
+        this.gameDataPanel.UpdateGasText(this.gas);
     }
 
-    public void DecreaseVespene(int val) {
-        this.vespene -= val;
-        this.gameDataPanel.UpdateVespeneText(this.vespene);
+    public void DecreaseGas(int val) {
+        this.gas -= val;
+        this.gameDataPanel.UpdateGasText(this.gas);
     }
 }

@@ -53,8 +53,8 @@ public class UpgradePanel : MonoBehaviour {
 
     private void AttemptUpgrade(UnitClass unitClass) {
         int upgradeCost = GameEngine.GetInstance().upgradeManager.GetUpgradeCost(unitClass);
-        if (GameEngine.GetInstance().vespene >= upgradeCost) {
-            GameEngine.GetInstance().DecreaseVespene(upgradeCost);
+        if (GameEngine.GetInstance().gas >= upgradeCost) {
+            GameEngine.GetInstance().DecreaseGas(upgradeCost);
             int nextLevel = GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(unitClass);
             DisplayUpgradeCompleteMessage(unitClass, nextLevel);
             SetUnitClassUpgradeDataDisplay(unitClass);
@@ -69,7 +69,7 @@ public class UpgradePanel : MonoBehaviour {
 
     private void DisplayCantAffordUpgradeMessage(UnitClass unitClass, int upgradeCost) {
         Debug.Log("Cannot purchase upgrade for class: [" + unitClass.ToString() + "]. " +
-            "Upgrade cost is [" + upgradeCost + " gas], currently have [" + GameEngine.GetInstance().vespene + " gas]");
+            "Upgrade cost is [" + upgradeCost + " gas], currently have [" + GameEngine.GetInstance().gas + " gas]");
     }
 
     private void SetUnitClassUpgradeDataDisplay(UnitClass unitClass) {
