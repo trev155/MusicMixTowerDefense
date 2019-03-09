@@ -28,7 +28,6 @@ public class UnitSelectionPanel : MonoBehaviour {
     private void Awake() {
         unitSelectionPanel.gameObject.SetActive(false);
         moveUnitInstruction.gameObject.SetActive(false);
-
     }
 
     // Show and hide unit selection panel.
