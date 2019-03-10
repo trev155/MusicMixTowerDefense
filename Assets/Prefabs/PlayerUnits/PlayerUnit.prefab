@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6816948331116841739}
   - component: {fileID: 5932716685314068101}
   m_Layer: 0
-  m_Name: D_1
+  m_Name: PlayerUnit
   m_TagString: PlayerUnit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,10 +131,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aad526c72b13c64a8b3c42f9d2b560e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayName: 
-  MovementSpeed: 0
+  displayName: 
+  movementSpeed: 0
+  unitClass: 0
   rank: 0
   attackDamage: 0
+  attackUpgrade: 0
   attackCooldown: 0
   attackRange: 0
   attackType: 0
@@ -143,3 +145,6 @@ MonoBehaviour:
   attackRangeCircle: {fileID: 0}
   projectile: {fileID: 2577056161673162234, guid: 1375a58e29161084ea559ba100c35e03,
     type: 3}
+  currentTarget: {fileID: 0}
+  isAttacking: 0
+  switchTargets: 0

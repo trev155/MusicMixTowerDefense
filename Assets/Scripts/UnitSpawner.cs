@@ -5,11 +5,16 @@ public class UnitSpawner : MonoBehaviour {
     // ---------- Fields ----------
     public UnitFactory unitFactory;
     public Transform playerUnitSpawnLocation;
+    public Transform playerUnitSpawnLocationOffset;
     public Transform enemyUnitSpawnLocation;
     public Transform playerUnit;
     public Transform enemyUnit;
     public Transform playerUnitSelectionCircle;
     public Transform enemyUnitSelectedCircle;
+    public Transform topInnerWall;
+    public Transform leftInnerWall;
+    public Transform rightInnerWall;
+    public Transform bottomInnerWall;
     
     private static int uid = 0;
     private System.Random random;
@@ -25,10 +30,13 @@ public class UnitSpawner : MonoBehaviour {
         PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, seed);
         PlayerUnit player = (PlayerUnit)Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
         player.InitializeProperties(playerUnitData);
-
         SetObjectName(player.gameObject);
+
         CreatePlayerUnitRangeCircle(player);
-        
+
+        MovePlayerUnitToOffset(player);
+        IgnorePlayerUnitCollisionWithInnerWalls(player);
+
         return player;
     }
     
@@ -94,5 +102,17 @@ public class UnitSpawner : MonoBehaviour {
 
         playerUnit.attackRangeCircle = playerUnitRangeCircle.GetComponent<AttackRangeCircle>();
         playerUnit.attackRangeCircle.playerUnit = playerUnit;
+    }
+
+    private void MovePlayerUnitToOffset(PlayerUnit player) {
+        // Prevents stacking when spawned
+        player.transform.position = Vector2.MoveTowards(player.transform.position, playerUnitSpawnLocationOffset.position, Time.deltaTime);
+    }
+
+    private void IgnorePlayerUnitCollisionWithInnerWalls(PlayerUnit player) {
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), topInnerWall.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), leftInnerWall.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), rightInnerWall.GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), bottomInnerWall.GetComponent<Collider2D>());
     }
 }
