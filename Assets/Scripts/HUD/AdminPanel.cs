@@ -131,25 +131,30 @@ public class AdminPanel : MonoBehaviour {
 
     // Upgrades
     public void ActivateUpgrade() {
+        UnitClass unitClass;
         if (upgradeNum == 0) {
-            GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(UnitClass.INFANTRY);
+            unitClass = UnitClass.INFANTRY;
         } else if (upgradeNum == 1) {
-            GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(UnitClass.MECH);
+            unitClass = UnitClass.MECH;
         } else if (upgradeNum == 2) {
-            GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(UnitClass.LASER);
+            unitClass = UnitClass.LASER;
         } else if (upgradeNum == 3) {
-            GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(UnitClass.PSIONIC);
+            unitClass = UnitClass.PSIONIC;
         } else if (upgradeNum == 4) {
-            GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(UnitClass.ACID);
+            unitClass = UnitClass.ACID;
         } else if (upgradeNum == 5) {
-            GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(UnitClass.BLADE);
+            unitClass = UnitClass.BLADE;
         } else if (upgradeNum == 6) {
-            GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(UnitClass.MAGIC);
+            unitClass = UnitClass.MAGIC;
         } else if (upgradeNum == 7) {
-            GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(UnitClass.FLAME);
+            unitClass = UnitClass.FLAME;
         } else {
             Debug.Log("Invalid upgrade number value. Did not upgrade.");
+            return;
         }
+
+        GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(unitClass);
+        GameEngine.GetInstance().upgradePanel.UpdateUpgradePanelData(unitClass);
     }
 
     public void ScrollUpgradeLeft() {

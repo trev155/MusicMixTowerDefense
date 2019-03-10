@@ -22,12 +22,23 @@ public class UpgradeManager : MonoBehaviour {
         return upgradeMap[unitClass];
     }
 
-    public int IncrementUpgradeClass(UnitClass unitClass) {
+    public void AttemptUpgrade(UnitClass unitClass) {
+        int upgradeCost = GameEngine.GetInstance().upgradeManager.GetUpgradeCost(unitClass);
+        if (GameEngine.GetInstance().gas >= upgradeCost) {
+            GameEngine.GetInstance().DecreaseGas(upgradeCost);
+            GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(unitClass);
+            GameEngine.GetInstance().upgradePanel.UpdateUpgradePanelData(unitClass);
+        } else {
+            GameEngine.GetInstance().upgradePanel.DisplayCantAffordUpgradeMessage(unitClass, upgradeCost);
+        }
+    }
+
+    public void IncrementUpgradeClass(UnitClass unitClass) {
         upgradeMap[unitClass] += 1;
+
         if (GameEngine.GetInstance().playerUnitSelected != null) {
             GameEngine.GetInstance().unitSelectionPanel.UpdateSelectedUnitDataPanel(GameEngine.GetInstance().playerUnitSelected);
         }
-        return upgradeMap[unitClass];
     }
 
     public int GetUpgradeCost(UnitClass unitClass) {

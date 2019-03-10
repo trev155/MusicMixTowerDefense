@@ -20,59 +20,48 @@ public class UpgradePanel : MonoBehaviour {
     public Text FlameCost;
 
     public void UpgradeInfantry() {
-        AttemptUpgrade(UnitClass.INFANTRY);
+        GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.INFANTRY);
     }
 
     public void UpgradeMech() {
-        AttemptUpgrade(UnitClass.MECH);
+        GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.MECH);
     }
 
     public void UpgradeLaser() {
-        AttemptUpgrade(UnitClass.LASER);
+        GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.LASER);
     }
 
     public void UpgradePsionic() {
-        AttemptUpgrade(UnitClass.PSIONIC);
+        GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.PSIONIC);
     }
 
     public void UpgradeAcid() {
-        AttemptUpgrade(UnitClass.ACID);
+        GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.ACID);
     }
 
     public void UpgradeBlade() {
-        AttemptUpgrade(UnitClass.BLADE);
+        GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.BLADE);
     }
 
     public void UpgradeMagic() {
-        AttemptUpgrade(UnitClass.MAGIC);
+        GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.MAGIC);
     }
 
     public void UpgradeFlame() {
-        AttemptUpgrade(UnitClass.FLAME);
+        GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.FLAME);
     }
 
-    private void AttemptUpgrade(UnitClass unitClass) {
-        int upgradeCost = GameEngine.GetInstance().upgradeManager.GetUpgradeCost(unitClass);
-        if (GameEngine.GetInstance().gas >= upgradeCost) {
-            GameEngine.GetInstance().DecreaseGas(upgradeCost);
-            int nextLevel = GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(unitClass);
-            DisplayUpgradeCompleteMessage(unitClass, nextLevel);
-            SetUnitClassUpgradeDataDisplay(unitClass);
-        } else {
-            DisplayCantAffordUpgradeMessage(unitClass, upgradeCost);
-        }
-    }
-
-    private void DisplayUpgradeCompleteMessage(UnitClass unitClass, int level) {
+    // UI Methods
+    public void DisplayUpgradeCompleteMessage(UnitClass unitClass, int level) {
         Debug.Log("Upgrade Complete! [" + unitClass.ToString() + " Level " + level + "]");
     }
 
-    private void DisplayCantAffordUpgradeMessage(UnitClass unitClass, int upgradeCost) {
+    public void DisplayCantAffordUpgradeMessage(UnitClass unitClass, int upgradeCost) {
         Debug.Log("Cannot purchase upgrade for class: [" + unitClass.ToString() + "]. " +
             "Upgrade cost is [" + upgradeCost + " gas], currently have [" + GameEngine.GetInstance().gas + " gas]");
     }
 
-    private void SetUnitClassUpgradeDataDisplay(UnitClass unitClass) {
+    public void SetUnitClassUpgradeDataDisplay(UnitClass unitClass) {
         switch (unitClass) {
             case UnitClass.INFANTRY:
                 InfantryLevel.text = GameEngine.GetInstance().upgradeManager.GetNumUpgrades(unitClass) + "";
@@ -109,5 +98,11 @@ public class UpgradePanel : MonoBehaviour {
             default:
                 throw new GameplayException("Unrecognized Unit Class: " + unitClass.ToString());
         }
+    }
+
+    public void UpdateUpgradePanelData(UnitClass unitClass) {
+        int level = GameEngine.GetInstance().upgradeManager.GetNumUpgrades(unitClass);
+        GameEngine.GetInstance().upgradePanel.DisplayUpgradeCompleteMessage(unitClass, level);
+        GameEngine.GetInstance().upgradePanel.SetUnitClassUpgradeDataDisplay(unitClass);
     }
 }
