@@ -22,8 +22,8 @@ public class RevealHidePanel : MonoBehaviour {
     }
 
     public void ToggleShowAdminPanel() {
+        ShopPanel.gameObject.SetActive(false);
         UpgradePanel.gameObject.SetActive(false);
-        AdminPanel.gameObject.SetActive(false);
 
         bool isActive = AdminPanel.gameObject.activeSelf;
         AdminPanel.gameObject.SetActive(!isActive);
