@@ -39,7 +39,23 @@ public class UnitSpawner : MonoBehaviour {
 
         return player;
     }
-    
+
+    public PlayerUnit CreateRandomUnitOfRank(PlayerUnitRank rank) {
+        if (rank == PlayerUnitRank.D) {
+            return CreateRandomDUnit();
+        } else if (rank == PlayerUnitRank.C) {
+            return CreateRandomCUnit();
+        } else if (rank == PlayerUnitRank.B) {
+            return CreateRandomBUnit();
+        } else if (rank == PlayerUnitRank.A) {
+            return CreateRandomAUnit();
+        } else if (rank == PlayerUnitRank.S) {
+            return CreateRandomSUnit();
+        } else {
+            throw new GameplayException("Unsupported rank value: " + rank.ToString());
+        }
+    }
+
     public PlayerUnit CreateRandomDUnit() {
         int selection = random.Next(0, 6);
         PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.D, selection);
