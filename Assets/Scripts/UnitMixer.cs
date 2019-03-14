@@ -12,29 +12,39 @@ public class UnitMixer : MonoBehaviour {
         unitsOnMixer.Add(playerUnit);
         
         // 2 of same unit
-        PlayerUnit matchingPlayerUnit = GetMatchingUnitType(playerUnit);
-        if (matchingPlayerUnit != null) {
-            PlayerUnitRank newUnitRank = GetNextTierRank(playerUnit.rank);
-            PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreateRandomUnitOfRank(newUnitRank);
-
-            unitsOnMixer.Remove(playerUnit);
-            unitsOnMixer.Remove(matchingPlayerUnit);
-
-            Destroy(playerUnit.gameObject);
-            Destroy(matchingPlayerUnit.gameObject);
+        if (CheckMatchingUnit(playerUnit)) {
+            return;
         }
 
         // BCD -> A
+        if (CheckBCDCombo()) {
+            return;
+        }
 
         // 6 D + 80 Gas -> A
+        if (CheckAllDCombo()) {
+            return;
+        }
 
         // 6 C + 300 Gas -> S
+        if (CheckAllCCombo()) {
+            return;
+        }
 
         // BAS -> X (one only)
+        if (CheckXCombo()) {
+            return;
+        }
 
         // B Magic + B Flame -> 2 B choosers
+        if (CheckRareBCombo()) {
+            return;
+        }
 
         // A Magic + A Flame -> 2 A choosers
+        if (CheckRareACombo()) {
+            return;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
@@ -45,11 +55,30 @@ public class UnitMixer : MonoBehaviour {
         unitsOnMixer.Remove(playerUnit);
     }
 
+
+    //---------- Unit Mixing Methods ----------
+    private bool CheckMatchingUnit(PlayerUnit playerUnit) {
+        Debug.Log("Check Matching Unit");
+
+        PlayerUnit matchingPlayerUnit = null;
+        matchingPlayerUnit = GetMatchingUnitType(playerUnit);
+        if (matchingPlayerUnit != null) {
+            PlayerUnitRank newUnitRank = GetNextTierRank(playerUnit.rank);
+            unitsOnMixer.Remove(playerUnit);
+            unitsOnMixer.Remove(matchingPlayerUnit);
+            Destroy(playerUnit.gameObject);
+            Destroy(matchingPlayerUnit.gameObject);
+
+            PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreateRandomUnitOfRank(newUnitRank);
+            return true;
+        }
+        return false;
+    }
+
     private PlayerUnit GetMatchingUnitType(PlayerUnit playerUnit) {
-        if (playerUnit.rank == PlayerUnitRank.S) {
+        if (playerUnit.rank == PlayerUnitRank.S || playerUnit.rank == PlayerUnitRank.X) {
             return null;
         }
-
         foreach (PlayerUnit p in unitsOnMixer) {
             if (playerUnit.name != p.name && playerUnit.unitClass == p.unitClass && playerUnit.rank == p.rank) {
                 return p;
@@ -70,5 +99,272 @@ public class UnitMixer : MonoBehaviour {
         } else {
             throw new GameplayException("Unsupported rank value: " + rank.ToString());
         }
+    }
+
+    private bool CheckBCDCombo() {
+        Debug.Log("Check BCD Combo");
+
+        if (CheckBCDForClass(UnitClass.INFANTRY)) {
+            return true;
+        }
+        if (CheckBCDForClass(UnitClass.MECH)) {
+            return true;
+        }
+        if (CheckBCDForClass(UnitClass.LASER)) {
+            return true;
+        }
+        if (CheckBCDForClass(UnitClass.PSIONIC)) {
+            return true;
+        }
+        if (CheckBCDForClass(UnitClass.ACID)) {
+            return true;
+        }
+        if (CheckBCDForClass(UnitClass.BLADE)) {
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckBCDForClass(UnitClass unitClass) {
+        PlayerUnit dUnit = null;
+        PlayerUnit cUnit = null;
+        PlayerUnit bUnit = null;
+
+        foreach (PlayerUnit p in unitsOnMixer) {
+            if (dUnit == null && p.rank == PlayerUnitRank.D && p.unitClass == unitClass) {
+                dUnit = p;
+            } else if (cUnit == null && p.rank == PlayerUnitRank.C && p.unitClass == unitClass) {
+                cUnit = p;
+            } else if (bUnit == null && p.rank == PlayerUnitRank.B && p.unitClass == unitClass) {
+                bUnit = p;
+            }
+        }
+        if (dUnit != null && cUnit != null && bUnit != null) {
+            unitsOnMixer.Remove(dUnit);
+            unitsOnMixer.Remove(cUnit);
+            unitsOnMixer.Remove(bUnit);
+            Destroy(dUnit.gameObject);
+            Destroy(cUnit.gameObject);
+            Destroy(bUnit.gameObject);
+            PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreateRandomAUnit();
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckAllDCombo() {
+        Debug.Log("All D Combo");
+
+        if (GameEngine.GetInstance().gas < 80) {
+            return false;
+        }
+
+        PlayerUnit infantryUnit = null;
+        PlayerUnit mechUnit = null;
+        PlayerUnit laserUnit = null;
+        PlayerUnit psionicUnit = null;
+        PlayerUnit acidUnit = null;
+        PlayerUnit bladeUnit = null;
+        foreach (PlayerUnit p in unitsOnMixer) {
+            if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.INFANTRY) {
+                infantryUnit = p;
+            } else if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.MECH) {
+                mechUnit = p;
+            } else if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.LASER) {
+                laserUnit = p;
+            } else if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.PSIONIC) {
+                psionicUnit = p;
+            } else if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.ACID) {
+                acidUnit = p;
+            } else if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.BLADE) {
+                bladeUnit = p;
+            }
+        }
+
+        if (infantryUnit != null && mechUnit != null && laserUnit != null && psionicUnit != null && acidUnit != null && bladeUnit != null) {
+            unitsOnMixer.Remove(infantryUnit);
+            unitsOnMixer.Remove(mechUnit);
+            unitsOnMixer.Remove(laserUnit);
+            unitsOnMixer.Remove(psionicUnit);
+            unitsOnMixer.Remove(acidUnit);
+            unitsOnMixer.Remove(bladeUnit);
+
+            Destroy(infantryUnit.gameObject);
+            Destroy(mechUnit.gameObject);
+            Destroy(laserUnit.gameObject);
+            Destroy(psionicUnit.gameObject);
+            Destroy(acidUnit.gameObject);
+            Destroy(bladeUnit.gameObject);
+
+            GameEngine.GetInstance().DecreaseGas(80);
+            PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreateRandomUnitOfRank(PlayerUnitRank.A);
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckAllCCombo() {
+        Debug.Log("All C Combo");
+
+        if (GameEngine.GetInstance().gas < 300) {
+            return false;
+        }
+
+        PlayerUnit infantryUnit = null;
+        PlayerUnit mechUnit = null;
+        PlayerUnit laserUnit = null;
+        PlayerUnit psionicUnit = null;
+        PlayerUnit acidUnit = null;
+        PlayerUnit bladeUnit = null;
+        foreach (PlayerUnit p in unitsOnMixer) {
+            if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.INFANTRY) {
+                infantryUnit = p;
+            } else if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.MECH) {
+                mechUnit = p;
+            } else if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.LASER) {
+                laserUnit = p;
+            } else if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.PSIONIC) {
+                psionicUnit = p;
+            } else if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.ACID) {
+                acidUnit = p;
+            } else if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.BLADE) {
+                bladeUnit = p;
+            }
+        }
+
+        if (infantryUnit != null && mechUnit != null && laserUnit != null && psionicUnit != null && acidUnit != null && bladeUnit != null) {
+            unitsOnMixer.Remove(infantryUnit);
+            unitsOnMixer.Remove(mechUnit);
+            unitsOnMixer.Remove(laserUnit);
+            unitsOnMixer.Remove(psionicUnit);
+            unitsOnMixer.Remove(acidUnit);
+            unitsOnMixer.Remove(bladeUnit);
+
+            Destroy(infantryUnit.gameObject);
+            Destroy(mechUnit.gameObject);
+            Destroy(laserUnit.gameObject);
+            Destroy(psionicUnit.gameObject);
+            Destroy(acidUnit.gameObject);
+            Destroy(bladeUnit.gameObject);
+
+            GameEngine.GetInstance().DecreaseGas(300);
+            PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreateRandomUnitOfRank(PlayerUnitRank.S);
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckXCombo() {
+        Debug.Log("Check X Combo");
+
+        if (GameEngine.GetInstance().hasXUnit) {
+            return false;
+        }
+
+        if (CheckXComboForClass(UnitClass.INFANTRY)) {
+            return true;
+        }
+        if (CheckXComboForClass(UnitClass.MECH)) {
+            return true;
+        }
+        if (CheckXComboForClass(UnitClass.LASER)) {
+            return true;
+        }
+        if (CheckXComboForClass(UnitClass.PSIONIC)) {
+            return true;
+        }
+        if (CheckXComboForClass(UnitClass.ACID)) {
+            return true;
+        }
+        if (CheckXComboForClass(UnitClass.BLADE)) {
+            return true;
+        }
+        if (CheckXComboForClass(UnitClass.MAGIC)) {
+            return true;
+        }
+        if (CheckXComboForClass(UnitClass.FLAME)) {
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckXComboForClass(UnitClass unitClass) {
+        PlayerUnit bUnit = null;
+        PlayerUnit aUnit = null;
+        PlayerUnit sUnit = null;
+
+        foreach (PlayerUnit p in unitsOnMixer) {
+            if (bUnit == null && p.rank == PlayerUnitRank.B && p.unitClass == unitClass) {
+                bUnit = p;
+            } else if (aUnit == null && p.rank == PlayerUnitRank.A && p.unitClass == unitClass) {
+                aUnit = p;
+            } else if (sUnit == null && p.rank == PlayerUnitRank.S && p.unitClass == unitClass) {
+                sUnit = p;
+            }
+        }
+        if (bUnit != null && aUnit != null && sUnit != null) {
+            unitsOnMixer.Remove(bUnit);
+            unitsOnMixer.Remove(aUnit);
+            unitsOnMixer.Remove(sUnit);
+            Destroy(bUnit.gameObject);
+            Destroy(aUnit.gameObject);
+            Destroy(sUnit.gameObject);
+            PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(PlayerUnitRank.X, unitClass);
+            GameEngine.GetInstance().hasXUnit = true;
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckRareBCombo() {
+        Debug.Log("Check Rare B Combo");
+
+        PlayerUnit magicUnit = null;
+        PlayerUnit flameUnit = null;
+
+        foreach (PlayerUnit p in unitsOnMixer) {
+            if (p.rank == PlayerUnitRank.B && p.unitClass == UnitClass.MAGIC) {
+                magicUnit = p;
+            } else if (p.rank == PlayerUnitRank.B && p.unitClass == UnitClass.FLAME) {
+                flameUnit = p;
+            }
+        }
+
+        if (magicUnit != null && flameUnit != null) {
+            unitsOnMixer.Remove(magicUnit);
+            unitsOnMixer.Remove(flameUnit);
+            Destroy(magicUnit.gameObject);
+            Destroy(flameUnit.gameObject);
+            // TODO create 2 B choosers
+
+            return true;
+        }
+        return false;
+    }
+
+    private bool CheckRareACombo() {
+        Debug.Log("Check Rare A Combo");
+
+        PlayerUnit magicUnit = null;
+        PlayerUnit flameUnit = null;
+
+        foreach (PlayerUnit p in unitsOnMixer) {
+            if (p.rank == PlayerUnitRank.A && p.unitClass == UnitClass.MAGIC) {
+                magicUnit = p;
+            } else if (p.rank == PlayerUnitRank.A && p.unitClass == UnitClass.FLAME) {
+                flameUnit = p;
+            }
+        }
+
+        if (magicUnit != null && flameUnit != null) {
+            unitsOnMixer.Remove(magicUnit);
+            unitsOnMixer.Remove(flameUnit);
+            Destroy(magicUnit.gameObject);
+            Destroy(flameUnit.gameObject);
+            // TODO create 2 A choosers
+
+            return true;
+        }
+        return false;
     }
 }

@@ -40,6 +40,20 @@ public class UnitSpawner : MonoBehaviour {
         return player;
     }
 
+    public PlayerUnit CreatePlayerUnit(PlayerUnitRank rank, UnitClass unitClass) {
+        PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, unitClass);
+        PlayerUnit player = (PlayerUnit)Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
+        player.InitializeProperties(playerUnitData);
+        SetObjectName(player.gameObject);
+
+        CreatePlayerUnitRangeCircle(player);
+
+        MovePlayerUnitToOffset(player);
+        IgnorePlayerUnitCollisionWithInnerWalls(player);
+
+        return player;
+    }
+
     public PlayerUnit CreateRandomUnitOfRank(PlayerUnitRank rank) {
         if (rank == PlayerUnitRank.D) {
             return CreateRandomDUnit();

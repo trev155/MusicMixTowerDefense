@@ -44,6 +44,8 @@ public class GameEngine : MonoBehaviour {
     public bool hasPiano;
     public bool hasDrum;
 
+    public bool hasXUnit;
+
     //---------- Initialization ----------
     private void Awake() {
         InitializeSingleton();
@@ -63,6 +65,8 @@ public class GameEngine : MonoBehaviour {
 
         this.hasPiano = false;
         this.hasDrum = false;
+
+        this.hasXUnit = false;
         
         this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
     }
