@@ -17,32 +17,32 @@ public class UnitMixer : MonoBehaviour {
         }
 
         // BCD -> A
-        if (CheckBCDCombo()) {
+        if (CheckBCDCombo(playerUnit)) {
             return;
         }
 
         // 6 D + 80 Gas -> A
-        if (CheckAllDCombo()) {
+        if (CheckAllDCombo(playerUnit)) {
             return;
         }
 
         // 6 C + 300 Gas -> S
-        if (CheckAllCCombo()) {
+        if (CheckAllCCombo(playerUnit)) {
             return;
         }
 
         // BAS -> X (one only)
-        if (CheckXCombo()) {
+        if (CheckXCombo(playerUnit)) {
             return;
         }
 
         // B Magic + B Flame -> 2 B choosers
-        if (CheckRareBCombo()) {
+        if (CheckRareBCombo(playerUnit)) {
             return;
         }
 
         // A Magic + A Flame -> 2 A choosers
-        if (CheckRareACombo()) {
+        if (CheckRareACombo(playerUnit)) {
             return;
         }
     }
@@ -101,41 +101,24 @@ public class UnitMixer : MonoBehaviour {
         }
     }
 
-    private bool CheckBCDCombo() {
+    private bool CheckBCDCombo(PlayerUnit playerUnit) {
         Debug.Log("Check BCD Combo");
 
-        if (CheckBCDForClass(UnitClass.INFANTRY)) {
-            return true;
+        if (playerUnit.rank == PlayerUnitRank.A || playerUnit.rank == PlayerUnitRank.S || playerUnit.rank == PlayerUnitRank.X) {
+            return false;
         }
-        if (CheckBCDForClass(UnitClass.MECH)) {
-            return true;
-        }
-        if (CheckBCDForClass(UnitClass.LASER)) {
-            return true;
-        }
-        if (CheckBCDForClass(UnitClass.PSIONIC)) {
-            return true;
-        }
-        if (CheckBCDForClass(UnitClass.ACID)) {
-            return true;
-        }
-        if (CheckBCDForClass(UnitClass.BLADE)) {
-            return true;
-        }
-        return false;
-    }
+        UnitClass targetUnitClass = playerUnit.unitClass;
 
-    private bool CheckBCDForClass(UnitClass unitClass) {
         PlayerUnit dUnit = null;
         PlayerUnit cUnit = null;
         PlayerUnit bUnit = null;
-
+        
         foreach (PlayerUnit p in unitsOnMixer) {
-            if (dUnit == null && p.rank == PlayerUnitRank.D && p.unitClass == unitClass) {
+            if (dUnit == null && p.rank == PlayerUnitRank.D && p.unitClass == targetUnitClass) {
                 dUnit = p;
-            } else if (cUnit == null && p.rank == PlayerUnitRank.C && p.unitClass == unitClass) {
+            } else if (cUnit == null && p.rank == PlayerUnitRank.C && p.unitClass == targetUnitClass) {
                 cUnit = p;
-            } else if (bUnit == null && p.rank == PlayerUnitRank.B && p.unitClass == unitClass) {
+            } else if (bUnit == null && p.rank == PlayerUnitRank.B && p.unitClass == targetUnitClass) {
                 bUnit = p;
             }
         }
@@ -152,10 +135,13 @@ public class UnitMixer : MonoBehaviour {
         return false;
     }
 
-    private bool CheckAllDCombo() {
+    private bool CheckAllDCombo(PlayerUnit playerUnit) {
         Debug.Log("All D Combo");
 
         if (GameEngine.GetInstance().gas < 80) {
+            return false;
+        }
+        if (playerUnit.rank != PlayerUnitRank.D) {
             return false;
         }
 
@@ -203,10 +189,13 @@ public class UnitMixer : MonoBehaviour {
         return false;
     }
 
-    private bool CheckAllCCombo() {
+    private bool CheckAllCCombo(PlayerUnit playerUnit) {
         Debug.Log("All C Combo");
 
         if (GameEngine.GetInstance().gas < 300) {
+            return false;
+        }
+        if (playerUnit.rank != PlayerUnitRank.C) {
             return false;
         }
 
@@ -254,51 +243,27 @@ public class UnitMixer : MonoBehaviour {
         return false;
     }
 
-    private bool CheckXCombo() {
+    private bool CheckXCombo(PlayerUnit playerUnit) {
         Debug.Log("Check X Combo");
 
         if (GameEngine.GetInstance().hasXUnit) {
             return false;
         }
+        if (playerUnit.rank == PlayerUnitRank.D || playerUnit.rank == PlayerUnitRank.C || playerUnit.rank == PlayerUnitRank.X) {
+            return false;
+        }
+        UnitClass targetUnitClass = playerUnit.unitClass;
 
-        if (CheckXComboForClass(UnitClass.INFANTRY)) {
-            return true;
-        }
-        if (CheckXComboForClass(UnitClass.MECH)) {
-            return true;
-        }
-        if (CheckXComboForClass(UnitClass.LASER)) {
-            return true;
-        }
-        if (CheckXComboForClass(UnitClass.PSIONIC)) {
-            return true;
-        }
-        if (CheckXComboForClass(UnitClass.ACID)) {
-            return true;
-        }
-        if (CheckXComboForClass(UnitClass.BLADE)) {
-            return true;
-        }
-        if (CheckXComboForClass(UnitClass.MAGIC)) {
-            return true;
-        }
-        if (CheckXComboForClass(UnitClass.FLAME)) {
-            return true;
-        }
-        return false;
-    }
-
-    private bool CheckXComboForClass(UnitClass unitClass) {
         PlayerUnit bUnit = null;
         PlayerUnit aUnit = null;
         PlayerUnit sUnit = null;
 
         foreach (PlayerUnit p in unitsOnMixer) {
-            if (bUnit == null && p.rank == PlayerUnitRank.B && p.unitClass == unitClass) {
+            if (bUnit == null && p.rank == PlayerUnitRank.B && p.unitClass == targetUnitClass) {
                 bUnit = p;
-            } else if (aUnit == null && p.rank == PlayerUnitRank.A && p.unitClass == unitClass) {
+            } else if (aUnit == null && p.rank == PlayerUnitRank.A && p.unitClass == targetUnitClass) {
                 aUnit = p;
-            } else if (sUnit == null && p.rank == PlayerUnitRank.S && p.unitClass == unitClass) {
+            } else if (sUnit == null && p.rank == PlayerUnitRank.S && p.unitClass == targetUnitClass) {
                 sUnit = p;
             }
         }
@@ -309,15 +274,19 @@ public class UnitMixer : MonoBehaviour {
             Destroy(bUnit.gameObject);
             Destroy(aUnit.gameObject);
             Destroy(sUnit.gameObject);
-            PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(PlayerUnitRank.X, unitClass);
+            PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(PlayerUnitRank.X, targetUnitClass);
             GameEngine.GetInstance().hasXUnit = true;
             return true;
         }
         return false;
     }
 
-    private bool CheckRareBCombo() {
+    private bool CheckRareBCombo(PlayerUnit playerUnit) {
         Debug.Log("Check Rare B Combo");
+
+        if (playerUnit.rank != PlayerUnitRank.B) {
+            return false;
+        }
 
         PlayerUnit magicUnit = null;
         PlayerUnit flameUnit = null;
@@ -342,8 +311,12 @@ public class UnitMixer : MonoBehaviour {
         return false;
     }
 
-    private bool CheckRareACombo() {
+    private bool CheckRareACombo(PlayerUnit playerUnit) {
         Debug.Log("Check Rare A Combo");
+
+        if (playerUnit.rank != PlayerUnitRank.A) {
+            return false;
+        }
 
         PlayerUnit magicUnit = null;
         PlayerUnit flameUnit = null;
