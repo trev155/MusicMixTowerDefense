@@ -131,17 +131,42 @@ public class GameEngine : MonoBehaviour {
         }
     }
 
+    public void IncreaseTokenCount(int count) {
+        if (count < 1) {
+            throw new GameplayException("Invalid value for count: " + count + ". Cannot increase token count.");
+        }
+
+        this.tokenCount += count;
+        this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
+    }
+
+    public void DecreaseTokenCount(int count) {
+        if (count < 1) {
+            throw new GameplayException("Invalid value for count: " + count + ". Cannot decrease token count.");
+        }
+
+        this.tokenCount -= count;
+        this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
+    }
+
     public void IncreaseMinerals(int val) {
+        if (val < 0) {
+            throw new GameplayException("Invalid value provided: " + val + ". Cannot increase mineral count.");
+        }
+
         this.minerals += val;
         if (this.minerals >= 160) {
             Debug.Log("160 Minerals = 1 Token");
             this.minerals -= 160;
         }
-
         this.gameDataPanel.UpdateMineralsText(this.minerals);
     }
 
     public void IncreaseGas(int val) {
+        if (val < 0) {
+            throw new GameplayException("Invalid value provided: " + val + ". Cannot increase gas count.");
+        }
+
         this.gas += val;
         this.gameDataPanel.UpdateGasText(this.gas);
 
@@ -149,6 +174,10 @@ public class GameEngine : MonoBehaviour {
     }
 
     public void DecreaseGas(int val) {
+        if (val < 0) {
+            throw new GameplayException("Invalid value provided: " + val + ". Cannot decrease gas count.");
+        }
+
         this.gas -= val;
         this.gameDataPanel.UpdateGasText(this.gas);
     }

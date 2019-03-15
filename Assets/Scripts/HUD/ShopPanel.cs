@@ -23,10 +23,8 @@ public class ShopPanel : MonoBehaviour {
             Debug.Log("Could not purchase a D unit. Requires 1 token.");
             return;
         }
-
         PlayerUnit p = GameEngine.GetInstance().unitSpawner.CreateRandomDUnit();
-        GameEngine.GetInstance().tokenCount--;
-        GameEngine.GetInstance().gameDataPanel.UpdateTokenCountText(GameEngine.GetInstance().tokenCount);
+        GameEngine.GetInstance().DecreaseTokenCount(1);
 
         Debug.Log("[D Unit - " + p.displayName + "]");
     }
@@ -48,16 +46,15 @@ public class ShopPanel : MonoBehaviour {
         } else {
             gasIncrement = 100;
         }
-        
-        GameEngine.GetInstance().tokenCount--;
-        GameEngine.GetInstance().gameDataPanel.UpdateTokenCountText(GameEngine.GetInstance().tokenCount);
 
+        GameEngine.GetInstance().DecreaseTokenCount(1);
         GameEngine.GetInstance().IncreaseGas(gasIncrement);
         GameEngine.GetInstance().gameDataPanel.UpdateGasText(GameEngine.GetInstance().gas);
 
         Debug.Log("[+" + gasIncrement + " Gas]");
     }
 
+    // Scroll Items
     public void ScrollItemLeft() {
         if (shopItemOption > 0) {
             shopItemOption--;
@@ -99,10 +96,10 @@ public class ShopPanel : MonoBehaviour {
             Debug.Log("Cannot Purchase item: [Piano]. Requires (2) tokens.");
             return;
         }
-        GameEngine.GetInstance().tokenCount -= 2;
+        GameEngine.GetInstance().DecreaseTokenCount(2);
         GameEngine.GetInstance().hasPiano = true;
 
-        GameEngine.GetInstance().gameDataPanel.UpdateTokenCountText(GameEngine.GetInstance().tokenCount);
+        Debug.Log("Purchased Piano");
     }
 
     private void PurchaseDrums() {
@@ -114,10 +111,10 @@ public class ShopPanel : MonoBehaviour {
             Debug.Log("Cannot Purchase item: [Drums]. Requires (3) tokens.");
             return;
         }
-        GameEngine.GetInstance().tokenCount -= 3;
+        GameEngine.GetInstance().DecreaseTokenCount(3);
         GameEngine.GetInstance().hasDrum = true;
 
-        GameEngine.GetInstance().gameDataPanel.UpdateTokenCountText(GameEngine.GetInstance().tokenCount);
+        Debug.Log("Purchased Drums");
     }
 
     private void PurchaseTokenLotto() {
@@ -125,23 +122,21 @@ public class ShopPanel : MonoBehaviour {
             Debug.Log("Cannot Purchase item: [Lotto]. Requires (1) token.");
             return;
         }
-        GameEngine.GetInstance().tokenCount -= 1;
+        GameEngine.GetInstance().DecreaseTokenCount(1);
 
         int option = random.Next(1, 100);
         if (option <= 55) {
             Debug.Log("Lotto: No Luck - 0 Token");
         } else if (option <= 75) {
             Debug.Log("Lotto: 1 Token");
-            GameEngine.GetInstance().tokenCount += 1;
+            GameEngine.GetInstance().IncreaseTokenCount(1);
         } else if (option <= 90) {
             Debug.Log("Lotto: 2 Tokens");
-            GameEngine.GetInstance().tokenCount += 2;
+            GameEngine.GetInstance().IncreaseTokenCount(2);
         } else {
             Debug.Log("Lotto: 4 Tokens");
-            GameEngine.GetInstance().tokenCount += 4;
+            GameEngine.GetInstance().IncreaseTokenCount(4);
         }
-
-        GameEngine.GetInstance().gameDataPanel.UpdateTokenCountText(GameEngine.GetInstance().tokenCount);
     }
 
     private string GetShopItemText(int option) {
