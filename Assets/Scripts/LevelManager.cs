@@ -7,21 +7,32 @@ using System.Collections;
 
 
 public class LevelManager : MonoBehaviour {
-    private float spawnDelay = 2.0f;
-    public bool levelHasStarted = false;
-    private readonly int numUnitsPerLevel = 40;
-    public float timeLeftInLevel;
+    // ---------- Fields ----------
+    private static readonly float spawnDelay = 2.0f;
+    private static readonly int numUnitsPerLevel = 5;
+    private int currentLevel;
 
-       
+    public bool levelHasStarted = false;
+    public bool levelTransitionPeriod = false;
+    public float timeLeftInLevel;
+    
+
+    // ---------- Methods ----------
     private void Update() {
         if (levelHasStarted) {
             timeLeftInLevel -= Time.deltaTime;
             GameEngine.GetInstance().gameDataPanel.SetLevelTimerText(ConvertTimeToString(timeLeftInLevel));
         }
 
-        if (timeLeftInLevel <= 0) {
+        if (timeLeftInLevel < 0) {
             levelHasStarted = false;
+            levelTransitionPeriod = true;
             timeLeftInLevel = 0;
+        }
+        
+        if (levelTransitionPeriod) {
+            levelTransitionPeriod = false;
+            StartCoroutine(LevelTransition());
         }
     }
 
@@ -29,10 +40,13 @@ public class LevelManager : MonoBehaviour {
         if (levelHasStarted) {
             throw new GameplayException("There is a level in progress, cannot start new level right now.");
         }
+        Debug.Log("Starting Level: [" + level + "]");
 
         levelHasStarted = true;
+        currentLevel = level;
         StartCoroutine(StartLevelLoop(level));
-        timeLeftInLevel = 80.0f;
+        timeLeftInLevel = numUnitsPerLevel * spawnDelay;
+        // TODO add more time to the level based on the difficulty setting
     }
 
     IEnumerator StartLevelLoop(int level) {
@@ -62,5 +76,12 @@ public class LevelManager : MonoBehaviour {
         }
 
         return minutesString + ":" + secondsString;
+    }
+
+    IEnumerator LevelTransition() {
+        // TODO time should depend on difficulty setting
+        Debug.Log("Transitioning between levels.");
+        yield return new WaitForSeconds(15.0f);
+        StartLevel(currentLevel + 1);
     }
 }
