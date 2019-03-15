@@ -20,6 +20,7 @@ public class GameEngine : MonoBehaviour {
     public UnitSpawner unitSpawner;
     public LevelManager levelManager;
     public UpgradeManager upgradeManager;
+    public UnitMixer unitMixer;
 
     public UnitSelectionPanel unitSelectionPanel;
     public ShopPanel shopPanel;
@@ -70,7 +71,7 @@ public class GameEngine : MonoBehaviour {
         
         this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
 
-        // Start Level
+        // Start First Level
         StartCoroutine(levelManager.WaitBeforeStartingGame(10.0f));
     }
 
@@ -131,6 +132,8 @@ public class GameEngine : MonoBehaviour {
     public void IncreaseGas(int val) {
         this.gas += val;
         this.gameDataPanel.UpdateGasText(this.gas);
+
+        unitMixer.CheckGasCombos();
     }
 
     public void DecreaseGas(int val) {

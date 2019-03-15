@@ -55,6 +55,23 @@ public class UnitMixer : MonoBehaviour {
         unitsOnMixer.Remove(playerUnit);
     }
 
+    public void CheckGasCombos() {
+        if (CheckAllDCombo()) {
+            return;
+        }
+        if (CheckAllCCombo()) {
+            return;
+        }
+    }
+
+    private void RemoveUnitSafely(PlayerUnit playerUnit) {
+        unitsOnMixer.Remove(playerUnit);
+        Destroy(playerUnit.gameObject);
+        if (playerUnit == GameEngine.GetInstance().playerUnitSelected) {
+            GameEngine.GetInstance().unitSelectionPanel.CloseUnitSelectionPanelButton();
+            GameEngine.GetInstance().playerUnitSelected = null;
+        }
+    }
 
     //---------- Unit Mixing Methods ----------
     private bool CheckMatchingUnit(PlayerUnit playerUnit) {
@@ -64,11 +81,8 @@ public class UnitMixer : MonoBehaviour {
         matchingPlayerUnit = GetMatchingUnitType(playerUnit);
         if (matchingPlayerUnit != null) {
             PlayerUnitRank newUnitRank = GetNextTierRank(playerUnit.rank);
-            unitsOnMixer.Remove(playerUnit);
-            unitsOnMixer.Remove(matchingPlayerUnit);
-            Destroy(playerUnit.gameObject);
-            Destroy(matchingPlayerUnit.gameObject);
-
+            RemoveUnitSafely(playerUnit);
+            RemoveUnitSafely(matchingPlayerUnit);            
             PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreateRandomUnitOfRank(newUnitRank);
             return true;
         }
@@ -123,25 +137,19 @@ public class UnitMixer : MonoBehaviour {
             }
         }
         if (dUnit != null && cUnit != null && bUnit != null) {
-            unitsOnMixer.Remove(dUnit);
-            unitsOnMixer.Remove(cUnit);
-            unitsOnMixer.Remove(bUnit);
-            Destroy(dUnit.gameObject);
-            Destroy(cUnit.gameObject);
-            Destroy(bUnit.gameObject);
+            RemoveUnitSafely(dUnit);
+            RemoveUnitSafely(cUnit);
+            RemoveUnitSafely(bUnit);
             PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreateRandomAUnit();
             return true;
         }
         return false;
     }
-
-    private bool CheckAllDCombo(PlayerUnit playerUnit) {
+    
+    private bool CheckAllDCombo() {
         Debug.Log("All D Combo");
 
         if (GameEngine.GetInstance().gas < 80) {
-            return false;
-        }
-        if (playerUnit.rank != PlayerUnitRank.D) {
             return false;
         }
 
@@ -168,19 +176,12 @@ public class UnitMixer : MonoBehaviour {
         }
 
         if (infantryUnit != null && mechUnit != null && laserUnit != null && psionicUnit != null && acidUnit != null && bladeUnit != null) {
-            unitsOnMixer.Remove(infantryUnit);
-            unitsOnMixer.Remove(mechUnit);
-            unitsOnMixer.Remove(laserUnit);
-            unitsOnMixer.Remove(psionicUnit);
-            unitsOnMixer.Remove(acidUnit);
-            unitsOnMixer.Remove(bladeUnit);
-
-            Destroy(infantryUnit.gameObject);
-            Destroy(mechUnit.gameObject);
-            Destroy(laserUnit.gameObject);
-            Destroy(psionicUnit.gameObject);
-            Destroy(acidUnit.gameObject);
-            Destroy(bladeUnit.gameObject);
+            RemoveUnitSafely(infantryUnit);
+            RemoveUnitSafely(mechUnit);
+            RemoveUnitSafely(laserUnit);
+            RemoveUnitSafely(psionicUnit);
+            RemoveUnitSafely(acidUnit);
+            RemoveUnitSafely(bladeUnit);
 
             GameEngine.GetInstance().DecreaseGas(80);
             PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreateRandomUnitOfRank(PlayerUnitRank.A);
@@ -189,13 +190,17 @@ public class UnitMixer : MonoBehaviour {
         return false;
     }
 
-    private bool CheckAllCCombo(PlayerUnit playerUnit) {
+    private bool CheckAllDCombo(PlayerUnit playerUnit) {
+        if (playerUnit.rank != PlayerUnitRank.D) {
+            return false;
+        }
+        return CheckAllDCombo();
+    }
+
+    private bool CheckAllCCombo() {
         Debug.Log("All C Combo");
 
         if (GameEngine.GetInstance().gas < 300) {
-            return false;
-        }
-        if (playerUnit.rank != PlayerUnitRank.C) {
             return false;
         }
 
@@ -222,25 +227,25 @@ public class UnitMixer : MonoBehaviour {
         }
 
         if (infantryUnit != null && mechUnit != null && laserUnit != null && psionicUnit != null && acidUnit != null && bladeUnit != null) {
-            unitsOnMixer.Remove(infantryUnit);
-            unitsOnMixer.Remove(mechUnit);
-            unitsOnMixer.Remove(laserUnit);
-            unitsOnMixer.Remove(psionicUnit);
-            unitsOnMixer.Remove(acidUnit);
-            unitsOnMixer.Remove(bladeUnit);
-
-            Destroy(infantryUnit.gameObject);
-            Destroy(mechUnit.gameObject);
-            Destroy(laserUnit.gameObject);
-            Destroy(psionicUnit.gameObject);
-            Destroy(acidUnit.gameObject);
-            Destroy(bladeUnit.gameObject);
+            RemoveUnitSafely(infantryUnit);
+            RemoveUnitSafely(mechUnit);
+            RemoveUnitSafely(laserUnit);
+            RemoveUnitSafely(psionicUnit);
+            RemoveUnitSafely(acidUnit);
+            RemoveUnitSafely(bladeUnit);
 
             GameEngine.GetInstance().DecreaseGas(300);
             PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreateRandomUnitOfRank(PlayerUnitRank.S);
             return true;
         }
         return false;
+    }
+
+    private bool CheckAllCCombo(PlayerUnit playerUnit) {
+        if (playerUnit.rank != PlayerUnitRank.C) {
+            return false;
+        }
+        return CheckAllCCombo();
     }
 
     private bool CheckXCombo(PlayerUnit playerUnit) {
@@ -268,12 +273,10 @@ public class UnitMixer : MonoBehaviour {
             }
         }
         if (bUnit != null && aUnit != null && sUnit != null) {
-            unitsOnMixer.Remove(bUnit);
-            unitsOnMixer.Remove(aUnit);
-            unitsOnMixer.Remove(sUnit);
-            Destroy(bUnit.gameObject);
-            Destroy(aUnit.gameObject);
-            Destroy(sUnit.gameObject);
+            RemoveUnitSafely(bUnit);
+            RemoveUnitSafely(aUnit);
+            RemoveUnitSafely(sUnit);
+
             PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(PlayerUnitRank.X, targetUnitClass);
             GameEngine.GetInstance().hasXUnit = true;
             return true;
@@ -300,10 +303,9 @@ public class UnitMixer : MonoBehaviour {
         }
 
         if (magicUnit != null && flameUnit != null) {
-            unitsOnMixer.Remove(magicUnit);
-            unitsOnMixer.Remove(flameUnit);
-            Destroy(magicUnit.gameObject);
-            Destroy(flameUnit.gameObject);
+            RemoveUnitSafely(magicUnit);
+            RemoveUnitSafely(flameUnit);
+
             // TODO create 2 B choosers
 
             return true;
@@ -330,10 +332,9 @@ public class UnitMixer : MonoBehaviour {
         }
 
         if (magicUnit != null && flameUnit != null) {
-            unitsOnMixer.Remove(magicUnit);
-            unitsOnMixer.Remove(flameUnit);
-            Destroy(magicUnit.gameObject);
-            Destroy(flameUnit.gameObject);
+            RemoveUnitSafely(magicUnit);
+            RemoveUnitSafely(flameUnit);
+
             // TODO create 2 A choosers
 
             return true;
