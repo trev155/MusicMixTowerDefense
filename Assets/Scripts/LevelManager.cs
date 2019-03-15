@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
     // ---------- Fields ----------
     private static readonly float spawnDelay = 2.0f;
     private static readonly int numUnitsPerLevel = 5;
-    private int currentLevel;
+    private int currentLevel = 0;
 
     public bool levelHasStarted = false;
     public bool levelTransitionPeriod = false;
@@ -37,9 +37,6 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void StartLevel(int level) {
-        if (levelHasStarted) {
-            throw new GameplayException("There is a level in progress, cannot start new level right now.");
-        }
         Debug.Log("Starting Level: [" + level + "]");
 
         levelHasStarted = true;
@@ -49,7 +46,7 @@ public class LevelManager : MonoBehaviour {
         // TODO add more time to the level based on the difficulty setting
     }
 
-    IEnumerator StartLevelLoop(int level) {
+    private IEnumerator StartLevelLoop(int level) {
         int numUnitsSpawned = 0;
         while (true) {
             GameEngine.GetInstance().unitSpawner.CreateEnemyUnit(level);
@@ -78,10 +75,16 @@ public class LevelManager : MonoBehaviour {
         return minutesString + ":" + secondsString;
     }
 
-    IEnumerator LevelTransition() {
+    private IEnumerator LevelTransition() {
         // TODO time should depend on difficulty setting
         Debug.Log("Transitioning between levels.");
         yield return new WaitForSeconds(15.0f);
         StartLevel(currentLevel + 1);
+    }
+
+    public IEnumerator WaitBeforeStartingGame(float t) {
+        Debug.Log("Waiting for time: " + t + " seconds.");
+        yield return new WaitForSeconds(t);
+        StartLevel(1);
     }
 }

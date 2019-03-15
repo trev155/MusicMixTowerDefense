@@ -69,6 +69,9 @@ public class GameEngine : MonoBehaviour {
         this.hasXUnit = false;
         
         this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
+
+        // Start Level
+        StartCoroutine(levelManager.WaitBeforeStartingGame(10.0f));
     }
 
     private void InitializeSingleton() {

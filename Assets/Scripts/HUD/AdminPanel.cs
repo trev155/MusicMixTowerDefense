@@ -9,7 +9,6 @@ public class AdminPanel : MonoBehaviour {
     private PlayerUnitRank curRank;
     private int enemyLevel = 1;
     private const int MAX_LEVELS = 40;
-    private int nextLevel = 1;
     private int upgradeNum = 0;
 
     public Text rankText;
@@ -30,7 +29,6 @@ public class AdminPanel : MonoBehaviour {
         rankText.text = curRank.ToString();
         numberText.text = curNum + "";
         enemyLevelText.text = enemyLevel + "";
-        nextLevelText.text = nextLevel + "";
         upgradeText.text = GetUpgradeText();
     }
 
@@ -106,27 +104,6 @@ public class AdminPanel : MonoBehaviour {
         }
 
         enemyLevelText.text = enemyLevel + "";
-    }
-
-    // Levels
-    public void ActivateNextLevel() {
-        GameEngine.GetInstance().levelManager.StartLevel(nextLevel);
-    }
-
-    public void ScrollNextLevelLeft() {
-        if (nextLevel > 1) {
-            nextLevel -= 1;
-        }
-
-        nextLevelText.text = nextLevel + "";
-    }
-
-    public void ScrollNextLevelRight() {
-        if (nextLevel < MAX_LEVELS) {
-            nextLevel += 1;
-        }
-
-        nextLevelText.text = nextLevel + "";
     }
 
     // Upgrades
