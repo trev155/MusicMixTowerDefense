@@ -73,10 +73,75 @@ public class ShopPanel : MonoBehaviour {
     }
 
     public void PurchaseItem() {
-        // TODO 
-        // implement shop items
-        // deduct token count
-        // detect if already purchased
+        switch (this.shopItemOption) {
+            case 0:
+                PurchasePiano();
+                break;
+            case 1:
+                PurchaseDrums();
+                break;
+            case 2:
+                PurchaseTokenLotto();
+                break;
+            case 3:
+                break;
+            default:
+                throw new GameplayException("Invalid shop item option. Could not purchase item.");
+        }
+    }
+
+    private void PurchasePiano() {
+        if (GameEngine.GetInstance().hasPiano) {
+            Debug.Log("You can only purchase the Piano once.");
+            return;
+        }
+        if (GameEngine.GetInstance().tokenCount < 2) {
+            Debug.Log("Cannot Purchase item: [Piano]. Requires (2) tokens.");
+            return;
+        }
+        GameEngine.GetInstance().tokenCount -= 2;
+        GameEngine.GetInstance().hasPiano = true;
+
+        GameEngine.GetInstance().gameDataPanel.UpdateTokenCountText(GameEngine.GetInstance().tokenCount);
+    }
+
+    private void PurchaseDrums() {
+        if (GameEngine.GetInstance().hasDrum) {
+            Debug.Log("You can only purchase the Drums once.");
+            return;
+        }
+        if (GameEngine.GetInstance().tokenCount < 3) {
+            Debug.Log("Cannot Purchase item: [Drums]. Requires (3) tokens.");
+            return;
+        }
+        GameEngine.GetInstance().tokenCount -= 3;
+        GameEngine.GetInstance().hasDrum = true;
+
+        GameEngine.GetInstance().gameDataPanel.UpdateTokenCountText(GameEngine.GetInstance().tokenCount);
+    }
+
+    private void PurchaseTokenLotto() {
+        if (GameEngine.GetInstance().tokenCount < 1) {
+            Debug.Log("Cannot Purchase item: [Lotto]. Requires (1) token.");
+            return;
+        }
+        GameEngine.GetInstance().tokenCount -= 1;
+
+        int option = random.Next(1, 100);
+        if (option <= 55) {
+            Debug.Log("Lotto: No Luck - 0 Token");
+        } else if (option <= 75) {
+            Debug.Log("Lotto: 1 Token");
+            GameEngine.GetInstance().tokenCount += 1;
+        } else if (option <= 90) {
+            Debug.Log("Lotto: 2 Tokens");
+            GameEngine.GetInstance().tokenCount += 2;
+        } else {
+            Debug.Log("Lotto: 4 Tokens");
+            GameEngine.GetInstance().tokenCount += 4;
+        }
+
+        GameEngine.GetInstance().gameDataPanel.UpdateTokenCountText(GameEngine.GetInstance().tokenCount);
     }
 
     private string GetShopItemText(int option) {

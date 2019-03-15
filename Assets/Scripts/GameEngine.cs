@@ -44,6 +44,7 @@ public class GameEngine : MonoBehaviour {
 
     public bool hasPiano;
     public bool hasDrum;
+    public int drumCounter;
 
     public bool hasXUnit;
 
@@ -66,6 +67,7 @@ public class GameEngine : MonoBehaviour {
 
         this.hasPiano = false;
         this.hasDrum = false;
+        this.drumCounter = 0;
 
         this.hasXUnit = false;
         
@@ -85,6 +87,7 @@ public class GameEngine : MonoBehaviour {
     }
 
     //---------- Methods ----------
+    // Player Movement and Unit Selection
     public void EnablePlayerUnitMovement() {
         this.playerUnitMovementAllowed = true;
         this.unitSelectionPanel.moveUnitButtonText.text = "Disable Unit Movement";
@@ -104,6 +107,7 @@ public class GameEngine : MonoBehaviour {
         this.enemyUnitSelected = null;
     }
 
+    // Stats
     public void IncrementKills() {
         this.kills += 1;
         this.gameDataPanel.UpdateKillCounterText(this.kills);
@@ -113,10 +117,18 @@ public class GameEngine : MonoBehaviour {
             this.tokenCount += 1;
             this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
         }
-    }
 
-    public void PlayLevel() {
-        levelManager.StartLevel(this.level);
+        if (this.hasPiano) {
+            IncreaseMinerals(1);
+        }
+
+        if (this.hasDrum) {
+            this.drumCounter += 1;
+            if (this.drumCounter == 3) {
+                this.drumCounter = 0;
+                IncreaseGas(1);
+            }
+        }
     }
 
     public void IncreaseMinerals(int val) {
