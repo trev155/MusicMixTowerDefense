@@ -1,21 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-
 
 public class ShopPanel : MonoBehaviour {
     // ---------- Fields ----------
-    public Text shopItemText;
-
-    private int shopItemOption;
-
     private System.Random random;
 
     // ---------- Methods ----------
     private void Awake() {
         random = new System.Random();
-
-        shopItemText.text = "Piano (2 Token)";
-        shopItemOption = 0;
     }
 
     public void CreateRandomDUnit() {
@@ -54,40 +45,7 @@ public class ShopPanel : MonoBehaviour {
         Debug.Log("[+" + gasIncrement + " Gas]");
     }
 
-    // Scroll Items
-    public void ScrollItemLeft() {
-        if (shopItemOption > 0) {
-            shopItemOption--;
-        }
-        shopItemText.text = GetShopItemText(shopItemOption);
-    }
-
-    public void ScrollItemRight() {
-        if (shopItemOption < 3) {
-            shopItemOption++;
-        }
-        shopItemText.text = GetShopItemText(shopItemOption);
-    }
-
-    public void PurchaseItem() {
-        switch (this.shopItemOption) {
-            case 0:
-                PurchasePiano();
-                break;
-            case 1:
-                PurchaseDrums();
-                break;
-            case 2:
-                PurchaseTokenLotto();
-                break;
-            case 3:
-                break;
-            default:
-                throw new GameplayException("Invalid shop item option. Could not purchase item.");
-        }
-    }
-
-    private void PurchasePiano() {
+    public void PurchasePiano() {
         if (GameEngine.GetInstance().hasPiano) {
             Debug.Log("You can only purchase the Piano once.");
             return;
@@ -102,7 +60,7 @@ public class ShopPanel : MonoBehaviour {
         Debug.Log("Purchased Piano");
     }
 
-    private void PurchaseDrums() {
+    public void PurchaseDrums() {
         if (GameEngine.GetInstance().hasDrum) {
             Debug.Log("You can only purchase the Drums once.");
             return;
@@ -117,7 +75,7 @@ public class ShopPanel : MonoBehaviour {
         Debug.Log("Purchased Drums");
     }
 
-    private void PurchaseTokenLotto() {
+    public void PurchaseTokenLotto() {
         if (GameEngine.GetInstance().tokenCount < 1) {
             Debug.Log("Cannot Purchase item: [Lotto]. Requires (1) token.");
             return;
@@ -136,21 +94,6 @@ public class ShopPanel : MonoBehaviour {
         } else {
             Debug.Log("Lotto: 4 Tokens");
             GameEngine.GetInstance().IncreaseTokenCount(4);
-        }
-    }
-
-    private string GetShopItemText(int option) {
-        switch (option) {
-            case 0:
-                return "Piano (2 Token)";
-            case 1:
-                return "Drum (3 Token)";
-            case 2:
-                return "Lotto (1 Token)";
-            case 3:
-                return "Harvester (5 Token)";
-            default:
-                throw new GameplayException("Invalid Option: " + option + ". Could not get option text.");
         }
     }
 }

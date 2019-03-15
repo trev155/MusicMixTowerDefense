@@ -11,6 +11,8 @@ public class UnitSelectionPanel : MonoBehaviour {
 
     // ---------- Fields ----------
     public RectTransform unitSelectionPanel;
+    public Button closeUnitSelectionPanelButton;
+
     public Text textSlot1;
     public Text textSlot2;
     public Text textSlot3;
@@ -27,6 +29,7 @@ public class UnitSelectionPanel : MonoBehaviour {
     // ---------- Methods ----------
     private void Awake() {
         unitSelectionPanel.gameObject.SetActive(false);
+        closeUnitSelectionPanelButton.gameObject.SetActive(false);
         moveUnitInstruction.gameObject.SetActive(false);
     }
 
@@ -39,10 +42,13 @@ public class UnitSelectionPanel : MonoBehaviour {
         } else {
             moveUnitButton.gameObject.SetActive(false);
         }
+
+        closeUnitSelectionPanelButton.gameObject.SetActive(true);
     }
 
     public void HideUnitSelectionPanel() {
         unitSelectionPanel.gameObject.SetActive(false);
+        closeUnitSelectionPanelButton.gameObject.SetActive(false);
     }
 
     public void CloseUnitSelectionPanelButton() {

@@ -11,7 +11,6 @@ public class GameDataPanel : MonoBehaviour {
     public Text killCounterText;
     public Text globalGameTimerText;
     public Text levelTimerText;
-    public Text harvesterCountsText;
 
 
     // ---------- Methods ----------
@@ -21,7 +20,6 @@ public class GameDataPanel : MonoBehaviour {
         killCounterText.text = "Kills: 0";
         levelTimerText.text = "Level Time Left: ";
         tokenCountText.text = "Tokens: 0";
-        harvesterCountsText.text = "Harvesters: 0 / 0\n(Minerals / Gas)";
     }
 
     public void UpdateMineralsText(int minerals) {
@@ -50,13 +48,5 @@ public class GameDataPanel : MonoBehaviour {
 
     public void SetLevelTimerText(string timeStr) {
         levelTimerText.text = "Level Time Left: " + timeStr;
-    }
-    
-    public void UpdateHarvesterCountsText(int mineralHarvesters, int gasHarvesters) {
-        harvesterCountsText.text = "Harvesters: " + mineralHarvesters + " / " + gasHarvesters + "\n(Minerals / Gas)";
-    }
-
-    public void UpdateAddonsText() {
-    
     }
 }
