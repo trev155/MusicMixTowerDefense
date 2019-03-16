@@ -48,6 +48,10 @@ public class GameEngine : MonoBehaviour {
 
     public bool hasXUnit;
 
+    public int bChoosers;
+    public int aChoosers;
+    public int sChoosers;
+
     //---------- Initialization ----------
     private void Awake() {
         InitializeSingleton();
@@ -70,6 +74,10 @@ public class GameEngine : MonoBehaviour {
         this.drumCounter = 0;
 
         this.hasXUnit = false;
+
+        this.bChoosers = 8;
+        this.aChoosers = 8;
+        this.sChoosers = 8;
         
         this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
 
