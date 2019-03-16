@@ -19,6 +19,8 @@ public class UnitSelectionPanel : MonoBehaviour {
     public Text textSlot4;
     public Text textSlot5;
     public Text textSlot6;
+    public Text textSlot7;
+
     public Button moveUnitButton;
     public Text moveUnitButtonText;
     public Text moveUnitInstruction;
@@ -73,6 +75,7 @@ public class UnitSelectionPanel : MonoBehaviour {
         textSlot4.text = "";
         textSlot5.text = "";
         textSlot6.text = "";
+        textSlot7.text = "";
 
         if (unitData.Count > 0) {
             textSlot1.text = unitData[0];
@@ -91,6 +94,9 @@ public class UnitSelectionPanel : MonoBehaviour {
         }
         if (unitData.Count > 5) {
             textSlot6.text = unitData[5];
+        }
+        if (unitData.Count > 6) {
+            textSlot7.text = unitData[6];
         }
     }
 

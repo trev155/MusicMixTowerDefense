@@ -71,6 +71,7 @@ public class PlayerUnit : Unit {
     public override List<string> GetDisplayUnitData() {
         List<string> unitData = new List<string>();
         string title = "[" + this.rank + " Rank] " + this.displayName;
+        string unitType = "Unit Class: " + Utils.CleanEnumString(this.unitClass.ToString());
         string attackDamage = "Attack Damage: " + this.attackDamage;
         int numUpgrades = GameEngine.GetInstance().upgradeManager.GetNumUpgrades(this.unitClass);
         if (numUpgrades > 0) {
@@ -79,9 +80,10 @@ public class PlayerUnit : Unit {
         string attackUpgrade = "Attack Upgrade: " + this.attackUpgrade;
         string attackSpeed = "Attack Speed: " + this.attackCooldown;
         string movementSpeed = "Movement Speed: " + this.movementSpeed;
-        string attackType = "Attack Type: " + this.attackType.ToString();
+        string attackType = "Attack Type: " + Utils.CleanEnumString(this.attackType.ToString());
 
         unitData.Add(title);
+        unitData.Add(unitType);
         unitData.Add(attackDamage);
         unitData.Add(attackUpgrade);
         unitData.Add(attackSpeed);

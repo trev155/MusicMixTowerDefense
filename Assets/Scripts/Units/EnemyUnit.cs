@@ -63,7 +63,7 @@ public class EnemyUnit : Unit {
         string attackSpeed = "Armor: " + this.armor;
         string movementSpeed = "Level: " + this.level;
         string attackType = "Movement Speed: " + this.movementSpeed;
-        string abilities = "Abilities: " + this.abilities.ToString();
+        string abilities = "Abilities: " + Utils.CleanEnumString(this.abilities.ToString());
 
         unitData.Add(title);
         unitData.Add(attackDamage);
