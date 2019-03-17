@@ -96,4 +96,16 @@ public class ShopPanel : MonoBehaviour {
             GameEngine.GetInstance().IncreaseTokenCount(4);
         }
     }
+
+    public void PurchaseHarvester() {
+        if (GameEngine.GetInstance().tokenCount < 5) {
+            Debug.Log("Cannot Purchase item: [Harvester]. Requires (5) token.");
+            return;
+        }
+
+        GameEngine.GetInstance().DecreaseTokenCount(5);
+        GameEngine.GetInstance().AddHarvester();
+
+        Debug.Log("Purchased Harvester");
+    }
 }

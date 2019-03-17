@@ -7,10 +7,10 @@ public class BonusPanel : MonoBehaviour {
     public Text sTokens;
     public Transform sWall;
 
-    private void Awake() {
-        bTokens.text = "Tokens: 0";
-        aTokens.text = "Tokens: 0";
-        sTokens.text = "Tokens: 0";
+    private void Start() {
+        bTokens.text = "Tokens: " + GameEngine.GetInstance().bChoosers;
+        aTokens.text = "Tokens: " + GameEngine.GetInstance().aChoosers;
+        sTokens.text = "Tokens: " + GameEngine.GetInstance().sChoosers;
     }
 
     // UI Methods

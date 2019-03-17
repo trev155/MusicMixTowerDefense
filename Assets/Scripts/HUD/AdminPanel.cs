@@ -14,7 +14,6 @@ public class AdminPanel : MonoBehaviour {
     public Text rankText;
     public Text numberText;
     public Text enemyLevelText;
-    public Text nextLevelText;
     public Text upgradeText;
     
 

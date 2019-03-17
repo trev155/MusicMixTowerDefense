@@ -9,6 +9,14 @@ using UnityEngine;
 public class GameEngine : MonoBehaviour {
     // Constants
     private readonly int INITIAL_TOKEN_COUNT = 12;
+    private readonly int INITIAL_MINERAL_COUNT = 50;
+    private readonly int INITIAL_GAS_COUNT = 25;
+    private readonly int INITIAL_UNALLOCATED_HARVESTER_COUNT = 2;
+    private readonly int INITIAL_MINERAL_HARVESTER_COUNT = 1;
+    private readonly int INITIAL_GAS_HARVESTER_COUNT = 1;
+    private readonly int INITIAL_B_CHOOSERS = 2;
+    private readonly int INITIAL_A_CHOOSERS = 3;
+    private readonly int INITIAL_S_CHOOSERS = 1;
 
     // Singleton field
     public static GameEngine Instance { get; private set; } = null;
@@ -23,9 +31,12 @@ public class GameEngine : MonoBehaviour {
     public UnitMixer unitMixer;
 
     public UnitSelectionPanel unitSelectionPanel;
-    public ShopPanel shopPanel;
     public GameDataPanel gameDataPanel;
+    public ShopPanel shopPanel;
     public UpgradePanel upgradePanel;
+    public HarvesterPanel harvesterPanel;
+    public BonusPanel bonusPanel;
+    public AdminPanel adminPanel;
 
     // Unit Selection
     public bool playerUnitMovementAllowed = false;
@@ -35,10 +46,10 @@ public class GameEngine : MonoBehaviour {
     // Gameplay stats
     public int minerals;
     public int gas;
-    public int level;
     public int tokenCount;
     public int kills;
     public GlobalTimer globalTimer;
+    public int unallocatedHarvesters;
     public int mineralHarvesters;
     public int gasHarvesters;
 
@@ -63,13 +74,13 @@ public class GameEngine : MonoBehaviour {
         this.playerUnitSelected = null;
         this.enemyUnitSelected = null;
 
-        this.minerals = 0;
-        this.gas = 0;
-        this.level = 0;
+        this.minerals = INITIAL_MINERAL_COUNT;
+        this.gas = INITIAL_GAS_COUNT;
         this.kills = 0;
         this.tokenCount = INITIAL_TOKEN_COUNT;
-        this.mineralHarvesters = 0;
-        this.gasHarvesters = 0;
+        this.unallocatedHarvesters = INITIAL_UNALLOCATED_HARVESTER_COUNT;
+        this.mineralHarvesters = INITIAL_MINERAL_HARVESTER_COUNT;
+        this.gasHarvesters = INITIAL_GAS_HARVESTER_COUNT;
 
         this.hasPiano = false;
         this.hasDrum = false;
@@ -77,9 +88,9 @@ public class GameEngine : MonoBehaviour {
 
         this.hasXUnit = false;
 
-        this.bChoosers = 8;
-        this.aChoosers = 8;
-        this.sChoosers = 8;
+        this.bChoosers = INITIAL_B_CHOOSERS;
+        this.aChoosers = INITIAL_A_CHOOSERS;
+        this.sChoosers = INITIAL_S_CHOOSERS;
         
         this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
 
@@ -190,5 +201,42 @@ public class GameEngine : MonoBehaviour {
 
         this.gas -= val;
         this.gameDataPanel.UpdateGasText(this.gas);
+    }
+
+    public void AddHarvester() {
+        this.unallocatedHarvesters += 1;
+        this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
+    }
+
+    public void AllocateMineralHarvester() {
+        this.unallocatedHarvesters -= 1;
+        this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
+
+        this.mineralHarvesters += 1;
+        this.harvesterPanel.SetMineralHarvesters(this.mineralHarvesters);
+    }
+
+    public void AllocateGasHarvester() {
+        this.unallocatedHarvesters -= 1;
+        this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
+
+        this.gasHarvesters += 1;
+        this.harvesterPanel.SetGasHarvesters(this.gasHarvesters);
+    }
+
+    public void DeallocateMineralHarvester() {
+        this.unallocatedHarvesters += 1;
+        this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
+
+        this.mineralHarvesters -= 1;
+        this.harvesterPanel.SetMineralHarvesters(this.mineralHarvesters);
+    }
+
+    public void DeallocateGasHarvester() {
+        this.unallocatedHarvesters += 1;
+        this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
+
+        this.gasHarvesters -= 1;
+        this.harvesterPanel.SetGasHarvesters(this.gasHarvesters);
     }
 }

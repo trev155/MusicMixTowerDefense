@@ -14,12 +14,12 @@ public class GameDataPanel : MonoBehaviour {
 
 
     // ---------- Methods ----------
-    private void Awake() {
-        mineralsText.text = "Minerals: 0";
-        gasText.text = "Gas: 0";
+    private void Start() {
+        mineralsText.text = "Minerals: " + GameEngine.GetInstance().minerals;
+        gasText.text = "Gas: " + GameEngine.GetInstance().gas;
         killCounterText.text = "Kills: 0";
         levelTimerText.text = "Level Time Left: ";
-        tokenCountText.text = "Tokens: 0";
+        tokenCountText.text = "Tokens: " + GameEngine.GetInstance().tokenCount;
     }
 
     public void UpdateMineralsText(int minerals) {

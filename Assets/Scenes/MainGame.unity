@@ -479,7 +479,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Minerals
 
-    (Max: 5)'
+    (Max: 25)'
 --- !u!222 &42778326
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3051,7 +3051,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 272867222}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1949779998}
+        m_MethodName: PurchaseHarvester
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &272867222
@@ -4211,7 +4222,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 403055218}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1790972474}
+        m_MethodName: DeallocateGasHarvester
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &403055218
@@ -4855,7 +4877,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 496161151}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1790972474}
+        m_MethodName: AllocateMineralHarvester
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &496161151
@@ -7009,7 +7042,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 691943827}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1790972474}
+        m_MethodName: DeallocateMineralHarvester
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &691943827
@@ -7431,7 +7475,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Gas
 
-    (Max: 25)'
+    (Max: 5)'
 --- !u!222 &746929202
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9903,7 +9947,6 @@ MonoBehaviour:
   rankText: {fileID: 622397692}
   numberText: {fileID: 1710060970}
   enemyLevelText: {fileID: 1424884571}
-  nextLevelText: {fileID: 0}
   upgradeText: {fileID: 1821483167}
 --- !u!1 &973458510
 GameObject:
@@ -10751,7 +10794,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1053199321}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1790972474}
+        m_MethodName: AllocateGasHarvester
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1053199321
@@ -16771,18 +16825,21 @@ MonoBehaviour:
   upgradeManager: {fileID: 580455629}
   unitMixer: {fileID: 1539476921}
   unitSelectionPanel: {fileID: 1259011805}
-  shopPanel: {fileID: 1949779998}
   gameDataPanel: {fileID: 510120068}
+  shopPanel: {fileID: 1949779998}
   upgradePanel: {fileID: 1938995068}
+  harvesterPanel: {fileID: 1790972474}
+  bonusPanel: {fileID: 165212334}
+  adminPanel: {fileID: 967735665}
   playerUnitMovementAllowed: 0
   playerUnitSelected: {fileID: 0}
   enemyUnitSelected: {fileID: 0}
   minerals: 0
   gas: 0
-  level: 0
   tokenCount: 0
   kills: 0
   globalTimer: {fileID: 998200810}
+  unallocatedHarvesters: 0
   mineralHarvesters: 0
   gasHarvesters: 0
   hasPiano: 0
@@ -17567,6 +17624,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6895ac8a726cce248ad2eefbb6db63f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unallocatedHarvesters: {fileID: 866852630}
+  mineralHarvesters: {fileID: 751019545}
+  gasHarvesters: {fileID: 2020266239}
 --- !u!1 &1791436233
 GameObject:
   m_ObjectHideFlags: 0

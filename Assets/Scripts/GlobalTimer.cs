@@ -1,13 +1,33 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class GlobalTimer : MonoBehaviour {
     private bool globalTimerStarted = false;
-    public float globalTime;
-    
+    public float globalTime = 0;
+
+    private void Awake() {
+        StartCoroutine(CheckForGasHarvesterBonus());
+        StartCoroutine(CheckForMineralHarvesterBonus());
+    }
+
     private void Update() {
         if (globalTimerStarted) {
             globalTime += Time.deltaTime;
             GameEngine.GetInstance().gameDataPanel.UpdateGlobalGameTimeText(ConvertTimeToString(globalTime));
+        }
+    }
+
+    private IEnumerator CheckForGasHarvesterBonus() {
+        while (true) {
+            yield return new WaitForSeconds(5.0f);
+            GameEngine.GetInstance().IncreaseGas(2 * GameEngine.GetInstance().gasHarvesters);
+        }
+    }
+
+    private IEnumerator CheckForMineralHarvesterBonus() {
+        while (true) {
+            yield return new WaitForSeconds(10.0f);
+            GameEngine.GetInstance().IncreaseMinerals(4 * GameEngine.GetInstance().mineralHarvesters);
         }
     }
 
