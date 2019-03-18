@@ -45,6 +45,18 @@ public class ShopPanel : MonoBehaviour {
         Debug.Log("[+" + gasIncrement + " Gas]");
     }
 
+    public void PurchaseHarvester() {
+        if (GameEngine.GetInstance().tokenCount < 5) {
+            Debug.Log("Cannot Purchase item: [Harvester]. Requires (5) token.");
+            return;
+        }
+
+        GameEngine.GetInstance().DecreaseTokenCount(5);
+        GameEngine.GetInstance().AddHarvester();
+
+        Debug.Log("Purchased Harvester");
+    }
+
     public void PurchasePiano() {
         if (GameEngine.GetInstance().hasPiano) {
             Debug.Log("You can only purchase the Piano once.");
@@ -97,15 +109,32 @@ public class ShopPanel : MonoBehaviour {
         }
     }
 
-    public void PurchaseHarvester() {
-        if (GameEngine.GetInstance().tokenCount < 5) {
-            Debug.Log("Cannot Purchase item: [Harvester]. Requires (5) token.");
+    public void PurchaseGasLotto() {
+        if (GameEngine.GetInstance().gas < 15) {
+            Debug.Log("Cannot Purchase item: [Gas Lotto]. Requires (15 gas).");
             return;
         }
 
-        GameEngine.GetInstance().DecreaseTokenCount(5);
-        GameEngine.GetInstance().AddHarvester();
+        GameEngine.GetInstance().DecreaseGas(15);
 
-        Debug.Log("Purchased Harvester");
+        int option = random.Next(1, 100);
+        if (option <= 60) {
+            Debug.Log("Lotto: No unit. Unlucky.");
+        } else if (option <= 80) {
+            Debug.Log("Lotto: Random D Unit");
+            GameEngine.GetInstance().unitSpawner.CreateRandomDUnit();
+        } else if (option <= 93) {
+            Debug.Log("Lotto: Random C Unit");
+            GameEngine.GetInstance().unitSpawner.CreateRandomCUnit();
+        } else if (option <= 97) {
+            Debug.Log("Lotto: Random B Unit");
+            GameEngine.GetInstance().unitSpawner.CreateRandomBUnit();
+        } else if (option <= 99) {
+            Debug.Log("Lotto: Random A Unit");
+            GameEngine.GetInstance().unitSpawner.CreateRandomAUnit();
+        } else {
+            Debug.Log("Lotto: Random S Unit");
+            GameEngine.GetInstance().unitSpawner.CreateRandomSUnit();
+        }
     }
 }
