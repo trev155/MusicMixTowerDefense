@@ -25,6 +25,8 @@ public class UnitSelectionPanel : MonoBehaviour {
     public Text moveUnitButtonText;
     public Text moveUnitInstruction;
 
+    public Button sellUnitButton;
+
     public Transform moveableArea;
 
 
@@ -41,8 +43,10 @@ public class UnitSelectionPanel : MonoBehaviour {
         UpdateSelectedUnitDataPanel(unit);
         if (unit is PlayerUnit) {
             moveUnitButton.gameObject.SetActive(true);
+            sellUnitButton.gameObject.SetActive(true);
         } else {
             moveUnitButton.gameObject.SetActive(false);
+            sellUnitButton.gameObject.SetActive(false);
         }
 
         closeUnitSelectionPanelButton.gameObject.SetActive(true);
@@ -125,5 +129,36 @@ public class UnitSelectionPanel : MonoBehaviour {
         Color moveableAreaColor = moveableArea.GetComponent<SpriteRenderer>().color;
         moveableAreaColor.a = alpha;
         moveableArea.GetComponent<SpriteRenderer>().color = moveableAreaColor;
+    }
+
+    // Unit Selling
+    public void SellUnitButton() {
+        int gasRefund;
+        switch (GameEngine.GetInstance().playerUnitSelected.rank) {
+            case PlayerUnitRank.D:
+                gasRefund = 30;
+                break;
+            case PlayerUnitRank.C:
+                gasRefund = 60;
+                break;
+            case PlayerUnitRank.B:
+                gasRefund = 120;
+                break;
+            case PlayerUnitRank.A:
+                gasRefund = 240;
+                break;
+            case PlayerUnitRank.S:
+                gasRefund = 480;
+                break;
+            case PlayerUnitRank.X:
+                gasRefund = 960;
+                break;
+            default:
+                throw new GameplayException("Unrecognized player unit rank. Cannot sell unit.");
+        }
+
+        GameEngine.GetInstance().IncreaseGas(gasRefund);
+        Destroy(GameEngine.GetInstance().playerUnitSelected.gameObject);
+        GameEngine.GetInstance().unitSelectionPanel.CloseUnitSelectionPanelButton();
     }
 }
