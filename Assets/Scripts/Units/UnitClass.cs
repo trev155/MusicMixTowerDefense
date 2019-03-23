@@ -6,5 +6,6 @@
     ACID,
     BLADE,
     MAGIC,
-    FLAME
+    FLAME,
+    NONE
 }

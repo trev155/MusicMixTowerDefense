@@ -29,6 +29,7 @@ public class GameEngine : MonoBehaviour {
     public LevelManager levelManager;
     public UpgradeManager upgradeManager;
     public UnitMixer unitMixer;
+    public AchievementManager achievementManager;
 
     public UnitSelectionPanel unitSelectionPanel;
     public GameDataPanel gameDataPanel;
@@ -36,7 +37,9 @@ public class GameEngine : MonoBehaviour {
     public UpgradePanel upgradePanel;
     public HarvesterPanel harvesterPanel;
     public BonusPanel bonusPanel;
+    public AchievementsPanel achievementsPanel;
     public AdminPanel adminPanel;
+    
 
     // Unit Selection
     public bool playerUnitMovementAllowed = false;
@@ -238,5 +241,20 @@ public class GameEngine : MonoBehaviour {
 
         this.gasHarvesters -= 1;
         this.harvesterPanel.SetGasHarvesters(this.gasHarvesters);
+    }
+
+    public void AddBBonusTokens(int val) {
+        this.bChoosers += val;
+        this.bonusPanel.UpdateBTokenCount(this.bChoosers);
+    }
+
+    public void AddABonusTokens(int val) {
+        this.aChoosers += val;
+        this.bonusPanel.UpdateATokenCount(this.aChoosers);
+    }
+
+    public void AddSBonusTokens(int val) {
+        this.sChoosers += val;
+        this.bonusPanel.UpdateSTokenCount(this.sChoosers);
     }
 }

@@ -306,8 +306,8 @@ public class UnitMixer : MonoBehaviour {
             RemoveUnitSafely(magicUnit);
             RemoveUnitSafely(flameUnit);
 
-            // TODO create 2 B choosers
-
+            Debug.Log("2 B Rank Choosers");
+            GameEngine.GetInstance().AddBBonusTokens(2);
             return true;
         }
         return false;
@@ -335,8 +335,8 @@ public class UnitMixer : MonoBehaviour {
             RemoveUnitSafely(magicUnit);
             RemoveUnitSafely(flameUnit);
 
-            // TODO create 2 A choosers
-
+            Debug.Log("2 A Rank Choosers");
+            GameEngine.GetInstance().AddABonusTokens(2);
             return true;
         }
         return false;

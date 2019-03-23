@@ -28,7 +28,7 @@ public class UnitSpawner : MonoBehaviour {
     // Player Unit Creation Functions
     public PlayerUnit CreatePlayerUnit(PlayerUnitRank rank, int seed) {
         PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, seed);
-        PlayerUnit player = (PlayerUnit)Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
+        PlayerUnit player = Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
         player.InitializeProperties(playerUnitData);
         SetObjectName(player.gameObject);
 
@@ -36,13 +36,15 @@ public class UnitSpawner : MonoBehaviour {
 
         MovePlayerUnitToOffset(player);
         IgnorePlayerUnitCollisionWithInnerWalls(player);
+
+        GameEngine.GetInstance().achievementManager.CheckAchievements();
 
         return player;
     }
 
     public PlayerUnit CreatePlayerUnit(PlayerUnitRank rank, UnitClass unitClass) {
         PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, unitClass);
-        PlayerUnit player = (PlayerUnit)Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
+        PlayerUnit player = Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
         player.InitializeProperties(playerUnitData);
         SetObjectName(player.gameObject);
 
@@ -50,6 +52,8 @@ public class UnitSpawner : MonoBehaviour {
 
         MovePlayerUnitToOffset(player);
         IgnorePlayerUnitCollisionWithInnerWalls(player);
+
+        GameEngine.GetInstance().achievementManager.CheckAchievements();
 
         return player;
     }

@@ -60,14 +60,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AchievementManager.cs" />
+    <Compile Include="Assets\Scripts\Achievements\A_Mission.cs" />
+    <Compile Include="Assets\Scripts\Achievements\ABCD_Mission.cs" />
+    <Compile Include="Assets\Scripts\Achievements\Achievement.cs" />
+    <Compile Include="Assets\Scripts\Achievements\All_Bonus_Tokens.cs" />
+    <Compile Include="Assets\Scripts\Achievements\B_Bonus.cs" />
+    <Compile Include="Assets\Scripts\Achievements\B_Mission.cs" />
+    <Compile Include="Assets\Scripts\Achievements\C_Bonus.cs" />
+    <Compile Include="Assets\Scripts\Achievements\C_Mission.cs" />
+    <Compile Include="Assets\Scripts\Achievements\D_Mission.cs" />
+    <Compile Include="Assets\Scripts\Achievements\Five_Of_A_Kind.cs" />
+    <Compile Include="Assets\Scripts\Achievements\FourB_Artist.cs" />
+    <Compile Include="Assets\Scripts\Achievements\Greed_Is_Good.cs" />
+    <Compile Include="Assets\Scripts\Achievements\Rare_Collector.cs" />
+    <Compile Include="Assets\Scripts\Achievements\Rare_Seller.cs" />
+    <Compile Include="Assets\Scripts\Achievements\S_Mission.cs" />
+    <Compile Include="Assets\Scripts\Achievements\Teemo_Before_Fifteen.cs" />
+    <Compile Include="Assets\Scripts\Achievements\Triple_C_Collector.cs" />
+    <Compile Include="Assets\Scripts\Achievements\Unlucky_Lotto.cs" />
+    <Compile Include="Assets\Scripts\Achievements\XSABCD_Mission.cs" />
     <Compile Include="Assets\Scripts\Admin.cs" />
     <Compile Include="Assets\Scripts\GameEngine.cs" />
     <Compile Include="Assets\Scripts\GameplayException.cs" />
     <Compile Include="Assets\Scripts\GlobalTimer.cs" />
+    <Compile Include="Assets\Scripts\HUD\AchievementsPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\AdminPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\BonusPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\GameDataPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\HarvesterPanel.cs" />
+    <Compile Include="Assets\Scripts\HUD\InfoPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\RevealHidePanel.cs" />
     <Compile Include="Assets\Scripts\HUD\ShopPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\UnitSelectionPanel.cs" />

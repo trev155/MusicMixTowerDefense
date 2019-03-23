@@ -33,7 +33,37 @@ public class AdminPanel : MonoBehaviour {
 
     // Creating Player Units
     public void CreatePlayerUnit() {
-        GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(curRank, curNum);
+        UnitClass unitClass;
+        switch (curNum) {
+            case 0:
+                unitClass = UnitClass.INFANTRY;
+                break;
+            case 1:
+                unitClass = UnitClass.MECH;
+                break;
+            case 2:
+                unitClass = UnitClass.LASER;
+                break;
+            case 3:
+                unitClass = UnitClass.PSIONIC;
+                break;
+            case 4:
+                unitClass = UnitClass.ACID;
+                break;
+            case 5:
+                unitClass = UnitClass.BLADE;
+                break;
+            case 6:
+                unitClass = UnitClass.MAGIC;
+                break;
+            case 7:
+                unitClass = UnitClass.FLAME;
+                break;
+            default:
+                throw new GameplayException("Cannot create player unit, unrecognized number.");
+        }
+
+        GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(curRank, unitClass);
     }
 
     public void ScrollRankLeft() {
