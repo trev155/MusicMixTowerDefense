@@ -26,6 +26,9 @@ public class AchievementsPanel : MonoBehaviour {
     public Text TripleC_Complete;
     public Text All_DA_Complete;
     public Text Rare_Seller_Complete;
+
+    public Text C_Bonus_Description;
+    public Text B_Bonus_Description;
     
     private int currentPage;
 
@@ -77,7 +80,4 @@ public class AchievementsPanel : MonoBehaviour {
     private void ToggleThirdPage(bool state) {
         thirdPage.gameObject.SetActive(state);
     }
-
-    //---------- Achievement Management ----------
-
 }

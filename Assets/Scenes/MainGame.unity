@@ -22989,6 +22989,8 @@ MonoBehaviour:
   TripleC_Complete: {fileID: 1823531392}
   All_DA_Complete: {fileID: 1196873059}
   Rare_Seller_Complete: {fileID: 1694588975}
+  C_Bonus_Description: {fileID: 582511909}
+  B_Bonus_Description: {fileID: 1699383246}
 --- !u!1 &1424884569
 GameObject:
   m_ObjectHideFlags: 0
