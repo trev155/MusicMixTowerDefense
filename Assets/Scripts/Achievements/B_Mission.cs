@@ -49,8 +49,8 @@ public class B_Mission : Achievement {
     }
 
     public override void GiveReward() {
-        Debug.Log(this.achievementName + " Complete");
-        Debug.Log("Bonus: 1 A Rank Token");
+        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: 1 A Rank Token");
+        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete");
         GameEngine.GetInstance().AddABonusTokens(1);
     }
 }

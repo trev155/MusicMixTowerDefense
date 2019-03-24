@@ -75,8 +75,6 @@ public class UnitMixer : MonoBehaviour {
 
     //---------- Unit Mixing Methods ----------
     private bool CheckMatchingUnit(PlayerUnit playerUnit) {
-        Debug.Log("Check Matching Unit");
-
         PlayerUnit matchingPlayerUnit = null;
         matchingPlayerUnit = GetMatchingUnitType(playerUnit);
         if (matchingPlayerUnit != null) {
@@ -116,8 +114,6 @@ public class UnitMixer : MonoBehaviour {
     }
 
     private bool CheckBCDCombo(PlayerUnit playerUnit) {
-        Debug.Log("Check BCD Combo");
-
         if (playerUnit.rank == PlayerUnitRank.A || playerUnit.rank == PlayerUnitRank.S || playerUnit.rank == PlayerUnitRank.X) {
             return false;
         }
@@ -147,8 +143,6 @@ public class UnitMixer : MonoBehaviour {
     }
     
     private bool CheckAllDCombo() {
-        Debug.Log("All D Combo");
-
         if (GameEngine.GetInstance().gas < 80) {
             return false;
         }
@@ -198,8 +192,6 @@ public class UnitMixer : MonoBehaviour {
     }
 
     private bool CheckAllCCombo() {
-        Debug.Log("All C Combo");
-
         if (GameEngine.GetInstance().gas < 300) {
             return false;
         }
@@ -249,8 +241,6 @@ public class UnitMixer : MonoBehaviour {
     }
 
     private bool CheckXCombo(PlayerUnit playerUnit) {
-        Debug.Log("Check X Combo");
-
         if (GameEngine.GetInstance().hasXUnit) {
             return false;
         }
@@ -285,8 +275,6 @@ public class UnitMixer : MonoBehaviour {
     }
 
     private bool CheckRareBCombo(PlayerUnit playerUnit) {
-        Debug.Log("Check Rare B Combo");
-
         if (playerUnit.rank != PlayerUnitRank.B) {
             return false;
         }
@@ -306,7 +294,7 @@ public class UnitMixer : MonoBehaviour {
             RemoveUnitSafely(magicUnit);
             RemoveUnitSafely(flameUnit);
 
-            Debug.Log("2 B Rank Choosers");
+            GameEngine.GetInstance().messageQueue.PushMessage("2 B Rank Choosers");
             GameEngine.GetInstance().AddBBonusTokens(2);
             return true;
         }
@@ -314,8 +302,6 @@ public class UnitMixer : MonoBehaviour {
     }
 
     private bool CheckRareACombo(PlayerUnit playerUnit) {
-        Debug.Log("Check Rare A Combo");
-
         if (playerUnit.rank != PlayerUnitRank.A) {
             return false;
         }
@@ -335,7 +321,7 @@ public class UnitMixer : MonoBehaviour {
             RemoveUnitSafely(magicUnit);
             RemoveUnitSafely(flameUnit);
 
-            Debug.Log("2 A Rank Choosers");
+            GameEngine.GetInstance().messageQueue.PushMessage("2 A Rank Choosers");
             GameEngine.GetInstance().AddABonusTokens(2);
             return true;
         }

@@ -155,8 +155,7 @@ public class AdminPanel : MonoBehaviour {
         } else if (upgradeNum == 7) {
             unitClass = UnitClass.FLAME;
         } else {
-            Debug.Log("Invalid upgrade number value. Did not upgrade.");
-            return;
+            throw new GameplayException("Invalid upgrade number value. Did not upgrade.");
         }
 
         GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(unitClass);

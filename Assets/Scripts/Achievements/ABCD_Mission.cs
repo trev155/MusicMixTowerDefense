@@ -55,8 +55,8 @@ public class ABCD_Mission : Achievement {
     }
 
     public override void GiveReward() {
-        Debug.Log(this.achievementName + " Complete");
-        Debug.Log("Bonus: 1 B Rank Token");
+        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: 1 B Rank Token");
+        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete");
         GameEngine.GetInstance().AddBBonusTokens(1);
     }
 }

@@ -113,7 +113,7 @@ public class UnitSpawner : MonoBehaviour {
     // Enemy Unit Creation Functions
     public EnemyUnit CreateEnemyUnit(int level) {
         EnemyUnitData enemyUnitData = unitFactory.CreateEnemyUnitData(level);
-        EnemyUnit enemy = (EnemyUnit)Instantiate(enemyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
+        EnemyUnit enemy = Instantiate(enemyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
         enemy.InitializeProperties(enemyUnitData);
         SetObjectName(enemy.gameObject);
 

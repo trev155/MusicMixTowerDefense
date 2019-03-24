@@ -51,8 +51,8 @@ public class XSABCD_Mission : Achievement {
     }
 
     public override void GiveReward() {
-        Debug.Log(this.achievementName + " Complete");
-        Debug.Log("Bonus: 1200 Gas");
+        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: 1200 Gas");
+        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete");
         GameEngine.GetInstance().IncreaseGas(1200);
     }
 }

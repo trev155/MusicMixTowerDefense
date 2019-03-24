@@ -8,5 +8,4 @@ public interface IClickableUnit {
      * Provides a list of strings to be used in the display of the selected unit's data.
      */
     List<string> GetDisplayUnitData();
-
 }

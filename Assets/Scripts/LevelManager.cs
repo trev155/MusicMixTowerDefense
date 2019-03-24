@@ -37,8 +37,8 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void StartLevel(int level) {
-        Debug.Log("Starting Level: [" + level + "]");
-
+        GameEngine.GetInstance().messageQueue.PushMessage("Starting Level: [" + level + "]");
+        
         levelHasStarted = true;
         currentLevel = level;
         StartCoroutine(StartLevelLoop(level));
@@ -83,7 +83,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public IEnumerator WaitBeforeStartingGame(float t) {
-        Debug.Log("Waiting for time: " + t + " seconds.");
+        Debug.Log("Waiting at game start, for time: " + t + " seconds.");
         yield return new WaitForSeconds(t);
         StartLevel(1);
     }

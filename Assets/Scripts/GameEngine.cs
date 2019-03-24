@@ -38,8 +38,8 @@ public class GameEngine : MonoBehaviour {
     public HarvesterPanel harvesterPanel;
     public BonusPanel bonusPanel;
     public AchievementsPanel achievementsPanel;
+    public MessageQueue messageQueue;
     public AdminPanel adminPanel;
-    
 
     // Unit Selection
     public bool playerUnitMovementAllowed = false;
@@ -155,6 +155,7 @@ public class GameEngine : MonoBehaviour {
         }
     }
 
+    // Shop Tokens
     public void IncreaseTokenCount(int count) {
         if (count < 1) {
             throw new GameplayException("Invalid value for count: " + count + ". Cannot increase token count.");
@@ -173,6 +174,7 @@ public class GameEngine : MonoBehaviour {
         this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
     }
 
+    // Minerals and Gas
     public void IncreaseMinerals(int val) {
         if (val < 0) {
             throw new GameplayException("Invalid value provided: " + val + ". Cannot increase mineral count.");
@@ -206,6 +208,7 @@ public class GameEngine : MonoBehaviour {
         this.gameDataPanel.UpdateGasText(this.gas);
     }
 
+    // Harvesters
     public void AddHarvester() {
         this.unallocatedHarvesters += 1;
         this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
@@ -243,6 +246,7 @@ public class GameEngine : MonoBehaviour {
         this.harvesterPanel.SetGasHarvesters(this.gasHarvesters);
     }
 
+    // Bonus Tokens
     public void AddBBonusTokens(int val) {
         this.bChoosers += val;
         this.bonusPanel.UpdateBTokenCount(this.bChoosers);
@@ -255,6 +259,21 @@ public class GameEngine : MonoBehaviour {
 
     public void AddSBonusTokens(int val) {
         this.sChoosers += val;
+        this.bonusPanel.UpdateSTokenCount(this.sChoosers);
+    }
+
+    public void DecrementBBonusTokenCount() {
+        this.bChoosers -= 1;
+        this.bonusPanel.UpdateBTokenCount(this.bChoosers);
+    }
+
+    public void DecrementABonusTokenCount() {
+        this.aChoosers -= 1;
+        this.bonusPanel.UpdateATokenCount(this.aChoosers);
+    }
+
+    public void DecrementSBonusTokenCount() {
+        this.sChoosers -= 1;
         this.bonusPanel.UpdateSTokenCount(this.sChoosers);
     }
 }

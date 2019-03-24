@@ -123,8 +123,7 @@ public class UnitSelectionPanel : MonoBehaviour {
 
     private void SetMoveableAreaAlpha(float alpha) {
         if (alpha < 0 || alpha > 1) {
-            Debug.LogWarning("Cannot set moveable area alpha. Value of " + alpha + " was invalid.");
-            return;
+            throw new GameplayException("Cannot set moveable area alpha. Value of " + alpha + " was invalid.");
         }
         Color moveableAreaColor = moveableArea.GetComponent<SpriteRenderer>().color;
         moveableAreaColor.a = alpha;

@@ -47,8 +47,8 @@ public class Five_Of_A_Kind : Achievement {
     }
 
     public override void GiveReward() {
-        Debug.Log(this.achievementName + " Complete");
-        Debug.Log("Bonus: 1 B Rank Token, 1 A Rank Token");
+        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: 1 B Rank Token, 1 A Rank Token");
+        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete");
         GameEngine.GetInstance().AddBBonusTokens(1);
         GameEngine.GetInstance().AddABonusTokens(1);
     }

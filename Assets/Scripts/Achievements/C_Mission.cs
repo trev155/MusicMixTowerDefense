@@ -41,8 +41,8 @@ public class C_Mission : Achievement {
     }
 
     public override void GiveReward() {
-        Debug.Log(this.achievementName + " Complete");
-        Debug.Log("Bonus: Harvester");
+        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: Harvester");
+        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete");
         GameEngine.GetInstance().AddHarvester();
     }
 }

@@ -90,6 +90,7 @@
     <Compile Include="Assets\Scripts\HUD\GameDataPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\HarvesterPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\InfoPanel.cs" />
+    <Compile Include="Assets\Scripts\HUD\MessageQueue.cs" />
     <Compile Include="Assets\Scripts\HUD\RevealHidePanel.cs" />
     <Compile Include="Assets\Scripts\HUD\ShopPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\UnitSelectionPanel.cs" />

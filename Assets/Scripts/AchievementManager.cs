@@ -36,8 +36,6 @@ public class AchievementManager : MonoBehaviour {
     }
 
     public void CheckAchievements() {
-        Debug.Log("Checking Achievements");
-
         foreach (Achievement achievement in achievementsList) {
             if (achievement.isCompleted) {
                 continue;
@@ -114,7 +112,6 @@ public class AchievementManager : MonoBehaviour {
 
     public void SetBonusMissionObjectives() {
         C_Bonus cBonus = (C_Bonus)achievementsList[6];
-        Debug.Log(GameEngine.GetInstance().achievementsPanel);
         GameEngine.GetInstance().achievementsPanel.C_Bonus_Description.text = "Collect 3 C units of type: " + cBonus.targetClass.ToString() + ".\n(Bonus: Harvester)";
 
         B_Bonus bBonus = (B_Bonus)achievementsList[7];

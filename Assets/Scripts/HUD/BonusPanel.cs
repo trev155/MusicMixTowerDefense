@@ -54,23 +54,22 @@ public class BonusPanel : MonoBehaviour {
 
     public void PurchaseGas_B() {
         if (GameEngine.GetInstance().bChoosers < 1) {
-            Debug.Log("Cannot purhcase unit. No B Choosers available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No B Choosers available");
             return;
         }
+        GameEngine.GetInstance().DecrementBBonusTokenCount();
         GameEngine.GetInstance().IncreaseGas(200);
-
-        GameEngine.GetInstance().bChoosers -= 1;
-        UpdateBTokenCount(GameEngine.GetInstance().bChoosers);
+        GameEngine.GetInstance().messageQueue.PushMessage("Purchased: 200 Gas");        
     }
 
     private void PurchaseBUnit(UnitClass unitClass) {
         if (GameEngine.GetInstance().bChoosers < 1) {
-            Debug.Log("Cannot purhcase unit. No B Choosers available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No B Choosers available.");
             return;
         }
+
+        GameEngine.GetInstance().DecrementBBonusTokenCount();
         GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(PlayerUnitRank.B, unitClass);
-        GameEngine.GetInstance().bChoosers -= 1;
-        UpdateBTokenCount(GameEngine.GetInstance().bChoosers);
     }
 
     // A
@@ -100,23 +99,21 @@ public class BonusPanel : MonoBehaviour {
 
     public void PurchaseGas_A() {
         if (GameEngine.GetInstance().aChoosers < 1) {
-            Debug.Log("Cannot purhcase unit. No A Choosers available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No A Choosers available");
             return;
         }
+        GameEngine.GetInstance().DecrementABonusTokenCount();
         GameEngine.GetInstance().IncreaseGas(350);
-
-        GameEngine.GetInstance().aChoosers -= 1;
-        UpdateATokenCount(GameEngine.GetInstance().aChoosers);
+        GameEngine.GetInstance().messageQueue.PushMessage("Purchased: 350 Gas");
     }
 
     private void PurchaseAUnit(UnitClass unitClass) {
         if (GameEngine.GetInstance().aChoosers < 1) {
-            Debug.Log("Cannot purhcase unit. No A Choosers available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No A Choosers available.");
             return;
         }
+        GameEngine.GetInstance().DecrementABonusTokenCount();
         GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(PlayerUnitRank.A, unitClass);
-        GameEngine.GetInstance().aChoosers -= 1;
-        UpdateATokenCount(GameEngine.GetInstance().aChoosers);
     }
 
     // S
@@ -146,39 +143,37 @@ public class BonusPanel : MonoBehaviour {
 
     public void PurchaseGas_S() {
         if (GameEngine.GetInstance().sChoosers < 1) {
-            Debug.Log("Cannot purhcase unit. No S Choosers available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No S Choosers available");
             return;
         }
+        GameEngine.GetInstance().DecrementSBonusTokenCount();
         GameEngine.GetInstance().IncreaseGas(800);
-
-        GameEngine.GetInstance().sChoosers -= 1;
-        UpdateSTokenCount(GameEngine.GetInstance().sChoosers);
+        GameEngine.GetInstance().messageQueue.PushMessage("Purchased: 800 Gas");
     }
 
     public void PurchaseWall_S() {
         if (GameEngine.GetInstance().sChoosers < 1) {
-            Debug.Log("Cannot purhcase unit. No S Choosers available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No S Choosers available");
             return;
         }
         if (GameEngine.GetInstance().hasWall) {
-            Debug.Log("Already purchased wall.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Already purchased Wall");
             return;
         }
 
-        Debug.Log("Purchased Wall");
         sWall.gameObject.SetActive(true);
         GameEngine.GetInstance().hasWall = true;
-        GameEngine.GetInstance().sChoosers -= 1;
-        UpdateSTokenCount(GameEngine.GetInstance().sChoosers);
+        
+        GameEngine.GetInstance().DecrementSBonusTokenCount();
+        GameEngine.GetInstance().messageQueue.PushMessage("Purchased Wall");
     }
 
     private void PurchaseSUnit(UnitClass unitClass) {
         if (GameEngine.GetInstance().sChoosers < 1) {
-            Debug.Log("Cannot purhcase unit. No S Choosers available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No S Choosers available");
             return;
         }
         GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(PlayerUnitRank.S, unitClass);
-        GameEngine.GetInstance().sChoosers -= 1;
-        UpdateSTokenCount(GameEngine.GetInstance().sChoosers);
+        GameEngine.GetInstance().DecrementSBonusTokenCount();
     }    
 }
