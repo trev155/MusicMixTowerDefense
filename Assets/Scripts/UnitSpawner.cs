@@ -37,7 +37,7 @@ public class UnitSpawner : MonoBehaviour {
         MovePlayerUnitToOffset(player);
         IgnorePlayerUnitCollisionWithInnerWalls(player);
 
-        GameEngine.GetInstance().achievementManager.CheckAchievements();
+        GameEngine.GetInstance().achievementManager.CheckAchievementsForPlayerUnitCreation();
 
         GameEngine.GetInstance().messageQueue.PushMessage("[" + player.rank + " Rank Unit] " + Utils.CleanEnumString(player.unitClass.ToString()));
 
@@ -55,7 +55,7 @@ public class UnitSpawner : MonoBehaviour {
         MovePlayerUnitToOffset(player);
         IgnorePlayerUnitCollisionWithInnerWalls(player);
 
-        GameEngine.GetInstance().achievementManager.CheckAchievements();
+        GameEngine.GetInstance().achievementManager.CheckAchievementsForPlayerUnitCreation();
 
         GameEngine.GetInstance().messageQueue.PushMessage("[" + player.rank + " Rank Unit] " + Utils.CleanEnumString(player.unitClass.ToString()));
 

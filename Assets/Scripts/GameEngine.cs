@@ -8,12 +8,12 @@ using UnityEngine;
 
 public class GameEngine : MonoBehaviour {
     // Constants
-    private readonly int INITIAL_TOKEN_COUNT = 12;
+    private readonly int INITIAL_TOKEN_COUNT = 30;
     private readonly int INITIAL_MINERAL_COUNT = 50;
     private readonly int INITIAL_GAS_COUNT = 25;
-    private readonly int INITIAL_UNALLOCATED_HARVESTER_COUNT = 2;
+    private readonly int INITIAL_UNALLOCATED_HARVESTER_COUNT = 4;
     private readonly int INITIAL_MINERAL_HARVESTER_COUNT = 1;
-    private readonly int INITIAL_GAS_HARVESTER_COUNT = 1;
+    private readonly int INITIAL_GAS_HARVESTER_COUNT = 2;
     private readonly int INITIAL_B_CHOOSERS = 2;
     private readonly int INITIAL_A_CHOOSERS = 3;
     private readonly int INITIAL_S_CHOOSERS = 1;
@@ -212,6 +212,8 @@ public class GameEngine : MonoBehaviour {
     public void AddHarvester() {
         this.unallocatedHarvesters += 1;
         this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
+
+        this.achievementManager.CheckAchievementsForHarvesterBonus();
     }
 
     public void AllocateMineralHarvester() {
@@ -250,6 +252,8 @@ public class GameEngine : MonoBehaviour {
     public void AddBBonusTokens(int val) {
         this.bChoosers += val;
         this.bonusPanel.UpdateBTokenCount(this.bChoosers);
+
+        this.achievementManager.CheckAchievementsForBChoosers();
     }
 
     public void AddABonusTokens(int val) {

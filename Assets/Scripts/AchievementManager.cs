@@ -35,7 +35,7 @@ public class AchievementManager : MonoBehaviour {
         SetBonusMissionObjectives();
     }
 
-    public void CheckAchievements() {
+    public void CheckAllAchievements() {
         foreach (Achievement achievement in achievementsList) {
             if (achievement.isCompleted) {
                 continue;
@@ -47,6 +47,50 @@ public class AchievementManager : MonoBehaviour {
                 IndicateCompleted(achievement.achievementName);
             }
         }
+    }
+
+    private void CheckAchievements(params int[] achievementIndices) {
+        for (int i = 0; i < achievementIndices.Length; i++) {
+            int index = achievementIndices[i];
+            Achievement achievement = achievementsList[index];
+            if (achievement.isCompleted) {
+                continue;
+            }
+
+            if (achievement.CheckCondition()) {
+                achievement.isCompleted = true;
+                achievement.GiveReward();
+                IndicateCompleted(achievement.achievementName);
+            }
+        }
+    }
+
+    public void CheckAchievementsForPlayerUnitCreation() {
+        CheckAchievements(0, 1, 2, 3, 4, 5, 6, 7, 11, 13, 14, 15);
+    }
+
+    public void CheckAchievementsForBChoosers() {
+        CheckAchievements(8);
+    }
+
+    public void CheckAchievementsForHarvesterBonus() {
+        CheckAchievements(9);
+    }
+
+    public void CheckAchievementsForTokenLotto() {
+        CheckAchievements(10);
+    }
+
+    public void CheckAchievementsForBossKill() {
+        CheckAchievements(12);
+    }
+
+    public void CheckAchievementsForAllBonusTokens() {
+        CheckAchievements(16);
+    }
+
+    public void CheckAchievementsForUnitSelling() {
+        CheckAchievements(17);
     }
 
     private void IndicateCompleted(string achievementName) {
