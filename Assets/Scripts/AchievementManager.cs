@@ -6,6 +6,9 @@ public class AchievementManager : MonoBehaviour {
     public List<Achievement> achievementsList;
     public System.Random random;
 
+    public int rareUnitsSold;
+    public int failedUnitLotto;
+
     private void Awake() {
         achievementsList = new List<Achievement> {
             new D_Mission(),
@@ -29,6 +32,8 @@ public class AchievementManager : MonoBehaviour {
         };
 
         random = new System.Random();
+        rareUnitsSold = 0;
+        failedUnitLotto = 0;
     }
 
     private void Start() {

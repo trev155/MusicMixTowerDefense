@@ -95,6 +95,8 @@ public class ShopPanel : MonoBehaviour {
         int option = random.Next(1, 100);
         if (option <= 55) {
             GameEngine.GetInstance().messageQueue.PushMessage("Lotto: No Luck - 0 Token");
+            GameEngine.GetInstance().achievementManager.failedUnitLotto += 1;
+            GameEngine.GetInstance().achievementManager.CheckAchievementsForTokenLotto();
         } else if (option <= 75) {
             GameEngine.GetInstance().messageQueue.PushMessage("Lotto: 1 Token");
             GameEngine.GetInstance().IncreaseTokenCount(1);

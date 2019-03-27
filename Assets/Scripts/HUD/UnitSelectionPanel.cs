@@ -156,8 +156,17 @@ public class UnitSelectionPanel : MonoBehaviour {
                 throw new GameplayException("Unrecognized player unit rank. Cannot sell unit.");
         }
 
+        CheckRareUnitSold();
+        
         GameEngine.GetInstance().IncreaseGas(gasRefund);
         Destroy(GameEngine.GetInstance().playerUnitSelected.gameObject);
         GameEngine.GetInstance().unitSelectionPanel.CloseUnitSelectionPanelButton();
+    }
+
+    private void CheckRareUnitSold() {
+        if (GameEngine.GetInstance().playerUnitSelected.unitClass == UnitClass.MAGIC || GameEngine.GetInstance().playerUnitSelected.unitClass == UnitClass.FLAME) {
+            GameEngine.GetInstance().achievementManager.rareUnitsSold += 1;
+            GameEngine.GetInstance().achievementManager.CheckAchievementsForUnitSelling();
+        }
     }
 }
