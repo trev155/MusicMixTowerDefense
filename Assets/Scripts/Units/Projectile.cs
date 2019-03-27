@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 public class Projectile : MonoBehaviour {
     //---------- Fields ----------
     public Unit targetUnit;
@@ -8,12 +7,11 @@ public class Projectile : MonoBehaviour {
     public float movementSpeed;
     public float attackDamage;
 
+    private System.Random random;
+
     //---------- Methods ----------
-    public void InitializeProperties(Unit targetUnit, PlayerUnit origin, float attackDamage) {
-        this.targetUnit = targetUnit;
-        this.origin = origin;
-        this.movementSpeed = 5.0f;
-        this.attackDamage = attackDamage;
+    private void Awake() {
+        random = new System.Random();
     }
 
     private void Update() {
@@ -23,6 +21,13 @@ public class Projectile : MonoBehaviour {
         }
 
         transform.position = Vector2.MoveTowards(transform.position, targetUnit.transform.position, Time.deltaTime * movementSpeed);
+    }
+
+    public void InitializeProperties(Unit targetUnit, PlayerUnit origin, float attackDamage) {
+        this.targetUnit = targetUnit;
+        this.origin = origin;
+        this.movementSpeed = 5.0f;
+        this.attackDamage = attackDamage;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -35,7 +40,11 @@ public class Projectile : MonoBehaviour {
     }
 
     private void InflictDamage(EnemyUnit enemyUnit, float damage) {
-        enemyUnit.currentHealth -= (damage - enemyUnit.armor);
+        float damageToInflict = damage - enemyUnit.armor;
+        if (damageToInflict < 1) {
+            damageToInflict = 1;
+        }
+        enemyUnit.currentHealth -= damageToInflict;
         
         if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
             GameEngine.GetInstance().unitSelectionPanel.UpdateSelectedUnitDataPanel(enemyUnit);
@@ -44,6 +53,9 @@ public class Projectile : MonoBehaviour {
         if (enemyUnit.currentHealth <= 0) {
             GameEngine.GetInstance().IncrementKills();
             RemoveCurrentTargetForAllUnitsAttackingTarget(enemyUnit);
+            if (enemyUnit.level == 0) {
+                KilledSpecialEnemyUnit(enemyUnit.displayName);
+            }
             Destroy(enemyUnit.gameObject);
 
             if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
@@ -66,4 +78,32 @@ public class Projectile : MonoBehaviour {
             }
         }
     }
+
+    private void KilledSpecialEnemyUnit(string enemyName) {
+        switch (enemyName) {
+            case "Bounty":
+                GiveBountyReward();
+                break;
+            default:
+                throw new GameplayException("Unrecognized enemy name");
+        }
+    }
+
+    private void GiveBountyReward() {
+        int choice = random.Next(1, 10);
+        if (choice <= 2) {
+            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: 2 Shop Tokens");
+            GameEngine.GetInstance().IncreaseTokenCount(2);
+        } else if (choice <= 6) {
+            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: 3 Shop Tokens");
+            GameEngine.GetInstance().IncreaseTokenCount(3);
+        } else if (choice <= 8) {
+            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: 4 Shop Tokens");
+            GameEngine.GetInstance().IncreaseTokenCount(4);
+        } else {
+            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: Harvester");
+            GameEngine.GetInstance().AddHarvester();
+        }
+    }
+    
 }

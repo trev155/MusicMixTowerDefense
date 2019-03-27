@@ -8,6 +8,7 @@ public class UnitFactory {
 
     private Dictionary<PlayerUnitRank, Dictionary<UnitClass, PlayerUnitData>> allPlayerData;
     private Dictionary<int, EnemyUnitData> allEnemyData;
+    private Dictionary<string, EnemyUnitData> specialEnemyData;
 
     // ---------- Initialization ----------
     public UnitFactory() {
@@ -133,6 +134,7 @@ public class UnitFactory {
 
     private void InitializeEnemyUnitDataDictionary() {
         allEnemyData = new Dictionary<int, EnemyUnitData>();
+        specialEnemyData = new Dictionary<string, EnemyUnitData>();
 
         int level;
         string displayName;
@@ -162,13 +164,13 @@ public class UnitFactory {
             armor = float.Parse(lineTokens[4]);
             enemyAbilities = ConvertEnemyAbilitiesString(lineTokens[5]);
 
-            if (level == 0) {
-                // TODO special cases to handle
-                continue;
-            }
-
             EnemyUnitData enemyUnitData = new EnemyUnitData(displayName, movementSpeed, maxHealth, armor, level, enemyAbilities);
-            this.allEnemyData[level] = enemyUnitData;
+            if (level > 0) {
+                this.allEnemyData[level] = enemyUnitData;
+            } else {
+                this.specialEnemyData[displayName] = enemyUnitData;
+            }
+            
 
             lineIndex++;
         }
@@ -244,6 +246,11 @@ public class UnitFactory {
     // ---------- Enemy Unit Creation ----------
     public EnemyUnitData CreateEnemyUnitData(int level) {
         EnemyUnitData enemyUnitData = allEnemyData[level];
+        return enemyUnitData;
+    }
+
+    public EnemyUnitData CreateBountyUnit() {
+        EnemyUnitData enemyUnitData = specialEnemyData["Bounty"];
         return enemyUnitData;
     }
 }

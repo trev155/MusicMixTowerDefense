@@ -127,6 +127,19 @@ public class UnitSpawner : MonoBehaviour {
         return enemy;
     }
 
+    public EnemyUnit CreateBounty() {
+        EnemyUnitData enemyUnitData = unitFactory.CreateBountyUnit();
+        EnemyUnit enemy = Instantiate(enemyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
+
+        enemy.InitializeProperties(enemyUnitData);
+        SetObjectName(enemy.gameObject);
+
+        Transform enemyUnitCircle = Instantiate(enemyUnitSelectedCircle, enemy.transform);
+        enemy.selectedUnitCircle = enemyUnitCircle;
+
+        return enemy;
+    }
+
     // Other
     private void SetObjectName(GameObject obj) {
         obj.name = uid + "";

@@ -24,8 +24,8 @@ unitLevel,displayName,movementSpeed,maxHealth,armor,enemyAbilities
 39,Edmund Duke,0.9,19000,14,None
 40,Raynor Vulture,2.4,23000,16,None
 
-0,BonusQueen,2.0,7.0,999999,HealthRegeneration
-0,DarkArchon,0,1000,0,None
+0,Bounty,2.0,7.0,100000,HealthRegeneration
+0,Bonus,0,1000,0,None
 
 0,Time,1.2,15000,3,None
-0,Naruto,1.2,46000,4,None
+0,Gravity,1.2,46000,4,None
