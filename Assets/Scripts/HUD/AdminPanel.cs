@@ -9,11 +9,14 @@ public class AdminPanel : MonoBehaviour {
     private PlayerUnitRank curRank;
     private int enemyLevel = 1;
     private const int MAX_LEVELS = 40;
+    private int specialEnemyUnitIndex = 1;
+    private const int NUM_SPECIAL_UNITS = 1;
     private int upgradeNum = 0;
 
     public Text rankText;
     public Text numberText;
     public Text enemyLevelText;
+    public Text specialEnemyText;
     public Text upgradeText;
     
 
@@ -28,6 +31,7 @@ public class AdminPanel : MonoBehaviour {
         rankText.text = curRank.ToString();
         numberText.text = curNum + "";
         enemyLevelText.text = enemyLevel + "";
+        specialEnemyText.text = TranslateSpecialUnitIndex();
         upgradeText.text = GetUpgradeText();
     }
 
@@ -133,6 +137,42 @@ public class AdminPanel : MonoBehaviour {
         }
 
         enemyLevelText.text = enemyLevel + "";
+    }
+
+    // Creating special enemy units
+    public void CreateSpecialEnemyUnit() {
+        switch (specialEnemyUnitIndex) {
+            case 1:
+                GameEngine.GetInstance().unitSpawner.CreateBounty();
+                break;
+            default:
+                throw new GameplayException("Unsupported Index Value");
+        }
+    }
+
+    public void ScrollSpecialEnemyLeft() {
+        if (specialEnemyUnitIndex > 1) {
+            specialEnemyUnitIndex--;
+        }
+
+        specialEnemyText.text = TranslateSpecialUnitIndex();
+    }
+
+    public void ScrollSpecialEnemyRight() {
+        if (specialEnemyUnitIndex < NUM_SPECIAL_UNITS) {
+            specialEnemyUnitIndex++;
+        }
+
+        specialEnemyText.text = TranslateSpecialUnitIndex();
+    }
+
+    public string TranslateSpecialUnitIndex() {
+        switch (specialEnemyUnitIndex) {
+            case 1:
+                return "Bounty";
+            default:
+                return "Unsupported Index Value";
+        }
     }
 
     // Upgrades
