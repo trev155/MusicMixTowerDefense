@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\HUD\AdminPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\BonusPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\GameDataPanel.cs" />
+    <Compile Include="Assets\Scripts\HUD\GuidancePanel.cs" />
     <Compile Include="Assets\Scripts\HUD\HarvesterPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\InfoPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\MessageQueue.cs" />

@@ -35,6 +35,7 @@ public class AchievementsPanel : MonoBehaviour {
     //---------- Pages and Navigation ----------
     private void Awake() {
         this.currentPage = 1;
+        ShowHidePages();
     }
 
     public void ScrollPageLeft() {

@@ -113,7 +113,7 @@ public class PlayerUnit : Unit {
 
     // Click Movement
     private void Move() {
-        if (Vector2.Distance((Vector2)this.transform.position, movementDestination) < 0.1f) {
+        if (Vector2.Distance(this.transform.position, movementDestination) < 0.1f) {
             movementEnabled = false;
             return;
         } else {
@@ -127,6 +127,10 @@ public class PlayerUnit : Unit {
         EnemyUnit lowestDistanceEnemy = null;
 
         foreach (EnemyUnit enemyUnit in attackRangeCircle.enemyUnitsInRange) {
+            if (enemyUnit == null) {
+                Debug.Log("warning - trying to access null enemy unit!!!");
+                continue;
+            }
             float distanceToEnemy = Vector2.Distance(enemyUnit.transform.position, transform.position);
             if (distanceToEnemy < lowestDistance) {
                 lowestDistance = distanceToEnemy;
@@ -151,7 +155,7 @@ public class PlayerUnit : Unit {
     }
 
     private void AttackTarget() {
-        Projectile proj = (Projectile)Instantiate(projectile, transform).GetComponent<Projectile>();
+        Projectile proj = Instantiate(projectile, transform).GetComponent<Projectile>();
         float projectileDamage = this.attackDamage + (GameEngine.GetInstance().upgradeManager.GetNumUpgrades(this.unitClass) * this.attackUpgrade);
         proj.InitializeProperties(currentTarget, this, projectileDamage);
     }
