@@ -54,17 +54,17 @@ public class BonusPanel : MonoBehaviour {
 
     public void PurchaseGas_B() {
         if (GameEngine.GetInstance().bChoosers < 1) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No B Choosers available");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No B Choosers available", MessageType.NEGATIVE);
             return;
         }
         GameEngine.GetInstance().DecrementBBonusTokenCount();
         GameEngine.GetInstance().IncreaseGas(200);
-        GameEngine.GetInstance().messageQueue.PushMessage("Purchased: 200 Gas");        
+        GameEngine.GetInstance().messageQueue.PushMessage("Purchased: 200 Gas", MessageType.POSITIVE);
     }
 
     private void PurchaseBUnit(UnitClass unitClass) {
         if (GameEngine.GetInstance().bChoosers < 1) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No B Choosers available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No B Choosers available", MessageType.NEGATIVE);
             return;
         }
 
@@ -99,17 +99,17 @@ public class BonusPanel : MonoBehaviour {
 
     public void PurchaseGas_A() {
         if (GameEngine.GetInstance().aChoosers < 1) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No A Choosers available");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No A Choosers available", MessageType.NEGATIVE);
             return;
         }
         GameEngine.GetInstance().DecrementABonusTokenCount();
         GameEngine.GetInstance().IncreaseGas(350);
-        GameEngine.GetInstance().messageQueue.PushMessage("Purchased: 350 Gas");
+        GameEngine.GetInstance().messageQueue.PushMessage("Purchased: 350 Gas", MessageType.POSITIVE);
     }
 
     private void PurchaseAUnit(UnitClass unitClass) {
         if (GameEngine.GetInstance().aChoosers < 1) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No A Choosers available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No A Choosers available", MessageType.NEGATIVE);
             return;
         }
         GameEngine.GetInstance().DecrementABonusTokenCount();
@@ -143,21 +143,21 @@ public class BonusPanel : MonoBehaviour {
 
     public void PurchaseGas_S() {
         if (GameEngine.GetInstance().sChoosers < 1) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No S Choosers available");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No S Choosers available", MessageType.NEGATIVE);
             return;
         }
         GameEngine.GetInstance().DecrementSBonusTokenCount();
         GameEngine.GetInstance().IncreaseGas(800);
-        GameEngine.GetInstance().messageQueue.PushMessage("Purchased: 800 Gas");
+        GameEngine.GetInstance().messageQueue.PushMessage("Purchased: 800 Gas", MessageType.POSITIVE);
     }
 
     public void PurchaseWall_S() {
         if (GameEngine.GetInstance().sChoosers < 1) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No S Choosers available");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No S Choosers available", MessageType.NEGATIVE);
             return;
         }
         if (GameEngine.GetInstance().hasWall) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Already purchased Wall");
+            GameEngine.GetInstance().messageQueue.PushMessage("Already purchased Wall", MessageType.INFO);
             return;
         }
 
@@ -165,12 +165,12 @@ public class BonusPanel : MonoBehaviour {
         GameEngine.GetInstance().hasWall = true;
         
         GameEngine.GetInstance().DecrementSBonusTokenCount();
-        GameEngine.GetInstance().messageQueue.PushMessage("Purchased Wall");
+        GameEngine.GetInstance().messageQueue.PushMessage("Purchased Wall", MessageType.POSITIVE);
     }
 
     private void PurchaseSUnit(UnitClass unitClass) {
         if (GameEngine.GetInstance().sChoosers < 1) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No S Choosers available");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No S Choosers available", MessageType.NEGATIVE);
             return;
         }
         GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(PlayerUnitRank.S, unitClass);

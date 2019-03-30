@@ -8,8 +8,8 @@
     }
 
     public override void GiveReward() {
-        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: Harvester");
-        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete");
+        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: Harvester", MessageType.POSITIVE);
+        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete", MessageType.POSITIVE);
         GameEngine.GetInstance().AddHarvester();
     }
 }

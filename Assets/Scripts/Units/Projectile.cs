@@ -79,6 +79,7 @@ public class Projectile : MonoBehaviour {
         }
     }
 
+    // Special Unit Kill Rewards
     private void KilledSpecialEnemyUnit(string enemyName) {
         switch (enemyName) {
             case "Bounty":
@@ -92,16 +93,16 @@ public class Projectile : MonoBehaviour {
     private void GiveBountyReward() {
         int choice = random.Next(1, 10);
         if (choice <= 2) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: 2 Shop Tokens");
+            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: 2 Shop Tokens", MessageType.POSITIVE);
             GameEngine.GetInstance().IncreaseTokenCount(2);
         } else if (choice <= 6) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: 3 Shop Tokens");
+            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: 3 Shop Tokens", MessageType.POSITIVE);
             GameEngine.GetInstance().IncreaseTokenCount(3);
         } else if (choice <= 8) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: 4 Shop Tokens");
+            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: 4 Shop Tokens", MessageType.POSITIVE);
             GameEngine.GetInstance().IncreaseTokenCount(4);
         } else {
-            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: Harvester");
+            GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: Harvester", MessageType.POSITIVE);
             GameEngine.GetInstance().AddHarvester();
         }
     }

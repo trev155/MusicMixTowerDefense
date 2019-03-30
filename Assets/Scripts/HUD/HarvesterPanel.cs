@@ -26,11 +26,11 @@ public class HarvesterPanel : MonoBehaviour {
     
     public void AllocateMineralHarvester() {
         if (GameEngine.GetInstance().unallocatedHarvesters == 0) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot allocate mineral harvester. No unallocated harvesters available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot allocate mineral harvester. No unallocated harvesters available", MessageType.INFO);
             return;
         }
         if (GameEngine.GetInstance().mineralHarvesters >= 25) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot allocate mineral harvester. Reached upper limit.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot allocate mineral harvester. Reached upper limit", MessageType.INFO);
             return;
         }
 
@@ -39,7 +39,7 @@ public class HarvesterPanel : MonoBehaviour {
 
     public void DeallocateMineralHarvester() {
         if (GameEngine.GetInstance().mineralHarvesters == 0) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot deallocate mineral harvester. No allocated mineral harvesters available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot deallocate mineral harvester. No allocated mineral harvesters available", MessageType.INFO);
             return;
         }
 
@@ -48,11 +48,11 @@ public class HarvesterPanel : MonoBehaviour {
 
     public void AllocateGasHarvester() {
         if (GameEngine.GetInstance().unallocatedHarvesters == 0) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot allocate gas harvester. No unallocated harvesters available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot allocate gas harvester. No unallocated harvesters available", MessageType.INFO);
             return;
         }
         if (GameEngine.GetInstance().gasHarvesters >= 5) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot allocate gas harvester. Reached upper limit.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot allocate gas harvester. Reached upper limit", MessageType.INFO);
             return;
         }
 
@@ -61,7 +61,7 @@ public class HarvesterPanel : MonoBehaviour {
 
     public void DeallocateGasHarvester() {
         if (GameEngine.GetInstance().gasHarvesters == 0) {
-            GameEngine.GetInstance().messageQueue.PushMessage("Cannot deallocate gas harvester. No allocated gas harvesters available.");
+            GameEngine.GetInstance().messageQueue.PushMessage("Cannot deallocate gas harvester. No allocated gas harvesters available", MessageType.INFO);
             return;
         }
 

@@ -53,12 +53,12 @@ public class UpgradePanel : MonoBehaviour {
 
     // UI Methods
     public void DisplayUpgradeCompleteMessage(UnitClass unitClass, int level) {
-        GameEngine.GetInstance().messageQueue.PushMessage("Upgrade Complete! [" + unitClass.ToString() + " Level " + level + "]");
+        GameEngine.GetInstance().messageQueue.PushMessage("Upgrade Complete! [" + unitClass.ToString() + " Level " + level + "]", MessageType.POSITIVE);
     }
 
     public void DisplayCantAffordUpgradeMessage(UnitClass unitClass, int upgradeCost) {
         GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase upgrade for class: [" + unitClass.ToString() + "]. " +
-            "Upgrade cost is [" + upgradeCost + " gas], currently have [" + GameEngine.GetInstance().gas + " gas]");
+            "Upgrade cost is [" + upgradeCost + " gas], currently have [" + GameEngine.GetInstance().gas + " gas]", MessageType.NEGATIVE);
     }
 
     public void SetUnitClassUpgradeDataDisplay(UnitClass unitClass) {

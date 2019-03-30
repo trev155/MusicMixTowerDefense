@@ -39,7 +39,7 @@ public class UnitSpawner : MonoBehaviour {
 
         GameEngine.GetInstance().achievementManager.CheckAchievementsForPlayerUnitCreation();
 
-        GameEngine.GetInstance().messageQueue.PushMessage("[" + player.rank + " Rank Unit] " + Utils.CleanEnumString(player.unitClass.ToString()));
+        GameEngine.GetInstance().messageQueue.PushMessage("[" + player.rank + " Rank Unit] " + Utils.CleanEnumString(player.unitClass.ToString()), MessageType.INFO);
 
         return player;
     }
@@ -57,7 +57,7 @@ public class UnitSpawner : MonoBehaviour {
 
         GameEngine.GetInstance().achievementManager.CheckAchievementsForPlayerUnitCreation();
 
-        GameEngine.GetInstance().messageQueue.PushMessage("[" + player.rank + " Rank Unit] " + Utils.CleanEnumString(player.unitClass.ToString()));
+        GameEngine.GetInstance().messageQueue.PushMessage("[" + player.rank + " Rank Unit] " + Utils.CleanEnumString(player.unitClass.ToString()), MessageType.INFO);
 
         return player;
     }

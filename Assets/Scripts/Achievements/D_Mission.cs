@@ -41,8 +41,8 @@ public class D_Mission : Achievement {
     }
 
     public override void GiveReward() {
-        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: 2 Shop Tokens");
-        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete");
+        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: 2 Shop Tokens", MessageType.POSITIVE);
+        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete", MessageType.POSITIVE);
         GameEngine.GetInstance().IncreaseTokenCount(2);
     }
 }

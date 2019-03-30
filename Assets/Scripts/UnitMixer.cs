@@ -294,7 +294,7 @@ public class UnitMixer : MonoBehaviour {
             RemoveUnitSafely(magicUnit);
             RemoveUnitSafely(flameUnit);
 
-            GameEngine.GetInstance().messageQueue.PushMessage("2 B Rank Choosers");
+            GameEngine.GetInstance().messageQueue.PushMessage("2 B Rank Choosers", MessageType.INFO);
             GameEngine.GetInstance().AddBBonusTokens(2);
             return true;
         }
@@ -321,7 +321,7 @@ public class UnitMixer : MonoBehaviour {
             RemoveUnitSafely(magicUnit);
             RemoveUnitSafely(flameUnit);
 
-            GameEngine.GetInstance().messageQueue.PushMessage("2 A Rank Choosers");
+            GameEngine.GetInstance().messageQueue.PushMessage("2 A Rank Choosers", MessageType.INFO);
             GameEngine.GetInstance().AddABonusTokens(2);
             return true;
         }

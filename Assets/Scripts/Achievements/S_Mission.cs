@@ -49,8 +49,8 @@ public class S_Mission : Achievement {
     }
 
     public override void GiveReward() {
-        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: 2 Random S Rank Units, 480 Gas");
-        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete");
+        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: 2 Random S Rank Units, 480 Gas", MessageType.POSITIVE);
+        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete", MessageType.POSITIVE);
 
         GameEngine.GetInstance().unitSpawner.CreateRandomSUnit();
         GameEngine.GetInstance().unitSpawner.CreateRandomSUnit();

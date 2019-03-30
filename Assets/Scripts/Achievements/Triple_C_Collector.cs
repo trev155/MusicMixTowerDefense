@@ -40,8 +40,8 @@ public class Triple_C_Collector : Achievement {
     }
 
     public override void GiveReward() {
-        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: 1 S Rank Token");
-        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete");
+        GameEngine.GetInstance().messageQueue.PushMessage("Bonus: 1 S Rank Token", MessageType.POSITIVE);
+        GameEngine.GetInstance().messageQueue.PushMessage(this.achievementName + " Complete", MessageType.POSITIVE);
         GameEngine.GetInstance().AddSBonusTokens(1);
     }
 }
