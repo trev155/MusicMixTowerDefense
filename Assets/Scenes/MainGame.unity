@@ -553,6 +553,8 @@ MonoBehaviour:
     type: 3}
   enemyUnit: {fileID: 6720891270199158892, guid: f269f421303b0f847b3d7dc6873df658,
     type: 3}
+  bountyUnit: {fileID: 6720891270199158892, guid: 3c6bd66772989b64181f19ffa7a82138,
+    type: 3}
   playerUnitSelectionCircle: {fileID: 1013747370527916468, guid: 95bf2094c250e56428e4802c84c8f04c,
     type: 3}
   enemyUnitSelectedCircle: {fileID: 1013747370527916468, guid: 4c8ea6360f889244ea4f163d71b1bbf4,

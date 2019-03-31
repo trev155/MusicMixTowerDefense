@@ -4,13 +4,20 @@ using UnityEngine;
 public class UnitSpawner : MonoBehaviour {
     // ---------- Fields ----------
     public UnitFactory unitFactory;
+
     public Transform playerUnitSpawnLocation;
     public Transform playerUnitSpawnLocationOffset;
+
     public Transform enemyUnitSpawnLocation;
+
     public Transform playerUnit;
+
     public Transform enemyUnit;
+    public Transform bountyUnit;
+
     public Transform playerUnitSelectionCircle;
     public Transform enemyUnitSelectedCircle;
+
     public Transform topInnerWall;
     public Transform leftInnerWall;
     public Transform rightInnerWall;
@@ -27,18 +34,23 @@ public class UnitSpawner : MonoBehaviour {
 
     // Player Unit Creation Functions
     public PlayerUnit CreatePlayerUnit(PlayerUnitRank rank, int seed) {
+        // Create player unit object
         PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, seed);
         PlayerUnit player = Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
         player.InitializeProperties(playerUnitData);
         SetObjectName(player.gameObject);
 
+        // Create range circle
         CreatePlayerUnitRangeCircle(player);
 
+        // Other functions
         MovePlayerUnitToOffset(player);
         IgnorePlayerUnitCollisionWithInnerWalls(player);
 
+        // Check Achievement on every player unit creation
         GameEngine.GetInstance().achievementManager.CheckAchievementsForPlayerUnitCreation();
 
+        // Display message
         MessageType msgType = MessageType.INFO;
         if (player.rank == PlayerUnitRank.S || player.rank == PlayerUnitRank.X) {
             msgType = MessageType.POSITIVE;
@@ -49,18 +61,23 @@ public class UnitSpawner : MonoBehaviour {
     }
 
     public PlayerUnit CreatePlayerUnit(PlayerUnitRank rank, UnitClass unitClass) {
+        // Create player unit object
         PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, unitClass);
         PlayerUnit player = Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
         player.InitializeProperties(playerUnitData);
         SetObjectName(player.gameObject);
 
+        // Create range circle
         CreatePlayerUnitRangeCircle(player);
 
+        // Other functions
         MovePlayerUnitToOffset(player);
         IgnorePlayerUnitCollisionWithInnerWalls(player);
 
+        // Check Achievement on every player unit creation
         GameEngine.GetInstance().achievementManager.CheckAchievementsForPlayerUnitCreation();
 
+        // Display message
         MessageType msgType = MessageType.INFO;
         if (player.rank == PlayerUnitRank.S || player.rank == PlayerUnitRank.X) {
             msgType = MessageType.POSITIVE;
@@ -137,7 +154,7 @@ public class UnitSpawner : MonoBehaviour {
 
     public EnemyUnit CreateBounty() {
         EnemyUnitData enemyUnitData = unitFactory.CreateBountyUnit();
-        EnemyUnit enemy = Instantiate(enemyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
+        EnemyUnit enemy = Instantiate(bountyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
 
         enemy.InitializeProperties(enemyUnitData);
         SetObjectName(enemy.gameObject);
@@ -145,10 +162,15 @@ public class UnitSpawner : MonoBehaviour {
         Transform enemyUnitCircle = Instantiate(enemyUnitSelectedCircle, enemy.transform);
         enemy.selectedUnitCircle = enemyUnitCircle;
 
+        // Initialize health regenerator
+        HealthRegenerator healthRegenerator = enemy.GetComponent<HealthRegenerator>();
+        healthRegenerator.enemyUnit = enemy;
+        healthRegenerator.SetRegenerationRate(enemy.displayName);
+
         return enemy;
     }
 
-    // Other
+    // Other functions
     private void SetObjectName(GameObject obj) {
         obj.name = uid + "";
         uid += 1;

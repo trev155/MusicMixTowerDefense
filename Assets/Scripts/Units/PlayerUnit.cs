@@ -128,7 +128,7 @@ public class PlayerUnit : Unit {
 
         foreach (EnemyUnit enemyUnit in attackRangeCircle.enemyUnitsInRange) {
             if (enemyUnit == null) {
-                Debug.Log("warning - trying to access null enemy unit!!!");
+                Debug.Log("warning - trying to access null enemy unit!!!\n" + enemyUnit.name);
                 continue;
             }
             float distanceToEnemy = Vector2.Distance(enemyUnit.transform.position, transform.position);
