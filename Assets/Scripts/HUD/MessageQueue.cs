@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 public class MessageQueue : MonoBehaviour {
     //---------- Fields ----------
-    public Transform messageQueue;
     public Text messageQueueEntry;
 
     private Queue<string> messages;
@@ -37,7 +36,7 @@ public class MessageQueue : MonoBehaviour {
     }
 
     private void CreateNewTextEntryDisplay(string message, MessageType messageType) {
-        Text entry = Instantiate(messageQueueEntry, messageQueue) as Text;
+        Text entry = Instantiate(messageQueueEntry, transform) as Text;
         entry.transform.SetAsFirstSibling();
         entry.text = message;
         entry.name = "MessageEntry_" + messageNum;
@@ -62,13 +61,13 @@ public class MessageQueue : MonoBehaviour {
     }
 
     private bool MessageQueueOverflowed() {
-        return messageQueue.childCount > messageQueueDisplayLimit;
+        return transform.childCount > messageQueueDisplayLimit;
     }
 
     private IEnumerator CleanMessageQueue() {
         isCleaning = true;
         while (true) {
-            if (messageQueue.childCount > messageQueueDisplayLimit) {
+            if (transform.childCount > messageQueueDisplayLimit) {
                 RemoveOldestMessage();
                 yield return new WaitForSeconds(0.1f);
             } else {
@@ -79,7 +78,7 @@ public class MessageQueue : MonoBehaviour {
     }
 
     private void RemoveOldestMessage() {
-        Destroy(messageQueue.GetChild(messageQueue.childCount - 1).gameObject);
+        Destroy(transform.GetChild(transform.childCount - 1).gameObject);
     }
 
     public void LogMessageQueue() {

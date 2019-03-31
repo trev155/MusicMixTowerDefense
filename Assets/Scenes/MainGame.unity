@@ -191,52 +191,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1529968}
   m_CullTransparentMesh: 0
---- !u!1 &10677677
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 10677678}
-  - component: {fileID: 10677679}
-  m_Layer: 0
-  m_Name: MessageQueue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &10677678
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10677677}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &10677679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 10677677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2f519c24c512847ae8b8960b623a38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  messageQueue: {fileID: 533853552}
-  messageQueueEntry: {fileID: 7824671154928286110, guid: d2805c8f1f34bf3438c6325e7b62f0d2,
-    type: 3}
 --- !u!1 &12050811
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,7 +532,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 619477378}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &40258355
 MonoBehaviour:
@@ -803,9 +757,9 @@ RectTransform:
   m_Father: {fileID: 1364175431}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -20}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &47248692
@@ -1084,7 +1038,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 457412631}
+      - m_Target: {fileID: 391758127}
         m_MethodName: ScrollPageRight
         m_Mode: 1
         m_Arguments:
@@ -1292,7 +1246,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1938995068}
+      - m_Target: {fileID: 1130628302}
         m_MethodName: UpgradePsionic
         m_Mode: 1
         m_Arguments:
@@ -1421,7 +1375,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: ScrollLevelLeft
         m_Mode: 1
         m_Arguments:
@@ -1550,7 +1504,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseBlade_S
         m_Mode: 1
         m_Arguments:
@@ -1784,9 +1738,9 @@ RectTransform:
   m_Father: {fileID: 1364175431}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &76550408
@@ -1910,7 +1864,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseInfantry_A
         m_Mode: 1
         m_Arguments:
@@ -2237,51 +2191,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99883111}
   m_CullTransparentMesh: 0
---- !u!1 &105532344
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 105532345}
-  - component: {fileID: 105532346}
-  m_Layer: 0
-  m_Name: InfoPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &105532345
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105532344}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &105532346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105532344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccd80e20940ba7443816e171868b3b50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AchievementsPanel: {fileID: 2014129361}
-  GuidancePanel: {fileID: 391758124}
 --- !u!1 &107117134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2574,7 +2483,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 619477378}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &113860763
 MonoBehaviour:
@@ -2788,6 +2697,7 @@ GameObject:
   - component: {fileID: 124234332}
   - component: {fileID: 124234333}
   - component: {fileID: 124234334}
+  - component: {fileID: 124234335}
   m_Layer: 5
   m_Name: GameDataPanel
   m_TagString: Untagged
@@ -2881,6 +2791,25 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &124234335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124234330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce499192934a594f874c9c9c140d31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mineralsText: {fileID: 1541269313}
+  gasText: {fileID: 1294943220}
+  levelText: {fileID: 1786690109}
+  tokenCountText: {fileID: 797695610}
+  killCounterText: {fileID: 1748457408}
+  globalGameTimerText: {fileID: 1246214799}
+  levelTimerText: {fileID: 39206476}
 --- !u!1 &134736261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,7 +2839,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 619477378}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &134736263
 MonoBehaviour:
@@ -3083,7 +3012,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424495412}
+      - m_Target: {fileID: 2014129364}
         m_MethodName: ScrollPageRight
         m_Mode: 1
         m_Arguments:
@@ -3165,9 +3094,9 @@ RectTransform:
   m_Father: {fileID: 1364175431}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -140}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &148461466
@@ -3392,53 +3321,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 152401947}
   m_CullTransparentMesh: 0
---- !u!1 &165212332
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 165212333}
-  - component: {fileID: 165212334}
-  m_Layer: 0
-  m_Name: BonusPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &165212333
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165212332}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &165212334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 165212332}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639e5f85d747d9648a66b648644cbbed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bTokens: {fileID: 765426320}
-  aTokens: {fileID: 83132439}
-  sTokens: {fileID: 1818533143}
-  sWall: {fileID: 397797731}
 --- !u!1 &178037202
 GameObject:
   m_ObjectHideFlags: 0
@@ -3753,7 +3635,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: ScrollRankLeft
         m_Mode: 1
         m_Arguments:
@@ -3882,7 +3764,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 552634954}
+      - m_Target: {fileID: 1551689748}
         m_MethodName: ToggleShowHarvestersPanel
         m_Mode: 1
         m_Arguments:
@@ -4169,7 +4051,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1949779998}
+      - m_Target: {fileID: 1416973560}
         m_MethodName: PurchaseGasLotto
         m_Mode: 1
         m_Arguments:
@@ -4715,7 +4597,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseBlade_A
         m_Mode: 1
         m_Arguments:
@@ -5030,7 +4912,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1949779998}
+      - m_Target: {fileID: 1416973560}
         m_MethodName: PurchaseHarvester
         m_Mode: 1
         m_Arguments:
@@ -6422,9 +6304,9 @@ RectTransform:
   m_Father: {fileID: 1364175431}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -220}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &375138134
@@ -6640,6 +6522,7 @@ GameObject:
   - component: {fileID: 391758124}
   - component: {fileID: 391758126}
   - component: {fileID: 391758125}
+  - component: {fileID: 391758127}
   m_Layer: 5
   m_Name: GuidancePanel
   m_TagString: Untagged
@@ -6705,6 +6588,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391758123}
   m_CullTransparentMesh: 0
+--- !u!114 &391758127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391758123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ecc0c1a50c86da46b88f438f0ef5253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstPage: {fileID: 75983591}
+  secondPage: {fileID: 52307822}
 --- !u!1 &392219869
 GameObject:
   m_ObjectHideFlags: 0
@@ -6863,7 +6760,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1949779998}
+      - m_Target: {fileID: 1416973560}
         m_MethodName: PurchaseGas
         m_Mode: 1
         m_Arguments:
@@ -6938,7 +6835,7 @@ PrefabInstance:
     - target: {fileID: 6981295665190690272, guid: 7fd0bd9d98c28624f8dfcd73564a7091,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.3
+      value: -3.25
       objectReference: {fileID: 0}
     - target: {fileID: 6981295665190690272, guid: 7fd0bd9d98c28624f8dfcd73564a7091,
         type: 3}
@@ -6993,7 +6890,7 @@ PrefabInstance:
     - target: {fileID: 6981295665190690272, guid: 7fd0bd9d98c28624f8dfcd73564a7091,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6981295665190690275, guid: 7fd0bd9d98c28624f8dfcd73564a7091,
         type: 3}
@@ -7330,7 +7227,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790972474}
+      - m_Target: {fileID: 966704942}
         m_MethodName: DeallocateGasHarvester
         m_Mode: 1
         m_Arguments:
@@ -7805,51 +7702,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453436546}
   m_CullTransparentMesh: 0
---- !u!1 &457412629
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 457412630}
-  - component: {fileID: 457412631}
-  m_Layer: 0
-  m_Name: GuidancePanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &457412630
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457412629}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &457412631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 457412629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ecc0c1a50c86da46b88f438f0ef5253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firstPage: {fileID: 75983591}
-  secondPage: {fileID: 52307822}
 --- !u!1 &458507107
 GameObject:
   m_ObjectHideFlags: 0
@@ -8263,7 +8115,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790972474}
+      - m_Target: {fileID: 966704942}
         m_MethodName: AllocateMineralHarvester
         m_Mode: 1
         m_Arguments:
@@ -8559,13 +8411,13 @@ RectTransform:
   m_Children:
   - {fileID: 124234331}
   - {fileID: 1364175431}
+  - {fileID: 1512991729}
   - {fileID: 1551689744}
   - {fileID: 1416973557}
   - {fileID: 1130628298}
   - {fileID: 966704939}
   - {fileID: 1078750314}
   - {fileID: 2030529598}
-  - {fileID: 1512991729}
   - {fileID: 1820456373}
   - {fileID: 391758124}
   - {fileID: 2014129361}
@@ -8762,56 +8614,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507520225}
   m_CullTransparentMesh: 0
---- !u!1 &510120066
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 510120067}
-  - component: {fileID: 510120068}
-  m_Layer: 0
-  m_Name: GameDataPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &510120067
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 510120066}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &510120068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 510120066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bce499192934a594f874c9c9c140d31f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mineralsText: {fileID: 1541269313}
-  gasText: {fileID: 1294943220}
-  levelText: {fileID: 1786690109}
-  tokenCountText: {fileID: 797695610}
-  killCounterText: {fileID: 1748457408}
-  globalGameTimerText: {fileID: 1246214799}
-  levelTimerText: {fileID: 39206476}
 --- !u!1 &516910477
 GameObject:
   m_ObjectHideFlags: 0
@@ -8891,7 +8693,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseGas_S
         m_Mode: 1
         m_Arguments:
@@ -9186,6 +8988,7 @@ GameObject:
   - component: {fileID: 533853554}
   - component: {fileID: 533853553}
   - component: {fileID: 533853555}
+  - component: {fileID: 533853556}
   m_Layer: 5
   m_Name: MessageQueue
   m_TagString: Untagged
@@ -9272,6 +9075,20 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &533853556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533853551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2f519c24c512847ae8b8960b623a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  messageQueueEntry: {fileID: 7824671154928286110, guid: d2805c8f1f34bf3438c6325e7b62f0d2,
+    type: 3}
 --- !u!1 &535204039
 GameObject:
   m_ObjectHideFlags: 0
@@ -9351,7 +9168,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 552634954}
+      - m_Target: {fileID: 1551689748}
         m_MethodName: ToggleShowUpgradePanel
         m_Mode: 1
         m_Arguments:
@@ -9565,7 +9382,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseBlade_B
         m_Mode: 1
         m_Arguments:
@@ -9771,54 +9588,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 538868254}
   m_CullTransparentMesh: 0
---- !u!1 &552634952
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 552634953}
-  - component: {fileID: 552634954}
-  m_Layer: 0
-  m_Name: RevealHidePanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &552634953
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552634952}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &552634954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 552634952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f99710e19adcc664b9997897069295c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShopPanel: {fileID: 1416973557}
-  UpgradePanel: {fileID: 1130628298}
-  HarvestersPanel: {fileID: 966704939}
-  BonusPanel: {fileID: 1078750314}
-  AdminPanel: {fileID: 2030529598}
 --- !u!1 &565762530
 GameObject:
   m_ObjectHideFlags: 0
@@ -9897,7 +9666,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 457412631}
+      - m_Target: {fileID: 0}
         m_MethodName: ScrollPageRight
         m_Mode: 1
         m_Arguments:
@@ -9976,7 +9745,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 619477378}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &580455629
 MonoBehaviour:
@@ -10304,7 +10073,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1938995068}
+      - m_Target: {fileID: 1130628302}
         m_MethodName: UpgradeLaser
         m_Mode: 1
         m_Arguments:
@@ -10694,7 +10463,6 @@ Transform:
   m_Children:
   - {fileID: 1639642030}
   - {fileID: 1673155384}
-  - {fileID: 1243641833}
   - {fileID: 998200809}
   - {fileID: 113860762}
   - {fileID: 40258354}
@@ -10783,7 +10551,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: ScrollNumRight
         m_Mode: 1
         m_Arguments:
@@ -10991,7 +10759,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1938995068}
+      - m_Target: {fileID: 1130628302}
         m_MethodName: UpgradeMagic
         m_Mode: 1
         m_Arguments:
@@ -11120,7 +10888,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1949779998}
+      - m_Target: {fileID: 1416973560}
         m_MethodName: PurchaseDrums
         m_Mode: 1
         m_Arguments:
@@ -11403,7 +11171,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 552634954}
+      - m_Target: {fileID: 1551689748}
         m_MethodName: ToggleShowAdminPanel
         m_Mode: 1
         m_Arguments:
@@ -11890,9 +11658,9 @@ RectTransform:
   m_Father: {fileID: 1364175431}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -580}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &685307085
@@ -11935,7 +11703,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1259011805}
+      - m_Target: {fileID: 1364175435}
         m_MethodName: SellUnitButton
         m_Mode: 1
         m_Arguments:
@@ -12064,7 +11832,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseGas_A
         m_Mode: 1
         m_Arguments:
@@ -12193,7 +11961,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790972474}
+      - m_Target: {fileID: 966704942}
         m_MethodName: DeallocateMineralHarvester
         m_Mode: 1
         m_Arguments:
@@ -12397,7 +12165,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: ScrollSpecialEnemyRight
         m_Mode: 1
         m_Arguments:
@@ -13277,7 +13045,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseLaser_S
         m_Mode: 1
         m_Arguments:
@@ -13640,7 +13408,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseInfantry_B
         m_Mode: 1
         m_Arguments:
@@ -14033,7 +13801,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1938995068}
+      - m_Target: {fileID: 1130628302}
         m_MethodName: UpgradeAcid
         m_Mode: 1
         m_Arguments:
@@ -14422,7 +14190,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseMech_S
         m_Mode: 1
         m_Arguments:
@@ -14886,7 +14654,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchasePsionic_A
         m_Mode: 1
         m_Arguments:
@@ -15090,7 +14858,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchasePsionic_S
         m_Mode: 1
         m_Arguments:
@@ -15460,7 +15228,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseMech_B
         m_Mode: 1
         m_Arguments:
@@ -15589,7 +15357,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: CreatePlayerUnit
         m_Mode: 1
         m_Arguments:
@@ -15797,7 +15565,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: ScrollSpecialEnemyLeft
         m_Mode: 1
         m_Arguments:
@@ -16426,7 +16194,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseAcid_B
         m_Mode: 1
         m_Arguments:
@@ -16609,9 +16377,9 @@ RectTransform:
   m_Father: {fileID: 1364175431}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -180}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &944461585
@@ -16667,6 +16435,7 @@ GameObject:
   - component: {fileID: 966704939}
   - component: {fileID: 966704941}
   - component: {fileID: 966704940}
+  - component: {fileID: 966704942}
   m_Layer: 5
   m_Name: HarvestersPanel
   m_TagString: Untagged
@@ -16697,7 +16466,7 @@ RectTransform:
   - {fileID: 403055216}
   - {fileID: 1053199319}
   m_Father: {fileID: 503141812}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -16741,54 +16510,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966704938}
   m_CullTransparentMesh: 0
---- !u!1 &967735663
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 967735664}
-  - component: {fileID: 967735665}
-  m_Layer: 0
-  m_Name: AdminPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &967735664
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967735663}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &967735665
+--- !u!114 &966704942
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967735663}
+  m_GameObject: {fileID: 966704938}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc801054fae180469e5302b583794df, type: 3}
+  m_Script: {fileID: 11500000, guid: 6895ac8a726cce248ad2eefbb6db63f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rankText: {fileID: 622397692}
-  numberText: {fileID: 1710060970}
-  enemyLevelText: {fileID: 1424884571}
-  specialEnemyText: {fileID: 1044217464}
-  upgradeText: {fileID: 1821483167}
+  unallocatedHarvesters: {fileID: 866852630}
+  mineralHarvesters: {fileID: 751019545}
+  gasHarvesters: {fileID: 2020266239}
 --- !u!1 &968112324
 GameObject:
   m_ObjectHideFlags: 0
@@ -16969,7 +16705,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: ScrollNumLeft
         m_Mode: 1
         m_Arguments:
@@ -17289,7 +17025,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseInfantry_S
         m_Mode: 1
         m_Arguments:
@@ -17469,7 +17205,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 619477378}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &998200810
 MonoBehaviour:
@@ -17818,7 +17554,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 552634954}
+      - m_Target: {fileID: 1551689748}
         m_MethodName: ToggleShowBonusPanel
         m_Mode: 1
         m_Arguments:
@@ -17947,7 +17683,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseLaser_B
         m_Mode: 1
         m_Arguments:
@@ -18076,7 +17812,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1938995068}
+      - m_Target: {fileID: 1130628302}
         m_MethodName: UpgradeFlame
         m_Mode: 1
         m_Arguments:
@@ -18284,7 +18020,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1790972474}
+      - m_Target: {fileID: 966704942}
         m_MethodName: AllocateGasHarvester
         m_Mode: 1
         m_Arguments:
@@ -18611,6 +18347,7 @@ GameObject:
   - component: {fileID: 1078750314}
   - component: {fileID: 1078750316}
   - component: {fileID: 1078750315}
+  - component: {fileID: 1078750317}
   m_Layer: 5
   m_Name: BonusPanel
   m_TagString: Untagged
@@ -18633,7 +18370,7 @@ RectTransform:
   - {fileID: 43866609}
   - {fileID: 2098023401}
   m_Father: {fileID: 503141812}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -18677,6 +18414,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078750313}
   m_CullTransparentMesh: 0
+--- !u!114 &1078750317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078750313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639e5f85d747d9648a66b648644cbbed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bTokens: {fileID: 765426320}
+  aTokens: {fileID: 83132439}
+  sTokens: {fileID: 1818533143}
+  sWall: {fileID: 397797731}
 --- !u!1 &1082195728
 GameObject:
   m_ObjectHideFlags: 0
@@ -18938,7 +18691,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: CreateEnemyUnit
         m_Mode: 1
         m_Arguments:
@@ -19326,7 +19079,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1938995068}
+      - m_Target: {fileID: 1130628302}
         m_MethodName: UpgradeMech
         m_Mode: 1
         m_Arguments:
@@ -19625,6 +19378,7 @@ GameObject:
   - component: {fileID: 1130628300}
   - component: {fileID: 1130628299}
   - component: {fileID: 1130628301}
+  - component: {fileID: 1130628302}
   m_Layer: 5
   m_Name: UpgradePanel
   m_TagString: Untagged
@@ -19652,7 +19406,7 @@ RectTransform:
   - {fileID: 458507108}
   - {fileID: 1335779581}
   m_Father: {fileID: 503141812}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -19719,6 +19473,34 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &1130628302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1130628297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6fecd354c8ad5343b6ce78fc249ebce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InfantryLevel: {fileID: 1959136233}
+  MechLevel: {fileID: 1106163380}
+  LaserLevel: {fileID: 142526048}
+  PsionicLevel: {fileID: 1956783390}
+  AcidLevel: {fileID: 453436548}
+  BladeLevel: {fileID: 2045839248}
+  MagicLevel: {fileID: 408442156}
+  FlameLevel: {fileID: 401825465}
+  InfantryCost: {fileID: 507520227}
+  MechCost: {fileID: 909088748}
+  LaserCost: {fileID: 1731277888}
+  PsionicCost: {fileID: 1912802477}
+  AcidCost: {fileID: 1486202357}
+  BladeCost: {fileID: 1442105802}
+  MagicCost: {fileID: 1615265249}
+  FlameCost: {fileID: 1745499267}
 --- !u!1 &1131993629
 GameObject:
   m_ObjectHideFlags: 0
@@ -20286,7 +20068,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchasePsionic_B
         m_Mode: 1
         m_Arguments:
@@ -20495,7 +20277,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424495412}
+      - m_Target: {fileID: 2014129364}
         m_MethodName: ScrollPageRight
         m_Mode: 1
         m_Arguments:
@@ -21114,7 +20896,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 619477378}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1230154572
 GameObject:
@@ -21270,7 +21052,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseGas_B
         m_Mode: 1
         m_Arguments:
@@ -21320,48 +21102,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236432611}
   m_CullTransparentMesh: 0
---- !u!1 &1243641832
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1243641833}
-  m_Layer: 0
-  m_Name: HUD_Components
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1243641833
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243641832}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 967735664}
-  - {fileID: 1949779997}
-  - {fileID: 510120067}
-  - {fileID: 1259011804}
-  - {fileID: 1938995067}
-  - {fileID: 552634953}
-  - {fileID: 1790972473}
-  - {fileID: 165212333}
-  - {fileID: 105532345}
-  - {fileID: 1424495411}
-  - {fileID: 457412630}
-  - {fileID: 10677678}
-  m_Father: {fileID: 619477378}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1243905254
 GameObject:
   m_ObjectHideFlags: 0
@@ -21620,7 +21360,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424495412}
+      - m_Target: {fileID: 2014129364}
         m_MethodName: ScrollPageLeft
         m_Mode: 1
         m_Arguments:
@@ -21828,7 +21568,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseAcid_A
         m_Mode: 1
         m_Arguments:
@@ -21957,7 +21697,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: CreateSpecialEnemyUnit
         m_Mode: 1
         m_Arguments:
@@ -22007,63 +21747,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258902630}
   m_CullTransparentMesh: 0
---- !u!1 &1259011803
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1259011804}
-  - component: {fileID: 1259011805}
-  m_Layer: 0
-  m_Name: UnitSelectionPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1259011804
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259011803}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1259011805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259011803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd9d76e67b8242438edfbb59fe416c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitSelectionPanel: {fileID: 1364175431}
-  closeUnitSelectionPanelButton: {fileID: 1512991730}
-  textSlot1: {fileID: 47248692}
-  textSlot2: {fileID: 1668127879}
-  textSlot3: {fileID: 76550408}
-  textSlot4: {fileID: 148461466}
-  textSlot5: {fileID: 944461585}
-  textSlot6: {fileID: 375138134}
-  textSlot7: {fileID: 2099567490}
-  moveUnitButton: {fileID: 2036483865}
-  moveUnitButtonText: {fileID: 1759380896}
-  moveUnitInstruction: {fileID: 1775680456}
-  sellUnitButton: {fileID: 685307085}
-  moveableArea: {fileID: 714695258}
 --- !u!1 &1273977693
 GameObject:
   m_ObjectHideFlags: 0
@@ -22143,7 +21826,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 105532346}
+      - m_Target: {fileID: 1820456377}
         m_MethodName: ToggleGuidancePanel
         m_Mode: 1
         m_Arguments:
@@ -23014,7 +22697,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: ScrollLevelRight
         m_Mode: 1
         m_Arguments:
@@ -23489,13 +23172,14 @@ GameObject:
   - component: {fileID: 1364175433}
   - component: {fileID: 1364175432}
   - component: {fileID: 1364175434}
+  - component: {fileID: 1364175435}
   m_Layer: 5
   m_Name: UnitSelectionPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1364175431
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23585,6 +23269,32 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &1364175435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364175430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd9d76e67b8242438edfbb59fe416c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitSelectionPanel: {fileID: 1364175431}
+  closeUnitSelectionPanelButton: {fileID: 1512991730}
+  textSlot1: {fileID: 47248692}
+  textSlot2: {fileID: 1668127879}
+  textSlot3: {fileID: 76550408}
+  textSlot4: {fileID: 148461466}
+  textSlot5: {fileID: 944461585}
+  textSlot6: {fileID: 375138134}
+  textSlot7: {fileID: 2099567490}
+  moveUnitButton: {fileID: 2036483865}
+  moveUnitButtonText: {fileID: 1759380896}
+  moveUnitInstruction: {fileID: 1775680456}
+  sellUnitButton: {fileID: 685307085}
+  moveableArea: {fileID: 714695258}
 --- !u!1 &1365105895
 GameObject:
   m_ObjectHideFlags: 0
@@ -23844,7 +23554,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 552634954}
+      - m_Target: {fileID: 1551689748}
         m_MethodName: ToggleShowShopPanel
         m_Mode: 1
         m_Arguments:
@@ -24135,7 +23845,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1949779998}
+      - m_Target: {fileID: 1416973560}
         m_MethodName: CreateRandomDUnit
         m_Mode: 1
         m_Arguments:
@@ -24264,7 +23974,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseLaser_A
         m_Mode: 1
         m_Arguments:
@@ -24392,7 +24102,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1424495412}
+      - m_Target: {fileID: 2014129364}
         m_MethodName: ScrollPageLeft
         m_Mode: 1
         m_Arguments:
@@ -24981,6 +24691,7 @@ GameObject:
   - component: {fileID: 1416973557}
   - component: {fileID: 1416973559}
   - component: {fileID: 1416973558}
+  - component: {fileID: 1416973560}
   m_Layer: 5
   m_Name: ShopPanel
   m_TagString: Untagged
@@ -25007,7 +24718,7 @@ RectTransform:
   - {fileID: 2070994986}
   - {fileID: 229143139}
   m_Father: {fileID: 503141812}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -25051,6 +24762,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416973556}
   m_CullTransparentMesh: 0
+--- !u!114 &1416973560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416973556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cbbf273afeee6441bf55dae8879a65c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1424126061
 GameObject:
   m_ObjectHideFlags: 0
@@ -25130,72 +24853,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424126061}
   m_CullTransparentMesh: 0
---- !u!1 &1424495410
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1424495411}
-  - component: {fileID: 1424495412}
-  m_Layer: 0
-  m_Name: AchievementsPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1424495411
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424495410}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1424495412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424495410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 683ce11c09516d742b492a04ea871cbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firstPage: {fileID: 2094485063}
-  secondPage: {fileID: 2104419167}
-  thirdPage: {fileID: 504267449}
-  D_Mission_Complete: {fileID: 1424126063}
-  C_Mission_Complete: {fileID: 1706916191}
-  B_Mission_Complete: {fileID: 652453684}
-  A_Mission_Complete: {fileID: 182483139}
-  S_Mission_Complete: {fileID: 1695498371}
-  ABCD_Mission_Complete: {fileID: 1632636965}
-  C_Bonus_Complete: {fileID: 1509980669}
-  B_Bonus_Complete: {fileID: 1709806404}
-  FourB_Artist_Complete: {fileID: 435597991}
-  GreedIsGood_Complete: {fileID: 1971530835}
-  UnluckyLotto_Complete: {fileID: 1499456054}
-  RareCollector_Complete: {fileID: 885748997}
-  TeemoBefore15_Complete: {fileID: 203701665}
-  FiveSameA_Complete: {fileID: 1801132937}
-  XSABCD_Complete: {fileID: 1611308864}
-  TripleC_Complete: {fileID: 1823531392}
-  All_DA_Complete: {fileID: 1196873059}
-  Rare_Seller_Complete: {fileID: 1694588975}
-  C_Bonus_Description: {fileID: 582511909}
-  B_Bonus_Description: {fileID: 1699383246}
 --- !u!1 &1424884569
 GameObject:
   m_ObjectHideFlags: 0
@@ -25587,7 +25244,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: ActivateUpgrade
         m_Mode: 1
         m_Arguments:
@@ -25716,7 +25373,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 105532346}
+      - m_Target: {fileID: 1820456377}
         m_MethodName: ToggleAchievementsPanel
         m_Mode: 1
         m_Arguments:
@@ -26079,7 +25736,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1938995068}
+      - m_Target: {fileID: 1130628302}
         m_MethodName: UpgradeInfantry
         m_Mode: 1
         m_Arguments:
@@ -26475,7 +26132,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 503141812}
-  m_RootOrder: 8
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -26522,8 +26179,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1259011805}
-        m_MethodName: CloseUnitSelectionPanelButton
+      - m_Target: {fileID: 1364175435}
+        m_MethodName: HideUnitSelectionPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26783,6 +26440,7 @@ GameObject:
   - component: {fileID: 1551689746}
   - component: {fileID: 1551689745}
   - component: {fileID: 1551689747}
+  - component: {fileID: 1551689748}
   m_Layer: 5
   m_Name: RevealHidePanel
   m_TagString: Untagged
@@ -26807,7 +26465,7 @@ RectTransform:
   - {fileID: 1032157818}
   - {fileID: 648942599}
   m_Father: {fileID: 503141812}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -26834,7 +26492,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26874,6 +26532,23 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &1551689748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551689743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99710e19adcc664b9997897069295c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShopPanel: {fileID: 1416973557}
+  UpgradePanel: {fileID: 1130628298}
+  HarvestersPanel: {fileID: 966704939}
+  BonusPanel: {fileID: 1078750314}
+  AdminPanel: {fileID: 2030529598}
 --- !u!1 &1554287415
 GameObject:
   m_ObjectHideFlags: 0
@@ -27381,7 +27056,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: ScrollUpgradeRight
         m_Mode: 1
         m_Arguments:
@@ -28466,7 +28141,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseWall_S
         m_Mode: 1
         m_Arguments:
@@ -28753,7 +28428,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseAcid_S
         m_Mode: 1
         m_Arguments:
@@ -28835,9 +28510,9 @@ RectTransform:
   m_Father: {fileID: 1364175431}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -60}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1668127879
@@ -28916,15 +28591,15 @@ MonoBehaviour:
   upgradeManager: {fileID: 580455629}
   unitMixer: {fileID: 1539476921}
   achievementManager: {fileID: 134736263}
-  unitSelectionPanel: {fileID: 1259011805}
-  gameDataPanel: {fileID: 510120068}
-  shopPanel: {fileID: 1949779998}
-  upgradePanel: {fileID: 1938995068}
-  harvesterPanel: {fileID: 1790972474}
-  bonusPanel: {fileID: 165212334}
-  achievementsPanel: {fileID: 1424495412}
-  messageQueue: {fileID: 10677679}
-  adminPanel: {fileID: 967735665}
+  unitSelectionPanel: {fileID: 1364175435}
+  gameDataPanel: {fileID: 124234335}
+  shopPanel: {fileID: 1416973560}
+  upgradePanel: {fileID: 1130628302}
+  harvesterPanel: {fileID: 966704942}
+  bonusPanel: {fileID: 1078750317}
+  achievementsPanel: {fileID: 2014129364}
+  messageQueue: {fileID: 533853556}
+  adminPanel: {fileID: 2030529599}
   playerUnitMovementAllowed: 0
   playerUnitSelected: {fileID: 0}
   enemyUnitSelected: {fileID: 0}
@@ -30164,9 +29839,9 @@ RectTransform:
   m_Father: {fileID: 1364175431}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -480}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1777596387
@@ -30402,52 +30077,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1786690107}
   m_CullTransparentMesh: 0
---- !u!1 &1790972472
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1790972473}
-  - component: {fileID: 1790972474}
-  m_Layer: 0
-  m_Name: HarvesterPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1790972473
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790972472}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1790972474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790972472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6895ac8a726cce248ad2eefbb6db63f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unallocatedHarvesters: {fileID: 866852630}
-  mineralHarvesters: {fileID: 751019545}
-  gasHarvesters: {fileID: 2020266239}
 --- !u!1 &1791436233
 GameObject:
   m_ObjectHideFlags: 0
@@ -30861,6 +30490,7 @@ GameObject:
   - component: {fileID: 1820456376}
   - component: {fileID: 1820456375}
   - component: {fileID: 1820456374}
+  - component: {fileID: 1820456377}
   m_Layer: 5
   m_Name: InfoPanel
   m_TagString: Untagged
@@ -30949,6 +30579,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820456372}
   m_CullTransparentMesh: 0
+--- !u!114 &1820456377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820456372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccd80e20940ba7443816e171868b3b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GuidancePanel: {fileID: 391758124}
+  AchievementsPanel: {fileID: 2014129361}
 --- !u!1 &1821483165
 GameObject:
   m_ObjectHideFlags: 0
@@ -31607,65 +31251,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929868906}
   m_CullTransparentMesh: 0
---- !u!1 &1938995066
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1938995067}
-  - component: {fileID: 1938995068}
-  m_Layer: 0
-  m_Name: UpgradePanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1938995067
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938995066}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1938995068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1938995066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6fecd354c8ad5343b6ce78fc249ebce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InfantryLevel: {fileID: 1959136233}
-  MechLevel: {fileID: 1106163380}
-  LaserLevel: {fileID: 142526048}
-  PsionicLevel: {fileID: 1956783390}
-  AcidLevel: {fileID: 453436548}
-  BladeLevel: {fileID: 2045839248}
-  MagicLevel: {fileID: 408442156}
-  FlameLevel: {fileID: 401825465}
-  InfantryCost: {fileID: 507520227}
-  MechCost: {fileID: 909088748}
-  LaserCost: {fileID: 1731277888}
-  PsionicCost: {fileID: 1912802477}
-  AcidCost: {fileID: 1486202357}
-  BladeCost: {fileID: 1442105802}
-  MagicCost: {fileID: 1615265249}
-  FlameCost: {fileID: 1745499267}
 --- !u!1 &1942225619
 GameObject:
   m_ObjectHideFlags: 0
@@ -31741,49 +31326,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1942225619}
   m_CullTransparentMesh: 0
---- !u!1 &1949779996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1949779997}
-  - component: {fileID: 1949779998}
-  m_Layer: 0
-  m_Name: ShopPanel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1949779997
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949779996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1243641833}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1949779998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949779996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cbbf273afeee6441bf55dae8879a65c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1949859923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32445,7 +31987,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 457412631}
+      - m_Target: {fileID: 391758127}
         m_MethodName: ScrollPageLeft
         m_Mode: 1
         m_Arguments:
@@ -32653,7 +32195,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165212334}
+      - m_Target: {fileID: 1078750317}
         m_MethodName: PurchaseMech_A
         m_Mode: 1
         m_Arguments:
@@ -32782,7 +32324,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1949779998}
+      - m_Target: {fileID: 1416973560}
         m_MethodName: PurchasePiano
         m_Mode: 1
         m_Arguments:
@@ -33076,6 +32618,7 @@ GameObject:
   - component: {fileID: 2014129361}
   - component: {fileID: 2014129363}
   - component: {fileID: 2014129362}
+  - component: {fileID: 2014129364}
   m_Layer: 5
   m_Name: AchievementsPanel
   m_TagString: Untagged
@@ -33142,6 +32685,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014129360}
   m_CullTransparentMesh: 0
+--- !u!114 &2014129364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014129360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 683ce11c09516d742b492a04ea871cbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstPage: {fileID: 2094485063}
+  secondPage: {fileID: 2104419167}
+  thirdPage: {fileID: 504267449}
+  D_Mission_Complete: {fileID: 1424126063}
+  C_Mission_Complete: {fileID: 1706916191}
+  B_Mission_Complete: {fileID: 652453684}
+  A_Mission_Complete: {fileID: 182483139}
+  S_Mission_Complete: {fileID: 1695498371}
+  ABCD_Mission_Complete: {fileID: 1632636965}
+  C_Bonus_Complete: {fileID: 1509980669}
+  B_Bonus_Complete: {fileID: 1709806404}
+  FourB_Artist_Complete: {fileID: 435597991}
+  GreedIsGood_Complete: {fileID: 1971530835}
+  UnluckyLotto_Complete: {fileID: 1499456054}
+  RareCollector_Complete: {fileID: 885748997}
+  TeemoBefore15_Complete: {fileID: 203701665}
+  FiveSameA_Complete: {fileID: 1801132937}
+  XSABCD_Complete: {fileID: 1611308864}
+  TripleC_Complete: {fileID: 1823531392}
+  All_DA_Complete: {fileID: 1196873059}
+  Rare_Seller_Complete: {fileID: 1694588975}
+  C_Bonus_Description: {fileID: 582511909}
+  B_Bonus_Description: {fileID: 1699383246}
 --- !u!1 &2020266237
 GameObject:
   m_ObjectHideFlags: 0
@@ -33232,6 +32810,7 @@ GameObject:
   - component: {fileID: 2030529598}
   - component: {fileID: 2030529601}
   - component: {fileID: 2030529600}
+  - component: {fileID: 2030529599}
   m_Layer: 5
   m_Name: AdminPanel
   m_TagString: Untagged
@@ -33255,13 +32834,30 @@ RectTransform:
   - {fileID: 606917440}
   - {fileID: 826841698}
   m_Father: {fileID: 503141812}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 400, y: 0}
   m_SizeDelta: {x: 500, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2030529599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030529597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc801054fae180469e5302b583794df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rankText: {fileID: 622397692}
+  numberText: {fileID: 1710060970}
+  enemyLevelText: {fileID: 1424884571}
+  specialEnemyText: {fileID: 1044217464}
+  upgradeText: {fileID: 1821483167}
 --- !u!114 &2030529600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33414,9 +33010,9 @@ RectTransform:
   m_Father: {fileID: 1364175431}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -355}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2036483865
@@ -33459,7 +33055,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1259011805}
+      - m_Target: {fileID: 1364175435}
         m_MethodName: MoveUnitButton
         m_Mode: 1
         m_Arguments:
@@ -33742,7 +33338,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1949779998}
+      - m_Target: {fileID: 1416973560}
         m_MethodName: PurchaseTokenLotto
         m_Mode: 1
         m_Arguments:
@@ -34639,9 +34235,9 @@ RectTransform:
   m_Father: {fileID: 1364175431}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -260}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2099567490
@@ -34955,7 +34551,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: ScrollUpgradeLeft
         m_Mode: 1
         m_Arguments:
@@ -35317,7 +34913,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1938995068}
+      - m_Target: {fileID: 1130628302}
         m_MethodName: UpgradeBlade
         m_Mode: 1
         m_Arguments:
@@ -35525,7 +35121,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 967735665}
+      - m_Target: {fileID: 2030529599}
         m_MethodName: ScrollRankRight
         m_Mode: 1
         m_Arguments:

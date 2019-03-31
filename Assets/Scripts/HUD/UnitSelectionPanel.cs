@@ -10,7 +10,7 @@ public class UnitSelectionPanel : MonoBehaviour {
 
 
     // ---------- Fields ----------
-    public RectTransform unitSelectionPanel;
+    public Transform unitSelectionPanel;
     public Button closeUnitSelectionPanelButton;
 
     public Text textSlot1;
