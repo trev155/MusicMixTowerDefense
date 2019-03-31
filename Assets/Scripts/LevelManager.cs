@@ -41,6 +41,7 @@ public class LevelManager : MonoBehaviour {
         
         levelHasStarted = true;
         currentLevel = level;
+        GameEngine.GetInstance().gameDataPanel.UpdateLevelText(level);
         StartCoroutine(StartLevelLoop(level));
         timeLeftInLevel = numUnitsPerLevel * spawnDelay;
         // TODO add more time to the level based on the difficulty setting

@@ -39,8 +39,8 @@ public class ShopPanel : MonoBehaviour {
         GameEngine.GetInstance().DecreaseTokenCount(1);
         GameEngine.GetInstance().IncreaseGas(gasIncrement);
         GameEngine.GetInstance().gameDataPanel.UpdateGasText(GameEngine.GetInstance().gas);
-
-        GameEngine.GetInstance().messageQueue.PushMessage("[+" + gasIncrement + " Gas]", MessageType.INFO);
+        
+        GameEngine.GetInstance().messageQueue.PushMessage("[+" + gasIncrement + " Gas]", gasIncrement <= 60 ? MessageType.INFO : MessageType.POSITIVE);
     }
 
     public void PurchaseHarvester() {
