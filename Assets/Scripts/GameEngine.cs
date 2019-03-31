@@ -33,10 +33,13 @@ public class GameEngine : MonoBehaviour {
 
     public UnitSelectionPanel unitSelectionPanel;
     public GameDataPanel gameDataPanel;
+    public GameTabs gameTabs;
     public ShopPanel shopPanel;
     public UpgradePanel upgradePanel;
     public HarvesterPanel harvesterPanel;
     public BonusPanel bonusPanel;
+    public InfoTabs infoTabs;
+    public GuidancePanel guidancePanel;
     public AchievementsPanel achievementsPanel;
     public MessageQueue messageQueue;
     public AdminPanel adminPanel;

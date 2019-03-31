@@ -88,12 +88,12 @@
     <Compile Include="Assets\Scripts\HUD\AdminPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\BonusPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\GameDataPanel.cs" />
+    <Compile Include="Assets\Scripts\HUD\GameTabs.cs" />
     <Compile Include="Assets\Scripts\HUD\GuidancePanel.cs" />
     <Compile Include="Assets\Scripts\HUD\HarvesterPanel.cs" />
-    <Compile Include="Assets\Scripts\HUD\InfoPanel.cs" />
+    <Compile Include="Assets\Scripts\HUD\InfoTabs.cs" />
     <Compile Include="Assets\Scripts\HUD\MessageQueue.cs" />
     <Compile Include="Assets\Scripts\HUD\MessageType.cs" />
-    <Compile Include="Assets\Scripts\HUD\RevealHidePanel.cs" />
     <Compile Include="Assets\Scripts\HUD\ShopPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\UnitSelectionPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\UpgradePanel.cs" />

@@ -10457,7 +10457,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619477377}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10469,8 +10469,8 @@ Transform:
   - {fileID: 1214720794}
   - {fileID: 580455628}
   - {fileID: 134736262}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1598103777}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &621972290
 GameObject:
@@ -26442,7 +26442,7 @@ GameObject:
   - component: {fileID: 1551689747}
   - component: {fileID: 1551689748}
   m_Layer: 5
-  m_Name: RevealHidePanel
+  m_Name: GameTabs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27365,6 +27365,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1055173339}
+  - {fileID: 619477378}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28593,10 +28594,13 @@ MonoBehaviour:
   achievementManager: {fileID: 134736263}
   unitSelectionPanel: {fileID: 1364175435}
   gameDataPanel: {fileID: 124234335}
+  gameTabs: {fileID: 1551689748}
   shopPanel: {fileID: 1416973560}
   upgradePanel: {fileID: 1130628302}
   harvesterPanel: {fileID: 966704942}
   bonusPanel: {fileID: 1078750317}
+  infoTabs: {fileID: 1820456377}
+  guidancePanel: {fileID: 391758127}
   achievementsPanel: {fileID: 2014129364}
   messageQueue: {fileID: 533853556}
   adminPanel: {fileID: 2030529599}
@@ -30492,7 +30496,7 @@ GameObject:
   - component: {fileID: 1820456374}
   - component: {fileID: 1820456377}
   m_Layer: 5
-  m_Name: InfoPanel
+  m_Name: InfoTabs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
 
-public class InfoPanel : MonoBehaviour {
+public class InfoTabs : MonoBehaviour {
     public Transform GuidancePanel;
     public Transform AchievementsPanel;
 
+    public void CloseAllInfoTabs() {
+        GuidancePanel.gameObject.SetActive(false);
+        AchievementsPanel.gameObject.SetActive(false);
+    }
+
     public void ToggleGuidancePanel() {
+        GameEngine.GetInstance().gameTabs.CloseAllGameTabs();
         AchievementsPanel.gameObject.SetActive(false);
 
         bool isActive = GuidancePanel.gameObject.activeSelf;
@@ -12,6 +18,7 @@ public class InfoPanel : MonoBehaviour {
     }
 
     public void ToggleAchievementsPanel() {
+        GameEngine.GetInstance().gameTabs.CloseAllGameTabs();
         GuidancePanel.gameObject.SetActive(false);
 
         bool isActive = AchievementsPanel.gameObject.activeSelf;

@@ -1,13 +1,22 @@
 ﻿using UnityEngine;
 
-public class RevealHidePanel : MonoBehaviour {
+public class GameTabs : MonoBehaviour {
     public Transform ShopPanel;
     public Transform UpgradePanel;
     public Transform HarvestersPanel;
     public Transform BonusPanel;
     public Transform AdminPanel;
 
+    public void CloseAllGameTabs() {
+        ShopPanel.gameObject.SetActive(false);
+        UpgradePanel.gameObject.SetActive(false);
+        HarvestersPanel.gameObject.SetActive(false);
+        BonusPanel.gameObject.SetActive(false);
+        AdminPanel.gameObject.SetActive(false);
+    }
+
     public void ToggleShowShopPanel() {
+        GameEngine.GetInstance().infoTabs.CloseAllInfoTabs();
         UpgradePanel.gameObject.SetActive(false);
         HarvestersPanel.gameObject.SetActive(false);
         BonusPanel.gameObject.SetActive(false);
@@ -18,6 +27,7 @@ public class RevealHidePanel : MonoBehaviour {
     }
 
     public void ToggleShowUpgradePanel() {
+        GameEngine.GetInstance().infoTabs.CloseAllInfoTabs();
         ShopPanel.gameObject.SetActive(false);
         HarvestersPanel.gameObject.SetActive(false);
         BonusPanel.gameObject.SetActive(false);
@@ -28,6 +38,7 @@ public class RevealHidePanel : MonoBehaviour {
     }
 
     public void ToggleShowHarvestersPanel() {
+        GameEngine.GetInstance().infoTabs.CloseAllInfoTabs();
         ShopPanel.gameObject.SetActive(false);
         UpgradePanel.gameObject.SetActive(false);
         BonusPanel.gameObject.SetActive(false);
@@ -38,6 +49,7 @@ public class RevealHidePanel : MonoBehaviour {
     }
 
     public void ToggleShowBonusPanel() {
+        GameEngine.GetInstance().infoTabs.CloseAllInfoTabs();
         ShopPanel.gameObject.SetActive(false);
         UpgradePanel.gameObject.SetActive(false);
         HarvestersPanel.gameObject.SetActive(false);
@@ -48,6 +60,7 @@ public class RevealHidePanel : MonoBehaviour {
     }
 
     public void ToggleShowAdminPanel() {
+        GameEngine.GetInstance().infoTabs.CloseAllInfoTabs();
         ShopPanel.gameObject.SetActive(false);
         UpgradePanel.gameObject.SetActive(false);
         HarvestersPanel.gameObject.SetActive(false);
