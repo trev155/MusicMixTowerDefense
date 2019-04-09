@@ -112,6 +112,7 @@
     <Compile Include="Assets\Scripts\Units\PlayerUnitData.cs" />
     <Compile Include="Assets\Scripts\Units\PlayerUnitRank.cs" />
     <Compile Include="Assets\Scripts\Units\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Units\SplashDamageCircle.cs" />
     <Compile Include="Assets\Scripts\Units\Unit.cs" />
     <Compile Include="Assets\Scripts\Units\UnitClass.cs" />
     <Compile Include="Assets\Scripts\Units\UnitFactory.cs" />

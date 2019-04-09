@@ -143,10 +143,11 @@ public class UnitSpawner : MonoBehaviour {
     public EnemyUnit CreateEnemyUnit(int level) {
         EnemyUnitData enemyUnitData = unitFactory.CreateEnemyUnitData(level);
         EnemyUnit enemy = Instantiate(enemyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
+
         enemy.InitializeProperties(enemyUnitData);
         SetObjectName(enemy.gameObject);
 
-        Transform enemyUnitCircle = Instantiate(enemyUnitSelectedCircle, enemy.transform);
+        Transform enemyUnitCircle = enemy.transform.GetChild(0);
         enemy.selectedUnitCircle = enemyUnitCircle;
 
         return enemy;
@@ -159,7 +160,7 @@ public class UnitSpawner : MonoBehaviour {
         enemy.InitializeProperties(enemyUnitData);
         SetObjectName(enemy.gameObject);
 
-        Transform enemyUnitCircle = Instantiate(enemyUnitSelectedCircle, enemy.transform);
+        Transform enemyUnitCircle = enemy.transform.GetChild(0);
         enemy.selectedUnitCircle = enemyUnitCircle;
 
         // Initialize health regenerator

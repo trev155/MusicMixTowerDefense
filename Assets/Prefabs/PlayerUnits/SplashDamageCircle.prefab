@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1013747370527916468}
   - component: {fileID: 8645339870320922671}
-  - component: {fileID: 2577056161673162234}
-  - component: {fileID: 3047392288175296918}
+  - component: {fileID: 5285429139616991691}
+  - component: {fileID: 1235893197175910437}
   m_Layer: 0
-  m_Name: Projectile
-  m_TagString: Projectile
+  m_Name: SplashDamageCircle
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 9086067266075206890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ecab1f4abbd080245a21f8da18b7c9b7, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5087665, g: 0.9716981, b: 0.5506873, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2577056161673162234
+--- !u!114 &5285429139616991691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,17 +90,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 9086067266075206890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd2938d6adb45a45853645581884764, type: 3}
+  m_Script: {fileID: 11500000, guid: fa74dc318d6534c408f531af23234158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetUnit: {fileID: 0}
-  origin: {fileID: 0}
-  movementSpeed: 0
-  attackDamage: 0
-  splashDamageCircle: {fileID: 1013747370527916468, guid: 69994f3277ad7cc4ca13fdd8a3686eef,
-    type: 3}
---- !u!61 &3047392288175296918
-BoxCollider2D:
+  projectile: {fileID: 0}
+  damage: 0
+--- !u!58 &1235893197175910437
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -113,15 +109,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 0.16, y: 0.16}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.49999997

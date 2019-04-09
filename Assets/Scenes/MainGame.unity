@@ -26182,7 +26182,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1364175435}
-        m_MethodName: HideUnitSelectionPanel
+        m_MethodName: CloseUnitSelectionPanelButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

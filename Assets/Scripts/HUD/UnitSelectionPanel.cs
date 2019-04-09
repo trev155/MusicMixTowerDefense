@@ -52,12 +52,11 @@ public class UnitSelectionPanel : MonoBehaviour {
         closeUnitSelectionPanelButton.gameObject.SetActive(true);
     }
 
-    public void HideUnitSelectionPanel() {
-        unitSelectionPanel.gameObject.SetActive(false);
-        closeUnitSelectionPanelButton.gameObject.SetActive(false);
+    public void CloseUnitSelectionPanelButton() {
+        CloseUnitSelectionPanel();
     }
 
-    public void CloseUnitSelectionPanelButton() {
+    public void CloseUnitSelectionPanel() {
         HideUnitSelectionPanel();
         GameEngine.GetInstance().DisablePlayerUnitMovement();
         if (GameEngine.GetInstance().playerUnitSelected != null) {
@@ -67,6 +66,11 @@ public class UnitSelectionPanel : MonoBehaviour {
             Utils.SetAlpha(GameEngine.GetInstance().enemyUnitSelected.selectedUnitCircle, EnemyUnit.UNSELECTED_ALPHA);
         }
         GameEngine.GetInstance().ClearUnitSelectionObjects();
+    }
+
+    private void HideUnitSelectionPanel() {
+        unitSelectionPanel.gameObject.SetActive(false);
+        closeUnitSelectionPanelButton.gameObject.SetActive(false);
     }
 
     // Unit selection panel data
