@@ -60,22 +60,28 @@ public class Projectile : MonoBehaviour {
             damageToInflict = 1;
         }
         enemyUnit.currentHealth -= damageToInflict;
-        
         if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
             GameEngine.GetInstance().unitSelectionPanel.UpdateSelectedUnitDataPanel(enemyUnit);
         }
         
         if (enemyUnit.currentHealth <= 0) {
-            GameEngine.GetInstance().IncrementKills();
-            RemoveCurrentTargetForAllUnitsAttackingTarget(enemyUnit);
-            if (enemyUnit.level == 0) {
-                KilledSpecialEnemyUnit(enemyUnit.displayName);
-            }
-            Destroy(enemyUnit.gameObject);
+            HandleEnemyUnitDeath(enemyUnit);
+        }
+    }
 
-            if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
-                GameEngine.GetInstance().unitSelectionPanel.CloseUnitSelectionPanel();
-            }
+    private void HandleEnemyUnitDeath(EnemyUnit enemyUnit) {
+        GameEngine.GetInstance().IncrementKills();
+        GameEngine.GetInstance().DecrementEnemyUnitCount();
+
+        RemoveCurrentTargetForAllUnitsAttackingTarget(enemyUnit);
+
+        if (enemyUnit.level == 0) {
+            KilledSpecialEnemyUnit(enemyUnit.displayName);
+        }
+        Destroy(enemyUnit.gameObject);
+
+        if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
+            GameEngine.GetInstance().unitSelectionPanel.CloseUnitSelectionPanel();
         }
     }
 

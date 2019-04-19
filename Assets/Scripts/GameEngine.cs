@@ -55,6 +55,8 @@ public class GameEngine : MonoBehaviour {
     public int tokenCount;
     public int kills;
     public GlobalTimer globalTimer;
+    public int enemyUnitCount;
+
     public int unallocatedHarvesters;
     public int mineralHarvesters;
     public int gasHarvesters;
@@ -282,5 +284,26 @@ public class GameEngine : MonoBehaviour {
     public void DecrementSBonusTokenCount() {
         this.sChoosers -= 1;
         this.bonusPanel.UpdateSTokenCount(this.sChoosers);
+    }
+
+    // Enemy Unit Count
+    public void IncrementEnemyUnitCount() {
+        this.enemyUnitCount++;
+        this.gameDataPanel.UpdateEnemyUnitCountText(this.enemyUnitCount);
+    }
+
+    public void DecrementEnemyUnitCount() {
+        this.enemyUnitCount--;
+        this.gameDataPanel.UpdateEnemyUnitCountText(this.enemyUnitCount);
+
+        if (this.enemyUnitCount >= 100) {
+            GameOver();
+        }
+    }
+
+    private void GameOver() {
+        // TODO
+        Debug.Log("GAME OVER");
+        this.messageQueue.PushMessage("Game Over", MessageType.NEGATIVE);
     }
 }

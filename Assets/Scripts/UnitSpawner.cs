@@ -150,6 +150,8 @@ public class UnitSpawner : MonoBehaviour {
         Transform enemyUnitCircle = enemy.transform.GetChild(0);
         enemy.selectedUnitCircle = enemyUnitCircle;
 
+        GameEngine.GetInstance().IncrementEnemyUnitCount();
+
         return enemy;
     }
 

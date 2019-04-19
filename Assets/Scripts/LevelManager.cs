@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour {
     private void Update() {
         if (levelHasStarted) {
             timeLeftInLevel -= Time.deltaTime;
-            GameEngine.GetInstance().gameDataPanel.SetLevelTimerText(ConvertTimeToString(timeLeftInLevel));
+            GameEngine.GetInstance().gameDataPanel.UpdateLevelTimeText(ConvertTimeToString(timeLeftInLevel));
         }
 
         if (timeLeftInLevel < 0) {

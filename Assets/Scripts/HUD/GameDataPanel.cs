@@ -11,15 +11,24 @@ public class GameDataPanel : MonoBehaviour {
     public Text killCounterText;
     public Text globalGameTimerText;
     public Text levelTimerText;
+    public Text enemyUnitCountText;
 
 
     // ---------- Methods ----------
     private void Start() {
-        mineralsText.text = "Minerals: " + GameEngine.GetInstance().minerals;
-        gasText.text = "Gas: " + GameEngine.GetInstance().gas;
-        killCounterText.text = "Kills: 0";
-        levelTimerText.text = "Level Time Left: ";
-        tokenCountText.text = "Tokens: " + GameEngine.GetInstance().tokenCount;
+        InitializeDefaults();
+    }
+
+
+    private void InitializeDefaults() {
+        UpdateMineralsText(GameEngine.GetInstance().minerals);
+        UpdateGasText(GameEngine.GetInstance().gas);
+        UpdateLevelText(0);
+        UpdateTokenCountText(GameEngine.GetInstance().tokenCount);
+        UpdateKillCounterText(0);
+        UpdateGlobalGameTimeText("");
+        UpdateLevelTimeText("");
+        UpdateEnemyUnitCountText(0);
     }
 
     public void UpdateMineralsText(int minerals) {
@@ -46,7 +55,11 @@ public class GameDataPanel : MonoBehaviour {
         globalGameTimerText.text = "Game Time: " + timeStr;
     }
 
-    public void SetLevelTimerText(string timeStr) {
+    public void UpdateLevelTimeText(string timeStr) {
         levelTimerText.text = "Level Time Left: " + timeStr;
+    }
+
+    public void UpdateEnemyUnitCountText(int enemyCount) {
+        enemyUnitCountText.text = "Enemy Units: " + enemyCount;
     }
 }
