@@ -19,4 +19,16 @@ public class AttackRangeCircle : MonoBehaviour {
             enemyUnitsInRange.Remove(collision.gameObject.GetComponent<EnemyUnit>());
         }
     }
+
+    /*
+     * Remove all null objects in the internal list.
+     */
+    public void Cleanup() {
+        Debug.Log("Having to clean up attack range circle's internal list for unit: " + playerUnit.name);
+        foreach (EnemyUnit enemyUnit in enemyUnitsInRange) {
+            if (enemyUnit == null) {
+                enemyUnitsInRange.Remove(enemyUnit);
+            }
+        }
+    }
 }

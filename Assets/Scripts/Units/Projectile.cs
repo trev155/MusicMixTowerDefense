@@ -3,7 +3,10 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
     //---------- Fields ----------
+    private static readonly float SPLASH_CIRCLE_APPEARANCE_TIME = 0.1f;
+
     public Transform splashDamageCircle;
+    public Transform largeSplashDamageCircle;
 
     public Unit targetUnit;
     public PlayerUnit origin;
@@ -38,7 +41,10 @@ public class Projectile : MonoBehaviour {
             EnemyUnit enemyUnit = targetUnit.GetComponent<EnemyUnit>();
 
             if (origin.attackType == AttackType.SPLASH) {
-                InflictSplashDamage(enemyUnit, this.attackDamage);  // this won't deal damage to the actual target, so deal with the actual target as normal
+                InflictSplashDamage(enemyUnit, this.attackDamage, splashDamageCircle);  // this won't deal damage to the actual target, so deal with the actual target as normal
+                StartCoroutine(WaitTimeBeforeInflictingDamage(enemyUnit, this.attackDamage, 0.1f));
+            } else if (origin.attackType == AttackType.LARGE_SPLASH) {
+                InflictSplashDamage(enemyUnit, this.attackDamage, largeSplashDamageCircle);
                 StartCoroutine(WaitTimeBeforeInflictingDamage(enemyUnit, this.attackDamage, 0.1f));
             } else {
                 InflictDamage(enemyUnit, this.attackDamage);
@@ -74,13 +80,17 @@ public class Projectile : MonoBehaviour {
     }
 
     // ----- Inflict Splash Damage -----
-    private void InflictSplashDamage(EnemyUnit enemyUnit, float damage) {
-        // the SplashDamageCircle will call the InflictDamage() for every unit in its radius
+    /*
+     * Creates a game object, defined by the prefab parameter 'splashDamageCirclePrefab', centered around the 'enemyUnit'.
+     * This prefab contains a SplashDamageCircle script, so this game object can be cast to a SplashDamageCircle.
+     * This SplashDamageCircle is such that any enemy unit that touches it will take Mathf.Floor('damage' / 2) damage.
+     * This game object is destroyed after a short time interval.
+     */
+    private void InflictSplashDamage(EnemyUnit enemyUnit, float damage, Transform splashDamageCirclePrefab) {
         SplashDamageCircle splashCircle = Instantiate(splashDamageCircle, enemyUnit.transform).GetComponent<SplashDamageCircle>();
         splashCircle.damage = Mathf.Floor(damage / 2);
         splashCircle.projectile = this;
-        // Splash circle appears for some time, where any units that enter its collider will be affected
-        StartCoroutine(SplashCooldownTime(0.1f, splashCircle));
+        StartCoroutine(SplashCooldownTime(SPLASH_CIRCLE_APPEARANCE_TIME, splashCircle));
     }
 
     IEnumerator SplashCooldownTime(float time, SplashDamageCircle splashCircle) {

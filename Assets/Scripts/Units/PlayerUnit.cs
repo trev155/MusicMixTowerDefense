@@ -128,9 +128,11 @@ public class PlayerUnit : Unit {
 
         foreach (EnemyUnit enemyUnit in attackRangeCircle.enemyUnitsInRange) {
             if (enemyUnit == null) {
-                Debug.Log("warning - trying to access null enemy unit!!!\n" + enemyUnit.name);
+                // TODO can this bug be handled better?
+                attackRangeCircle.Cleanup();
                 continue;
             }
+
             float distanceToEnemy = Vector2.Distance(enemyUnit.transform.position, transform.position);
             if (distanceToEnemy < lowestDistance) {
                 lowestDistance = distanceToEnemy;
