@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class GameDataPanel : MonoBehaviour {
     // ---------- Fields ----------
+    public Text gameModeText;
     public Text mineralsText;
     public Text gasText;
     public Text levelText;
@@ -29,6 +30,10 @@ public class GameDataPanel : MonoBehaviour {
         UpdateGlobalGameTimeText("");
         UpdateLevelTimeText("");
         UpdateEnemyUnitCountText(0);
+    }
+
+    public void UpdateGameModeText(GameMode gameMode) {
+        gameModeText.text = "Mode: " + Utils.CleanEnumString(gameMode.ToString());
     }
 
     public void UpdateMineralsText(int minerals) {
@@ -57,6 +62,10 @@ public class GameDataPanel : MonoBehaviour {
 
     public void UpdateLevelTimeText(string timeStr) {
         levelTimerText.text = "Level Time Left: " + timeStr;
+    }
+
+    public void SetLevelTransitionTimeText() {
+        levelTimerText.text = "Waiting for next level...";
     }
 
     public void UpdateEnemyUnitCountText(int enemyCount) {

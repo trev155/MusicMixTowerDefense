@@ -15,9 +15,15 @@ public class LevelManager : MonoBehaviour {
     public bool levelHasStarted = false;
     public bool levelTransitionPeriod = false;
     public float timeLeftInLevel;
-    
+
 
     // ---------- Methods ----------
+    public IEnumerator WaitBeforeStartingGame(float t) {
+        Debug.Log("Waiting at game start, for time: " + t + " seconds.");
+        yield return new WaitForSeconds(t);
+        StartLevel(1);
+    }
+
     private void Update() {
         if (levelHasStarted) {
             timeLeftInLevel -= Time.deltaTime;
@@ -44,7 +50,6 @@ public class LevelManager : MonoBehaviour {
         GameEngine.GetInstance().gameDataPanel.UpdateLevelText(level);
         StartCoroutine(StartLevelLoop(level));
         timeLeftInLevel = numUnitsPerLevel * spawnDelay;
-        // TODO add more time to the level based on the difficulty setting
     }
 
     private IEnumerator StartLevelLoop(int level) {
@@ -77,15 +82,28 @@ public class LevelManager : MonoBehaviour {
     }
 
     private IEnumerator LevelTransition() {
-        // TODO time should depend on difficulty setting
-        Debug.Log("Transitioning between levels.");
-        yield return new WaitForSeconds(15.0f);
+        float timeToWait = GetWaitTimeBetweenLevels();
+        Debug.Log("Calling WaitBetweenLevels() -> " + timeToWait + " seconds");
+        GameEngine.GetInstance().gameDataPanel.SetLevelTransitionTimeText();
+        yield return new WaitForSeconds(timeToWait);
+
         StartLevel(currentLevel + 1);
     }
 
-    public IEnumerator WaitBeforeStartingGame(float t) {
-        Debug.Log("Waiting at game start, for time: " + t + " seconds.");
-        yield return new WaitForSeconds(t);
-        StartLevel(1);
+    private float GetWaitTimeBetweenLevels() {
+        switch (GameEngine.GetInstance().gameMode) {
+            case GameMode.EASY:
+                return 20.0f;
+            case GameMode.NORMAL:
+                return 12.0f;
+            case GameMode.HARD:
+                return 8.0f;
+            case GameMode.NONSTOP:
+                return 4.0f;
+            case GameMode.PRO:
+                return 0.1f;
+            default:
+                throw new GameplayException("Unrecognized game mode");
+        }
     }
 }

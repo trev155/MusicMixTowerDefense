@@ -78,6 +78,10 @@ public class GameEngine : MonoBehaviour {
     // RNG
     public System.Random random = new System.Random();
 
+    // Difficulty
+    public GameMode gameMode;
+
+
     //---------- Initialization ----------
     private void Awake() {
         InitializeSingleton();
@@ -107,6 +111,10 @@ public class GameEngine : MonoBehaviour {
         
         this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
 
+        // Difficulty
+        this.gameMode = SceneDataTransfer.CurrentGameMode;
+        gameDataPanel.UpdateGameModeText(this.gameMode);
+        
         // Start First Level
         StartCoroutine(levelManager.WaitBeforeStartingGame(5.0f));
     }
