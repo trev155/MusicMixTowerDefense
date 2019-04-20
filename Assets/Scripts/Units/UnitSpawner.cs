@@ -144,6 +144,11 @@ public class UnitSpawner : MonoBehaviour {
 
         enemy.InitializeProperties(enemyUnitData);
         SetObjectName(enemy.gameObject);
+        if (GameEngine.GetInstance().gameMode == GameMode.EASY) {
+            enemy.currentHealth = Mathf.Floor(enemy.maxHealth * 0.6f);
+        } else if (GameEngine.GetInstance().gameMode == GameMode.NORMAL) {
+            enemy.currentHealth = Mathf.Floor(enemy.maxHealth * 0.8f);
+        }
 
         Transform enemyUnitCircle = enemy.transform.GetChild(0);
         enemy.selectedUnitCircle = enemyUnitCircle;
