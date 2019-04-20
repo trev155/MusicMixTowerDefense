@@ -18,6 +18,8 @@ public class GameEngine : MonoBehaviour {
     private readonly int INITIAL_A_CHOOSERS = 3;
     private readonly int INITIAL_S_CHOOSERS = 1;
 
+    private readonly int MAX_ENEMY_UNITS = 100;
+
     // Singleton field
     public static GameEngine Instance { get; private set; } = null;
     public static GameEngine GetInstance() {
@@ -43,6 +45,7 @@ public class GameEngine : MonoBehaviour {
     public AchievementsPanel achievementsPanel;
     public MessageQueue messageQueue;
     public AdminPanel adminPanel;
+    public GameOverPanel gameOverPanel;
 
     // Unit Selection
     public bool playerUnitMovementAllowed = false;
@@ -142,8 +145,8 @@ public class GameEngine : MonoBehaviour {
         this.gameDataPanel.UpdateKillCounterText(this.kills);
 
         if (this.kills % 20 == 0) {
-            Debug.Log("20 Kills = 1 Token");
-            this.tokenCount += 1;
+            this.messageQueue.PushMessage("20 Kills = 1 Token", MessageType.INFO);
+            this.tokenCount++;
             this.gameDataPanel.UpdateTokenCountText(this.tokenCount);
         }
 
@@ -215,41 +218,41 @@ public class GameEngine : MonoBehaviour {
 
     // Harvesters
     public void AddHarvester() {
-        this.unallocatedHarvesters += 1;
+        this.unallocatedHarvesters++;
         this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
 
         this.achievementManager.CheckAchievementsForHarvesterBonus();
     }
 
     public void AllocateMineralHarvester() {
-        this.unallocatedHarvesters -= 1;
+        this.unallocatedHarvesters--;
         this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
 
-        this.mineralHarvesters += 1;
+        this.mineralHarvesters++;
         this.harvesterPanel.SetMineralHarvesters(this.mineralHarvesters);
     }
 
     public void AllocateGasHarvester() {
-        this.unallocatedHarvesters -= 1;
+        this.unallocatedHarvesters--;
         this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
 
-        this.gasHarvesters += 1;
+        this.gasHarvesters++;
         this.harvesterPanel.SetGasHarvesters(this.gasHarvesters);
     }
 
     public void DeallocateMineralHarvester() {
-        this.unallocatedHarvesters += 1;
+        this.unallocatedHarvesters++;
         this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
 
-        this.mineralHarvesters -= 1;
+        this.mineralHarvesters--;
         this.harvesterPanel.SetMineralHarvesters(this.mineralHarvesters);
     }
 
     public void DeallocateGasHarvester() {
-        this.unallocatedHarvesters += 1;
+        this.unallocatedHarvesters++;
         this.harvesterPanel.SetUnallocatedHarvesters(this.unallocatedHarvesters);
 
-        this.gasHarvesters -= 1;
+        this.gasHarvesters--;
         this.harvesterPanel.SetGasHarvesters(this.gasHarvesters);
     }
 
@@ -290,20 +293,21 @@ public class GameEngine : MonoBehaviour {
     public void IncrementEnemyUnitCount() {
         this.enemyUnitCount++;
         this.gameDataPanel.UpdateEnemyUnitCountText(this.enemyUnitCount);
+
+        if (this.enemyUnitCount >= MAX_ENEMY_UNITS) {
+            GameOver();
+        }
     }
 
     public void DecrementEnemyUnitCount() {
         this.enemyUnitCount--;
         this.gameDataPanel.UpdateEnemyUnitCountText(this.enemyUnitCount);
-
-        if (this.enemyUnitCount >= 100) {
-            GameOver();
-        }
     }
 
     private void GameOver() {
-        // TODO
-        Debug.Log("GAME OVER");
         this.messageQueue.PushMessage("Game Over", MessageType.NEGATIVE);
+        Time.timeScale = 0;
+        gameOverPanel.transform.gameObject.SetActive(true);
+        gameOverPanel.SetEndGameStats();
     }
 }

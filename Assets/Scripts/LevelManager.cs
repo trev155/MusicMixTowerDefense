@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour {
     // ---------- Fields ----------
     private static readonly float spawnDelay = 2.0f;
     private static readonly int numUnitsPerLevel = 5;
-    private int currentLevel = 0;
+    public int currentLevel = 0;
 
     public bool levelHasStarted = false;
     public bool levelTransitionPeriod = false;
