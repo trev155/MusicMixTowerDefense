@@ -24,11 +24,9 @@ public class UnitSpawner : MonoBehaviour {
     public Transform bottomInnerWall;
     
     private static int uid = 0;
-    private System.Random random;
 
     // ---------- Methods ----------
     private void Awake() {
-        random = new System.Random();
         this.unitFactory = new UnitFactory();
     }
 
@@ -104,37 +102,37 @@ public class UnitSpawner : MonoBehaviour {
     }
 
     public PlayerUnit CreateRandomDUnit() {
-        int selection = random.Next(0, 6);
+        int selection = GameEngine.GetInstance().random.Next(0, 6);
         PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.D, selection);
         return playerUnit;
     }        
     
     public PlayerUnit CreateRandomCUnit() {
-        int selection = random.Next(0, 6);
+        int selection = GameEngine.GetInstance().random.Next(0, 6);
         PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.C, selection);
         return playerUnit;
     }
 
     public PlayerUnit CreateRandomBUnit() {
-        int selection = random.Next(0, 8);
+        int selection = GameEngine.GetInstance().random.Next(0, 8);
         PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.B, selection);
         return playerUnit;
     }
 
     public PlayerUnit CreateRandomAUnit() {
-        int selection = random.Next(0, 8);
+        int selection = GameEngine.GetInstance().random.Next(0, 8);
         PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.A, selection);
         return playerUnit;
     }
 
     public PlayerUnit CreateRandomSUnit() {
-        int selection = random.Next(0, 8);
+        int selection = GameEngine.GetInstance().random.Next(0, 8);
         PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.S, selection);
         return playerUnit;
     }
 
     public PlayerUnit CreateRandomXUnit() {
-        int selection = random.Next(0, 8);
+        int selection = GameEngine.GetInstance().random.Next(0, 8);
         PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, selection);
         return playerUnit;
     }

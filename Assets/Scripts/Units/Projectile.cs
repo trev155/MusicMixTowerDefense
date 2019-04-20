@@ -12,14 +12,8 @@ public class Projectile : MonoBehaviour {
     public PlayerUnit origin;
     public float movementSpeed;
     public float attackDamage;
-
-    private System.Random random;
-
+    
     //---------- Methods ----------
-    private void Awake() {
-        random = new System.Random();
-    }
-
     private void Update() {
         if (targetUnit == null) {
             Destroy(this.gameObject);
@@ -138,7 +132,7 @@ public class Projectile : MonoBehaviour {
     }
 
     private void GiveBountyReward() {
-        int choice = random.Next(1, 10);
+        int choice = GameEngine.GetInstance().random.Next(1, 10);
         if (choice <= 2) {
             GameEngine.GetInstance().messageQueue.PushMessage("Bounty Bonus: 2 Shop Tokens", MessageType.POSITIVE);
             GameEngine.GetInstance().IncreaseTokenCount(2);

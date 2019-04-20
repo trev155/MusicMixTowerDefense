@@ -1,14 +1,6 @@
 ﻿using UnityEngine;
 
 public class ShopPanel : MonoBehaviour {
-    // ---------- Fields ----------
-    private System.Random random;
-
-    // ---------- Methods ----------
-    private void Awake() {
-        random = new System.Random();
-    }
-
     public void CreateRandomDUnit() {
         if (GameEngine.GetInstance().tokenCount == 0) {
             GameEngine.GetInstance().messageQueue.PushMessage("Could not purchase a D unit. Requires 1 token.", MessageType.NEGATIVE);            
@@ -25,7 +17,7 @@ public class ShopPanel : MonoBehaviour {
         }
 
         int gasIncrement;
-        int option = random.Next(1, 10);
+        int option = GameEngine.GetInstance().random.Next(1, 10);
         if (option <= 4) {
             gasIncrement = 40;
         } else if (option <= 7) {
@@ -92,7 +84,7 @@ public class ShopPanel : MonoBehaviour {
         }
         GameEngine.GetInstance().DecreaseTokenCount(1);
 
-        int option = random.Next(1, 100);
+        int option = GameEngine.GetInstance().random.Next(1, 100);
         if (option <= 55) {
             GameEngine.GetInstance().messageQueue.PushMessage("Lotto: No Luck - 0 Token", MessageType.NEGATIVE);
             GameEngine.GetInstance().achievementManager.failedUnitLotto += 1;
@@ -116,7 +108,7 @@ public class ShopPanel : MonoBehaviour {
         }
         GameEngine.GetInstance().DecreaseGas(15);
 
-        int option = random.Next(1, 100);
+        int option = GameEngine.GetInstance().random.Next(1, 100);
         if (option <= 60) {
             GameEngine.GetInstance().messageQueue.PushMessage("Lotto: No unit. Unlucky.", MessageType.NEGATIVE);
         } else if (option <= 80) {

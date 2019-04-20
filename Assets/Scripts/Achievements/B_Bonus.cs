@@ -2,35 +2,9 @@
 
 public class B_Bonus : Achievement {
     public UnitClass targetClass;
-    private System.Random random;
 
     public B_Bonus() : base() {
         this.achievementName = "B Bonus";
-
-        random = new System.Random();
-        int choice = random.Next(0, 6);
-        switch (choice) {
-            case 0:
-                targetClass = UnitClass.INFANTRY;
-                break;
-            case 1:
-                targetClass = UnitClass.MECH;
-                break;
-            case 2:
-                targetClass = UnitClass.LASER;
-                break;
-            case 3:
-                targetClass = UnitClass.PSIONIC;
-                break;
-            case 4:
-                targetClass = UnitClass.ACID;
-                break;
-            case 5:
-                targetClass = UnitClass.BLADE;
-                break;
-            default:
-                throw new GameplayException("Invalid choice option. Cannot select a B Unit Class Bonus.");
-        }
     }
 
     public override bool CheckCondition() {

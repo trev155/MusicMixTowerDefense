@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class AchievementManager : MonoBehaviour {
     public List<Achievement> achievementsList;
-    public System.Random random;
 
     public int rareUnitsSold;
     public int failedUnitLotto;
@@ -31,7 +30,6 @@ public class AchievementManager : MonoBehaviour {
             new Rare_Seller()
         };
 
-        random = new System.Random();
         rareUnitsSold = 0;
         failedUnitLotto = 0;
     }
@@ -160,10 +158,42 @@ public class AchievementManager : MonoBehaviour {
     }
 
     public void SetBonusMissionObjectives() {
+        int targetClass_C = GameEngine.GetInstance().random.Next(0, 6);
+        int targetClass_B = GameEngine.GetInstance().random.Next(0, 6);
+
         C_Bonus cBonus = (C_Bonus)achievementsList[6];
+        cBonus.targetClass = ChoiceIntToUnitClass(targetClass_C);
         GameEngine.GetInstance().achievementsPanel.C_Bonus_Description.text = "Collect 3 C units of type: " + cBonus.targetClass.ToString() + ".\n(Bonus: Harvester)";
 
         B_Bonus bBonus = (B_Bonus)achievementsList[7];
+        bBonus.targetClass = ChoiceIntToUnitClass(targetClass_B);
         GameEngine.GetInstance().achievementsPanel.B_Bonus_Description.text = "Collect 3 B units of type: " + bBonus.targetClass.ToString() + ".\n(Bonus: 1 A Rank Token)";        
+    }
+
+    private UnitClass ChoiceIntToUnitClass(int choice) {
+        UnitClass unitClass;
+        switch (choice) {
+            case 0:
+                unitClass = UnitClass.INFANTRY;
+                break;
+            case 1:
+                unitClass = UnitClass.MECH;
+                break;
+            case 2:
+                unitClass = UnitClass.LASER;
+                break;
+            case 3:
+                unitClass = UnitClass.PSIONIC;
+                break;
+            case 4:
+                unitClass = UnitClass.ACID;
+                break;
+            case 5:
+                unitClass = UnitClass.BLADE;
+                break;
+            default:
+                throw new GameplayException("Invalid choice option. Cannot select a C Unit Class Bonus.");
+        }
+        return unitClass;
     }
 }

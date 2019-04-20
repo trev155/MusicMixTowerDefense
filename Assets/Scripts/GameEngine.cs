@@ -5,7 +5,6 @@
  */
 using UnityEngine;
 
-
 public class GameEngine : MonoBehaviour {
     // Constants
     private readonly int INITIAL_TOKEN_COUNT = 30;
@@ -75,6 +74,9 @@ public class GameEngine : MonoBehaviour {
     public int sChoosers;
 
     public bool hasWall;
+
+    // RNG
+    public System.Random random = new System.Random();
 
     //---------- Initialization ----------
     private void Awake() {
@@ -190,8 +192,9 @@ public class GameEngine : MonoBehaviour {
 
         this.minerals += val;
         if (this.minerals >= 160) {
-            Debug.Log("160 Minerals = 1 Token");
+            this.messageQueue.PushMessage("160 Minerals = 1 Token", MessageType.INFO);
             this.minerals -= 160;
+            IncreaseTokenCount(1);
         }
         this.gameDataPanel.UpdateMineralsText(this.minerals);
     }
