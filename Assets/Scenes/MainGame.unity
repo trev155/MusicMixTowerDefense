@@ -549,7 +549,21 @@ MonoBehaviour:
   playerUnitSpawnLocation: {fileID: 728473047}
   playerUnitSpawnLocationOffset: {fileID: 453254036}
   enemyUnitSpawnLocation: {fileID: 111293270}
-  playerUnit: {fileID: 6720891270199158892, guid: 2469f681ed770144cac71ec921900e96,
+  playerUnitInfantry: {fileID: 6720891270199158892, guid: 2469f681ed770144cac71ec921900e96,
+    type: 3}
+  playerUnitMech: {fileID: 6720891270199158892, guid: 047496d0c1fd13d40b2a4c18927ddefa,
+    type: 3}
+  playerUnitLaser: {fileID: 6720891270199158892, guid: 67f9c28860ebc5146b36fbb48b4d4df0,
+    type: 3}
+  playerUnitPsionic: {fileID: 6720891270199158892, guid: c68ac49ad218f5a40a0fad13a3f1fb31,
+    type: 3}
+  playerUnitAcid: {fileID: 6720891270199158892, guid: a2e2fa26a4158814cad5ad9fcc46fc4d,
+    type: 3}
+  playerUnitBlade: {fileID: 6720891270199158892, guid: f8779fd4dc2651c499ef5e3b0eb2d952,
+    type: 3}
+  playerUnitMagic: {fileID: 6720891270199158892, guid: 199a0b5dbdf30814ebd3f24dc32e9733,
+    type: 3}
+  playerUnitFlame: {fileID: 6720891270199158892, guid: bf2497c045be16c40a2bff3b04e7d54f,
     type: 3}
   enemyUnit: {fileID: 6720891270199158892, guid: f269f421303b0f847b3d7dc6873df658,
     type: 3}
@@ -26447,7 +26461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1512991729
 RectTransform:
   m_ObjectHideFlags: 0

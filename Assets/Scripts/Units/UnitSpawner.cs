@@ -10,7 +10,14 @@ public class UnitSpawner : MonoBehaviour {
 
     public Transform enemyUnitSpawnLocation;
 
-    public Transform playerUnit;
+    public Transform playerUnitInfantry;
+    public Transform playerUnitMech;
+    public Transform playerUnitLaser;
+    public Transform playerUnitPsionic;
+    public Transform playerUnitAcid;
+    public Transform playerUnitBlade;
+    public Transform playerUnitMagic;
+    public Transform playerUnitFlame;
 
     public Transform enemyUnit;
     public Transform bountyUnit;
@@ -31,37 +38,11 @@ public class UnitSpawner : MonoBehaviour {
     }
 
     // Player Unit Creation Functions
-    public PlayerUnit CreatePlayerUnit(PlayerUnitRank rank, int seed) {
-        // Create player unit object
-        PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, seed);
-        PlayerUnit player = Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
-        player.InitializeProperties(playerUnitData);
-        SetObjectName(player.gameObject);
-
-        // Create range circle
-        CreatePlayerUnitRangeCircle(player);
-
-        // Other functions
-        MovePlayerUnitToOffset(player);
-        IgnorePlayerUnitCollisionWithInnerWalls(player);
-
-        // Check Achievement on every player unit creation
-        GameEngine.GetInstance().achievementManager.CheckAchievementsForPlayerUnitCreation();
-
-        // Display message
-        MessageType msgType = MessageType.INFO;
-        if (player.rank == PlayerUnitRank.S || player.rank == PlayerUnitRank.X) {
-            msgType = MessageType.POSITIVE;
-        } 
-        GameEngine.GetInstance().messageQueue.PushMessage("[" + player.rank + " Rank Unit] " + Utils.CleanEnumString(player.unitClass.ToString()), msgType);
-
-        return player;
-    }
-
     public PlayerUnit CreatePlayerUnit(PlayerUnitRank rank, UnitClass unitClass) {
         // Create player unit object
         PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, unitClass);
-        PlayerUnit player = Instantiate(playerUnit, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
+        Transform playerUnitPrefab = GetPrefabFromUnitClass(unitClass);
+        PlayerUnit player = Instantiate(playerUnitPrefab, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
         player.InitializeProperties(playerUnitData);
         SetObjectName(player.gameObject);
 
@@ -102,39 +83,92 @@ public class UnitSpawner : MonoBehaviour {
     }
 
     public PlayerUnit CreateRandomDUnit() {
-        int selection = GameEngine.GetInstance().random.Next(0, 6);
-        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.D, selection);
+        UnitClass randomUnitClass = GenerateRandomUnitClass(PlayerUnitRank.D);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, randomUnitClass);
         return playerUnit;
     }        
     
     public PlayerUnit CreateRandomCUnit() {
-        int selection = GameEngine.GetInstance().random.Next(0, 6);
-        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.C, selection);
+        UnitClass randomUnitClass = GenerateRandomUnitClass(PlayerUnitRank.C);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, randomUnitClass);
         return playerUnit;
     }
 
     public PlayerUnit CreateRandomBUnit() {
-        int selection = GameEngine.GetInstance().random.Next(0, 8);
-        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.B, selection);
+        UnitClass randomUnitClass = GenerateRandomUnitClass(PlayerUnitRank.B);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, randomUnitClass);
         return playerUnit;
     }
 
     public PlayerUnit CreateRandomAUnit() {
-        int selection = GameEngine.GetInstance().random.Next(0, 8);
-        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.A, selection);
+        UnitClass randomUnitClass = GenerateRandomUnitClass(PlayerUnitRank.A);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, randomUnitClass);
         return playerUnit;
     }
 
     public PlayerUnit CreateRandomSUnit() {
-        int selection = GameEngine.GetInstance().random.Next(0, 8);
-        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.S, selection);
+        UnitClass randomUnitClass = GenerateRandomUnitClass(PlayerUnitRank.S);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, randomUnitClass);
         return playerUnit;
     }
 
     public PlayerUnit CreateRandomXUnit() {
-        int selection = GameEngine.GetInstance().random.Next(0, 8);
-        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, selection);
+        UnitClass randomUnitClass = GenerateRandomUnitClass(PlayerUnitRank.X);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, randomUnitClass);
         return playerUnit;
+    }
+
+    private UnitClass GenerateRandomUnitClass(PlayerUnitRank playerUnitRank) {
+        int selection;
+        if (playerUnitRank == PlayerUnitRank.D || playerUnitRank == PlayerUnitRank.C) {
+            selection = GameEngine.GetInstance().random.Next(0, 6);
+        } else {
+            selection = GameEngine.GetInstance().random.Next(0, 8);
+        }
+
+        switch (selection) {
+            case 0:
+                return UnitClass.INFANTRY;
+            case 1:
+                return UnitClass.MECH;
+            case 2:
+                return UnitClass.LASER;
+            case 3:
+                return UnitClass.PSIONIC;
+            case 4:
+                return UnitClass.ACID;
+            case 5:
+                return UnitClass.BLADE;
+            case 6:
+                return UnitClass.MAGIC;
+            case 7:
+                return UnitClass.FLAME;
+            default:
+                throw new GameplayException("Unrecognized selection value. Cannot generate random unit class");
+        }
+    }
+
+    private Transform GetPrefabFromUnitClass(UnitClass unitClass) {
+        switch (unitClass) {
+            case UnitClass.INFANTRY:
+                return playerUnitInfantry;
+            case UnitClass.MECH:
+                return playerUnitMech;
+            case UnitClass.LASER:
+                return playerUnitLaser;
+            case UnitClass.PSIONIC:
+                return playerUnitPsionic;
+            case UnitClass.ACID:
+                return playerUnitAcid;
+            case UnitClass.BLADE:
+                return playerUnitBlade;
+            case UnitClass.MAGIC:
+                return playerUnitMagic;
+            case UnitClass.FLAME:
+                return playerUnitFlame;
+            default:
+                throw new GameplayException("Unsupported unit class. Cannot get prefab from unit class");
+        }
     }
 
     // Enemy Unit Creation Functions
