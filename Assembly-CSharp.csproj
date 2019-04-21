@@ -118,6 +118,7 @@
     <Compile Include="Assets\Scripts\Units\HealthRegenerator.cs" />
     <Compile Include="Assets\Scripts\Units\PlayerUnit.cs" />
     <Compile Include="Assets\Scripts\Units\Projectile.cs" />
+    <Compile Include="Assets\Scripts\Units\RankIndicatorBar.cs" />
     <Compile Include="Assets\Scripts\Units\SplashDamageCircle.cs" />
     <Compile Include="Assets\Scripts\Units\UnitSpawner.cs" />
     <Compile Include="Assets\Scripts\Units\Waypoint.cs" />

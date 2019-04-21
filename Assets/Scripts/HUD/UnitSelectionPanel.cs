@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 public class UnitSelectionPanel : MonoBehaviour {
     // ---------- Constants ----------
-    private static readonly float HIGHLIGHTED_ALPHA = 0.4f;
-    private static readonly float UNHIGHLIGHTED_ALPHA = 0.05f;
+    private static readonly float HIGHLIGHTED_ALPHA = 0.2f;
+    private static readonly float UNHIGHLIGHTED_ALPHA = 0.02f;
 
 
     // ---------- Fields ----------

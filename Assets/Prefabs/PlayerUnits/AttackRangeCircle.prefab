@@ -110,8 +110,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUnit: {fileID: 0}
-  projectile: {fileID: 1013747370527916468, guid: 1375a58e29161084ea559ba100c35e03,
-    type: 3}
   enemyUnitsInRange: []
-  currentTarget: {fileID: 0}
-  isAttacking: 0

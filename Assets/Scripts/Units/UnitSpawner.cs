@@ -42,28 +42,30 @@ public class UnitSpawner : MonoBehaviour {
         // Create player unit object
         PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, unitClass);
         Transform playerUnitPrefab = GetPlayerUnitPrefabFromUnitClass(unitClass);
-        PlayerUnit player = Instantiate(playerUnitPrefab, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
-        player.InitializeProperties(playerUnitData);
-        SetObjectName(player.gameObject);
+        PlayerUnit playerUnit = Instantiate(playerUnitPrefab, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
+        playerUnit.InitializeProperties(playerUnitData);
+        RankIndicatorBar rankIndicatorBar = playerUnit.GetComponentInChildren<RankIndicatorBar>();
+        rankIndicatorBar.Initialize(rank);
+        SetObjectName(playerUnit.gameObject);
 
         // Create range circle
-        CreatePlayerUnitRangeCircle(player);
+        CreatePlayerUnitRangeCircle(playerUnit);
 
         // Other functions
-        MovePlayerUnitToOffset(player);
-        IgnorePlayerUnitCollisionWithInnerWalls(player);
+        MovePlayerUnitToOffset(playerUnit);
+        IgnorePlayerUnitCollisionWithInnerWalls(playerUnit);
 
         // Check Achievement on every player unit creation
         GameEngine.GetInstance().achievementManager.CheckAchievementsForPlayerUnitCreation();
 
         // Display message
         MessageType msgType = MessageType.INFO;
-        if (player.rank == PlayerUnitRank.S || player.rank == PlayerUnitRank.X) {
+        if (playerUnit.rank == PlayerUnitRank.S || playerUnit.rank == PlayerUnitRank.X) {
             msgType = MessageType.POSITIVE;
         }
-        GameEngine.GetInstance().messageQueue.PushMessage("[" + player.rank + " Rank Unit] " + Utils.CleanEnumString(player.unitClass.ToString()), msgType);
+        GameEngine.GetInstance().messageQueue.PushMessage("[" + playerUnit.rank + " Rank Unit] " + Utils.CleanEnumString(playerUnit.unitClass.ToString()), msgType);
 
-        return player;
+        return playerUnit;
     }
 
     public PlayerUnit CreateRandomUnitOfRank(PlayerUnitRank rank) {
@@ -84,31 +86,31 @@ public class UnitSpawner : MonoBehaviour {
 
     public PlayerUnit CreateRandomDUnit() {
         UnitClass randomUnitClass = GenerateRandomUnitClass(PlayerUnitRank.D);
-        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, randomUnitClass);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.D, randomUnitClass);
         return playerUnit;
     }        
     
     public PlayerUnit CreateRandomCUnit() {
         UnitClass randomUnitClass = GenerateRandomUnitClass(PlayerUnitRank.C);
-        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, randomUnitClass);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.C, randomUnitClass);
         return playerUnit;
     }
 
     public PlayerUnit CreateRandomBUnit() {
         UnitClass randomUnitClass = GenerateRandomUnitClass(PlayerUnitRank.B);
-        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, randomUnitClass);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.B, randomUnitClass);
         return playerUnit;
     }
 
     public PlayerUnit CreateRandomAUnit() {
         UnitClass randomUnitClass = GenerateRandomUnitClass(PlayerUnitRank.A);
-        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, randomUnitClass);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.A, randomUnitClass);
         return playerUnit;
     }
 
     public PlayerUnit CreateRandomSUnit() {
         UnitClass randomUnitClass = GenerateRandomUnitClass(PlayerUnitRank.S);
-        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.X, randomUnitClass);
+        PlayerUnit playerUnit = CreatePlayerUnit(PlayerUnitRank.S, randomUnitClass);
         return playerUnit;
     }
 

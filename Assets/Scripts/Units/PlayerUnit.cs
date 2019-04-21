@@ -6,8 +6,8 @@ using System.Collections.Generic;
 
 public class PlayerUnit : Unit {
     //---------- Constants ----------
-    public static readonly float SELECTED_ALPHA = 0.8f;
-    public static readonly float UNSELECTED_ALPHA = 0.2f;
+    public static readonly float SELECTED_ALPHA = 0.5f;
+    public static readonly float UNSELECTED_ALPHA = 0.05f;
 
     //---------- Fields ----------
     public UnitClass unitClass;
