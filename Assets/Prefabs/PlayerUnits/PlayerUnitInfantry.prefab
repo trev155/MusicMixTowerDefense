@@ -143,7 +143,7 @@ MonoBehaviour:
   movementEnabled: 0
   movementDestination: {x: 0, y: 0}
   attackRangeCircle: {fileID: 0}
-  projectile: {fileID: 2577056161673162234, guid: 1375a58e29161084ea559ba100c35e03,
+  projectilePrefab: {fileID: 1013747370527916468, guid: 1375a58e29161084ea559ba100c35e03,
     type: 3}
   currentTarget: {fileID: 0}
   isAttacking: 0

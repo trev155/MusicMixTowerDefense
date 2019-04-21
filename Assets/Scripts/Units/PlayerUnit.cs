@@ -21,8 +21,8 @@ public class PlayerUnit : Unit {
     public bool movementEnabled = false;
     public Vector2 movementDestination;
 
+    public Transform projectilePrefab;
     public AttackRangeCircle attackRangeCircle;
-    public Projectile projectile;
 
     public EnemyUnit currentTarget;
     public bool isAttacking = false;
@@ -157,8 +157,8 @@ public class PlayerUnit : Unit {
     }
 
     private void AttackTarget() {
-        Projectile proj = Instantiate(projectile, transform).GetComponent<Projectile>();
+        Projectile projectile = Instantiate(projectilePrefab, transform).GetComponent<Projectile>();
         float projectileDamage = this.attackDamage + (GameEngine.GetInstance().upgradeManager.GetNumUpgrades(this.unitClass) * this.attackUpgrade);
-        proj.InitializeProperties(currentTarget, this, projectileDamage);
+        projectile.InitializeProperties(currentTarget, this, projectileDamage);
     }
 }

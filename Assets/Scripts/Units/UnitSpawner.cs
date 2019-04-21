@@ -41,7 +41,7 @@ public class UnitSpawner : MonoBehaviour {
     public PlayerUnit CreatePlayerUnit(PlayerUnitRank rank, UnitClass unitClass) {
         // Create player unit object
         PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, unitClass);
-        Transform playerUnitPrefab = GetPrefabFromUnitClass(unitClass);
+        Transform playerUnitPrefab = GetPlayerUnitPrefabFromUnitClass(unitClass);
         PlayerUnit player = Instantiate(playerUnitPrefab, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
         player.InitializeProperties(playerUnitData);
         SetObjectName(player.gameObject);
@@ -148,7 +148,7 @@ public class UnitSpawner : MonoBehaviour {
         }
     }
 
-    private Transform GetPrefabFromUnitClass(UnitClass unitClass) {
+    private Transform GetPlayerUnitPrefabFromUnitClass(UnitClass unitClass) {
         switch (unitClass) {
             case UnitClass.INFANTRY:
                 return playerUnitInfantry;
