@@ -92,16 +92,13 @@ public class PlayerUnit : Unit {
 
         return unitData;
     }
-    
-    // Collisions 
-    private void OnCollisionEnter2D(Collision2D collision) {
-        this.movementEnabled = false;
-    }
 
-    // Update per frame
+    /*
+     * Update per frame. Handle movement and attacking.
+     */
     private void Update() {
         if (movementEnabled) {
-            Move();
+            MoveToDestination(this.movementDestination);
         }
 
         if (attackRangeCircle.enemyUnitsInRange.Count > 0 && !isAttacking) {
@@ -111,14 +108,38 @@ public class PlayerUnit : Unit {
 
     }
 
-    // Click Movement
-    private void Move() {
-        if (Vector2.Distance(this.transform.position, movementDestination) < 0.1f) {
-            movementEnabled = false;
-            return;
-        } else {
-            this.transform.position = Vector2.MoveTowards(this.transform.position, this.movementDestination, Time.deltaTime * 2.0f * this.movementSpeed);
+    /*
+     * Collision handling.
+     * If we collide with another PlayerUnit, we want our unit to stop by clearing the movementDestination and movementEnabled properties.
+     * We also want to prevent the other PlayerUnit from bouncing as well, so we zero out its velocity.
+     */
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "PlayerUnit") {
+            this.movementDestination = this.transform.position;
+            this.movementEnabled = false;
+
+            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(0, 0);
         }
+    }
+
+    /*
+     * Collision handling - prevent pushing.
+     * If a player unit collides with another player unit, it will stop. If you proceed to move in the same direction,
+     * the other player unit will be "pushed", until you "let go".
+     */
+    private void OnCollisionStay2D(Collision2D collision) {
+        if (collision.gameObject.tag == "PlayerUnit") {
+            Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(0, 0);
+        }
+    }
+
+    // Click Movement
+    public void MoveToDestination(Vector2 destination) {
+        Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
+        Vector2 movementDirection = destination - (Vector2)this.transform.position;
+        rb2D.MovePosition(rb2D.position + movementDirection * Time.deltaTime);   
     }
 
     // Attacking

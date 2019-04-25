@@ -51,9 +51,8 @@ public class UnitSpawner : MonoBehaviour {
         // Create range circle
         CreatePlayerUnitRangeCircle(playerUnit);
 
-        // Other functions
+        // Prevent Stacking on Spawn
         MovePlayerUnitToOffset(playerUnit);
-        IgnorePlayerUnitCollisionWithInnerWalls(playerUnit);
 
         // Check Achievement on every player unit creation
         GameEngine.GetInstance().achievementManager.CheckAchievementsForPlayerUnitCreation();
@@ -228,14 +227,7 @@ public class UnitSpawner : MonoBehaviour {
     }
 
     private void MovePlayerUnitToOffset(PlayerUnit player) {
-        // Prevents stacking when spawned
         player.transform.position = Vector2.MoveTowards(player.transform.position, playerUnitSpawnLocationOffset.position, Time.deltaTime);
     }
 
-    private void IgnorePlayerUnitCollisionWithInnerWalls(PlayerUnit player) {
-        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), topInnerWall.GetComponent<Collider2D>());
-        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), leftInnerWall.GetComponent<Collider2D>());
-        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), rightInnerWall.GetComponent<Collider2D>());
-        Physics2D.IgnoreCollision(player.GetComponent<Collider2D>(), bottomInnerWall.GetComponent<Collider2D>());
-    }
 }
