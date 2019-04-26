@@ -1,50 +1,50 @@
 rank,displayName,unitClass,attackType,movementSpeed,attackDamage,attackUpgrade,attackCooldown,attackRange
-D,Gunner,Infantry,Normal,				2.0,9.0,1.0,0.6,2.2
+D,Gunner,Infantry,Normal,				1.0,9.0,1.0,0.6,2.2
 D,Grenade Launcher,Mech,LargeSplash,	0.5,36.0,7.0,3.0,5.0
-D,Fighter Plane,Laser,Normal,			1.0,12.0,1.0,1.5,3.0
-D,Templar,Psionic,Splash,				1.0,14.0,3.0,1.2,1.8
-D,Bile Launcher,Acid,Normal,			1.5,13.0,2.0,0.9,2.1
-D,Warrior,Blade,Normal,					3.0,11.0,2.0,1.0,2.4
+D,Fighter Plane,Laser,Normal,			1.5,12.0,1.0,1.5,3.0
+D,Templar,Psionic,Splash,				0.7,14.0,3.0,1.2,1.8
+D,Bile Launcher,Acid,Normal,			0.8,13.0,2.0,0.9,2.1
+D,Warrior,Blade,Normal,					1.2,11.0,2.0,1.0,2.4
 
-C,Sharpshooter,Infantry,Normal,			2.0,19.0,3.0,0.6,2.2
+C,Sharpshooter,Infantry,Normal,			1.0,19.0,3.0,0.6,2.2
 C,Robotic Gunner,Mech,LargeSplash,		0.5,82.0,18.0,3.0,5.0
-C,Missile Launcher,Laser,Normal,		1.0,27.0,4.0,1.5,3.0
-C,Dragoon,Psionic,Splash,				1.0,32.0,6.0,1.2,1.8
-C,Venom,Acid,Normal,					1.5,28.0,5.0,0.9,2.1
-C,Sword,Blade,Normal,					3.0,23.0,4.0,1.0,2.4
+C,Missile Launcher,Laser,Normal,		1.5,27.0,4.0,1.5,3.0
+C,Dragoon,Psionic,Splash,				0.7,32.0,6.0,1.2,1.8
+C,Venom,Acid,Normal,					0.8,28.0,5.0,0.9,2.1
+C,Sword,Blade,Normal,					1.2,23.0,4.0,1.0,2.4
 
-B,Rifler,Infantry,Normal,				2.0,62.0,6.0,0.6,2.2
+B,Rifler,Infantry,Normal,				1.0,62.0,6.0,0.6,2.2
 B,Battle Tank,Mech,LargeSplash,			0.5,226.0,38.0,3.0,5.0
-B,Battlecruiser,Laser,Normal,			1.0,71.0,7.0,1.5,3.0
-B,Archon,Psionic,Splash,				1.0,102.0,15.0,1.2,1.8
-B,Corrosive,Acid,Normal,				1.5,74.0,8.0,0.9,2.1
-B,Slasher,Blade,Normal,					3.0,66.0,7.0,1.0,2.4
-B,Phaser,Magic,Splash,					1.5,500.0,30.0,7.0,1.5
-B,Flamethrower,Flame,LargeSplash,		1.2,90.0,9.0,2.0,1.5
+B,Battlecruiser,Laser,Normal,			1.5,71.0,7.0,1.5,3.0
+B,Archon,Psionic,Splash,				0.7,102.0,15.0,1.2,1.8
+B,Corrosive,Acid,Normal,				0.8,74.0,8.0,0.9,2.1
+B,Slasher,Blade,Normal,					1.2,66.0,7.0,1.0,2.4
+B,Phaser,Magic,Splash,					0.9,500.0,30.0,7.0,1.5
+B,Flamethrower,Flame,LargeSplash,		1.1,90.0,9.0,2.0,1.5
 
-A,Sniper,Infantry,Normal,				2.0,134.0,9.0,0.6,2.2
-A,Mortar Launcher,Mech,LargeSplash,		0.5,514.0,77.0,3.0,5.0
-A,Bomber,Laser,Normal,					1.0,166.0,14.0,1.5,3.0
-A,Mage,Psionic,Splash,					1.0,232.0,23.0,1.2,1.8
-A,Acid Sprayer,Acid,Normal,				1.5,171.0,18.0,0.9,2.1
-A,Eviscerator,Blade,Normal,				3.0,145.0,15.0,1.0,2.4
-A,Plague,Magic,Splash,					1.5,900.0,60.0,5.0,2.0
-A,Lava,Flame,LargeSplash,				1.2,210.0,16.0,1.8,1.5
+A,Sniper,Infantry,Normal,				1.2,134.0,9.0,0.6,2.2
+A,Mortar Launcher,Mech,LargeSplash,		0.6,514.0,77.0,3.0,5.0
+A,Bomber,Laser,Normal,					1.8,166.0,14.0,1.5,3.0
+A,Mage,Psionic,Splash,					0.9,232.0,23.0,1.2,1.8
+A,Acid Sprayer,Acid,Normal,				1.0,171.0,18.0,0.9,2.1
+A,Eviscerator,Blade,Normal,				1.4,145.0,15.0,1.0,2.4
+A,Plague,Magic,Splash,					0.9,900.0,60.0,5.0,2.0
+A,Lava,Flame,LargeSplash,				1.1,210.0,16.0,1.8,1.5
 
-S,Elite Sniper,Infantry,Normal, 		2.0,291.0,21.0,0.5,2.2
-S,Siege Tank,Mech,LargeSplash,			0.5,1568.0,121.0,3.0,5.0
-S,Wraith,Laser,Normal,					1.0,364.0,35.0,1.2,3.0
+S,Elite Sniper,Infantry,Normal, 		1.3,291.0,21.0,0.5,2.2
+S,Siege Tank,Mech,LargeSplash,			0.7,1568.0,121.0,3.0,5.0
+S,Wraith,Laser,Normal,					2.0,364.0,35.0,1.2,3.0
 S,High Mage,Psionic,Splash,				1.0,645.0,52.0,1.2,2.0
-S,Sludge Bomb,Acid,Normal,				1.5,409.0,40.0,0.8,2.3
-S,Annihilator,Blade,Normal,				3.0,364.0,36.0,0.8,2.4
-S,Psionic Storm,Magic,Splash,			1.5,2200.0,150.0,5.0,2.0
-S,Eruption,Flame,LargeSplash,			1.2,660.0,25.0,1.8,1.7
+S,Sludge Bomb,Acid,Normal,				1.2,409.0,40.0,0.8,2.3
+S,Annihilator,Blade,Normal,				1.5,364.0,36.0,0.8,2.4
+S,Psionic Storm,Magic,Splash,			1.1,2200.0,150.0,5.0,2.0
+S,Eruption,Flame,LargeSplash,			1.3,660.0,25.0,1.8,1.7
 
-X,Machinegunner,Infantry,Normal, 		2.0,565.0,44.0,0.45,2.3
-X,Hyper Cannon,Mech,LargeSplash,		0.5,4000.0,200.0,3.0,5.5
-X,Yamato,Laser,Normal,					1.0,920.0,56.0,1.2,4.0
-X,Maelstrom,Psionic,Splash,				1.0,1420.0,80.0,1.2,2.5
-X,Chemical,Acid,Normal,					1.5,1102.0,71.0,0.7,2.3
-X,Master,Blade,Normal,					3.0,745.0,68.0,0.6,2.5
-X,Shockwave,Magic,Splash,				1.5,4620.0,310.0,4.0,2.4
-X,Heat Wave,Flame,LargeSplash,			1.2,660.0,75.0,1.6,2.0
+X,Machinegunner,Infantry,Normal, 		1.5,565.0,44.0,0.45,2.3
+X,Hyper Cannon,Mech,LargeSplash,		0.9,4000.0,200.0,3.0,5.5
+X,Yamato,Laser,Normal,					2.5,920.0,56.0,1.2,4.0
+X,Maelstrom,Psionic,Splash,				1.2,1420.0,80.0,1.2,2.5
+X,Chemical,Acid,Normal,					1.6,1102.0,71.0,0.7,2.3
+X,Master,Blade,Normal,					2.0,745.0,68.0,0.6,2.5
+X,Shockwave,Magic,Splash,				1.4,4620.0,310.0,4.0,2.4
+X,Heat Wave,Flame,LargeSplash,			1.6,660.0,75.0,1.6,2.0

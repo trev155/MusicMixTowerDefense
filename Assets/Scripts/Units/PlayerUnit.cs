@@ -137,9 +137,15 @@ public class PlayerUnit : Unit {
 
     // Click Movement
     public void MoveToDestination(Vector2 destination) {
+        if (Vector2.Distance(this.transform.position, destination) < 0.1) {
+            this.movementEnabled = false;
+            return;
+        }
+
         Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
         Vector2 movementDirection = destination - (Vector2)this.transform.position;
-        rb2D.MovePosition(rb2D.position + movementDirection * Time.deltaTime);   
+        movementDirection.Normalize();
+        rb2D.MovePosition(rb2D.position + (movementDirection * 2.5f)  * this.movementSpeed * Time.deltaTime);   
     }
 
     // Attacking
