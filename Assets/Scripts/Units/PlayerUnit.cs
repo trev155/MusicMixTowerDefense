@@ -185,6 +185,7 @@ public class PlayerUnit : Unit {
 
     private void AttackTarget() {
         Projectile projectile = Instantiate(projectilePrefab, transform).GetComponent<Projectile>();
+        projectile.transform.parent = this.gameObject.transform.parent;     // detach projectile from player unit so projectile doesn't follow player unit
         float projectileDamage = this.attackDamage + (GameEngine.GetInstance().upgradeManager.GetNumUpgrades(this.unitClass) * this.attackUpgrade);
         projectile.InitializeProperties(currentTarget, this, projectileDamage);
     }
