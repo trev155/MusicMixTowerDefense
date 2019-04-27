@@ -179,6 +179,8 @@ public class UnitSpawner : MonoBehaviour {
 
         enemy.InitializeProperties(enemyUnitData);
         SetObjectName(enemy.gameObject);
+        SetEnemyColor(enemy);
+
         if (GameEngine.GetInstance().gameMode == GameMode.EASY) {
             enemy.currentHealth = Mathf.Floor(enemy.maxHealth * 0.6f);
         } else if (GameEngine.GetInstance().gameMode == GameMode.NORMAL) {
@@ -230,4 +232,28 @@ public class UnitSpawner : MonoBehaviour {
         player.transform.position = Vector2.MoveTowards(player.transform.position, playerUnitSpawnLocationOffset.position, Time.deltaTime);
     }
 
+    private void SetEnemyColor(EnemyUnit enemy) {
+        Color32 enemyColor;
+        if (enemy.level < 6) {
+            enemyColor = new Color32(126, 141, 164, 255);
+        } else if (enemy.level < 11) {
+            enemyColor = new Color32(147, 212, 214, 255);
+        } else if (enemy.level < 16) {
+            enemyColor = new Color32(31, 166, 98, 255);
+        } else if (enemy.level < 21) {
+            enemyColor = new Color32(166, 162, 31, 255);
+        } else if (enemy.level < 26) {
+            enemyColor = new Color32(243, 122, 45, 255);
+        } else if (enemy.level < 31) {
+            enemyColor = new Color32(200, 39, 44, 255);
+        } else if (enemy.level < 36) {
+            enemyColor = new Color32(200, 139, 124, 255);
+        } else if (enemy.level < 41) {
+            enemyColor = new Color32(104, 68, 80, 255);
+        } else {
+            throw new GameplayException("Enemy level not recognized. Failed to set enemy color.");
+        }
+
+        enemy.transform.GetComponent<SpriteRenderer>().color = enemyColor;
+    }
 }
