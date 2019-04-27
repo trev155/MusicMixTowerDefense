@@ -26,6 +26,8 @@ public class UnitSelectionPanel : MonoBehaviour {
     public Text moveUnitInstruction;
 
     public Button sellUnitButton;
+    public Transform sellUnitModal;
+    public Text sellUnitModalText;
 
     public Transform moveableArea;
 
@@ -136,8 +138,34 @@ public class UnitSelectionPanel : MonoBehaviour {
 
     // Unit Selling
     public void SellUnitButton() {
+        sellUnitModal.gameObject.SetActive(true);
+
+        int gasRefund = ComputeGasRefund(GameEngine.GetInstance().playerUnitSelected.rank);
+        sellUnitModalText.text = "Are you sure you want to sell this unit ?\n (You will receive " + gasRefund + " gas for selling a " + GameEngine.GetInstance().playerUnitSelected.rank +" rank unit)";
+    }
+
+    public void ConfirmSellUnit() {
+        sellUnitModal.gameObject.SetActive(false);
+        SellUnit();
+    }
+
+    public void DenySellUnit() {
+        sellUnitModal.gameObject.SetActive(false);
+    }
+
+    private void SellUnit() {
+        CheckRareUnitSold();
+
+        int gasRefund = ComputeGasRefund(GameEngine.GetInstance().playerUnitSelected.rank);
+        GameEngine.GetInstance().IncreaseGas(gasRefund);
+
+        Destroy(GameEngine.GetInstance().playerUnitSelected.gameObject);
+        GameEngine.GetInstance().unitSelectionPanel.CloseUnitSelectionPanelButton();
+    }
+
+    private int ComputeGasRefund(PlayerUnitRank rank) {
         int gasRefund;
-        switch (GameEngine.GetInstance().playerUnitSelected.rank) {
+        switch (rank) {
             case PlayerUnitRank.D:
                 gasRefund = 30;
                 break;
@@ -159,18 +187,14 @@ public class UnitSelectionPanel : MonoBehaviour {
             default:
                 throw new GameplayException("Unrecognized player unit rank. Cannot sell unit.");
         }
-
-        CheckRareUnitSold();
-        
-        GameEngine.GetInstance().IncreaseGas(gasRefund);
-        Destroy(GameEngine.GetInstance().playerUnitSelected.gameObject);
-        GameEngine.GetInstance().unitSelectionPanel.CloseUnitSelectionPanelButton();
+        return gasRefund;
     }
 
     private void CheckRareUnitSold() {
         if (GameEngine.GetInstance().playerUnitSelected.unitClass == UnitClass.MAGIC || GameEngine.GetInstance().playerUnitSelected.unitClass == UnitClass.FLAME) {
             GameEngine.GetInstance().achievementManager.rareUnitsSold += 1;
-            GameEngine.GetInstance().achievementManager.CheckAchievementsForUnitSelling();
+            GameEngine.GetInstance
+                ().achievementManager.CheckAchievementsForUnitSelling();
         }
     }
 }
