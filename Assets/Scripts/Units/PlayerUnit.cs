@@ -188,5 +188,7 @@ public class PlayerUnit : Unit {
         projectile.transform.parent = this.gameObject.transform.parent;     // detach projectile from player unit so projectile doesn't follow player unit
         float projectileDamage = this.attackDamage + (GameEngine.GetInstance().upgradeManager.GetNumUpgrades(this.unitClass) * this.attackUpgrade);
         projectile.InitializeProperties(currentTarget, this, projectileDamage);
+
+        GameEngine.GetInstance().audioManager.PlayProjectileAttackSound(this.unitClass, this.rank);
     }
 }

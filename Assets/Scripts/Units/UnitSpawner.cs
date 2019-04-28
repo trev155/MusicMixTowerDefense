@@ -64,6 +64,9 @@ public class UnitSpawner : MonoBehaviour {
         }
         GameEngine.GetInstance().messageQueue.PushMessage("[" + playerUnit.rank + " Rank Unit] " + Utils.CleanEnumString(playerUnit.unitClass.ToString()), msgType);
 
+        // Sound Effect
+        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.PLAYER_UNIT_CREATION_SOUND);
+
         return playerUnit;
     }
 

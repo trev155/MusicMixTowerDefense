@@ -26,6 +26,7 @@ public class GameEngine : MonoBehaviour {
     }
 
     // References to other management objects
+    public AudioManager audioManager;
     public UnitSpawner unitSpawner;
     public LevelManager levelManager;
     public UpgradeManager upgradeManager;

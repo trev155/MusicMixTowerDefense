@@ -31,6 +31,11 @@ public class Projectile : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
+        // test check statement
+        if (targetUnit == null) {
+            throw new GameplayException("Target unit is NULL!");
+        }
+
         if (collision.gameObject == targetUnit.gameObject) {
             EnemyUnit enemyUnit = targetUnit.GetComponent<EnemyUnit>();
 
@@ -64,19 +69,30 @@ public class Projectile : MonoBehaviour {
     }
 
     private void HandleEnemyUnitDeath(EnemyUnit enemyUnit) {
+        // update stats
         GameEngine.GetInstance().IncrementKills();
         GameEngine.GetInstance().DecrementEnemyUnitCount();
 
+        // remove enemy unit from other player unit lists
         RemoveCurrentTargetForAllUnitsAttackingTarget(enemyUnit);
 
+        // Regular enemy unit death sound effect
+        if (enemyUnit.level > 0) {
+            GameEngine.GetInstance().audioManager.PlayRegularEnemyUnitDeathSound(enemyUnit.level);
+        }
+
+        // Check if killed special enemy unit
         if (enemyUnit.level == 0) {
             KilledSpecialEnemyUnit(enemyUnit.displayName);
         }
         Destroy(enemyUnit.gameObject);
 
+        // Close unit selection panel for enemy unit if required
         if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
             GameEngine.GetInstance().unitSelectionPanel.CloseUnitSelectionPanel();
         }
+
+
     }
 
     // ----- Inflict Splash Damage -----
@@ -125,6 +141,7 @@ public class Projectile : MonoBehaviour {
         switch (enemyName) {
             case "Bounty":
                 GiveBountyReward();
+                GameEngine.GetInstance().audioManager.PlaySpecialUnitDeathSound(enemyName);
                 break;
             default:
                 throw new GameplayException("Unrecognized enemy name");

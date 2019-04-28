@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Achievements\Unlucky_Lotto.cs" />
     <Compile Include="Assets\Scripts\Achievements\XSABCD_Mission.cs" />
     <Compile Include="Assets\Scripts\Admin.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\GameEngine.cs" />
     <Compile Include="Assets\Scripts\GameMode.cs" />
     <Compile Include="Assets\Scripts\GameplayException.cs" />
