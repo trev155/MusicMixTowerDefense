@@ -98,17 +98,17 @@ public class AudioManager : MonoBehaviour {
     private string GetInfantryProjectileAttackPath(PlayerUnitRank rank) {
         switch (rank) {
             case PlayerUnitRank.D:
-                return "Audio/Projectile/marine_attack";
+                return "Audio/ProjectileLaunch/Infantry/ghost_attack";
             case PlayerUnitRank.C:
-                return "Audio/Projectile/marine_attack";
+                return "Audio/ProjectileLaunch/Infantry/ghost_attack";
             case PlayerUnitRank.B:
-                return "Audio/Projectile/marine_attack";
+                return "Audio/ProjectileLaunch/Infantry/marine_attack";
             case PlayerUnitRank.A:
-                return "Audio/Projectile/marine_attack";
+                return "Audio/ProjectileLaunch/Infantry/ghost_attack";
             case PlayerUnitRank.S:
-                return "Audio/Projectile/marine_attack";
+                return "Audio/ProjectileLaunch/Infantry/ghost_attack";
             case PlayerUnitRank.X:
-                return "Audio/Projectile/marine_attack";
+                return "Audio/ProjectileLaunch/Infantry/marine_attack";
             default:
                 throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play infantry attack sound.");
         }
@@ -117,133 +117,125 @@ public class AudioManager : MonoBehaviour {
     private string GetMechProjectileAttackPath(PlayerUnitRank rank) {
         switch (rank) {
             case PlayerUnitRank.D:
-                return "Audio/Projectile/goliath_attack";
+                return "Audio/ProjectileLaunch/Mech/vulture_attack";
             case PlayerUnitRank.C:
-                return "Audio/Projectile/goliath_attack";
+                return "Audio/ProjectileLaunch/Mech/goliath_attack";
             case PlayerUnitRank.B:
-                return "Audio/Projectile/goliath_attack";
+                return "Audio/ProjectileLaunch/Mech/tank_attack";
             case PlayerUnitRank.A:
-                return "Audio/Projectile/goliath_attack";
+                return "Audio/ProjectileLaunch/Mech/vulture_attack";
             case PlayerUnitRank.S:
-                return "Audio/Projectile/goliath_attack";
+                return "Audio/ProjectileLaunch/Mech/tanksiege_attack";
             case PlayerUnitRank.X:
-                return "Audio/Projectile/goliath_attack";
+                return "Audio/ProjectileLaunch/Mech/missile_launcher";
             default:
-                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play infantry attack sound.");
+                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play mech attack sound.");
         }
     }
 
     private string GetLaserProjectileAttackPath(PlayerUnitRank rank) {
         switch (rank) {
             case PlayerUnitRank.D:
-                return "Audio/Projectile/wraith_attack";
+                return "Audio/ProjectileLaunch/Laser/laser_attack";
             case PlayerUnitRank.C:
-                return "Audio/Projectile/wraith_attack";
+                return "Audio/ProjectileLaunch/Laser/laser_attack";
             case PlayerUnitRank.B:
-                return "Audio/Projectile/wraith_attack";
+                return "Audio/ProjectileLaunch/Laser/wraith_laser";
             case PlayerUnitRank.A:
-                return "Audio/Projectile/wraith_attack";
+                return "Audio/ProjectileLaunch/Laser/wraith_laser";
             case PlayerUnitRank.S:
-                return "Audio/Projectile/wraith_attack";
+                return "Audio/ProjectileLaunch/Laser/wraithair_attack";
             case PlayerUnitRank.X:
-                return "Audio/Projectile/wraith_attack";
+                return "Audio/ProjectileLaunch/Laser/yamato_attack";
             default:
-                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play infantry attack sound.");
+                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play laser attack sound.");
         }
     }
 
     private string GetPsionicProjectileAttackPath(PlayerUnitRank rank) {
         switch (rank) {
             case PlayerUnitRank.D:
-                return "Audio/Projectile/hightemplar_attack";
+                return "Audio/ProjectileLaunch/Psionic/hightemplar_attack";
             case PlayerUnitRank.C:
-                return "Audio/Projectile/hightemplar_attack";
+                return "Audio/ProjectileLaunch/Psionic/dragoon_attack";
             case PlayerUnitRank.B:
-                return "Audio/Projectile/hightemplar_attack";
+                return "Audio/ProjectileLaunch/Psionic/shockwave_attack";
             case PlayerUnitRank.A:
-                return "Audio/Projectile/hightemplar_attack";
+                return "Audio/ProjectileLaunch/Psionic/hightemplar_attack";
             case PlayerUnitRank.S:
-                return "Audio/Projectile/hightemplar_attack";
+                return "Audio/ProjectileLaunch/Psionic/shockwave_attack";
             case PlayerUnitRank.X:
-                return "Audio/Projectile/hightemplar_attack";
+                return "Audio/ProjectileLaunch/Psionic/dragoon_attack";
             default:
-                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play infantry attack sound.");
+                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play psionic attack sound.");
         }
     }
 
     private string GetAcidProjectileAttackPath(PlayerUnitRank rank) {
         switch (rank) {
             case PlayerUnitRank.D:
-                return "Audio/Projectile/hydralisk_attack";
+                return "Audio/ProjectileLaunch/Acid/mutalisk_attack";
             case PlayerUnitRank.C:
-                return "Audio/Projectile/hydralisk_attack";
+                return "Audio/ProjectileLaunch/Acid/guardian_attack";
             case PlayerUnitRank.B:
-                return "Audio/Projectile/hydralisk_attack";
+                return "Audio/ProjectileLaunch/Acid/devourer_attack";
             case PlayerUnitRank.A:
-                return "Audio/Projectile/hydralisk_attack";
+                return "Audio/ProjectileLaunch/Acid/hydralisk_attack";
             case PlayerUnitRank.S:
-                return "Audio/Projectile/hydralisk_attack";
+                return "Audio/ProjectileLaunch/Acid/hydralisk_attack";
             case PlayerUnitRank.X:
-                return "Audio/Projectile/hydralisk_attack";
+                return "Audio/ProjectileLaunch/Acid/devourer_attack";
             default:
-                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play infantry attack sound.");
+                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play acid attack sound.");
         }
     }
 
     private string GetBladeProjectileAttackPath(PlayerUnitRank rank) {
         switch (rank) {
             case PlayerUnitRank.D:
-                return "Audio/Projectile/blade_attack";
+                return "Audio/ProjectileLaunch/Blade/glaive_attack";
             case PlayerUnitRank.C:
-                return "Audio/Projectile/blade_attack";
+                return "Audio/ProjectileLaunch/Blade/glaive_attack";
             case PlayerUnitRank.B:
-                return "Audio/Projectile/blade_attack";
+                return "Audio/ProjectileLaunch/Blade/glaive_attack_2";
             case PlayerUnitRank.A:
-                return "Audio/Projectile/blade_attack";
+                return "Audio/ProjectileLaunch/Blade/glaive_attack_2";
             case PlayerUnitRank.S:
-                return "Audio/Projectile/blade_attack";
+                return "Audio/ProjectileLaunch/Blade/interceptor_attack";
             case PlayerUnitRank.X:
-                return "Audio/Projectile/blade_attack";
+                return "Audio/ProjectileLaunch/Blade/interceptor_attack";
             default:
-                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play infantry attack sound.");
+                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play blade attack sound.");
         }
     }
 
     private string GetMagicProjectileAttackPath(PlayerUnitRank rank) {
         switch (rank) {
-            case PlayerUnitRank.D:
-                return "Audio/Projectile/magic_attack";
-            case PlayerUnitRank.C:
-                return "Audio/Projectile/magic_attack";
             case PlayerUnitRank.B:
-                return "Audio/Projectile/magic_attack";
+                return "Audio/ProjectileLaunch/Magic/magic_attack";
             case PlayerUnitRank.A:
-                return "Audio/Projectile/magic_attack";
+                return "Audio/ProjectileLaunch/Magic/magic_attack";
             case PlayerUnitRank.S:
-                return "Audio/Projectile/magic_attack";
+                return "Audio/ProjectileLaunch/Magic/magic_attack_2";
             case PlayerUnitRank.X:
-                return "Audio/Projectile/magic_attack";
+                return "Audio/ProjectileLaunch/Magic/magic_attack_2";
             default:
-                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play infantry attack sound.");
+                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play magic attack sound.");
         }
     }
 
     private string GetFlameProjectileAttackPath(PlayerUnitRank rank) {
         switch (rank) {
-            case PlayerUnitRank.D:
-                return "Audio/Projectile/flame_attack";
-            case PlayerUnitRank.C:
-                return "Audio/Projectile/flame_attack";
             case PlayerUnitRank.B:
-                return "Audio/Projectile/flame_attack";
+                return "Audio/ProjectileLaunch/Flame/flame_attack";
             case PlayerUnitRank.A:
-                return "Audio/Projectile/flame_attack";
+                return "Audio/ProjectileLaunch/Flame/flame_attack";
             case PlayerUnitRank.S:
-                return "Audio/Projectile/flame_attack";
+                return "Audio/ProjectileLaunch/Flame/flame_attack_2";
             case PlayerUnitRank.X:
-                return "Audio/Projectile/flame_attack";
+                return "Audio/ProjectileLaunch/Flame/flame_attack_2";
             default:
-                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play infantry attack sound.");
+                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play flame attack sound.");
         }
     }
 }
