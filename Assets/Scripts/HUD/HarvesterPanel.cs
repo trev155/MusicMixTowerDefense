@@ -24,7 +24,10 @@ public class HarvesterPanel : MonoBehaviour {
         gasHarvesters.text = num + "";
     }
     
+    // ---------- Button Handlers ----------
     public void AllocateMineralHarvester() {
+        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+
         if (GameEngine.GetInstance().unallocatedHarvesters == 0) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot allocate mineral harvester. No unallocated harvesters available", MessageType.INFO);
             return;
@@ -38,6 +41,8 @@ public class HarvesterPanel : MonoBehaviour {
     }
 
     public void DeallocateMineralHarvester() {
+        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+
         if (GameEngine.GetInstance().mineralHarvesters == 0) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot deallocate mineral harvester. No allocated mineral harvesters available", MessageType.INFO);
             return;
@@ -47,6 +52,8 @@ public class HarvesterPanel : MonoBehaviour {
     }
 
     public void AllocateGasHarvester() {
+        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+
         if (GameEngine.GetInstance().unallocatedHarvesters == 0) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot allocate gas harvester. No unallocated harvesters available", MessageType.INFO);
             return;
@@ -60,6 +67,8 @@ public class HarvesterPanel : MonoBehaviour {
     }
 
     public void DeallocateGasHarvester() {
+        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+
         if (GameEngine.GetInstance().gasHarvesters == 0) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot deallocate gas harvester. No allocated gas harvesters available", MessageType.INFO);
             return;

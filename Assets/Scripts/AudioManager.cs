@@ -4,6 +4,7 @@ public class AudioManager : MonoBehaviour {
     // ---------- Static path references ----------
     public static readonly string PLAYER_UNIT_CREATION_SOUND = "Audio/PlayerUnitCreation";
     public static readonly string UNIT_MIX_SOUND = "Audio/UnitMix";
+    public static readonly string BUTTON_CLICK_SOUND = "Audio/ClickHeavy";
     
     // ---------- Object References ----------
     public AudioSource soundEffects;

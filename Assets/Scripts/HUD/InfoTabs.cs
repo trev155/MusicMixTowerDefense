@@ -15,6 +15,8 @@ public class InfoTabs : MonoBehaviour {
 
         bool isActive = GuidancePanel.gameObject.activeSelf;
         GuidancePanel.gameObject.SetActive(!isActive);
+
+        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
     }
 
     public void ToggleAchievementsPanel() {
@@ -23,5 +25,7 @@ public class InfoTabs : MonoBehaviour {
 
         bool isActive = AchievementsPanel.gameObject.activeSelf;
         AchievementsPanel.gameObject.SetActive(!isActive);
+
+        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
     }
 }
