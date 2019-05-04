@@ -163,6 +163,7 @@ public class GameEngine : MonoBehaviour {
 
         if (this.hasPiano) {
             IncreaseMinerals(1);
+            audioManager.PlayRandomPianoEffect();
         }
 
         if (this.hasDrum) {
@@ -170,6 +171,7 @@ public class GameEngine : MonoBehaviour {
             if (this.drumCounter == 3) {
                 this.drumCounter = 0;
                 IncreaseGas(1);
+                audioManager.PlayRandomDrumEffect();
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿public enum MessageType {
     INFO,
     POSITIVE,
-    NEGATIVE
+    NEGATIVE,
+    ACHIEVEMENT
 }

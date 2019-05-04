@@ -1,11 +1,23 @@
 ﻿using UnityEngine;
+using System.Collections;
+
 
 public class AudioManager : MonoBehaviour {
     // ---------- Static path references ----------
     public static readonly string PLAYER_UNIT_CREATION_SOUND = "Audio/PlayerUnitCreation";
     public static readonly string UNIT_MIX_SOUND = "Audio/UnitMix";
     public static readonly string BUTTON_CLICK_SOUND = "Audio/ClickHeavy";
-    
+    public static readonly string MESSAGE_INFO = "Audio/MessageInfo";
+    public static readonly string MESSAGE_POSITIVE = "Audio/MessagePositive";
+    public static readonly string MESSAGE_NEGATIVE = "Audio/MessageNegative";
+    public static readonly string MESSAGE_ACHIEVEMENT = "Audio/AchievementObtained";
+    public static readonly string DRUM_ONE = "Audio/Drum1";
+    public static readonly string DRUM_TWO = "Audio/Drum2";
+    public static readonly string DRUM_THREE = "Audio/Drum3";
+    public static readonly string PIANO_ONE = "Audio/Piano1";
+    public static readonly string PIANO_TWO = "Audio/Piano2";
+
+
     // ---------- Object References ----------
     public AudioSource soundEffects;
     
@@ -16,6 +28,39 @@ public class AudioManager : MonoBehaviour {
     public void PlaySound(string path) {
         soundEffects.clip = Resources.Load<AudioClip>(path);
         soundEffects.PlayOneShot(soundEffects.clip);
+    }
+
+    public void PlaySoundAfterTime(string path, float time) {
+        StartCoroutine(PlaySoundAfterTimeCR(path, time));
+    }
+
+    private IEnumerator PlaySoundAfterTimeCR(string path, float time) {
+        yield return new WaitForSeconds(time);
+        PlaySound(path);
+    }
+
+    public void PlayRandomDrumEffect() {
+        string path;
+        int choice = GameEngine.GetInstance().random.Next(0, 3);
+        if (choice == 0) {
+            path = DRUM_ONE;
+        } else if (choice == 1) {
+            path = DRUM_TWO;
+        } else {
+            path = DRUM_THREE;
+        }
+        PlaySoundAfterTime(path, 0.1f);
+    }
+
+    public void PlayRandomPianoEffect() {
+        string path;
+        int choice = GameEngine.GetInstance().random.Next(0, 2);
+        if (choice == 0) {
+            path = PIANO_ONE;
+        } else {
+            path = PIANO_TWO;
+        }
+        PlaySoundAfterTime(path, 0.1f);
     }
 
     // ---------- Enemy Death Sounds ----------

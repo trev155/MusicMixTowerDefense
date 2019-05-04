@@ -16,6 +16,7 @@ public class MessageQueue : MonoBehaviour {
     private Color32 infoMessageColour = new Color32(14, 10, 25, 255);
     private Color32 positiveMessageColour = new Color32(150, 250, 102, 255);
     private Color32 negativeMessageColour = new Color32(250, 50, 0, 255);
+    private Color32 achievementMessageColour = new Color32(120, 245, 78, 255);
 
     //---------- Methods ----------
     private void Awake() {
@@ -41,6 +42,7 @@ public class MessageQueue : MonoBehaviour {
         entry.text = message;
         entry.name = "MessageEntry_" + messageNum;
         SetTextColour(entry, messageType);
+        PlaySoundEffect(messageType);
         messageNum++;
     }
 
@@ -54,6 +56,28 @@ public class MessageQueue : MonoBehaviour {
                 break;
             case MessageType.NEGATIVE:
                 text.color = negativeMessageColour;
+                break;
+            case MessageType.ACHIEVEMENT:
+                text.color = achievementMessageColour;
+                break;
+            default:
+                throw new GameplayException("Unrecognized message type, cannot set text colour");
+        }
+    }
+
+    private void PlaySoundEffect(MessageType messageType) {
+        switch (messageType) {
+            case MessageType.INFO:
+                GameEngine.GetInstance().audioManager.PlaySoundAfterTime(AudioManager.MESSAGE_INFO, 0.15f);
+                break;
+            case MessageType.POSITIVE:
+                GameEngine.GetInstance().audioManager.PlaySoundAfterTime(AudioManager.MESSAGE_POSITIVE, 0.15f);
+                break;
+            case MessageType.NEGATIVE:
+                GameEngine.GetInstance().audioManager.PlaySoundAfterTime(AudioManager.MESSAGE_NEGATIVE, 0.15f);
+                break;
+            case MessageType.ACHIEVEMENT:
+                Debug.Log("Unsupported message type");
                 break;
             default:
                 throw new GameplayException("Unrecognized message type, cannot set text colour");
