@@ -47,7 +47,7 @@ public class AchievementManager : MonoBehaviour {
             if (achievement.CheckCondition()) {
                 achievement.isCompleted = true;
                 achievement.GiveReward();
-                GameEngine.GetInstance().audioManager.PlaySound(AudioManager.MESSAGE_ACHIEVEMENT);
+                GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.MESSAGE_ACHIEVEMENT);
                 IndicateCompleted(achievement.achievementName);
             }
         }
@@ -64,7 +64,7 @@ public class AchievementManager : MonoBehaviour {
             if (achievement.CheckCondition()) {
                 achievement.isCompleted = true;
                 achievement.GiveReward();
-                GameEngine.GetInstance().audioManager.PlaySound(AudioManager.MESSAGE_ACHIEVEMENT);
+                GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.MESSAGE_ACHIEVEMENT);
                 IndicateCompleted(achievement.achievementName);
             }
         }

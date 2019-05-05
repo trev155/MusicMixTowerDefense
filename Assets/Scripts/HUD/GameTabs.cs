@@ -25,7 +25,7 @@ public class GameTabs : MonoBehaviour {
         bool isActive = ShopPanel.gameObject.activeSelf;
         ShopPanel.gameObject.SetActive(!isActive);
 
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 
     public void ToggleShowUpgradePanel() {
@@ -38,7 +38,7 @@ public class GameTabs : MonoBehaviour {
         bool isActive = UpgradePanel.gameObject.activeSelf;
         UpgradePanel.gameObject.SetActive(!isActive);
 
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 
     public void ToggleShowHarvestersPanel() {
@@ -51,7 +51,7 @@ public class GameTabs : MonoBehaviour {
         bool isActive = HarvestersPanel.gameObject.activeSelf;
         HarvestersPanel.gameObject.SetActive(!isActive);
 
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 
     public void ToggleShowBonusPanel() {
@@ -64,7 +64,7 @@ public class GameTabs : MonoBehaviour {
         bool isActive = BonusPanel.gameObject.activeSelf;
         BonusPanel.gameObject.SetActive(!isActive);
 
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 
     public void ToggleShowAdminPanel() {
@@ -77,6 +77,6 @@ public class GameTabs : MonoBehaviour {
         bool isActive = AdminPanel.gameObject.activeSelf;
         AdminPanel.gameObject.SetActive(!isActive);
 
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 }

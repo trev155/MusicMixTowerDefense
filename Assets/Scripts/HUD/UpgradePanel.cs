@@ -20,42 +20,42 @@ public class UpgradePanel : MonoBehaviour {
     public Text FlameCost;
 
     public void UpgradeInfantry() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.INFANTRY);
     }
 
     public void UpgradeMech() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.MECH);
     }
 
     public void UpgradeLaser() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.LASER);
     }
 
     public void UpgradePsionic() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.PSIONIC);
     }
 
     public void UpgradeAcid() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.ACID);
     }
 
     public void UpgradeBlade() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.BLADE);
     }
 
     public void UpgradeMagic() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.MAGIC);
     }
 
     public void UpgradeFlame() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         GameEngine.GetInstance().upgradeManager.AttemptUpgrade(UnitClass.FLAME);
     }
 

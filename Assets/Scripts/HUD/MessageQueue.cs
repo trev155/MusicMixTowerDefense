@@ -68,13 +68,13 @@ public class MessageQueue : MonoBehaviour {
     private void PlaySoundEffect(MessageType messageType) {
         switch (messageType) {
             case MessageType.INFO:
-                GameEngine.GetInstance().audioManager.PlaySoundAfterTime(AudioManager.MESSAGE_INFO, 0.15f);
+                GameEngine.GetInstance().audioManager.PlayAudioAfterTime(AudioManager.MESSAGE_INFO, 0.15f);
                 break;
             case MessageType.POSITIVE:
-                GameEngine.GetInstance().audioManager.PlaySoundAfterTime(AudioManager.MESSAGE_POSITIVE, 0.15f);
+                GameEngine.GetInstance().audioManager.PlayAudioAfterTime(AudioManager.MESSAGE_POSITIVE, 0.15f);
                 break;
             case MessageType.NEGATIVE:
-                GameEngine.GetInstance().audioManager.PlaySoundAfterTime(AudioManager.MESSAGE_NEGATIVE, 0.15f);
+                GameEngine.GetInstance().audioManager.PlayAudioAfterTime(AudioManager.MESSAGE_NEGATIVE, 0.15f);
                 break;
             case MessageType.ACHIEVEMENT:
                 Debug.Log("Unsupported message type");

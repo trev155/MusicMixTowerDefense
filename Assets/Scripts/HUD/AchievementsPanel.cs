@@ -39,7 +39,7 @@ public class AchievementsPanel : MonoBehaviour {
     }
 
     public void ScrollPageLeft() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         if (currentPage == 1) {
             return;
         }
@@ -48,7 +48,7 @@ public class AchievementsPanel : MonoBehaviour {
     }
 
     public void ScrollPageRight() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         if (currentPage == 3) {
             return;
         }

@@ -13,7 +13,7 @@ public class GuidancePanel : MonoBehaviour {
     }
 
     public void ScrollPageLeft() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         if (currentPage == 1) {
             return;
         }
@@ -22,7 +22,7 @@ public class GuidancePanel : MonoBehaviour {
     }
 
     public void ScrollPageRight() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         if (currentPage == 2) {
             return;
         }

@@ -53,7 +53,7 @@ public class BonusPanel : MonoBehaviour {
     }
 
     public void PurchaseGas_B() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         if (GameEngine.GetInstance().bChoosers < 1) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No B Choosers available", MessageType.NEGATIVE);
             return;
@@ -64,7 +64,7 @@ public class BonusPanel : MonoBehaviour {
     }
 
     private void PurchaseBUnit(UnitClass unitClass) {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         if (GameEngine.GetInstance().bChoosers < 1) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No B Choosers available", MessageType.NEGATIVE);
             return;
@@ -100,7 +100,7 @@ public class BonusPanel : MonoBehaviour {
     }
 
     public void PurchaseGas_A() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         if (GameEngine.GetInstance().aChoosers < 1) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No A Choosers available", MessageType.NEGATIVE);
             return;
@@ -111,7 +111,7 @@ public class BonusPanel : MonoBehaviour {
     }
 
     private void PurchaseAUnit(UnitClass unitClass) {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         if (GameEngine.GetInstance().aChoosers < 1) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No A Choosers available", MessageType.NEGATIVE);
             return;
@@ -146,7 +146,7 @@ public class BonusPanel : MonoBehaviour {
     }
 
     public void PurchaseGas_S() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         if (GameEngine.GetInstance().sChoosers < 1) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No S Choosers available", MessageType.NEGATIVE);
             return;
@@ -157,7 +157,7 @@ public class BonusPanel : MonoBehaviour {
     }
 
     public void PurchaseWall_S() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         if (GameEngine.GetInstance().sChoosers < 1) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot purchase. No S Choosers available", MessageType.NEGATIVE);
             return;
@@ -175,7 +175,7 @@ public class BonusPanel : MonoBehaviour {
     }
 
     private void PurchaseSUnit(UnitClass unitClass) {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         if (GameEngine.GetInstance().sChoosers < 1) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot purhcase unit. No S Choosers available", MessageType.NEGATIVE);
             return;

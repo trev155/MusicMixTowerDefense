@@ -13,43 +13,43 @@ public class UnitMixer : MonoBehaviour {
         
         // 2 of same unit
         if (CheckMatchingUnit(playerUnit)) {
-            GameEngine.GetInstance().audioManager.PlaySound(AudioManager.UNIT_MIX_SOUND);
+            GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.UNIT_MIX_SOUND);
             return;
         }
 
         // BCD -> A
         if (CheckBCDCombo(playerUnit)) {
-            GameEngine.GetInstance().audioManager.PlaySound(AudioManager.UNIT_MIX_SOUND);
+            GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.UNIT_MIX_SOUND);
             return;
         }
 
         // 6 D + 80 Gas -> A
         if (CheckAllDCombo(playerUnit)) {
-            GameEngine.GetInstance().audioManager.PlaySound(AudioManager.UNIT_MIX_SOUND);
+            GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.UNIT_MIX_SOUND);
             return;
         }
 
         // 6 C + 300 Gas -> S
         if (CheckAllCCombo(playerUnit)) {
-            GameEngine.GetInstance().audioManager.PlaySound(AudioManager.UNIT_MIX_SOUND);
+            GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.UNIT_MIX_SOUND);
             return;
         }
 
         // BAS -> X (one only)
         if (CheckXCombo(playerUnit)) {
-            GameEngine.GetInstance().audioManager.PlaySound(AudioManager.UNIT_MIX_SOUND);
+            GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.UNIT_MIX_SOUND);
             return;
         }
 
         // B Magic + B Flame -> 2 B choosers
         if (CheckRareBCombo(playerUnit)) {
-            GameEngine.GetInstance().audioManager.PlaySound(AudioManager.UNIT_MIX_SOUND);
+            GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.UNIT_MIX_SOUND);
             return;
         }
 
         // A Magic + A Flame -> 2 A choosers
         if (CheckRareACombo(playerUnit)) {
-            GameEngine.GetInstance().audioManager.PlaySound(AudioManager.UNIT_MIX_SOUND);
+            GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.UNIT_MIX_SOUND);
             return;
         }
     }

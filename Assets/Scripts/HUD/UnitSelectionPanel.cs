@@ -69,7 +69,7 @@ public class UnitSelectionPanel : MonoBehaviour {
         }
         GameEngine.GetInstance().ClearUnitSelectionObjects();
 
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 
     private void HideUnitSelectionPanel() {
@@ -120,7 +120,7 @@ public class UnitSelectionPanel : MonoBehaviour {
             GameEngine.GetInstance().EnablePlayerUnitMovement();
         }
 
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 
     public void HighlightMoveableAreaAlpha() {
@@ -147,18 +147,18 @@ public class UnitSelectionPanel : MonoBehaviour {
         int gasRefund = ComputeGasRefund(GameEngine.GetInstance().playerUnitSelected.rank);
         sellUnitModalText.text = "Are you sure you want to sell this unit ?\n (You will receive " + gasRefund + " gas for selling a " + GameEngine.GetInstance().playerUnitSelected.rank +" rank unit)";
 
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 
     public void ConfirmSellUnit() {
         sellUnitModal.gameObject.SetActive(false);
         SellUnit();
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 
     public void DenySellUnit() {
         sellUnitModal.gameObject.SetActive(false);
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 
     private void SellUnit() {

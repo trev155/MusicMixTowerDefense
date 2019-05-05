@@ -2,7 +2,7 @@
 
 public class ShopPanel : MonoBehaviour {
     public void CreateRandomDUnit() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
 
         if (GameEngine.GetInstance().tokenCount == 0) {
             GameEngine.GetInstance().messageQueue.PushMessage("Could not purchase a D unit. Requires 1 token.", MessageType.NEGATIVE);            
@@ -13,7 +13,7 @@ public class ShopPanel : MonoBehaviour {
     }
 
     public void PurchaseGas() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
 
         if (GameEngine.GetInstance().tokenCount == 0) {
             GameEngine.GetInstance().messageQueue.PushMessage("Could not purchase gas. Requires 1 token.", MessageType.INFO);
@@ -40,7 +40,7 @@ public class ShopPanel : MonoBehaviour {
     }
 
     public void PurchaseHarvester() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
 
         if (GameEngine.GetInstance().tokenCount < 5) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot Purchase item: [Harvester]. Requires (5) token.", MessageType.INFO);
@@ -54,7 +54,7 @@ public class ShopPanel : MonoBehaviour {
     }
 
     public void PurchasePiano() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
 
         if (GameEngine.GetInstance().hasPiano) {
             GameEngine.GetInstance().messageQueue.PushMessage("You can only purchase the Piano once.", MessageType.INFO);
@@ -71,7 +71,7 @@ public class ShopPanel : MonoBehaviour {
     }
 
     public void PurchaseDrums() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
 
         if (GameEngine.GetInstance().hasDrum) {
             GameEngine.GetInstance().messageQueue.PushMessage("You can only purchase the Drums once.", MessageType.INFO);
@@ -88,7 +88,7 @@ public class ShopPanel : MonoBehaviour {
     }
 
     public void PurchaseTokenLotto() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
 
         if (GameEngine.GetInstance().tokenCount < 1) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot Purchase item: [Lotto]. Requires (1) token.", MessageType.INFO);
@@ -114,7 +114,7 @@ public class ShopPanel : MonoBehaviour {
     }
 
     public void PurchaseGasLotto() {
-        GameEngine.GetInstance().audioManager.PlaySound(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
 
         if (GameEngine.GetInstance().gas < 15) {
             GameEngine.GetInstance().messageQueue.PushMessage("Cannot Purchase item: [Gas Lotto]. Requires (15 gas)", MessageType.INFO);

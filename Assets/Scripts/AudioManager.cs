@@ -18,27 +18,39 @@ public class AudioManager : MonoBehaviour {
     public static readonly string PIANO_TWO = "Audio/Piano2";
 
 
-    // ---------- Object References ----------
-    public AudioSource soundEffects;
-    
-    // ---------- Sound Effects ----------
+    // ---------- Audio Source References ----------
+    public AudioSource gameEffectsAudioSource;  // Generic audio source
+    public AudioSource enemyDeathAudioSource;
+    public AudioSource projectileAudioSource;
+
+    // ---------- General Functions ----------
     /* 
      * Generic function for playing a sound effect. Path argument should come from a static string in this class.
      */
-    public void PlaySound(string path) {
-        soundEffects.clip = Resources.Load<AudioClip>(path);
-        soundEffects.PlayOneShot(soundEffects.clip);
+    public void PlayAudio(string path) {
+        PlayAudio(path, gameEffectsAudioSource);
     }
 
-    public void PlaySoundAfterTime(string path, float time) {
-        StartCoroutine(PlaySoundAfterTimeCR(path, time));
+    public void PlayAudio(string path, AudioSource audioSource) {
+        audioSource.clip = Resources.Load<AudioClip>(path);
+        audioSource.PlayOneShot(audioSource.clip);
     }
 
-    private IEnumerator PlaySoundAfterTimeCR(string path, float time) {
+    public void PlayAudioAfterTime(string path, float time) {
+        StartCoroutine(PlayAudioAfterTimeCR(path, gameEffectsAudioSource, time));
+    }
+
+    public void PlayAudioAfterTime(string path, AudioSource audioSource, float time) {
+        StartCoroutine(PlayAudioAfterTimeCR(path, audioSource, time));
+    }
+
+    private IEnumerator PlayAudioAfterTimeCR(string path, AudioSource audioSource, float time) {
         yield return new WaitForSeconds(time);
-        PlaySound(path);
+        PlayAudio(path, audioSource);
     }
 
+
+    // ---------- Generic Sound Effects ----------
     public void PlayRandomDrumEffect() {
         string path;
         int choice = GameEngine.GetInstance().random.Next(0, 3);
@@ -49,7 +61,7 @@ public class AudioManager : MonoBehaviour {
         } else {
             path = DRUM_THREE;
         }
-        PlaySoundAfterTime(path, 0.1f);
+        PlayAudioAfterTime(path, gameEffectsAudioSource, 0.1f);
     }
 
     public void PlayRandomPianoEffect() {
@@ -60,10 +72,10 @@ public class AudioManager : MonoBehaviour {
         } else {
             path = PIANO_TWO;
         }
-        PlaySoundAfterTime(path, 0.1f);
+        PlayAudioAfterTime(path, gameEffectsAudioSource, 0.1f);
     }
 
-    // ---------- Enemy Death Sounds ----------
+    // ---------- Enemy Deaths ----------
     public void PlayRegularEnemyUnitDeathSound(int level) {
         string path = "Audio/EnemyDeath/drone_death";
         
@@ -87,8 +99,7 @@ public class AudioManager : MonoBehaviour {
             throw new GameplayException("Unrecognized level value: " + level + ". Cannot play enemy death sound.");
         }
 
-        soundEffects.clip = Resources.Load<AudioClip>(path);
-        soundEffects.PlayOneShot(soundEffects.clip);
+        PlayAudio(path, enemyDeathAudioSource);
     }
 
     public void PlaySpecialUnitDeathSound(string type) {
@@ -101,11 +112,10 @@ public class AudioManager : MonoBehaviour {
                 throw new GameplayException("Unrecognized special unit: " + type + ". Unable to play special enemy death sound.");
         }
 
-        soundEffects.clip = Resources.Load<AudioClip>(path);
-        soundEffects.PlayOneShot(soundEffects.clip);
+        PlayAudio(path, enemyDeathAudioSource);
     }
 
-    // ---------- Projectile Attacks ----------
+    // ---------- Projectiles ----------
     public void PlayProjectileAttackSound(UnitClass unitClass, PlayerUnitRank rank) {
         string path;
         switch (unitClass) {
@@ -137,8 +147,7 @@ public class AudioManager : MonoBehaviour {
                 throw new GameplayException("Unrecognized unit class: " + unitClass.ToString() + ". Cannot play projectile attack sound.");
         }
 
-        soundEffects.clip = Resources.Load<AudioClip>(path);
-        soundEffects.PlayOneShot(soundEffects.clip);
+        PlayAudio(path, projectileAudioSource);
     }
 
     private string GetInfantryProjectileAttackPath(PlayerUnitRank rank) {
