@@ -154,6 +154,7 @@ public class UnitSelectionPanel : MonoBehaviour {
         sellUnitModal.gameObject.SetActive(false);
         SellUnit();
         GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
+        GameEngine.GetInstance().audioManager.PlayAudioAfterTime(AudioManager.SELL_UNIT, 0.1f);
     }
 
     public void DenySellUnit() {

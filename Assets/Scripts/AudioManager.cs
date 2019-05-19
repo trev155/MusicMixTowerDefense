@@ -11,11 +11,13 @@ public class AudioManager : MonoBehaviour {
     public static readonly string MESSAGE_POSITIVE = "Audio/MessagePositive";
     public static readonly string MESSAGE_NEGATIVE = "Audio/MessageNegative";
     public static readonly string MESSAGE_ACHIEVEMENT = "Audio/AchievementObtained";
+    public static readonly string GAME_OVER = "Audio/GameOver";
     public static readonly string DRUM_ONE = "Audio/Drum1";
     public static readonly string DRUM_TWO = "Audio/Drum2";
     public static readonly string DRUM_THREE = "Audio/Drum3";
     public static readonly string PIANO_ONE = "Audio/Piano1";
     public static readonly string PIANO_TWO = "Audio/Piano2";
+    public static readonly string SELL_UNIT = "Audio/SellUnit";
 
 
     // ---------- Audio Source References ----------

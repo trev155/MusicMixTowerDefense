@@ -320,6 +320,7 @@ public class GameEngine : MonoBehaviour {
 
     private void GameOver() {
         this.messageQueue.PushMessage("Game Over", MessageType.NEGATIVE);
+        audioManager.PlayAudio(AudioManager.GAME_OVER);
         Time.timeScale = 0;
         gameOverPanel.transform.gameObject.SetActive(true);
         gameOverPanel.SetEndGameStats();
