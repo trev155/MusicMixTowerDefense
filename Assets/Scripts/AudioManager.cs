@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
-
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour {
     // ---------- Static path references ----------
@@ -18,12 +17,16 @@ public class AudioManager : MonoBehaviour {
     public static readonly string PIANO_ONE = "Audio/Piano1";
     public static readonly string PIANO_TWO = "Audio/Piano2";
     public static readonly string SELL_UNIT = "Audio/SellUnit";
-
+    
+    // ---------- Fields ----------
+    public Queue<string> queuedMusicPaths = new Queue<string>();
+    private bool isPlayingBGM = false;
 
     // ---------- Audio Source References ----------
     public AudioSource gameEffectsAudioSource;  // Generic audio source
     public AudioSource enemyDeathAudioSource;
     public AudioSource projectileAudioSource;
+    public AudioSource backgroundMusic;
 
     // ---------- General Functions ----------
     /* 
@@ -39,18 +42,41 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void PlayAudioAfterTime(string path, float time) {
-        StartCoroutine(PlayAudioAfterTimeCR(path, gameEffectsAudioSource, time));
+        PlayAudioAfterTime(path, gameEffectsAudioSource, time);
     }
 
     public void PlayAudioAfterTime(string path, AudioSource audioSource, float time) {
-        StartCoroutine(PlayAudioAfterTimeCR(path, audioSource, time));
+        audioSource.clip = Resources.Load<AudioClip>(path);
+        audioSource.PlayDelayed(time);
     }
 
-    private IEnumerator PlayAudioAfterTimeCR(string path, AudioSource audioSource, float time) {
-        yield return new WaitForSeconds(time);
-        PlayAudio(path, audioSource);
+    // --------- Background Music ----------
+    private void Update() {
+        // Check if queue is not empty and if isPlaying = false
+        if (!isPlayingBGM && queuedMusicPaths.Count > 0) {
+            Debug.Log("Dequeue next track");
+
+            string path = queuedMusicPaths.Dequeue();
+            backgroundMusic.clip = Resources.Load<AudioClip>(path);
+            backgroundMusic.PlayOneShot(backgroundMusic.clip);
+            isPlayingBGM = true;
+
+        }
+        // find a way to detect if track is done playing, to set isPlayingBGM = false
+        if (!backgroundMusic.isPlaying) {
+            isPlayingBGM = false;
+        }
     }
 
+    // This should be called whenever we start a new level.
+    public void AddLevelMusicToQueue(int level) {
+        string path = level.ToString();
+        if (level < 10) {
+            path = "0" + path;
+        }
+        path = "Audio/BGM/L" + path;
+        queuedMusicPaths.Enqueue(path);
+    }
 
     // ---------- Generic Sound Effects ----------
     public void PlayRandomDrumEffect() {

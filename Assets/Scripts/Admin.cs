@@ -5,7 +5,9 @@ public class Admin : MonoBehaviour {
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyUp(KeyCode.Alpha1)) {
             Debug.Log("Admin Route");
 
-            GameEngine.GetInstance().unitSpawner.CreateBounty();
+            GameEngine.GetInstance().audioManager.AddLevelMusicToQueue(1);
+            GameEngine.GetInstance().audioManager.AddLevelMusicToQueue(2);
+            
         }
     }
 }

@@ -8,8 +8,8 @@ using System.Collections;
 
 public class LevelManager : MonoBehaviour {
     // ---------- Fields ----------
-    private static readonly float spawnDelay = 2.0f;
-    private static readonly int numUnitsPerLevel = 5;
+    private static readonly float spawnDelay = 1.5f;
+    private static readonly int numUnitsPerLevel = 40;
     public int currentLevel = 0;
 
     public bool levelHasStarted = false;
@@ -50,6 +50,8 @@ public class LevelManager : MonoBehaviour {
         GameEngine.GetInstance().gameDataPanel.UpdateLevelText(level);
         StartCoroutine(StartLevelLoop(level));
         timeLeftInLevel = numUnitsPerLevel * spawnDelay;
+
+        GameEngine.GetInstance().audioManager.AddLevelMusicToQueue(level);
     }
 
     private IEnumerator StartLevelLoop(int level) {
