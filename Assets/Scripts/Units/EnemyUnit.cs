@@ -86,6 +86,9 @@ public class EnemyUnit : Unit {
     }
 
     private void MoveToNextWaypoint() {
-        transform.position = Vector2.MoveTowards(transform.position, currentWaypointDestination.position, movementSpeed * Time.deltaTime);
+        Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
+        Vector2 movementDirection = (Vector2)currentWaypointDestination.position - (Vector2)this.transform.position;
+        movementDirection.Normalize();
+        rb2D.MovePosition(rb2D.position + (movementDirection * 1.5f) * this.movementSpeed * Time.deltaTime);
     }
 }

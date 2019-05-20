@@ -52,17 +52,12 @@ public class AudioManager : MonoBehaviour {
 
     // --------- Background Music ----------
     private void Update() {
-        // Check if queue is not empty and if isPlaying = false
         if (!isPlayingBGM && queuedMusicPaths.Count > 0) {
-            Debug.Log("Dequeue next track");
-
             string path = queuedMusicPaths.Dequeue();
             backgroundMusic.clip = Resources.Load<AudioClip>(path);
             backgroundMusic.PlayOneShot(backgroundMusic.clip);
             isPlayingBGM = true;
-
         }
-        // find a way to detect if track is done playing, to set isPlayingBGM = false
         if (!backgroundMusic.isPlaying) {
             isPlayingBGM = false;
         }

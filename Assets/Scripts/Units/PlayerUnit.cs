@@ -145,7 +145,7 @@ public class PlayerUnit : Unit {
         Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
         Vector2 movementDirection = destination - (Vector2)this.transform.position;
         movementDirection.Normalize();
-        rb2D.MovePosition(rb2D.position + (movementDirection * 2.5f)  * this.movementSpeed * Time.deltaTime);   
+        rb2D.MovePosition(rb2D.position + (movementDirection * 2.5f)  * this.movementSpeed * Time.deltaTime);
     }
 
     // Attacking

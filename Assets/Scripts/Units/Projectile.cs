@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
     //---------- Fields ----------
-    private static readonly float SPLASH_CIRCLE_APPEARANCE_TIME = 0.1f;
+    private static readonly float SPLASH_CIRCLE_APPEARANCE_TIME = 0.2f;
 
     public Transform splashDamageCircle;
     public Transform largeSplashDamageCircle;
