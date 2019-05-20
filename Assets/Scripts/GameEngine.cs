@@ -85,9 +85,9 @@ public class GameEngine : MonoBehaviour {
 
     //---------- Initialization ----------
     private void Awake() {
+        // Fields
         InitializeSingleton();
-        globalTimer.BeginGlobalGameTimer();
-
+        
         this.playerUnitMovementAllowed = false;
         this.playerUnitSelected = null;
         this.enemyUnitSelected = null;
@@ -115,9 +115,9 @@ public class GameEngine : MonoBehaviour {
         // Difficulty
         this.gameMode = SceneDataTransfer.CurrentGameMode;
         gameDataPanel.UpdateGameModeText(this.gameMode);
-        
-        // Start First Level
-        StartCoroutine(levelManager.WaitBeforeStartingGame(5.0f));
+
+        // Start Game
+        BeginGame();
     }
 
     private void InitializeSingleton() {
@@ -127,6 +127,11 @@ public class GameEngine : MonoBehaviour {
         } else {
             Instance = this;
         }
+    }
+
+    private void BeginGame() {
+        globalTimer.BeginGlobalGameTimer();
+        StartCoroutine(levelManager.WaitBeforeStartingGame(5.0f));
     }
 
     //---------- Methods ----------

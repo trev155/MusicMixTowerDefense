@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 
 public class GameDataPanel : MonoBehaviour {
@@ -14,12 +15,14 @@ public class GameDataPanel : MonoBehaviour {
     public Text levelTimerText;
     public Text enemyUnitCountText;
 
+    public Text mineralHarvesterBonusText;
+    public Text gasHarvesterBonusText;
+
 
     // ---------- Methods ----------
     private void Start() {
         InitializeDefaults();
     }
-
 
     private void InitializeDefaults() {
         UpdateMineralsText(GameEngine.GetInstance().minerals);
@@ -30,6 +33,9 @@ public class GameDataPanel : MonoBehaviour {
         UpdateGlobalGameTimeText("");
         UpdateLevelTimeText("");
         UpdateEnemyUnitCountText(0);
+
+        mineralHarvesterBonusText.text = "";
+        gasHarvesterBonusText.text = "";
     }
 
     public void UpdateGameModeText(GameMode gameMode) {
@@ -70,5 +76,13 @@ public class GameDataPanel : MonoBehaviour {
 
     public void UpdateEnemyUnitCountText(int enemyCount) {
         enemyUnitCountText.text = "Enemy Units: " + enemyCount;
+    }
+
+    public void UpdateMineralHarvesterBonusText(int mineralIncrement) {
+        StartCoroutine(Utils.DisplayAndFadeOutText(GameEngine.GetInstance().gameDataPanel.mineralHarvesterBonusText, "+ " + mineralIncrement, 3.0f));
+    }
+
+    public void UpdateGasHarvesterBonusText(int gasIncrement) {
+        StartCoroutine(Utils.DisplayAndFadeOutText(GameEngine.GetInstance().gameDataPanel.gasHarvesterBonusText, "+ " + gasIncrement, 3.0f));
     }
 }

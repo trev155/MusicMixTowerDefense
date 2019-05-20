@@ -5,32 +5,19 @@ public class GlobalTimer : MonoBehaviour {
     private bool globalTimerStarted = false;
     public float globalTime = 0;
 
-    private void Awake() {
-        StartCoroutine(CheckForGasHarvesterBonus());
-        StartCoroutine(CheckForMineralHarvesterBonus());
+    // Begin global timer
+    public void BeginGlobalGameTimer() {
+        this.globalTimerStarted = true;
     }
 
+    // Continually update global timer
     private void Update() {
         if (globalTimerStarted) {
             globalTime += Time.deltaTime;
             GameEngine.GetInstance().gameDataPanel.UpdateGlobalGameTimeText(ConvertTimeToString(globalTime));
         }
     }
-
-    private IEnumerator CheckForGasHarvesterBonus() {
-        while (true) {
-            yield return new WaitForSeconds(5.0f);
-            GameEngine.GetInstance().IncreaseGas(2 * GameEngine.GetInstance().gasHarvesters);
-        }
-    }
-
-    private IEnumerator CheckForMineralHarvesterBonus() {
-        while (true) {
-            yield return new WaitForSeconds(10.0f);
-            GameEngine.GetInstance().IncreaseMinerals(4 * GameEngine.GetInstance().mineralHarvesters);
-        }
-    }
-
+    
     private string ConvertTimeToString(float time) {
         int timeInSeconds = (int)Mathf.Round(time);
         int minutes = timeInSeconds / 60;
@@ -48,7 +35,33 @@ public class GlobalTimer : MonoBehaviour {
         return minutesString + ":" + secondsString;
     }
 
-    public void BeginGlobalGameTimer() {
-        this.globalTimerStarted = true;
+    // Harvester Bonuses
+    private void Awake() {
+        StartCoroutine(CheckForGasHarvesterBonus());
+        StartCoroutine(CheckForMineralHarvesterBonus());
+    }
+
+    private IEnumerator CheckForGasHarvesterBonus() {
+        while (true) {
+            yield return new WaitForSeconds(5.0f);
+
+            int gasIncrement = 2 * GameEngine.GetInstance().gasHarvesters;
+            if (gasIncrement > 0) {
+                GameEngine.GetInstance().IncreaseGas(gasIncrement);
+                GameEngine.GetInstance().gameDataPanel.UpdateGasHarvesterBonusText(gasIncrement);
+            }
+        }
+    }
+
+    private IEnumerator CheckForMineralHarvesterBonus() {
+        while (true) {
+            yield return new WaitForSeconds(10.0f);
+
+            int mineralIncrement = 4 * GameEngine.GetInstance().mineralHarvesters;
+            if (mineralIncrement > 0) {
+                GameEngine.GetInstance().IncreaseMinerals(mineralIncrement);
+                GameEngine.GetInstance().gameDataPanel.UpdateMineralHarvesterBonusText(mineralIncrement);
+            }
+        }
     }
 }
