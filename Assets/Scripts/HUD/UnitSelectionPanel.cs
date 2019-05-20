@@ -8,7 +8,6 @@ public class UnitSelectionPanel : MonoBehaviour {
     private static readonly float HIGHLIGHTED_ALPHA = 0.2f;
     private static readonly float UNHIGHLIGHTED_ALPHA = 0.02f;
 
-
     // ---------- Fields ----------
     public Transform unitSelectionPanel;
     public Button closeUnitSelectionPanelButton;
@@ -32,14 +31,14 @@ public class UnitSelectionPanel : MonoBehaviour {
     public Transform moveableArea;
 
 
-    // ---------- Methods ----------
+    // ---------- Startup ----------
     private void Awake() {
         unitSelectionPanel.gameObject.SetActive(false);
         closeUnitSelectionPanelButton.gameObject.SetActive(false);
         moveUnitInstruction.gameObject.SetActive(false);
     }
 
-    // Show and hide unit selection panel.
+    // ---------- Toggle Unit Selection Panel ----------
     public void ShowUnitSelectionPanel(IClickableUnit unit) {
         unitSelectionPanel.gameObject.SetActive(true);
         UpdateSelectedUnitDataPanel(unit);
@@ -77,7 +76,11 @@ public class UnitSelectionPanel : MonoBehaviour {
         closeUnitSelectionPanelButton.gameObject.SetActive(false);
     }
 
-    // Unit selection panel data
+    // ---------- Unit selection panel data ----------
+    /* 
+     * Calls the unit object's GetDisplayUnitData() function, which returns a list of strings.
+     * These strings get mapped to the textSlot game objects.
+     */
     public void UpdateSelectedUnitDataPanel(IClickableUnit unit) {
         List<string> unitData = unit.GetDisplayUnitData();
 
@@ -112,7 +115,7 @@ public class UnitSelectionPanel : MonoBehaviour {
         }
     }
 
-    // Player Unit Selection movement
+    // ---------- Player Unit Selection - Toggle Movement ----------
     public void MoveUnitButton() {
         if (GameEngine.GetInstance().playerUnitMovementAllowed) {
             GameEngine.GetInstance().DisablePlayerUnitMovement();
@@ -140,21 +143,28 @@ public class UnitSelectionPanel : MonoBehaviour {
         moveableArea.GetComponent<SpriteRenderer>().color = moveableAreaColor;
     }
 
-    // Unit Selling
+    // ---------- Unit Selling ----------
     public void SellUnitButton() {
         sellUnitModal.gameObject.SetActive(true);
 
-        int gasRefund = ComputeGasRefund(GameEngine.GetInstance().playerUnitSelected.rank);
-        sellUnitModalText.text = "Are you sure you want to sell this unit ?\n (You will receive " + gasRefund + " gas for selling a " + GameEngine.GetInstance().playerUnitSelected.rank +" rank unit)";
-
+        PlayerUnit unitToSell = GameEngine.GetInstance().playerUnitSelected;
+        if (IsRareUnit(unitToSell)) {
+            int tokenRefund = ComputeTokenRefund(unitToSell.rank);
+            sellUnitModalText.text = "Are you sure you want to sell this unit ?\n (You will receive " + tokenRefund + " tokens for selling a Rare " + unitToSell.rank + " rank unit)";
+        } else {
+            int gasRefund = ComputeGasRefund(unitToSell.rank);
+            sellUnitModalText.text = "Are you sure you want to sell this unit ?\n (You will receive " + gasRefund + " gas for selling a " + unitToSell.rank + " rank unit)";
+        }
+        
         GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 
     public void ConfirmSellUnit() {
         sellUnitModal.gameObject.SetActive(false);
-        SellUnit();
         GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         GameEngine.GetInstance().audioManager.PlayAudioAfterTime(AudioManager.SELL_UNIT, 0.1f);
+
+        SellUnit(GameEngine.GetInstance().playerUnitSelected);
     }
 
     public void DenySellUnit() {
@@ -162,48 +172,63 @@ public class UnitSelectionPanel : MonoBehaviour {
         GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
     }
 
-    private void SellUnit() {
-        CheckRareUnitSold();
+    /*
+     * Sell unit sequence. 
+     * If rare unit sold, check rare unit seller achievement. 
+     * Selling regular units gives gas, selling rare units gives tokens.
+     * Destroy the player unit at the end and close its unit selection panel.
+     */
+    private void SellUnit(PlayerUnit unitToSell) {
+        if (IsRareUnit(unitToSell)) {
+            int tokenRefund = ComputeTokenRefund(unitToSell.rank);
+            GameEngine.GetInstance().IncreaseTokenCount(tokenRefund);
 
-        int gasRefund = ComputeGasRefund(GameEngine.GetInstance().playerUnitSelected.rank);
-        GameEngine.GetInstance().IncreaseGas(gasRefund);
-
-        Destroy(GameEngine.GetInstance().playerUnitSelected.gameObject);
+            GameEngine.GetInstance().achievementManager.rareUnitsSold += 1;
+            GameEngine.GetInstance().achievementManager.CheckAchievementsForUnitSelling();
+        } else {
+            int gasRefund = ComputeGasRefund(unitToSell.rank);
+            GameEngine.GetInstance().IncreaseGas(gasRefund);
+        }
+        
+        Destroy(unitToSell.gameObject);
         GameEngine.GetInstance().unitSelectionPanel.CloseUnitSelectionPanelButton();
     }
 
+    private bool IsRareUnit(PlayerUnit playerUnit) {
+        return playerUnit.unitClass == UnitClass.MAGIC || playerUnit.unitClass == UnitClass.FLAME;
+    }
+    
     private int ComputeGasRefund(PlayerUnitRank rank) {
-        int gasRefund;
         switch (rank) {
             case PlayerUnitRank.D:
-                gasRefund = 30;
-                break;
+                return 30;
             case PlayerUnitRank.C:
-                gasRefund = 60;
-                break;
+                return 60;
             case PlayerUnitRank.B:
-                gasRefund = 120;
-                break;
+                return 120;
             case PlayerUnitRank.A:
-                gasRefund = 240;
-                break;
+                return 240;
             case PlayerUnitRank.S:
-                gasRefund = 480;
-                break;
+                return 480;
             case PlayerUnitRank.X:
-                gasRefund = 960;
-                break;
+                return 960;
             default:
                 throw new GameplayException("Unrecognized player unit rank. Cannot sell unit.");
         }
-        return gasRefund;
     }
 
-    private void CheckRareUnitSold() {
-        if (GameEngine.GetInstance().playerUnitSelected.unitClass == UnitClass.MAGIC || GameEngine.GetInstance().playerUnitSelected.unitClass == UnitClass.FLAME) {
-            GameEngine.GetInstance().achievementManager.rareUnitsSold += 1;
-            GameEngine.GetInstance
-                ().achievementManager.CheckAchievementsForUnitSelling();
+    private int ComputeTokenRefund(PlayerUnitRank rank) {
+        switch (rank) {
+            case PlayerUnitRank.B:
+                return 4;
+            case PlayerUnitRank.A:
+                return 8;
+            case PlayerUnitRank.S:
+                return 16;
+            case PlayerUnitRank.X:
+                return 32;
+            default:
+                throw new GameplayException("Unrecognized player unit rank for rare unit. Cannot sell unit.");
         }
     }
 }
