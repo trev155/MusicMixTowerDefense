@@ -203,7 +203,7 @@ public class UnitSpawner : MonoBehaviour {
         EnemyUnit enemy = Instantiate(bountyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
 
         enemy.InitializeProperties(enemyUnitData);
-        SetObjectName(enemy.gameObject);
+        SetObjectName(enemy.gameObject, "_bounty");
 
         Transform enemyUnitCircle = enemy.transform.GetChild(0);
         enemy.selectedUnitCircle = enemyUnitCircle;
@@ -218,7 +218,11 @@ public class UnitSpawner : MonoBehaviour {
 
     // Other functions
     private void SetObjectName(GameObject obj) {
-        obj.name = uid + "";
+        SetObjectName(obj, "");
+    }
+
+    private void SetObjectName(GameObject obj, string suffix) {
+        obj.name = uid + suffix;
         uid += 1;
     }
 

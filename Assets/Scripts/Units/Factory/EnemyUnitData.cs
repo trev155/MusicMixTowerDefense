@@ -4,7 +4,7 @@
     private readonly float maxHealth;
     private readonly float armor;
     private readonly int level;
-    private readonly EnemyAbilities enemyAbilities;
+    private readonly EnemyType enemyType;
 
     public EnemyUnitData(
         string displayName, 
@@ -12,13 +12,13 @@
         float maxHealth, 
         float armor,
         int level,
-        EnemyAbilities enemyAbilities) {
+        EnemyType enemyType) {
         this.displayName = displayName;
         this.movementSpeed = movementSpeed;
         this.maxHealth = maxHealth;
         this.armor = armor;
         this.level = level;
-        this.enemyAbilities = enemyAbilities;
+        this.enemyType = enemyType;
     }
 
     public string GetDisplayName() {
@@ -41,7 +41,7 @@
         return this.level;
     }
 
-    public EnemyAbilities GetEnemyAbilities() {
-        return this.enemyAbilities;
+    public EnemyType GetEnemyType() {
+        return this.enemyType;
     }
 }

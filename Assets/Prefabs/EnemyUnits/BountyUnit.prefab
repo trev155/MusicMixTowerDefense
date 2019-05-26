@@ -139,7 +139,7 @@ MonoBehaviour:
   currentHealth: 0
   armor: 0
   level: 0
-  abilities: 0
+  enemyType: 0
   selectedUnitCircle: {fileID: 1013747370527916468, guid: 4c8ea6360f889244ea4f163d71b1bbf4,
     type: 3}
 --- !u!114 &7721126543720023902

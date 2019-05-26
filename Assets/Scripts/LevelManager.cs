@@ -62,6 +62,10 @@ public class LevelManager : MonoBehaviour {
 
             if (numUnitsSpawned == numUnitsPerLevel) {
                 Debug.Log("Created " + numUnitsPerLevel + " units. Exiting loop.");
+
+                if (ShouldCreateBountyAtLevelEnd(level)) {
+                    GameEngine.GetInstance().unitSpawner.CreateBounty();
+                }
                 break;
             }
 
@@ -107,5 +111,9 @@ public class LevelManager : MonoBehaviour {
             default:
                 throw new GameplayException("Unrecognized game mode");
         }
+    }
+
+    private bool ShouldCreateBountyAtLevelEnd(int level) {
+        return level % 5 == 0 && level < 40;
     }
 }

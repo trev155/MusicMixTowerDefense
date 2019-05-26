@@ -141,7 +141,7 @@ public class UnitFactory {
         float movementSpeed;
         float maxHealth;
         float armor;
-        EnemyAbilities enemyAbilities;
+        EnemyType enemyType;
 
         int lineIndex = 0;
         TextAsset playerData = Resources.Load<TextAsset>(ENEMY_UNIT_DATA_PATH);
@@ -162,9 +162,9 @@ public class UnitFactory {
             movementSpeed = float.Parse(lineTokens[2]);
             maxHealth = float.Parse(lineTokens[3]);
             armor = float.Parse(lineTokens[4]);
-            enemyAbilities = ConvertEnemyAbilitiesString(lineTokens[5]);
+            enemyType = ConvertEnemyTypeString(lineTokens[5]);
 
-            EnemyUnitData enemyUnitData = new EnemyUnitData(displayName, movementSpeed, maxHealth, armor, level, enemyAbilities);
+            EnemyUnitData enemyUnitData = new EnemyUnitData(displayName, movementSpeed, maxHealth, armor, level, enemyType);
             if (level > 0) {
                 this.allEnemyData[level] = enemyUnitData;
             } else {
@@ -178,14 +178,18 @@ public class UnitFactory {
         Debug.Log("Finished reading enemy unit data. Read: [" + (lineIndex + 1) + "] number of lines.");
     }
 
-    private EnemyAbilities ConvertEnemyAbilitiesString(string s) {
+    private EnemyType ConvertEnemyTypeString(string s) {
         switch (s) {
-            case "None":
-                return EnemyAbilities.NONE;
-            case "HealthRegeneration":
-                return EnemyAbilities.HEALTH_REGEN;
+            case "Normal":
+                return EnemyType.NORMAL;
+            case "Bounty":
+                return EnemyType.BOUNTY;
+            case "Boss":
+                return EnemyType.BOSS;
+            case "Bonus":
+                return EnemyType.BONUS;
             default:
-                throw new GameplayException("Could not convert string " + s + " to an EnemyAbilities object.");
+                throw new GameplayException("Could not convert string " + s + " to an EnemyType object.");
         }
     }
 

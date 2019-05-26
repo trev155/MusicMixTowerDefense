@@ -13,10 +13,11 @@ public class EnemyUnit : Unit {
     public float currentHealth;
     public float armor;
     public int level;
-    public EnemyAbilities abilities;
+    public EnemyType enemyType;
 
     public Transform selectedUnitCircle;
 
+    public bool allowMovement = true;
     private Transform currentWaypointDestination;
     
 
@@ -28,7 +29,7 @@ public class EnemyUnit : Unit {
         this.currentHealth = enemyUnitData.GetMaxHealth();
         this.armor = enemyUnitData.GetArmor();
         this.level = enemyUnitData.GetLevel();
-        this.abilities = enemyUnitData.GetEnemyAbilities();
+        this.enemyType = enemyUnitData.GetEnemyType();
     }
 
     public override void OnPointerClick(PointerEventData pointerEventData) {
@@ -63,7 +64,7 @@ public class EnemyUnit : Unit {
         string attackSpeed = "Armor: " + this.armor;
         string movementSpeed = "Level: " + this.level;
         string attackType = "Movement Speed: " + this.movementSpeed;
-        string abilities = "Abilities: " + Utils.CleanEnumString(this.abilities.ToString());
+        string abilities = "Abilities: " + Utils.CleanEnumString(this.enemyType.ToString());
 
         unitData.Add(title);
         unitData.Add(attackDamage);
@@ -76,7 +77,7 @@ public class EnemyUnit : Unit {
     }
     
     private void Update() {
-        if (currentWaypointDestination != null) {
+        if (allowMovement && currentWaypointDestination != null) {
             MoveToNextWaypoint();
         }
     }

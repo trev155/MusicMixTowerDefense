@@ -36,10 +36,10 @@ public class HealthRegenerator : MonoBehaviour {
     public void SetRegenerationRate(string unitType) {
         switch (unitType) {
             case "Bounty":
-                regenerationRate = 2.0f;
+                regenerationRate = 0.5f;
                 break;
             default:
-                regenerationRate = 1.0f;
+                regenerationRate = 0.2f;
                 break;
         }
     }
