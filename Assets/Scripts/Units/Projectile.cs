@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
     //---------- Fields ----------
-    private static readonly float SPLASH_CIRCLE_APPEARANCE_TIME = 0.2f;
+    private static readonly float SPLASH_CIRCLE_APPEARANCE_TIME = 0.3f;
 
     public Transform splashDamageCircle;
     public Transform largeSplashDamageCircle;
@@ -41,10 +41,10 @@ public class Projectile : MonoBehaviour {
 
             if (origin.attackType == AttackType.SPLASH) {
                 InflictSplashDamage(enemyUnit, this.attackDamage, splashDamageCircle);  // this won't deal damage to the actual target, so deal with the actual target as normal
-                StartCoroutine(WaitTimeBeforeInflictingDamage(enemyUnit, this.attackDamage, 0.1f));
+                StartCoroutine(WaitTimeBeforeInflictingDamage(enemyUnit, this.attackDamage, SPLASH_CIRCLE_APPEARANCE_TIME));
             } else if (origin.attackType == AttackType.LARGE_SPLASH) {
                 InflictSplashDamage(enemyUnit, this.attackDamage, largeSplashDamageCircle);
-                StartCoroutine(WaitTimeBeforeInflictingDamage(enemyUnit, this.attackDamage, 0.1f));
+                StartCoroutine(WaitTimeBeforeInflictingDamage(enemyUnit, this.attackDamage, SPLASH_CIRCLE_APPEARANCE_TIME));
             } else {
                 InflictDamage(enemyUnit, this.attackDamage);
                 Destroy(this.gameObject);
@@ -109,13 +109,13 @@ public class Projectile : MonoBehaviour {
         StartCoroutine(SplashCooldownTime(SPLASH_CIRCLE_APPEARANCE_TIME, splashCircle));
     }
 
-    IEnumerator SplashCooldownTime(float time, SplashDamageCircle splashCircle) {
+    private IEnumerator SplashCooldownTime(float time, SplashDamageCircle splashCircle) {
         yield return new WaitForSeconds(time);
         Destroy(splashCircle.gameObject);
         Destroy(this.gameObject);
     }
 
-    IEnumerator WaitTimeBeforeInflictingDamage(EnemyUnit enemyUnit, float damage, float time) {
+    private IEnumerator WaitTimeBeforeInflictingDamage(EnemyUnit enemyUnit, float damage, float time) {
         yield return new WaitForSeconds(time);
         InflictDamage(enemyUnit, damage);
     }
