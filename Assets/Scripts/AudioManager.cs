@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour {
@@ -46,8 +47,12 @@ public class AudioManager : MonoBehaviour {
     }
 
     public void PlayAudioAfterTime(string path, AudioSource audioSource, float time) {
-        audioSource.clip = Resources.Load<AudioClip>(path);
-        audioSource.PlayDelayed(time);
+        StartCoroutine(PlayAudioAfterTimeCR(path, audioSource, time));
+    }
+
+    private IEnumerator PlayAudioAfterTimeCR(string path, AudioSource audioSource, float time) {
+        yield return new WaitForSeconds(time);
+        PlayAudio(path, audioSource);
     }
 
     // --------- Background Music ----------
@@ -122,7 +127,9 @@ public class AudioManager : MonoBehaviour {
             throw new GameplayException("Unrecognized level value: " + level + ". Cannot play enemy death sound.");
         }
 
-        PlayAudio(path, enemyDeathAudioSource);
+        if (!enemyDeathAudioSource.isPlaying) {
+            PlayAudio(path, enemyDeathAudioSource);
+        }
     }
 
     public void PlaySpecialUnitDeathSound(string type) {
