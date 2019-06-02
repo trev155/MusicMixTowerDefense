@@ -39,35 +39,35 @@ public class GameDataPanel : MonoBehaviour {
     }
 
     public void UpdateGameModeText(GameMode gameMode) {
-        gameModeText.text = "Mode: " + Utils.CleanEnumString(gameMode.ToString());
+        gameModeText.text = "Mode:\n" + Utils.CleanEnumString(gameMode.ToString());
     }
 
     public void UpdateMineralsText(int minerals) {
-        mineralsText.text = "Minerals: " + minerals;
+        mineralsText.text = "Minerals:\n" + minerals;
     }
 
     public void UpdateGasText(int gas) {
-        gasText.text = "Gas: " + gas;
+        gasText.text = "Gas:\n" + gas;
     }
 
     public void UpdateLevelText(int level) {
-        levelText.text = "Level: " + level;
+        levelText.text = "Level:\n" + level;
     }
 
     public void UpdateTokenCountText(int tokens) {
-        tokenCountText.text = "Tokens: " + tokens;
+        tokenCountText.text = "Tokens:\n" + tokens;
     }
 
     public void UpdateKillCounterText(int kills) {
-        killCounterText.text = "Kills: " + kills;
+        killCounterText.text = "Kills:\n" + kills;
     }
 
     public void UpdateGlobalGameTimeText(string timeStr) {
-        globalGameTimerText.text = "Game Time: " + timeStr;
+        globalGameTimerText.text = "Game Time:\n" + timeStr;
     }
 
     public void UpdateLevelTimeText(string timeStr) {
-        levelTimerText.text = "Level Time Left: " + timeStr;
+        levelTimerText.text = "Level Time Left:\n" + timeStr;
     }
 
     public void SetLevelTransitionTimeText() {
@@ -75,7 +75,7 @@ public class GameDataPanel : MonoBehaviour {
     }
 
     public void UpdateEnemyUnitCountText(int enemyCount) {
-        enemyUnitCountText.text = "Enemy Units: " + enemyCount;
+        enemyUnitCountText.text = "Enemy Units:\n" + enemyCount;
     }
 
     public void UpdateMineralHarvesterBonusText(int mineralIncrement) {

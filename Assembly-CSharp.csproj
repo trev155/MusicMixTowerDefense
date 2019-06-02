@@ -95,6 +95,8 @@
     <Compile Include="Assets\Scripts\HUD\GuidancePanel.cs" />
     <Compile Include="Assets\Scripts\HUD\HarvesterPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\InfoTabs.cs" />
+    <Compile Include="Assets\Scripts\HUD\MenuControlPanel.cs" />
+    <Compile Include="Assets\Scripts\HUD\MenuPanel.cs" />
     <Compile Include="Assets\Scripts\HUD\MessageQueue.cs" />
     <Compile Include="Assets\Scripts\HUD\MessageType.cs" />
     <Compile Include="Assets\Scripts\HUD\ShopPanel.cs" />

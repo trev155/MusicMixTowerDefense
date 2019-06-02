@@ -107,7 +107,7 @@ public class LevelManager : MonoBehaviour {
             case GameMode.NONSTOP:
                 return 4.0f;
             case GameMode.PRO:
-                return 0.1f;
+                return 0.5f;
             default:
                 throw new GameplayException("Unrecognized game mode");
         }
