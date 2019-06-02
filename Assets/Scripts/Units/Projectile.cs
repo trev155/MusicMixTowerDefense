@@ -107,7 +107,7 @@ public class Projectile : MonoBehaviour {
      * This game object is destroyed after a short time interval.
      */
     private void InflictSplashDamage(EnemyUnit enemyUnit, float damage, Transform splashDamageCirclePrefab) {
-        SplashDamageCircle splashCircle = Instantiate(splashDamageCircle, enemyUnit.transform).GetComponent<SplashDamageCircle>();
+        SplashDamageCircle splashCircle = Instantiate(splashDamageCirclePrefab, enemyUnit.transform).GetComponent<SplashDamageCircle>();
         splashCircle.damage = Mathf.Floor(damage / 2);
         splashCircle.projectile = this;
         StartCoroutine(SplashCooldownTime(SPLASH_CIRCLE_APPEARANCE_TIME, splashCircle));
