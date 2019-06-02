@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
     //---------- Fields ----------
-    private static readonly float SPLASH_CIRCLE_APPEARANCE_TIME = 0.3f;
+    private static readonly float SPLASH_CIRCLE_APPEARANCE_TIME = 0.1f;
 
     public Transform splashDamageCircle;
     public Transform largeSplashDamageCircle;
@@ -31,9 +31,9 @@ public class Projectile : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-        // test check statement
         if (targetUnit == null) {
-            throw new GameplayException("Target unit is NULL!");
+            return;
+            // throw new GameplayException("Target unit is NULL!");
         }
 
         if (collision.gameObject == targetUnit.gameObject) {
@@ -85,8 +85,12 @@ public class Projectile : MonoBehaviour {
         if (enemyUnit.level == 0) {
             KilledSpecialEnemyUnit(enemyUnit.displayName);
         }
-        Destroy(enemyUnit.gameObject);
 
+        // Destroy enemy unit game object
+        if (enemyUnit != null) {
+            Destroy(enemyUnit.gameObject);
+        }
+        
         // Close unit selection panel for enemy unit if required
         if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
             GameEngine.GetInstance().unitSelectionPanel.CloseUnitSelectionPanel();
@@ -111,8 +115,11 @@ public class Projectile : MonoBehaviour {
 
     private IEnumerator SplashCooldownTime(float time, SplashDamageCircle splashCircle) {
         yield return new WaitForSeconds(time);
-        Destroy(splashCircle.gameObject);
-        Destroy(this.gameObject);
+
+        if (splashCircle != null) {
+            Destroy(splashCircle.gameObject);
+        }
+        Destroy(this.gameObject, 0.1f);     // Race condition - remove splash circle first    
     }
 
     private IEnumerator WaitTimeBeforeInflictingDamage(EnemyUnit enemyUnit, float damage, float time) {
