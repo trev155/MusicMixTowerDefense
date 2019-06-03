@@ -323,4 +323,15 @@ public class AudioManager : MonoBehaviour {
                 throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play flame attack sound.");
         }
     }
+
+    // ---------- Audio Levels ----------
+    public void SetBGMAudioLevel(float value) {
+        backgroundMusic.volume = value * 0.6f;
+    }
+
+    public void SetSoundEffectsVolumeLevel(float value) {
+        gameEffectsAudioSource.volume = value * 0.25f;
+        enemyDeathAudioSource.volume = value * 0.15f;
+        projectileAudioSource.volume = value * 0.1f;
+    }
 }
