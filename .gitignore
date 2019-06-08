@@ -4,3 +4,7 @@ Obj
 Build
 .gradle
 .vs
+Unity.*
+*.asset
+*.csproj
+*.csproj
