@@ -18,7 +18,7 @@ public class EnemyUnit : Unit {
     public Transform selectedUnitCircle;
 
     public bool allowMovement = true;
-    private Transform currentWaypointDestination;
+    public Transform currentWaypointDestination;
     
 
     //---------- Methods ----------
