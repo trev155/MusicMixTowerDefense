@@ -105,24 +105,24 @@ public class AudioManager : MonoBehaviour {
 
     // ---------- Enemy Deaths ----------
     public void PlayRegularEnemyUnitDeathSound(int level) {
-        string path = "Audio/EnemyDeath/drone_death";
+        string path;
         
         if (level < 6) {
-
+            path = "Audio/EnemyDeath/drone_death";
         } else if (level < 11) {
-
+            path = "Audio/EnemyDeath/ursadon_death";
         } else if (level < 16) {
-
+            path = "Audio/EnemyDeath/probe_death";
         } else if (level < 21) {
-
+            path = "Audio/EnemyDeath/tank_death";
         } else if (level < 26) {
-        
+            path = "Audio/EnemyDeath/scout_death";
         } else if (level < 31) {
-
+            path = "Audio/EnemyDeath/rangasaur_death";
         } else if (level < 36) {
-
+            path = "Audio/EnemyDeath/arbiter_death";
         } else if (level < 41) {
-
+            path = "Audio/EnemyDeath/vulture_death";
         } else {
             throw new GameplayException("Unrecognized level value: " + level + ". Cannot play enemy death sound.");
         }
@@ -331,7 +331,7 @@ public class AudioManager : MonoBehaviour {
 
     public void SetSoundEffectsVolumeLevel(float value) {
         gameEffectsAudioSource.volume = value * 0.25f;
-        enemyDeathAudioSource.volume = value * 0.15f;
-        projectileAudioSource.volume = value * 0.1f;
+        enemyDeathAudioSource.volume = value * 0.25f;
+        projectileAudioSource.volume = value * 0.05f;
     }
 }
