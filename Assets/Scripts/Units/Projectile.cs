@@ -30,6 +30,9 @@ public class Projectile : MonoBehaviour {
         this.attackDamage = attackDamage;
     }
 
+    /*
+     * If this projectile collides with an enemy unit, inflict damage to it.
+     */
     private void OnTriggerEnter2D(Collider2D collision) {
         if (targetUnit == null) {
             return;
@@ -38,6 +41,9 @@ public class Projectile : MonoBehaviour {
 
         if (collision.gameObject == targetUnit.gameObject) {
             EnemyUnit enemyUnit = targetUnit.GetComponent<EnemyUnit>();
+
+            // Projectile landing audio
+            GameEngine.GetInstance().audioManager.PlayProjectileLandingSound(origin.unitClass, origin.rank);
 
             if (origin.attackType == AttackType.SPLASH) {
                 InflictSplashDamage(enemyUnit, this.attackDamage, splashDamageCircle);  // this won't deal damage to the actual target, so deal with the actual target as normal

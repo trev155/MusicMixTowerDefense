@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour {
     public AudioSource gameEffectsAudioSource;  // Generic audio source
     public AudioSource enemyDeathAudioSource;
     public AudioSource projectileAudioSource;
+    public AudioSource projectileLandingAudioSource;
     public AudioSource backgroundMusic;
 
     // ---------- General Functions ----------
@@ -324,14 +325,96 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
+    // Projectile Landings - not all units will have projectile landings, only select few ones
+    public void PlayProjectileLandingSound(UnitClass unitClass, PlayerUnitRank rank) {
+        string path;
+        switch (unitClass) {
+            case UnitClass.INFANTRY:
+                path = "";
+                break;
+            case UnitClass.MECH:
+                path = GetMechProjectileLandingPath(rank);
+                break;
+            case UnitClass.LASER:
+                path = GetLaserProjectileLandingPath(rank);
+                break;
+            case UnitClass.PSIONIC:
+                path = GetPsionicProjectileLandingPath(rank);
+                break;
+            case UnitClass.ACID:
+                path = GetAcidProjectileLandingPath(rank);
+                break;
+            case UnitClass.BLADE:
+                path = GetBladeProjectileLandingPath(rank);
+                break;
+            case UnitClass.MAGIC:
+                path = GetMagicProjectileLandingPath(rank);
+                break;
+            case UnitClass.FLAME:
+                path = GetFlameProjectileLandingPath(rank);
+                break;
+            default:
+                throw new GameplayException("Unrecognized unit class: " + unitClass.ToString() + ". Cannot play projectile attack sound.");
+        }
+
+        if (path.Length > 0) {
+            PlayAudio(path, projectileAudioSource);
+        }
+    }
+
+    private string GetMechProjectileLandingPath(PlayerUnitRank rank) {
+        return "";
+    }
+
+    private string GetLaserProjectileLandingPath(PlayerUnitRank rank) {
+        return "";
+    }
+
+    private string GetPsionicProjectileLandingPath(PlayerUnitRank rank) {
+        return "";
+    }
+
+    private string GetAcidProjectileLandingPath(PlayerUnitRank rank) {
+        switch (rank) {
+            case PlayerUnitRank.D:
+                return "";
+            case PlayerUnitRank.C:
+                return "";
+            case PlayerUnitRank.B:
+                return "Audio/ProjectileLanding/Acid/corrosive_acid";
+            case PlayerUnitRank.A:
+                return "";
+            case PlayerUnitRank.S:
+                return "";
+            case PlayerUnitRank.X:
+                return "Audio/ProjectileLanding/Acid/corrosive_acid";
+            default:
+                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play flame attack sound.");
+        }
+    }
+
+    private string GetBladeProjectileLandingPath(PlayerUnitRank rank) {
+        return "";
+    }
+
+    private string GetMagicProjectileLandingPath(PlayerUnitRank rank) {
+        return "";
+    }
+
+    private string GetFlameProjectileLandingPath(PlayerUnitRank rank) {
+        return "";
+    }
+
+
     // ---------- Audio Levels ----------
     public void SetBGMAudioLevel(float value) {
-        backgroundMusic.volume = value * 0.6f;
+        backgroundMusic.volume = value;
     }
 
     public void SetSoundEffectsVolumeLevel(float value) {
-        gameEffectsAudioSource.volume = value * 0.25f;
-        enemyDeathAudioSource.volume = value * 0.25f;
-        projectileAudioSource.volume = value * 0.05f;
+        gameEffectsAudioSource.volume = value;
+        enemyDeathAudioSource.volume = value;
+        projectileAudioSource.volume = value;
+        projectileLandingAudioSource.volume = value;
     }
 }
