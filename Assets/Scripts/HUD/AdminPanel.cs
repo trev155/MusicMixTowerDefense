@@ -1,121 +1,92 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 
-
+/*
+ * The AdminPanel is for debugging purposes.
+ * Allows me to create any unit or enemy unit. Allows me to upgrade for free.
+ */
 public class AdminPanel : MonoBehaviour {
-    private Dictionary<PlayerUnitRank, int> rankToNumberMappings = new Dictionary<PlayerUnitRank, int>();
-    private int curNum = 0;
-    private PlayerUnitRank curRank;
+    private PlayerUnitRank selectedUnitRank;
+    private UnitClass selectedUnitClass;
     private int enemyLevel = 1;
     private const int MAX_LEVELS = 40;
-    private int specialEnemyUnitIndex = 1;
-    private const int NUM_SPECIAL_UNITS = 1;
-    private int upgradeNum = 0;
-
-    public Text rankText;
-    public Text numberText;
-    public Text enemyLevelText;
-    public Text specialEnemyText;
-    public Text upgradeText;
     
+    public Text selectionText;
+    public Text enemyLevelText;
 
     private void Awake() {
-        rankToNumberMappings.Add(PlayerUnitRank.D, 6);
-        rankToNumberMappings.Add(PlayerUnitRank.C, 6);
-        rankToNumberMappings.Add(PlayerUnitRank.B, 8);
-        rankToNumberMappings.Add(PlayerUnitRank.A, 8);
-        rankToNumberMappings.Add(PlayerUnitRank.S, 8);
-        rankToNumberMappings.Add(PlayerUnitRank.X, 8);
-
-        rankText.text = curRank.ToString();
-        numberText.text = curNum + "";
-        enemyLevelText.text = enemyLevel + "";
-        specialEnemyText.text = TranslateSpecialUnitIndex();
-        upgradeText.text = GetUpgradeText();
+        selectedUnitRank = PlayerUnitRank.D;
+        selectedUnitClass = UnitClass.INFANTRY;
     }
 
     // Creating Player Units
     public void CreatePlayerUnit() {
-        UnitClass unitClass;
-        switch (curNum) {
-            case 0:
-                unitClass = UnitClass.INFANTRY;
-                break;
-            case 1:
-                unitClass = UnitClass.MECH;
-                break;
-            case 2:
-                unitClass = UnitClass.LASER;
-                break;
-            case 3:
-                unitClass = UnitClass.PSIONIC;
-                break;
-            case 4:
-                unitClass = UnitClass.ACID;
-                break;
-            case 5:
-                unitClass = UnitClass.BLADE;
-                break;
-            case 6:
-                unitClass = UnitClass.MAGIC;
-                break;
-            case 7:
-                unitClass = UnitClass.FLAME;
-                break;
+        if (selectedUnitClass == UnitClass.MAGIC || selectedUnitClass == UnitClass.FLAME) {
+            if (selectedUnitRank == PlayerUnitRank.D || selectedUnitRank == PlayerUnitRank.C) {
+                Debug.Log("Invalid combination for unit class and rank.");
+                return;
+            }
+        }
+
+        GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(selectedUnitRank, selectedUnitClass);
+    }
+
+    public void RankSelectionButton(string rankStr) {
+        selectedUnitRank = ParsePlayerUnitRankString(rankStr);
+        UpdateSelectionText();
+    }
+
+    private PlayerUnitRank ParsePlayerUnitRankString(string s) {
+        switch (s) {
+            case "D":
+                return PlayerUnitRank.D;
+            case "C":
+                return PlayerUnitRank.C;
+            case "B":
+                return PlayerUnitRank.B;
+            case "A":
+                return PlayerUnitRank.A;
+            case "S":
+                return PlayerUnitRank.S;
+            case "X":
+                return PlayerUnitRank.X;
             default:
-                throw new GameplayException("Cannot create player unit, unrecognized number.");
+                Debug.Log("Unrecognized rank string value: " + s + ". Returning PlayerUnitRank.D");
+                return PlayerUnitRank.D;
         }
-
-        GameEngine.GetInstance().unitSpawner.CreatePlayerUnit(curRank, unitClass);
     }
 
-    public void ScrollRankLeft() {
-        if (curRank == PlayerUnitRank.C) {
-            curRank = PlayerUnitRank.D;
-        } else if (curRank == PlayerUnitRank.B) {
-            curRank = PlayerUnitRank.C;
-        } else if (curRank == PlayerUnitRank.A) {
-            curRank = PlayerUnitRank.B;
-        } else if (curRank == PlayerUnitRank.S) {
-            curRank = PlayerUnitRank.A;
-        } else if (curRank == PlayerUnitRank.X) {
-            curRank = PlayerUnitRank.S;
-        }
-
-        rankText.text = curRank.ToString();
+    public void UnitClassSelectionButton(string unitClassStr) {
+        selectedUnitClass = ParseUnitClassString(unitClassStr);
+        UpdateSelectionText();
     }
 
-    public void ScrollRankRight() {
-        if (curRank == PlayerUnitRank.D) {
-            curRank = PlayerUnitRank.C;
-        } else if (curRank == PlayerUnitRank.C) {
-            curRank = PlayerUnitRank.B;
-        } else if (curRank == PlayerUnitRank.B) {
-            curRank = PlayerUnitRank.A;
-        } else if (curRank == PlayerUnitRank.A) {
-            curRank = PlayerUnitRank.S;
-        } else if (curRank == PlayerUnitRank.S) {
-            curRank = PlayerUnitRank.X;
+    private UnitClass ParseUnitClassString(string s) {
+        switch (s) {
+            case "Infantry":
+                return UnitClass.INFANTRY;
+            case "Mech":
+                return UnitClass.MECH;
+            case "Laser":
+                return UnitClass.LASER;
+            case "Psionic":
+                return UnitClass.PSIONIC;
+            case "Acid":
+                return UnitClass.ACID;
+            case "Blade":
+                return UnitClass.BLADE;
+            case "Magic":
+                return UnitClass.MAGIC;
+            case "Flame":
+                return UnitClass.FLAME;
+            default:
+                Debug.Log("Unrecognized unit class string value: " + s + ". Returning UnitClass.INFANTRY");
+                return UnitClass.INFANTRY;
         }
-
-        rankText.text = curRank.ToString();
     }
 
-    public void ScrollNumLeft() {
-        if (curNum > 0) {
-            curNum -= 1;
-        }
-
-        numberText.text = curNum + "";
-    }
-
-    public void ScrollNumRight() {
-        if (curNum < rankToNumberMappings[curRank] - 1) {
-            curNum += 1;
-        }
-
-        numberText.text = curNum + "";
+    private void UpdateSelectionText() {
+        selectionText.text = selectedUnitRank.ToString() + " " + selectedUnitClass.ToString();
     }
 
     // Creating enemy units
@@ -123,120 +94,50 @@ public class AdminPanel : MonoBehaviour {
         GameEngine.GetInstance().unitSpawner.CreateEnemyUnit(enemyLevel);
     }
 
-    public void ScrollLevelLeft() {
-        if (enemyLevel > 1) {
-            enemyLevel -= 1;
+    public void ScrollLevelLeftOne() {    
+        enemyLevel -= 1;
+        if (enemyLevel < 1) {
+            enemyLevel = 1;
         }
-
-        enemyLevelText.text = enemyLevel + "";
+        UpdateEnemyLevelText();
     }
 
-    public void ScrollLevelRight() {
-        if (enemyLevel < MAX_LEVELS) {
-            enemyLevel += 1;
+    public void ScrollLevelLeftFive() {
+        enemyLevel -= 5;
+        if (enemyLevel < 1) {
+            enemyLevel = 1;
         }
+        UpdateEnemyLevelText();
+    }
 
-        enemyLevelText.text = enemyLevel + "";
+    public void ScrollLevelRightOne() {
+        enemyLevel += 1;
+        if (enemyLevel > MAX_LEVELS) {
+            enemyLevel = MAX_LEVELS;
+        }
+        UpdateEnemyLevelText();
+    }
+
+    public void ScrollLevelRightFive() {
+        enemyLevel += 5;
+        if (enemyLevel > MAX_LEVELS) {
+            enemyLevel = MAX_LEVELS;
+        }
+        UpdateEnemyLevelText();
+    }
+
+    private void UpdateEnemyLevelText() {
+        enemyLevelText.text = "Level: " + enemyLevel;
     }
 
     // Creating special enemy units
-    public void CreateSpecialEnemyUnit() {
-        switch (specialEnemyUnitIndex) {
-            case 1:
+    public void CreateSpecialEnemyUnit(string type) {
+        switch (type) {
+            case "Bounty":
                 GameEngine.GetInstance().unitSpawner.CreateBounty();
                 break;
             default:
-                throw new GameplayException("Unsupported Index Value");
-        }
-    }
-
-    public void ScrollSpecialEnemyLeft() {
-        if (specialEnemyUnitIndex > 1) {
-            specialEnemyUnitIndex--;
-        }
-
-        specialEnemyText.text = TranslateSpecialUnitIndex();
-    }
-
-    public void ScrollSpecialEnemyRight() {
-        if (specialEnemyUnitIndex < NUM_SPECIAL_UNITS) {
-            specialEnemyUnitIndex++;
-        }
-
-        specialEnemyText.text = TranslateSpecialUnitIndex();
-    }
-
-    public string TranslateSpecialUnitIndex() {
-        switch (specialEnemyUnitIndex) {
-            case 1:
-                return "Bounty";
-            default:
-                return "Unsupported Index Value";
-        }
-    }
-
-    // Upgrades
-    public void ActivateUpgrade() {
-        UnitClass unitClass;
-        if (upgradeNum == 0) {
-            unitClass = UnitClass.INFANTRY;
-        } else if (upgradeNum == 1) {
-            unitClass = UnitClass.MECH;
-        } else if (upgradeNum == 2) {
-            unitClass = UnitClass.LASER;
-        } else if (upgradeNum == 3) {
-            unitClass = UnitClass.PSIONIC;
-        } else if (upgradeNum == 4) {
-            unitClass = UnitClass.ACID;
-        } else if (upgradeNum == 5) {
-            unitClass = UnitClass.BLADE;
-        } else if (upgradeNum == 6) {
-            unitClass = UnitClass.MAGIC;
-        } else if (upgradeNum == 7) {
-            unitClass = UnitClass.FLAME;
-        } else {
-            throw new GameplayException("Invalid upgrade number value. Did not upgrade.");
-        }
-
-        GameEngine.GetInstance().upgradeManager.IncrementUpgradeClass(unitClass);
-        GameEngine.GetInstance().upgradePanel.UpdateUpgradePanelData(unitClass);
-    }
-
-    public void ScrollUpgradeLeft() {
-        if (upgradeNum > 0) {
-            upgradeNum -= 1;
-        }
-
-        upgradeText.text = GetUpgradeText();
-    }
-
-    public void ScrollUpgradeRight() {
-        if (upgradeNum < 7) {
-            upgradeNum += 1;
-        }
-
-        upgradeText.text = GetUpgradeText();
-    }
-
-    private string GetUpgradeText() {
-        if (upgradeNum == 0) {
-            return "Infantry";
-        } else if (upgradeNum == 1) {
-            return "Mech";
-        } else if (upgradeNum == 2) {
-            return "Laser";
-        } else if (upgradeNum == 3) {
-            return "Psionic";
-        } else if (upgradeNum == 4) {
-            return "Acid";
-        } else if (upgradeNum == 5) {
-            return "Blade";
-        } else if (upgradeNum == 6) {
-            return "Magic";
-        } else if (upgradeNum == 7) {
-            return "Flame";
-        } else {
-            return "";
+                throw new GameplayException("Unrecognized value for type: " + type);
         }
     }
 }
