@@ -330,7 +330,7 @@ public class AudioManager : MonoBehaviour {
         string path;
         switch (unitClass) {
             case UnitClass.INFANTRY:
-                path = "";
+                path = GetInfantryProjectileLandingPath(rank);
                 break;
             case UnitClass.MECH:
                 path = GetMechProjectileLandingPath(rank);
@@ -354,16 +354,35 @@ public class AudioManager : MonoBehaviour {
                 path = GetFlameProjectileLandingPath(rank);
                 break;
             default:
-                throw new GameplayException("Unrecognized unit class: " + unitClass.ToString() + ". Cannot play projectile attack sound.");
+                throw new GameplayException("Unrecognized unit class: " + unitClass.ToString() + ". Cannot play projectile landing attack sound.");
         }
-
+        Debug.Log(path);
         if (path.Length > 0) {
-            PlayAudio(path, projectileAudioSource);
+            PlayAudio(path, projectileLandingAudioSource);
         }
     }
 
-    private string GetMechProjectileLandingPath(PlayerUnitRank rank) {
+    private string GetInfantryProjectileLandingPath(PlayerUnitRank rank) {
         return "";
+    }
+
+    private string GetMechProjectileLandingPath(PlayerUnitRank rank) {
+        switch (rank) {
+            case PlayerUnitRank.D:
+                return "Audio/ProjectileLanding/Mech/grenade_landing";
+            case PlayerUnitRank.C:
+                return "";
+            case PlayerUnitRank.B:
+                return "";
+            case PlayerUnitRank.A:
+                return "Audio/ProjectileLanding/Mech/grenade_landing";
+            case PlayerUnitRank.S:
+                return "";
+            case PlayerUnitRank.X:
+                return "";
+            default:
+                return "";
+        }
     }
 
     private string GetLaserProjectileLandingPath(PlayerUnitRank rank) {
@@ -371,7 +390,22 @@ public class AudioManager : MonoBehaviour {
     }
 
     private string GetPsionicProjectileLandingPath(PlayerUnitRank rank) {
-        return "";
+        switch (rank) {
+            case PlayerUnitRank.D:
+                return "";
+            case PlayerUnitRank.C:
+                return "Audio/ProjectileLanding/Psionic/psionic_explosion";
+            case PlayerUnitRank.B:
+                return "";
+            case PlayerUnitRank.A:
+                return "";
+            case PlayerUnitRank.S:
+                return "";
+            case PlayerUnitRank.X:
+                return "Audio/ProjectileLanding/Psionic/scarab_hit";
+            default:
+                return "";
+        }
     }
 
     private string GetAcidProjectileLandingPath(PlayerUnitRank rank) {
@@ -379,7 +413,7 @@ public class AudioManager : MonoBehaviour {
             case PlayerUnitRank.D:
                 return "";
             case PlayerUnitRank.C:
-                return "";
+                return "Audio/ProjectileLanding/Acid/guardian_hit";
             case PlayerUnitRank.B:
                 return "Audio/ProjectileLanding/Acid/corrosive_acid";
             case PlayerUnitRank.A:
@@ -389,7 +423,7 @@ public class AudioManager : MonoBehaviour {
             case PlayerUnitRank.X:
                 return "Audio/ProjectileLanding/Acid/corrosive_acid";
             default:
-                throw new GameplayException("Unrecognized unit rank value: " + rank.ToString() + ". Cannot play flame attack sound.");
+                return "";
         }
     }
 
@@ -398,13 +432,23 @@ public class AudioManager : MonoBehaviour {
     }
 
     private string GetMagicProjectileLandingPath(PlayerUnitRank rank) {
-        return "";
+        switch (rank) {
+            case PlayerUnitRank.B:
+                return "Audio/ProjectileLanding/Magic/shockwave_landing";
+            case PlayerUnitRank.A:
+                return "Audio/ProjectileLanding/Magic/shockwave_landing";
+            case PlayerUnitRank.S:
+                return "Audio/ProjectileLanding/Magic/shockwave_landing";
+            case PlayerUnitRank.X:
+                return "Audio/ProjectileLanding/Magic/shockwave_landing";
+            default:
+                return "";
+        }
     }
 
     private string GetFlameProjectileLandingPath(PlayerUnitRank rank) {
         return "";
     }
-
 
     // ---------- Audio Levels ----------
     public void SetBGMAudioLevel(float value) {
