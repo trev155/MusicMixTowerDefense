@@ -140,4 +140,10 @@ public class AdminPanel : MonoBehaviour {
                 throw new GameplayException("Unrecognized value for type: " + type);
         }
     }
+
+    // Other
+    public void AddFiveTokens() {
+        GameEngine.GetInstance().IncreaseTokenCount(5);
+    }
+
 }
