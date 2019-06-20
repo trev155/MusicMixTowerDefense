@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuControlPanel : MonoBehaviour {
     public RectTransform ExitGameConfirmationPanel;
+    public RectTransform ExitGameOverlay;
     public RectTransform PausedGameOverlay;
 
     public Slider backgroundMusicSlider;
@@ -14,6 +15,7 @@ public class MenuControlPanel : MonoBehaviour {
     public void ExitGameButton() {
         GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         ExitGameConfirmationPanel.gameObject.SetActive(true);
+        ExitGameOverlay.gameObject.SetActive(true);
     }
 
     public void ConfirmExitGame() {
@@ -25,6 +27,7 @@ public class MenuControlPanel : MonoBehaviour {
     public void DenyExitGame() {
         GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
         ExitGameConfirmationPanel.gameObject.SetActive(false);
+        ExitGameOverlay.gameObject.SetActive(false);
     }
 
     private IEnumerator LoadMainMenuScene() {
