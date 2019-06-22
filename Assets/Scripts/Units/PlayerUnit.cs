@@ -10,37 +10,52 @@ public class PlayerUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
     public static readonly float UNSELECTED_ALPHA = 0.05f;
 
     //---------- Fields ----------
-    public string displayName;
-    public float movementSpeed;
-    public UnitClass unitClass;
-    public PlayerUnitRank rank;
-    public float attackDamage;
-    public float attackUpgrade;
-    public float attackCooldown;
-    public float attackRange;
-    public AttackType attackType;
+    // Data Fields
+    private PlayerUnitData playerUnitData;
+    
+    // Data Fields - Getters and Setters
+    public PlayerUnitData GetPlayerUnitData() {
+        return playerUnitData;
+    }
+    
+    public void SetPlayerUnitData(PlayerUnitData playerUnitData) {
+        this.playerUnitData = playerUnitData;
+    }
 
+    // Other Fields
     public bool movementEnabled = false;
     public Vector2 movementDestination;
 
     public Transform projectilePrefab;
-    public AttackRangeCircle attackRangeCircle;
+    public AttackRangeCircle attackRangeCircle; // the actual game object representing the attack range circle
+    public Transform attackRangeCirclePrefab;   // the prefab used to create the attack range circle
 
     public EnemyUnit currentTarget;
     public bool isAttacking = false;
     public bool switchTargets = false;
 
     //---------- Methods ----------
-    public void InitializeProperties(PlayerUnitData playerUnitData) {
-        this.displayName = playerUnitData.GetDisplayName();
-        this.unitClass = playerUnitData.GetUnitClass();
-        this.movementSpeed = playerUnitData.GetMovementSpeed();
-        this.rank = playerUnitData.GetRank();
-        this.attackDamage = playerUnitData.GetAttackDamage();
-        this.attackUpgrade = playerUnitData.GetAttackUpgrade();
-        this.attackCooldown = playerUnitData.GetAttackSpeed();
-        this.attackRange = playerUnitData.GetAttackRange();
-        this.attackType = playerUnitData.GetAttackType();
+    public void InitializePlayerUnitGameObject(PlayerUnitData playerUnitData) {
+        SetPlayerUnitData(playerUnitData);
+
+        UnitSpawner.SetObjectName(gameObject);
+        
+        // Rank Indication
+        RankIndicatorBar rankIndicatorBar = GetComponentInChildren<RankIndicatorBar>();
+        rankIndicatorBar.Initialize(GetPlayerUnitData().GetRank());
+
+        // Create range circle
+        CreatePlayerUnitRangeCircle();
+    }
+
+    private void CreatePlayerUnitRangeCircle() {
+        Transform playerUnitRangeCircle = Instantiate(attackRangeCirclePrefab, transform);
+
+        playerUnitRangeCircle.localScale = new Vector2(playerUnitRangeCircle.localScale.x * GetPlayerUnitData().GetAttackRange(), 
+                                                       playerUnitRangeCircle.localScale.y * GetPlayerUnitData().GetAttackRange());
+
+        attackRangeCircle = playerUnitRangeCircle.GetComponent<AttackRangeCircle>();
+        attackRangeCircle.playerUnit = this;
     }
 
     public void OnPointerClick(PointerEventData pointerEventData) {
@@ -72,17 +87,17 @@ public class PlayerUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
 
     public List<string> GetDisplayUnitData() {
         List<string> unitData = new List<string>();
-        string title = "[" + this.rank + " Rank] " + this.displayName;
-        string unitType = "Unit Class: " + Utils.CleanEnumString(this.unitClass.ToString());
-        string attackDamage = "Attack Damage: " + this.attackDamage;
-        int numUpgrades = GameEngine.GetInstance().upgradeManager.GetNumUpgrades(this.unitClass);
+        string title = "[" + GetPlayerUnitData().GetRank() + " Rank] " + GetPlayerUnitData().GetDisplayName();
+        string unitType = "Unit Class: " + Utils.CleanEnumString(GetPlayerUnitData().GetUnitClass().ToString());
+        string attackDamage = "Attack Damage: " + GetPlayerUnitData().GetAttackDamage();
+        int numUpgrades = GameEngine.GetInstance().upgradeManager.GetNumUpgrades(GetPlayerUnitData().GetUnitClass());
         if (numUpgrades > 0) {
-            attackDamage += " (+ " + this.attackUpgrade * numUpgrades + ")";
+            attackDamage += " (+ " + GetPlayerUnitData().GetAttackUpgrade() * numUpgrades + ")";
         }
-        string attackUpgrade = "Attack Upgrade: " + this.attackUpgrade;
-        string attackSpeed = "Attack Speed: " + this.attackCooldown;
-        string movementSpeed = "Movement Speed: " + this.movementSpeed;
-        string attackType = "Attack Type: " + Utils.CleanEnumString(this.attackType.ToString());
+        string attackUpgrade = "Attack Upgrade: " + GetPlayerUnitData().GetAttackUpgrade();
+        string attackSpeed = "Attack Speed: " + GetPlayerUnitData().GetAttackCooldown();
+        string movementSpeed = "Movement Speed: " + GetPlayerUnitData().GetMovementSpeed();
+        string attackType = "Attack Type: " + Utils.CleanEnumString(GetPlayerUnitData().GetAttackType().ToString());
 
         unitData.Add(title);
         unitData.Add(unitType);
@@ -100,12 +115,12 @@ public class PlayerUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
      */
     private void Update() {
         if (movementEnabled) {
-            MoveToDestination(this.movementDestination);
+            MoveToDestination(movementDestination);
         }
 
         if (attackRangeCircle.enemyUnitsInRange.Count > 0 && !isAttacking) {
             SetTargetToClosestUnitInRange();
-            StartCoroutine(AttackTargetLoop(this.attackCooldown));
+            StartCoroutine(AttackTargetLoop(GetPlayerUnitData().GetAttackCooldown()));
         }
 
     }
@@ -117,8 +132,8 @@ public class PlayerUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
      */
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "PlayerUnit") {
-            this.movementDestination = this.transform.position;
-            this.movementEnabled = false;
+            movementDestination = transform.position;
+            movementEnabled = false;
 
             Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(0, 0);
@@ -139,15 +154,15 @@ public class PlayerUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
 
     // Click Movement
     public void MoveToDestination(Vector2 destination) {
-        if (Vector2.Distance(this.transform.position, destination) < 0.1) {
-            this.movementEnabled = false;
+        if (Vector2.Distance(transform.position, destination) < 0.1) {
+            movementEnabled = false;
             return;
         }
 
         Rigidbody2D rb2D = GetComponent<Rigidbody2D>();
-        Vector2 movementDirection = destination - (Vector2)this.transform.position;
+        Vector2 movementDirection = destination - (Vector2)transform.position;
         movementDirection.Normalize();
-        rb2D.MovePosition(rb2D.position + (movementDirection * 2.5f)  * this.movementSpeed * Time.deltaTime);
+        rb2D.MovePosition(rb2D.position + (movementDirection * 2.5f)  * GetPlayerUnitData().GetMovementSpeed() * Time.deltaTime);
     }
 
     // Attacking
@@ -187,10 +202,10 @@ public class PlayerUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
 
     private void AttackTarget() {
         Projectile projectile = Instantiate(projectilePrefab, transform).GetComponent<Projectile>();
-        projectile.transform.parent = this.gameObject.transform.parent;     // detach projectile from player unit so projectile doesn't follow player unit
-        float projectileDamage = this.attackDamage + (GameEngine.GetInstance().upgradeManager.GetNumUpgrades(this.unitClass) * this.attackUpgrade);
+        projectile.transform.parent = gameObject.transform.parent;     // detach projectile from player unit so projectile doesn't follow player unit
+        float projectileDamage = playerUnitData.GetAttackDamage() + (GameEngine.GetInstance().upgradeManager.GetNumUpgrades(GetPlayerUnitData().GetUnitClass()) * GetPlayerUnitData().GetAttackUpgrade());
         projectile.InitializeProperties(currentTarget, this, projectileDamage);
 
-        GameEngine.GetInstance().audioManager.PlayProjectileAttackSound(this.unitClass, this.rank);
+        GameEngine.GetInstance().audioManager.PlayProjectileAttackSound(playerUnitData.GetUnitClass(), playerUnitData.GetRank());
     }
 }

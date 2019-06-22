@@ -11,7 +11,8 @@ public class Rare_Collector : Achievement {
         GameObject[] playerUnits = GameObject.FindGameObjectsWithTag("PlayerUnit");
         foreach (GameObject g in playerUnits) {
             PlayerUnit playerUnit = g.GetComponent<PlayerUnit>();
-            if (playerUnit.unitClass == UnitClass.MAGIC || playerUnit.unitClass == UnitClass.FLAME) {
+            UnitClass playerUnitClass = playerUnit.GetPlayerUnitData().GetUnitClass();
+            if (playerUnitClass == UnitClass.MAGIC || playerUnitClass == UnitClass.FLAME) {
                 numRares++;
             }
         }

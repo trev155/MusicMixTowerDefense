@@ -12,7 +12,7 @@ public class C_Bonus : Achievement {
         GameObject[] playerUnits = GameObject.FindGameObjectsWithTag("PlayerUnit");
         foreach (GameObject g in playerUnits) {
             PlayerUnit playerUnit = g.GetComponent<PlayerUnit>();
-            if (playerUnit.rank == PlayerUnitRank.C && playerUnit.unitClass == this.targetClass) {
+            if (playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.C && playerUnit.GetPlayerUnitData().GetUnitClass() == this.targetClass) {
                 targetCount += 1;
             }
         }

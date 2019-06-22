@@ -37,14 +37,15 @@ public class EnemyUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
 
     //---------- Methods ----------
     public void InitializeEnemyUnitGameObject(EnemyUnitData enemyUnitData, float initialHealth) {
-        this.enemyUnitData = enemyUnitData;
+        SetEnemyUnitData(enemyUnitData);
         this.currentHealth = initialHealth;
 
-        SetObjectName();
+        UnitSpawner.SetObjectName(gameObject);
         if (enemyUnitData.GetEnemyType() == EnemyType.NORMAL) {
             SetNormalEnemyColor();
         }
         
+        // Attach select unit circle to this game object
         Transform enemyUnitCircle = transform.GetChild(0);
         selectedUnitCircle = enemyUnitCircle;
     }
@@ -75,22 +76,35 @@ public class EnemyUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
     }
 
     public List<string> GetDisplayUnitData() {
-        // TODO this should vary depending on the unit type
         List<string> unitData = new List<string>();
+
         string displayName = "Enemy: " + enemyUnitData.GetDisplayName();
         string health = "Health: " + currentHealth + " / " + enemyUnitData.GetMaxHealth();
         string armor = "Armor: " + enemyUnitData.GetArmor();
+        string shields = "Shields: " + enemyUnitData.GetShields();
+        string shieldRegenRate = "Shield Regeneration Rate: " + enemyUnitData.GetShieldRegenerationRate();
         string level = "Level: " + enemyUnitData.GetLevel();
         string movementSpeed = "Movement Speed: " + enemyUnitData.GetMovementSpeed();
-        string enemyType = "Abilities: " + Utils.CleanEnumString(enemyUnitData.GetEnemyType().ToString());
+        string enemyType = "Enemy Type: " + Utils.CleanEnumString(enemyUnitData.GetEnemyType().ToString());
 
         unitData.Add(displayName);
         unitData.Add(health);
         unitData.Add(armor);
-        unitData.Add(level);
-        unitData.Add(movementSpeed);
+        if (enemyUnitData.GetEnemyType() == EnemyType.NORMAL) {
+            unitData.Add(movementSpeed);
+            unitData.Add(level);
+        } else if (enemyUnitData.GetEnemyType() == EnemyType.BOUNTY) {
+            unitData.Add(movementSpeed);
+        } else if (enemyUnitData.GetEnemyType() == EnemyType.BONUS) {
+            unitData.Add(shields);
+            unitData.Add(shieldRegenRate);
+        } else if (enemyUnitData.GetEnemyType() == EnemyType.BOSS) {
+            unitData.Add(movementSpeed);
+            unitData.Add(shields);
+            unitData.Add(shieldRegenRate);
+        }
         unitData.Add(enemyType);
-
+        
         return unitData;
     }
     
@@ -109,11 +123,6 @@ public class EnemyUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
         Vector2 movementDirection = (Vector2)currentWaypointDestination.position - (Vector2)transform.position;
         movementDirection.Normalize();
         rb2D.MovePosition(rb2D.position + (movementDirection * 1.5f) * enemyUnitData.GetMovementSpeed() * Time.deltaTime);
-    }
-
-    private void SetObjectName() {
-        gameObject.name = UnitSpawner.uid + "";
-        UnitSpawner.uid += 1;
     }
 
     private void SetNormalEnemyColor() {

@@ -16,8 +16,8 @@ public class XSABCD_Mission : Achievement {
         GameObject[] playerUnits = GameObject.FindGameObjectsWithTag("PlayerUnit");
         foreach (GameObject g in playerUnits) {
             PlayerUnit playerUnit = g.GetComponent<PlayerUnit>();
-            if (playerUnit.rank == PlayerUnitRank.X) {
-                classToLookFor = playerUnit.unitClass;
+            if (playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.X) {
+                classToLookFor = playerUnit.GetPlayerUnitData().GetUnitClass();
                 break;
             }
         }
@@ -29,20 +29,22 @@ public class XSABCD_Mission : Achievement {
         bool hasD = false;
         foreach (GameObject g in playerUnits) {
             PlayerUnit playerUnit = g.GetComponent<PlayerUnit>();
+            PlayerUnitRank playerUnitRank = playerUnit.GetPlayerUnitData().GetRank();
+            UnitClass playerUnitClass = playerUnit.GetPlayerUnitData().GetUnitClass();
 
-            if (playerUnit.unitClass != classToLookFor) {
+            if (playerUnitClass != classToLookFor) {
                 continue;
             }
 
-            if (playerUnit.rank == PlayerUnitRank.D) {
+            if (playerUnitRank == PlayerUnitRank.D) {
                 hasD = true;
-            } else if (playerUnit.rank == PlayerUnitRank.C) {
+            } else if (playerUnitRank == PlayerUnitRank.C) {
                 hasC = true;
-            } else if (playerUnit.rank == PlayerUnitRank.B) {
+            } else if (playerUnitRank == PlayerUnitRank.B) {
                 hasB = true;
-            } else if (playerUnit.rank == PlayerUnitRank.A) {
+            } else if (playerUnitRank == PlayerUnitRank.A) {
                 hasA = true;
-            } else if (playerUnit.rank == PlayerUnitRank.S) {
+            } else if (playerUnitRank == PlayerUnitRank.S) {
                 hasS = true;
             }
         }

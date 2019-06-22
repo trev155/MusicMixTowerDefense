@@ -23,10 +23,7 @@ public class UnitSpawner : MonoBehaviour {
     public Transform enemyUnit;
     public Transform bountyUnit;
     public Transform bonusUnit;
-
-    public Transform playerUnitSelectionCircle;
-    public Transform enemyUnitSelectedCircle;
-
+    
     public Transform topInnerWall;
     public Transform leftInnerWall;
     public Transform rightInnerWall;
@@ -42,17 +39,13 @@ public class UnitSpawner : MonoBehaviour {
     // Player Unit Creation Functions
     public PlayerUnit CreatePlayerUnit(PlayerUnitRank rank, UnitClass unitClass) {
         // Create player unit object
-        PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, unitClass);
         Transform playerUnitPrefab = GetPlayerUnitPrefabFromUnitClass(unitClass);
         PlayerUnit playerUnit = Instantiate(playerUnitPrefab, playerUnitSpawnLocation).GetComponent<PlayerUnit>();
-        playerUnit.InitializeProperties(playerUnitData);
-        RankIndicatorBar rankIndicatorBar = playerUnit.GetComponentInChildren<RankIndicatorBar>();
-        rankIndicatorBar.Initialize(rank);
-        SetObjectName(playerUnit.gameObject);
 
-        // Create range circle
-        CreatePlayerUnitRangeCircle(playerUnit);
-
+        // Initialize player unit data
+        PlayerUnitData playerUnitData = unitFactory.CreatePlayerUnitData(rank, unitClass);
+        playerUnit.InitializePlayerUnitGameObject(playerUnitData);
+        
         // Prevent Stacking on Spawn
         MovePlayerUnitToOffset(playerUnit);
 
@@ -61,10 +54,10 @@ public class UnitSpawner : MonoBehaviour {
 
         // Display message
         MessageType msgType = MessageType.INFO;
-        if (playerUnit.rank == PlayerUnitRank.S || playerUnit.rank == PlayerUnitRank.X) {
+        if (playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.S || playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.X) {
             msgType = MessageType.POSITIVE;
         }
-        GameEngine.GetInstance().messageQueue.PushMessage("[" + playerUnit.rank + " Rank Unit] " + Utils.CleanEnumString(playerUnit.unitClass.ToString()), msgType);
+        GameEngine.GetInstance().messageQueue.PushMessage("[" + playerUnit.GetPlayerUnitData().GetRank() + " Rank Unit] " + Utils.CleanEnumString(playerUnit.GetPlayerUnitData().GetUnitClass().ToString()), msgType);
 
         // Sound Effect
         GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.PLAYER_UNIT_CREATION_SOUND);
@@ -202,7 +195,6 @@ public class UnitSpawner : MonoBehaviour {
 
         enemy.InitializeEnemyUnitGameObject(enemyUnitData, enemyUnitData.GetMaxHealth());
 
-        // TODO should this be just another property of the EnemyUnitData?
         // Initialize health regenerator
         HealthRegenerator healthRegenerator = enemy.GetComponent<HealthRegenerator>();
         healthRegenerator.enemyUnit = enemy;
@@ -220,29 +212,17 @@ public class UnitSpawner : MonoBehaviour {
         return enemy;
     }
 
-    // Other functions
-    // these two functions should be copied into the PlayerUnit once i get around to it
-    private void SetObjectName(GameObject obj) {
+    // Utility Functions
+    public static void SetObjectName(GameObject obj) {
         SetObjectName(obj, "");
     }
 
-    private void SetObjectName(GameObject obj, string suffix) {
+    private static void SetObjectName(GameObject obj, string suffix) {
         obj.name = uid + suffix;
         uid += 1;
-    }
-
-    private void CreatePlayerUnitRangeCircle(PlayerUnit playerUnit) {
-        Transform playerUnitRangeCircle = Instantiate(playerUnitSelectionCircle, playerUnit.transform);
-
-        playerUnitRangeCircle.localScale = new Vector2(playerUnitRangeCircle.localScale.x * playerUnit.attackRange, playerUnitRangeCircle.localScale.y * playerUnit.attackRange);
-
-        playerUnit.attackRangeCircle = playerUnitRangeCircle.GetComponent<AttackRangeCircle>();
-        playerUnit.attackRangeCircle.playerUnit = playerUnit;
     }
 
     private void MovePlayerUnitToOffset(PlayerUnit player) {
         player.transform.position = Vector2.MoveTowards(player.transform.position, playerUnitSpawnLocationOffset.position, Time.deltaTime);
     }
-
-    
 }

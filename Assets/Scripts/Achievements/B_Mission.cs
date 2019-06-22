@@ -19,11 +19,11 @@ public class B_Mission : Achievement {
         foreach (GameObject g in playerUnits) {
             PlayerUnit playerUnit = g.GetComponent<PlayerUnit>();
 
-            if (playerUnit.rank != PlayerUnitRank.B) {
+            if (playerUnit.GetPlayerUnitData().GetRank() != PlayerUnitRank.B) {
                 continue;
             }
 
-            UnitClass unitClass = playerUnit.unitClass;
+            UnitClass unitClass = playerUnit.GetPlayerUnitData().GetUnitClass();
             if (unitClass == UnitClass.INFANTRY) {
                 hasInfantry = true;
             } else if (unitClass == UnitClass.MECH) {

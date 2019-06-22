@@ -149,11 +149,11 @@ public class UnitSelectionPanel : MonoBehaviour {
 
         PlayerUnit unitToSell = GameEngine.GetInstance().playerUnitSelected;
         if (IsRareUnit(unitToSell)) {
-            int tokenRefund = ComputeTokenRefund(unitToSell.rank);
-            sellUnitModalText.text = "Are you sure you want to sell this unit ?\n (You will receive " + tokenRefund + " tokens for selling a Rare " + unitToSell.rank + " rank unit)";
+            int tokenRefund = ComputeTokenRefund(unitToSell.GetPlayerUnitData().GetRank());
+            sellUnitModalText.text = "Are you sure you want to sell this unit ?\n (You will receive " + tokenRefund + " tokens for selling a Rare " + unitToSell.GetPlayerUnitData().GetRank() + " rank unit)";
         } else {
-            int gasRefund = ComputeGasRefund(unitToSell.rank);
-            sellUnitModalText.text = "Are you sure you want to sell this unit ?\n (You will receive " + gasRefund + " gas for selling a " + unitToSell.rank + " rank unit)";
+            int gasRefund = ComputeGasRefund(unitToSell.GetPlayerUnitData().GetRank());
+            sellUnitModalText.text = "Are you sure you want to sell this unit ?\n (You will receive " + gasRefund + " gas for selling a " + unitToSell.GetPlayerUnitData().GetRank() + " rank unit)";
         }
         
         GameEngine.GetInstance().audioManager.PlayAudio(AudioManager.BUTTON_CLICK_SOUND);
@@ -180,13 +180,13 @@ public class UnitSelectionPanel : MonoBehaviour {
      */
     private void SellUnit(PlayerUnit unitToSell) {
         if (IsRareUnit(unitToSell)) {
-            int tokenRefund = ComputeTokenRefund(unitToSell.rank);
+            int tokenRefund = ComputeTokenRefund(unitToSell.GetPlayerUnitData().GetRank());
             GameEngine.GetInstance().IncreaseTokenCount(tokenRefund);
 
             GameEngine.GetInstance().achievementManager.rareUnitsSold += 1;
             GameEngine.GetInstance().achievementManager.CheckAchievementsForUnitSelling();
         } else {
-            int gasRefund = ComputeGasRefund(unitToSell.rank);
+            int gasRefund = ComputeGasRefund(unitToSell.GetPlayerUnitData().GetRank());
             GameEngine.GetInstance().IncreaseGas(gasRefund);
         }
         
@@ -195,7 +195,7 @@ public class UnitSelectionPanel : MonoBehaviour {
     }
 
     private bool IsRareUnit(PlayerUnit playerUnit) {
-        return playerUnit.unitClass == UnitClass.MAGIC || playerUnit.unitClass == UnitClass.FLAME;
+        return playerUnit.GetPlayerUnitData().GetUnitClass() == UnitClass.MAGIC || playerUnit.GetPlayerUnitData().GetUnitClass() == UnitClass.FLAME;
     }
     
     private int ComputeGasRefund(PlayerUnitRank rank) {

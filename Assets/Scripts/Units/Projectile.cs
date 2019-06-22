@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour {
     //---------- Methods ----------
     private void Update() {
         if (targetUnit == null) {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
 
@@ -43,12 +43,12 @@ public class Projectile : MonoBehaviour {
             EnemyUnit enemyUnit = targetUnit.GetComponent<EnemyUnit>();
 
             // Projectile landing audio
-            GameEngine.GetInstance().audioManager.PlayProjectileLandingSound(origin.unitClass, origin.rank);
+            GameEngine.GetInstance().audioManager.PlayProjectileLandingSound(origin.GetPlayerUnitData().GetUnitClass(), origin.GetPlayerUnitData().GetRank());
 
-            if (origin.attackType == AttackType.SPLASH) {
+            if (origin.GetPlayerUnitData().GetAttackType() == AttackType.SPLASH) {
                 InflictSplashDamage(enemyUnit, this.attackDamage, splashDamageCircle);  // this won't deal damage to the actual target, so deal with the actual target as normal
                 StartCoroutine(WaitTimeBeforeInflictingDamage(enemyUnit, this.attackDamage, SPLASH_CIRCLE_APPEARANCE_TIME));
-            } else if (origin.attackType == AttackType.LARGE_SPLASH) {
+            } else if (origin.GetPlayerUnitData().GetAttackType() == AttackType.LARGE_SPLASH) {
                 InflictSplashDamage(enemyUnit, this.attackDamage, largeSplashDamageCircle);
                 StartCoroutine(WaitTimeBeforeInflictingDamage(enemyUnit, this.attackDamage, SPLASH_CIRCLE_APPEARANCE_TIME));
             } else {

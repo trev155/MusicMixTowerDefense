@@ -132,20 +132,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aad526c72b13c64a8b3c42f9d2b560e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
-  movementSpeed: 0
-  unitClass: 0
-  rank: 0
-  attackDamage: 0
-  attackUpgrade: 0
-  attackCooldown: 0
-  attackRange: 0
-  attackType: 0
   movementEnabled: 0
   movementDestination: {x: 0, y: 0}
   projectilePrefab: {fileID: 1013747370527916468, guid: b41c35b9746ccac4993823ea5cf53c0c,
     type: 3}
   attackRangeCircle: {fileID: 0}
+  attackRangeCirclePrefab: {fileID: 1013747370527916468, guid: 95bf2094c250e56428e4802c84c8f04c,
+    type: 3}
   currentTarget: {fileID: 0}
   isAttacking: 0
   switchTargets: 0

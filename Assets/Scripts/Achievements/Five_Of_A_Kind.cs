@@ -19,25 +19,26 @@ public class Five_Of_A_Kind : Achievement {
         foreach (GameObject g in playerUnits) {
             PlayerUnit playerUnit = g.GetComponent<PlayerUnit>();
 
-            if (playerUnit.rank != PlayerUnitRank.A) {
+            if (playerUnit.GetPlayerUnitData().GetRank() != PlayerUnitRank.A) {
                 continue;
             }
 
-            if (playerUnit.unitClass == UnitClass.INFANTRY) {
+            UnitClass playerUnitclass = playerUnit.GetPlayerUnitData().GetUnitClass();
+            if (playerUnitclass == UnitClass.INFANTRY) {
                 numInfantry += 1;
-            } else if (playerUnit.unitClass == UnitClass.MECH) {
+            } else if (playerUnitclass == UnitClass.MECH) {
                 numMech += 1;
-            } else if (playerUnit.unitClass == UnitClass.LASER) {
+            } else if (playerUnitclass == UnitClass.LASER) {
                 numLaser += 1;
-            } else if (playerUnit.unitClass == UnitClass.PSIONIC) {
+            } else if (playerUnitclass == UnitClass.PSIONIC) {
                 numPsionic += 1;
-            } else if (playerUnit.unitClass == UnitClass.ACID) {
+            } else if (playerUnitclass == UnitClass.ACID) {
                 numAcid += 1;
-            } else if (playerUnit.unitClass == UnitClass.BLADE) {
+            } else if (playerUnitclass == UnitClass.BLADE) {
                 numBlade += 1;
-            } else if (playerUnit.unitClass == UnitClass.MAGIC) {
+            } else if (playerUnitclass == UnitClass.MAGIC) {
                 numMagic += 1;
-            } else if (playerUnit.unitClass == UnitClass.FLAME) {
+            } else if (playerUnitclass == UnitClass.FLAME) {
                 numFlame += 1;
             }
         }

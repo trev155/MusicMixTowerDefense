@@ -32,21 +32,23 @@ public class ABCD_Mission : Achievement {
         GameObject[] playerUnits = GameObject.FindGameObjectsWithTag("PlayerUnit");
         foreach (GameObject g in playerUnits) {
             PlayerUnit playerUnit = g.GetComponent<PlayerUnit>();
-            
-            if (playerUnit.rank == PlayerUnitRank.S || playerUnit.rank == PlayerUnitRank.X || playerUnit.unitClass != unitClassToCheck) {
+            PlayerUnitRank playerUnitRank = playerUnit.GetPlayerUnitData().GetRank();
+            UnitClass playerUnitClass = playerUnit.GetPlayerUnitData().GetUnitClass();
+
+            if (playerUnitRank == PlayerUnitRank.S || playerUnitRank == PlayerUnitRank.X || playerUnitClass != unitClassToCheck) {
                 continue;
             }
-            if (playerUnit.unitClass == UnitClass.MAGIC || playerUnit.unitClass == UnitClass.FLAME) {
+            if (playerUnitClass == UnitClass.MAGIC || playerUnitClass == UnitClass.FLAME) {
                 continue;
             }
 
-            if (playerUnit.rank == PlayerUnitRank.D) {
+            if (playerUnitRank == PlayerUnitRank.D) {
                 hasD = true;
-            } else if (playerUnit.rank == PlayerUnitRank.C) {
+            } else if (playerUnitRank == PlayerUnitRank.C) {
                 hasC = true;
-            } else if (playerUnit.rank == PlayerUnitRank.B) {
+            } else if (playerUnitRank == PlayerUnitRank.B) {
                 hasB = true;
-            } else if (playerUnit.rank == PlayerUnitRank.A) {
+            } else if (playerUnitRank == PlayerUnitRank.A) {
                 hasA = true;
             }
         }

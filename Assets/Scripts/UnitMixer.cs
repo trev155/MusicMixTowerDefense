@@ -85,7 +85,7 @@ public class UnitMixer : MonoBehaviour {
         PlayerUnit matchingPlayerUnit = null;
         matchingPlayerUnit = GetMatchingUnitType(playerUnit);
         if (matchingPlayerUnit != null) {
-            PlayerUnitRank newUnitRank = GetNextTierRank(playerUnit.rank);
+            PlayerUnitRank newUnitRank = GetNextTierRank(playerUnit.GetPlayerUnitData().GetRank());
             RemoveUnitSafely(playerUnit);
             RemoveUnitSafely(matchingPlayerUnit);            
             PlayerUnit newPlayerUnit = GameEngine.GetInstance().unitSpawner.CreateRandomUnitOfRank(newUnitRank);
@@ -95,11 +95,13 @@ public class UnitMixer : MonoBehaviour {
     }
 
     private PlayerUnit GetMatchingUnitType(PlayerUnit playerUnit) {
-        if (playerUnit.rank == PlayerUnitRank.S || playerUnit.rank == PlayerUnitRank.X) {
+        if (playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.S || playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.X) {
             return null;
         }
         foreach (PlayerUnit p in unitsOnMixer) {
-            if (playerUnit.name != p.name && playerUnit.unitClass == p.unitClass && playerUnit.rank == p.rank) {
+            if (playerUnit.name != p.name && 
+                playerUnit.GetPlayerUnitData().GetUnitClass() == p.GetPlayerUnitData().GetUnitClass() && 
+                playerUnit.GetPlayerUnitData().GetRank() == p.GetPlayerUnitData().GetRank()) {
                 return p;
             }
         }
@@ -121,21 +123,24 @@ public class UnitMixer : MonoBehaviour {
     }
 
     private bool CheckBCDCombo(PlayerUnit playerUnit) {
-        if (playerUnit.rank == PlayerUnitRank.A || playerUnit.rank == PlayerUnitRank.S || playerUnit.rank == PlayerUnitRank.X) {
+        if (playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.A || playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.S || playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.X) {
             return false;
         }
-        UnitClass targetUnitClass = playerUnit.unitClass;
+        UnitClass targetUnitClass = playerUnit.GetPlayerUnitData().GetUnitClass();
 
         PlayerUnit dUnit = null;
         PlayerUnit cUnit = null;
         PlayerUnit bUnit = null;
         
         foreach (PlayerUnit p in unitsOnMixer) {
-            if (dUnit == null && p.rank == PlayerUnitRank.D && p.unitClass == targetUnitClass) {
+            PlayerUnitRank playerUnitRank = p.GetPlayerUnitData().GetRank();
+            UnitClass playerUnitClass = p.GetPlayerUnitData().GetUnitClass();
+
+            if (dUnit == null && playerUnitRank == PlayerUnitRank.D && playerUnitClass == targetUnitClass) {
                 dUnit = p;
-            } else if (cUnit == null && p.rank == PlayerUnitRank.C && p.unitClass == targetUnitClass) {
+            } else if (cUnit == null && playerUnitRank == PlayerUnitRank.C && playerUnitClass == targetUnitClass) {
                 cUnit = p;
-            } else if (bUnit == null && p.rank == PlayerUnitRank.B && p.unitClass == targetUnitClass) {
+            } else if (bUnit == null && playerUnitRank == PlayerUnitRank.B && playerUnitClass == targetUnitClass) {
                 bUnit = p;
             }
         }
@@ -161,17 +166,20 @@ public class UnitMixer : MonoBehaviour {
         PlayerUnit acidUnit = null;
         PlayerUnit bladeUnit = null;
         foreach (PlayerUnit p in unitsOnMixer) {
-            if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.INFANTRY) {
+            PlayerUnitRank playerUnitRank = p.GetPlayerUnitData().GetRank();
+            UnitClass playerUnitClass = p.GetPlayerUnitData().GetUnitClass();
+
+            if (playerUnitRank == PlayerUnitRank.D && playerUnitClass == UnitClass.INFANTRY) {
                 infantryUnit = p;
-            } else if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.MECH) {
+            } else if (playerUnitRank == PlayerUnitRank.D && playerUnitClass == UnitClass.MECH) {
                 mechUnit = p;
-            } else if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.LASER) {
+            } else if (playerUnitRank == PlayerUnitRank.D && playerUnitClass == UnitClass.LASER) {
                 laserUnit = p;
-            } else if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.PSIONIC) {
+            } else if (playerUnitRank == PlayerUnitRank.D && playerUnitClass == UnitClass.PSIONIC) {
                 psionicUnit = p;
-            } else if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.ACID) {
+            } else if (playerUnitRank == PlayerUnitRank.D && playerUnitClass == UnitClass.ACID) {
                 acidUnit = p;
-            } else if (p.rank == PlayerUnitRank.D && p.unitClass == UnitClass.BLADE) {
+            } else if (playerUnitRank == PlayerUnitRank.D && playerUnitClass == UnitClass.BLADE) {
                 bladeUnit = p;
             }
         }
@@ -192,7 +200,7 @@ public class UnitMixer : MonoBehaviour {
     }
 
     private bool CheckAllDCombo(PlayerUnit playerUnit) {
-        if (playerUnit.rank != PlayerUnitRank.D) {
+        if (playerUnit.GetPlayerUnitData().GetRank() != PlayerUnitRank.D) {
             return false;
         }
         return CheckAllDCombo();
@@ -210,17 +218,20 @@ public class UnitMixer : MonoBehaviour {
         PlayerUnit acidUnit = null;
         PlayerUnit bladeUnit = null;
         foreach (PlayerUnit p in unitsOnMixer) {
-            if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.INFANTRY) {
+            PlayerUnitRank playerUnitRank = p.GetPlayerUnitData().GetRank();
+            UnitClass playerUnitClass = p.GetPlayerUnitData().GetUnitClass();
+
+            if (playerUnitRank == PlayerUnitRank.C && playerUnitClass == UnitClass.INFANTRY) {
                 infantryUnit = p;
-            } else if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.MECH) {
+            } else if (playerUnitRank == PlayerUnitRank.C && playerUnitClass == UnitClass.MECH) {
                 mechUnit = p;
-            } else if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.LASER) {
+            } else if (playerUnitRank == PlayerUnitRank.C && playerUnitClass == UnitClass.LASER) {
                 laserUnit = p;
-            } else if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.PSIONIC) {
+            } else if (playerUnitRank == PlayerUnitRank.C && playerUnitClass == UnitClass.PSIONIC) {
                 psionicUnit = p;
-            } else if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.ACID) {
+            } else if (playerUnitRank == PlayerUnitRank.C && playerUnitClass == UnitClass.ACID) {
                 acidUnit = p;
-            } else if (p.rank == PlayerUnitRank.C && p.unitClass == UnitClass.BLADE) {
+            } else if (playerUnitRank == PlayerUnitRank.C && playerUnitClass == UnitClass.BLADE) {
                 bladeUnit = p;
             }
         }
@@ -241,7 +252,7 @@ public class UnitMixer : MonoBehaviour {
     }
 
     private bool CheckAllCCombo(PlayerUnit playerUnit) {
-        if (playerUnit.rank != PlayerUnitRank.C) {
+        if (playerUnit.GetPlayerUnitData().GetRank() != PlayerUnitRank.C) {
             return false;
         }
         return CheckAllCCombo();
@@ -251,21 +262,24 @@ public class UnitMixer : MonoBehaviour {
         if (GameEngine.GetInstance().hasXUnit) {
             return false;
         }
-        if (playerUnit.rank == PlayerUnitRank.D || playerUnit.rank == PlayerUnitRank.C || playerUnit.rank == PlayerUnitRank.X) {
+        if (playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.D || playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.C || playerUnit.GetPlayerUnitData().GetRank() == PlayerUnitRank.X) {
             return false;
         }
-        UnitClass targetUnitClass = playerUnit.unitClass;
+        UnitClass targetUnitClass = playerUnit.GetPlayerUnitData().GetUnitClass();
 
         PlayerUnit bUnit = null;
         PlayerUnit aUnit = null;
         PlayerUnit sUnit = null;
 
         foreach (PlayerUnit p in unitsOnMixer) {
-            if (bUnit == null && p.rank == PlayerUnitRank.B && p.unitClass == targetUnitClass) {
+            PlayerUnitRank playerUnitRank = p.GetPlayerUnitData().GetRank();
+            UnitClass playerUnitClass = p.GetPlayerUnitData().GetUnitClass();
+
+            if (bUnit == null && playerUnitRank == PlayerUnitRank.B && playerUnitClass == targetUnitClass) {
                 bUnit = p;
-            } else if (aUnit == null && p.rank == PlayerUnitRank.A && p.unitClass == targetUnitClass) {
+            } else if (aUnit == null && playerUnitRank == PlayerUnitRank.A && playerUnitClass == targetUnitClass) {
                 aUnit = p;
-            } else if (sUnit == null && p.rank == PlayerUnitRank.S && p.unitClass == targetUnitClass) {
+            } else if (sUnit == null && playerUnitRank == PlayerUnitRank.S && playerUnitClass == targetUnitClass) {
                 sUnit = p;
             }
         }
@@ -282,7 +296,7 @@ public class UnitMixer : MonoBehaviour {
     }
 
     private bool CheckRareBCombo(PlayerUnit playerUnit) {
-        if (playerUnit.rank != PlayerUnitRank.B) {
+        if (playerUnit.GetPlayerUnitData().GetRank() != PlayerUnitRank.B) {
             return false;
         }
 
@@ -290,9 +304,12 @@ public class UnitMixer : MonoBehaviour {
         PlayerUnit flameUnit = null;
 
         foreach (PlayerUnit p in unitsOnMixer) {
-            if (p.rank == PlayerUnitRank.B && p.unitClass == UnitClass.MAGIC) {
+            PlayerUnitRank playerUnitRank = p.GetPlayerUnitData().GetRank();
+            UnitClass playerUnitClass = p.GetPlayerUnitData().GetUnitClass();
+
+            if (playerUnitRank == PlayerUnitRank.B && playerUnitClass == UnitClass.MAGIC) {
                 magicUnit = p;
-            } else if (p.rank == PlayerUnitRank.B && p.unitClass == UnitClass.FLAME) {
+            } else if (playerUnitRank == PlayerUnitRank.B && playerUnitClass == UnitClass.FLAME) {
                 flameUnit = p;
             }
         }
@@ -309,7 +326,7 @@ public class UnitMixer : MonoBehaviour {
     }
 
     private bool CheckRareACombo(PlayerUnit playerUnit) {
-        if (playerUnit.rank != PlayerUnitRank.A) {
+        if (playerUnit.GetPlayerUnitData().GetRank() != PlayerUnitRank.A) {
             return false;
         }
 
@@ -317,9 +334,12 @@ public class UnitMixer : MonoBehaviour {
         PlayerUnit flameUnit = null;
 
         foreach (PlayerUnit p in unitsOnMixer) {
-            if (p.rank == PlayerUnitRank.A && p.unitClass == UnitClass.MAGIC) {
+            PlayerUnitRank playerUnitRank = p.GetPlayerUnitData().GetRank();
+            UnitClass playerUnitClass = p.GetPlayerUnitData().GetUnitClass();
+
+            if (playerUnitRank == PlayerUnitRank.A && playerUnitClass == UnitClass.MAGIC) {
                 magicUnit = p;
-            } else if (p.rank == PlayerUnitRank.A && p.unitClass == UnitClass.FLAME) {
+            } else if (playerUnitRank == PlayerUnitRank.A && playerUnitClass == UnitClass.FLAME) {
                 flameUnit = p;
             }
         }

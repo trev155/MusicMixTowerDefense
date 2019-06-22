@@ -1,13 +1,13 @@
 ﻿public class PlayerUnitData {
-    private readonly string displayName;
-    private readonly UnitClass unitClass;
-    private readonly float movementSpeed;
-    private readonly PlayerUnitRank rank;
-    private readonly float attackDamage;
-    private readonly float attackUpgrade;
-    private readonly float attackCooldown;
-    private readonly float attackRange;
-    private readonly AttackType attackType;
+    private string displayName;
+    private UnitClass unitClass;
+    private float movementSpeed;
+    private PlayerUnitRank rank;
+    private float attackDamage;
+    private float attackUpgrade;
+    private float attackCooldown;
+    private float attackRange;
+    private AttackType attackType;
 
     public PlayerUnitData(
         string displayName,
@@ -31,38 +31,70 @@
     }
 
     public string GetDisplayName() {
-        return this.displayName;
+        return displayName;
     }
 
     public UnitClass GetUnitClass() {
-        return this.unitClass;
+        return unitClass;
     }
 
     public float GetMovementSpeed() {
-        return this.movementSpeed;
+        return movementSpeed;
     }
 
     public PlayerUnitRank GetRank() {
-        return this.rank;
+        return rank;
     }
 
     public float GetAttackDamage() {
-        return this.attackDamage;
+        return attackDamage;
     }
 
     public float GetAttackUpgrade() {
-        return this.attackUpgrade;
+        return attackUpgrade;
     }
     
-    public float GetAttackSpeed() {
-        return this.attackCooldown;
+    public float GetAttackCooldown() {
+        return attackCooldown;
     }
 
     public float GetAttackRange() {
-        return this.attackRange;
+        return attackRange;
     }
 
     public AttackType GetAttackType() {
-        return this.attackType;
+        return attackType;
+    }
+
+    public void SetDisplayName(string displayName) {
+        this.displayName = displayName;
+    }
+
+    public void SetUnitClass(UnitClass unitClass) {
+        this.unitClass = unitClass;
+    }
+
+    public void SetRank(PlayerUnitRank rank) {
+        this.rank = rank;
+    }
+
+    public void SetAttackDamage(float attackDamage) {
+        this.attackDamage = attackDamage;
+    }
+
+    public void SetAttackUpgrade(float attackUpgrade) {
+        this.attackUpgrade = attackUpgrade;
+    }
+
+    public void SetAttackCooldown(float attackCooldown) {
+        this.attackCooldown = attackCooldown;
+    }
+
+    public void SetAttackRange(float attackRange) {
+        this.attackRange = attackRange;
+    }
+
+    public void SetAttackType(AttackType attackType) {
+        this.attackType = attackType;
     }
 }

@@ -17,21 +17,22 @@ public class Triple_C_Collector : Achievement {
         foreach (GameObject g in playerUnits) {
             PlayerUnit playerUnit = g.GetComponent<PlayerUnit>();
 
-            if (playerUnit.rank != PlayerUnitRank.C) {
+            if (playerUnit.GetPlayerUnitData().GetRank() != PlayerUnitRank.C) {
                 continue;
             }
 
-            if (playerUnit.unitClass == UnitClass.INFANTRY) {
+            UnitClass playerUnitClass = playerUnit.GetPlayerUnitData().GetUnitClass();
+            if (playerUnitClass == UnitClass.INFANTRY) {
                 numInfantry += 1;
-            } else if (playerUnit.unitClass == UnitClass.MECH) {
+            } else if (playerUnitClass == UnitClass.MECH) {
                 numMech += 1;
-            } else if (playerUnit.unitClass == UnitClass.LASER) {
+            } else if (playerUnitClass == UnitClass.LASER) {
                 numLaser += 1;
-            } else if (playerUnit.unitClass == UnitClass.PSIONIC) {
+            } else if (playerUnitClass == UnitClass.PSIONIC) {
                 numPsionic += 1;
-            } else if (playerUnit.unitClass == UnitClass.ACID) {
+            } else if (playerUnitClass == UnitClass.ACID) {
                 numAcid += 1;
-            } else if (playerUnit.unitClass == UnitClass.BLADE) {
+            } else if (playerUnitClass == UnitClass.BLADE) {
                 numBlade += 1;
             }
         }
