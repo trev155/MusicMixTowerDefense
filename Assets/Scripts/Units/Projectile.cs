@@ -60,16 +60,16 @@ public class Projectile : MonoBehaviour {
 
     // ----- Inflict Damage -----
     public void InflictDamage(EnemyUnit enemyUnit, float damage) {
-        float damageToInflict = damage - enemyUnit.armor;
+        float damageToInflict = damage - enemyUnit.GetEnemyUnitData().GetArmor();
         if (damageToInflict < 1) {
             damageToInflict = 1;
         }
-        enemyUnit.currentHealth -= damageToInflict;
+        enemyUnit.SetCurrentHealth(enemyUnit.GetCurrentHealth() - damageToInflict);
         if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
             GameEngine.GetInstance().unitSelectionPanel.UpdateSelectedUnitDataPanel(enemyUnit);
         }
         
-        if (enemyUnit.currentHealth <= 0) {
+        if (enemyUnit.GetCurrentHealth() <= 0) {
             HandleEnemyUnitDeath(enemyUnit);
         }
     }
@@ -83,13 +83,13 @@ public class Projectile : MonoBehaviour {
         RemoveCurrentTargetForAllUnitsAttackingTarget(enemyUnit);
 
         // Regular enemy unit death sound effect
-        if (enemyUnit.level > 0) {
-            GameEngine.GetInstance().audioManager.PlayRegularEnemyUnitDeathSound(enemyUnit.level);
+        if (enemyUnit.GetEnemyUnitData().GetLevel() > 0) {
+            GameEngine.GetInstance().audioManager.PlayRegularEnemyUnitDeathSound(enemyUnit.GetEnemyUnitData().GetLevel());
         }
 
         // Check if killed special enemy unit
-        if (enemyUnit.level == 0) {
-            KilledSpecialEnemyUnit(enemyUnit.displayName);
+        if (enemyUnit.GetEnemyUnitData().GetLevel() == 0) {
+            KilledSpecialEnemyUnit(enemyUnit.GetEnemyUnitData().GetEnemyType());
         }
 
         // Destroy enemy unit game object
@@ -150,14 +150,20 @@ public class Projectile : MonoBehaviour {
     }
 
     // ----- Special Unit Kill Rewards -----
-    private void KilledSpecialEnemyUnit(string enemyName) {
-        switch (enemyName) {
-            case "Bounty":
+    // TODO these should be moved out of this class - probably into EnemyUnit
+    private void KilledSpecialEnemyUnit(EnemyType enemyType) {
+        switch (enemyType) {
+            case EnemyType.BOUNTY:
                 GiveBountyReward();
-                GameEngine.GetInstance().audioManager.PlaySpecialUnitDeathSound(enemyName);
+                GameEngine.GetInstance().audioManager.PlaySpecialUnitDeathSound(enemyType);
+                break;
+            case EnemyType.BONUS:
+                GameEngine.GetInstance().messageQueue.PushMessage("Bonus Token: 1 Shop Token", MessageType.POSITIVE);
+                GameEngine.GetInstance().IncreaseTokenCount(1);
+                GameEngine.GetInstance().BonusUnitKilled();
                 break;
             default:
-                throw new GameplayException("Unrecognized enemy name");
+                throw new GameplayException("Unrecognized enemy type: " + enemyType.ToString());
         }
     }
 

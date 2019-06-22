@@ -13,20 +13,20 @@ public class HealthRegenerator : MonoBehaviour {
     }
 
     private bool ShouldStartHealthRegenLoop() {
-        return enemyUnit != null && enemyUnit.currentHealth < enemyUnit.maxHealth && !isRegenerating;
+        return enemyUnit != null && enemyUnit.GetCurrentHealth() < enemyUnit.GetEnemyUnitData().GetMaxHealth() && !isRegenerating;
     }
 
     private IEnumerator HealthRegenLoop() {
         isRegenerating = true;
         while (true) {
             yield return new WaitForSeconds(regenerationRate);
-            if (enemyUnit.currentHealth < enemyUnit.maxHealth) {
-                enemyUnit.currentHealth += 1;
+            if (enemyUnit.GetCurrentHealth() < enemyUnit.GetEnemyUnitData().GetMaxHealth()) {
+                enemyUnit.SetCurrentHealth(enemyUnit.GetCurrentHealth() + 1);
                 if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
                     GameEngine.GetInstance().unitSelectionPanel.UpdateSelectedUnitDataPanel(enemyUnit);
                 }
             }
-            if (enemyUnit.currentHealth == enemyUnit.maxHealth) {
+            if (enemyUnit.GetCurrentHealth() == enemyUnit.GetEnemyUnitData().GetMaxHealth()) {
                 break;
             }
         }

@@ -5,19 +5,29 @@ using System.Collections.Generic;
 public class UnitFactory {
     private static readonly string PLAYER_UNIT_DATA_PATH = "UnitData/PlayerUnits";
     private static readonly string ENEMY_UNIT_DATA_PATH = "UnitData/EnemyUnits";
+    private static readonly string SPECIAL_ENEMY_UNIT_DATA_PATH = "UnitData/SpecialEnemyUnits";
+    private static readonly string BONUS_UNIT_DATA_PATH = "UnitData/BonusUnitData";
 
-    private Dictionary<PlayerUnitRank, Dictionary<UnitClass, PlayerUnitData>> allPlayerData;
-    private Dictionary<int, EnemyUnitData> allEnemyData;
+    private Dictionary<PlayerUnitRank, Dictionary<UnitClass, PlayerUnitData>> playerUnitData;
+    private Dictionary<int, EnemyUnitData> enemyUnitData;
     private Dictionary<string, EnemyUnitData> specialEnemyData;
+    private Dictionary<int, EnemyUnitData> bonusUnitData;
 
     // ---------- Initialization ----------
     public UnitFactory() {
-        InitializePlayerUnitDataDictionary();
-        InitializeEnemyUnitDataDictionary();
+        InitializeFactory();
     }
 
-    private void InitializePlayerUnitDataDictionary() {
-        allPlayerData = new Dictionary<PlayerUnitRank, Dictionary<UnitClass, PlayerUnitData>> {
+    private void InitializeFactory() {
+        InitializePlayerUnitData();
+        InitializeEnemyUnitData();
+        InitializeSpecialEnemyUnitData();
+        InitializeBonusUnitData();
+    }
+
+    // Read in player unit data
+    private void InitializePlayerUnitData() {
+        playerUnitData = new Dictionary<PlayerUnitRank, Dictionary<UnitClass, PlayerUnitData>> {
             { PlayerUnitRank.D, new Dictionary<UnitClass, PlayerUnitData>() },
             { PlayerUnitRank.C, new Dictionary<UnitClass, PlayerUnitData>() },
             { PlayerUnitRank.B, new Dictionary<UnitClass, PlayerUnitData>() },
@@ -48,6 +58,7 @@ public class UnitFactory {
 
             string[] lineTokens = line.Trim().Split(',');
             if (lineTokens.Length <= 1) {
+                lineIndex++;
                 continue;
             }
 
@@ -70,7 +81,7 @@ public class UnitFactory {
                 attackCooldown,
                 attackRange,
                 attackType);
-            this.allPlayerData[rank].Add(unitClass, playerUnitData);
+            this.playerUnitData[rank].Add(unitClass, playerUnitData);
 
             lineIndex++;
         }
@@ -132,72 +143,128 @@ public class UnitFactory {
         }
     }
 
-    private void InitializeEnemyUnitDataDictionary() {
-        allEnemyData = new Dictionary<int, EnemyUnitData>();
-        specialEnemyData = new Dictionary<string, EnemyUnitData>();
+    // Read in enemy unit data
+    private void InitializeEnemyUnitData() {
+        enemyUnitData = new Dictionary<int, EnemyUnitData>();
 
         int level;
         string displayName;
         float movementSpeed;
         float maxHealth;
         float armor;
-        EnemyType enemyType;
 
         int lineIndex = 0;
-        TextAsset playerData = Resources.Load<TextAsset>(ENEMY_UNIT_DATA_PATH);
-        string[] lines = playerData.text.Split('\n');
+        TextAsset data = Resources.Load<TextAsset>(ENEMY_UNIT_DATA_PATH);
+        string[] lines = data.text.Split('\n');
         foreach (string line in lines) {
+            // skip file header
             if (lineIndex == 0) {
                 lineIndex++;
-                continue;   // skip file header
-            }
-
-            string[] lineTokens = line.Trim().Split(',');
-            if (lineTokens.Length <= 1) {
                 continue;
             }
-            
+
+            // Parse the line
+            string[] lineTokens = line.Trim().Split(',');
+            if (lineTokens.Length <= 1) {
+                lineIndex++;
+                continue;
+            }
             level = int.Parse(lineTokens[0]);
             displayName = lineTokens[1];
             movementSpeed = float.Parse(lineTokens[2]);
             maxHealth = float.Parse(lineTokens[3]);
             armor = float.Parse(lineTokens[4]);
-            enemyType = ConvertEnemyTypeString(lineTokens[5]);
 
-            EnemyUnitData enemyUnitData = new EnemyUnitData(displayName, movementSpeed, maxHealth, armor, level, enemyType);
-            if (level > 0) {
-                this.allEnemyData[level] = enemyUnitData;
-            } else {
-                this.specialEnemyData[displayName] = enemyUnitData;
-            }
+            // Construct data object and store it
+            EnemyUnitData enemyUnitData = EnemyUnitData.ConstructDataForNormal(displayName, movementSpeed, maxHealth, armor, level);
+            this.enemyUnitData[level] = enemyUnitData;
             
-
             lineIndex++;
         }
 
         Debug.Log("Finished reading enemy unit data. Read: [" + (lineIndex + 1) + "] number of lines.");
     }
+    
+    // Read in special enemy unit data
+    private void InitializeSpecialEnemyUnitData() {
+        specialEnemyData = new Dictionary<string, EnemyUnitData>();
 
-    private EnemyType ConvertEnemyTypeString(string s) {
-        switch (s) {
-            case "Normal":
-                return EnemyType.NORMAL;
-            case "Bounty":
-                return EnemyType.BOUNTY;
-            case "Boss":
-                return EnemyType.BOSS;
-            case "Bonus":
-                return EnemyType.BONUS;
-            default:
-                throw new GameplayException("Could not convert string " + s + " to an EnemyType object.");
+        int lineIndex = 0;
+        TextAsset data = Resources.Load<TextAsset>(SPECIAL_ENEMY_UNIT_DATA_PATH);
+        string[] lines = data.text.Split('\n');
+        foreach (string line in lines) {
+            // skip file header
+            if (lineIndex == 0) {
+                lineIndex++;
+                continue;
+            }
+
+            // Parse the line
+            string[] lineTokens = line.Trim().Split(',');
+            if (lineTokens.Length <= 1) {
+                lineIndex++;
+                continue;
+            }
+
+            EnemyUnitData enemyUnitData;
+            string displayName = lineTokens[0];
+            float movementSpeed = float.Parse(lineTokens[1]);
+            float maxHealth = float.Parse(lineTokens[2]);
+            float armor = float.Parse(lineTokens[3]);
+            float shields = float.Parse(lineTokens[4]);
+            float shieldRegenRate = float.Parse(lineTokens[5]);
+            if (displayName == "Bounty") {
+                enemyUnitData = EnemyUnitData.ConstructDataForBounty(displayName, movementSpeed, maxHealth, armor);
+            } else {
+                enemyUnitData = EnemyUnitData.ConstructDataForBoss(displayName, movementSpeed, maxHealth, armor, shields, shieldRegenRate);
+            }
+            specialEnemyData[displayName] = enemyUnitData;
+            
+            lineIndex++;
         }
+
+        Debug.Log("Finished reading special enemy unit data. Read: [" + (lineIndex + 1) + "] number of lines.");
     }
 
+    // Read in bonus unit data
+    private void InitializeBonusUnitData() {
+        bonusUnitData = new Dictionary<int, EnemyUnitData>();
 
+        int lineIndex = 0;
+        TextAsset data = Resources.Load<TextAsset>(BONUS_UNIT_DATA_PATH);
+        string[] lines = data.text.Split('\n');
+        foreach (string line in lines) {
+            // skip file header
+            if (lineIndex == 0) {
+                lineIndex++;
+                continue;
+            }
+
+            // Parse the line
+            string[] lineTokens = line.Trim().Split(',');
+            if (lineTokens.Length <= 1) {
+                lineIndex++;
+                continue;
+            }
+            
+            int number = int.Parse(lineTokens[0]);
+            float maxHealth = float.Parse(lineTokens[1]);
+            float armor = float.Parse(lineTokens[2]);
+            float shields = float.Parse(lineTokens[3]);
+            float shieldRegenRate = float.Parse(lineTokens[4]);
+            EnemyUnitData enemyUnitData = EnemyUnitData.ConstructDataForBonus(maxHealth, armor, shields, shieldRegenRate);
+            bonusUnitData[number] = enemyUnitData;
+            
+            lineIndex++;
+        }
+
+        Debug.Log("Finished reading bonus unit data. Read: [" + (lineIndex + 1) + "] number of lines.");
+    }
+    
     // ---------- Player Unit Creation ----------
     public PlayerUnitData CreatePlayerUnitData(PlayerUnitRank rank, UnitClass unitClass) {
-        PlayerUnitData playerUnitData = allPlayerData[rank][unitClass];
-        return playerUnitData;
+        PlayerUnitData data = playerUnitData[rank][unitClass];
+        return data;
     }
 
     public PlayerUnitData CreatePlayerUnitData(PlayerUnitRank rank, int selection) {
@@ -249,12 +316,17 @@ public class UnitFactory {
 
     // ---------- Enemy Unit Creation ----------
     public EnemyUnitData CreateEnemyUnitData(int level) {
-        EnemyUnitData enemyUnitData = allEnemyData[level];
+        EnemyUnitData data = enemyUnitData[level];
+        return data;
+    }
+
+    public EnemyUnitData CreateEnemyUnitDataForBounty() {
+        EnemyUnitData enemyUnitData = specialEnemyData["Bounty"];
         return enemyUnitData;
     }
 
-    public EnemyUnitData CreateBountyUnit() {
-        EnemyUnitData enemyUnitData = specialEnemyData["Bounty"];
+    public EnemyUnitData CreateEnemyUnitDataForBonus(int number) {
+        EnemyUnitData enemyUnitData = bonusUnitData[number];
         return enemyUnitData;
     }
 }

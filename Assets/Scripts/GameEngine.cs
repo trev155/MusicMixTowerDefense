@@ -6,7 +6,7 @@
 using UnityEngine;
 
 public class GameEngine : MonoBehaviour {
-    // Constants
+    // Constants for testing
     private readonly int INITIAL_TOKEN_COUNT = 30;
     private readonly int INITIAL_MINERAL_COUNT = 50;
     private readonly int INITIAL_GAS_COUNT = 25;
@@ -70,6 +70,8 @@ public class GameEngine : MonoBehaviour {
 
     public bool hasXUnit;
 
+    public int bonusUnitKills;
+
     public int bChoosers;
     public int aChoosers;
     public int sChoosers;
@@ -104,6 +106,8 @@ public class GameEngine : MonoBehaviour {
         this.hasDrum = false;
         this.drumCounter = 0;
 
+        this.bonusUnitKills = 0;
+
         this.hasXUnit = false;
 
         this.bChoosers = INITIAL_B_CHOOSERS;
@@ -132,6 +136,9 @@ public class GameEngine : MonoBehaviour {
     private void BeginGame() {
         globalTimer.BeginGlobalGameTimer();
         StartCoroutine(levelManager.WaitBeforeStartingGame(5.0f));
+
+        // create bonus token
+        unitSpawner.CreateBonusUnit(1);
     }
 
     //---------- Methods ----------
@@ -329,5 +336,22 @@ public class GameEngine : MonoBehaviour {
         Time.timeScale = 0;
         gameOverPanel.transform.gameObject.SetActive(true);
         gameOverPanel.SetEndGameStats();
+    }
+
+    // Bonus Unit Kills
+    public void BonusUnitKilled() {
+        bonusUnitKills++;
+
+        if (bonusUnitKills == 10) {
+            // create first boss
+        } else if (bonusUnitKills == 20) {
+            // create second boss
+        } else if (bonusUnitKills == 30) {
+            // create third boss
+        }
+
+        if (bonusUnitKills < 50) {
+            unitSpawner.CreateBonusUnit(bonusUnitKills + 1);
+        }
     }
 }

@@ -9,6 +9,7 @@ public class UnitSpawner : MonoBehaviour {
     public Transform playerUnitSpawnLocationOffset;
 
     public Transform enemyUnitSpawnLocation;
+    public Transform bonusUnitSpawnLocation;
 
     public Transform playerUnitInfantry;
     public Transform playerUnitMech;
@@ -21,6 +22,7 @@ public class UnitSpawner : MonoBehaviour {
 
     public Transform enemyUnit;
     public Transform bountyUnit;
+    public Transform bonusUnit;
 
     public Transform playerUnitSelectionCircle;
     public Transform enemyUnitSelectedCircle;
@@ -30,7 +32,7 @@ public class UnitSpawner : MonoBehaviour {
     public Transform rightInnerWall;
     public Transform bottomInnerWall;
     
-    private static int uid = 0;
+    public static int uid = 0;
 
     // ---------- Methods ----------
     private void Awake() {
@@ -180,18 +182,14 @@ public class UnitSpawner : MonoBehaviour {
         EnemyUnitData enemyUnitData = unitFactory.CreateEnemyUnitData(level);
         EnemyUnit enemy = Instantiate(enemyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
 
-        enemy.InitializeProperties(enemyUnitData);
-        SetObjectName(enemy.gameObject);
-        SetEnemyColor(enemy);
-
+        float initialHealth = enemyUnitData.GetMaxHealth();
         if (GameEngine.GetInstance().gameMode == GameMode.EASY) {
-            enemy.currentHealth = Mathf.Floor(enemy.maxHealth * 0.6f);
+            initialHealth = Mathf.Floor(initialHealth * 0.6f);
         } else if (GameEngine.GetInstance().gameMode == GameMode.NORMAL) {
-            enemy.currentHealth = Mathf.Floor(enemy.maxHealth * 0.8f);
+            initialHealth = Mathf.Floor(initialHealth * 0.8f);
         }
 
-        Transform enemyUnitCircle = enemy.transform.GetChild(0);
-        enemy.selectedUnitCircle = enemyUnitCircle;
+        enemy.InitializeEnemyUnitGameObject(enemyUnitData, initialHealth);
 
         GameEngine.GetInstance().IncrementEnemyUnitCount();
 
@@ -199,15 +197,12 @@ public class UnitSpawner : MonoBehaviour {
     }
 
     public EnemyUnit CreateBounty() {
-        EnemyUnitData enemyUnitData = unitFactory.CreateBountyUnit();
+        EnemyUnitData enemyUnitData = unitFactory.CreateEnemyUnitDataForBounty();
         EnemyUnit enemy = Instantiate(bountyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
 
-        enemy.InitializeProperties(enemyUnitData);
-        SetObjectName(enemy.gameObject, "_bounty");
+        enemy.InitializeEnemyUnitGameObject(enemyUnitData, enemyUnitData.GetMaxHealth());
 
-        Transform enemyUnitCircle = enemy.transform.GetChild(0);
-        enemy.selectedUnitCircle = enemyUnitCircle;
-
+        // TODO should this be just another property of the EnemyUnitData?
         // Initialize health regenerator
         HealthRegenerator healthRegenerator = enemy.GetComponent<HealthRegenerator>();
         healthRegenerator.enemyUnit = enemy;
@@ -216,7 +211,17 @@ public class UnitSpawner : MonoBehaviour {
         return enemy;
     }
 
+    public EnemyUnit CreateBonusUnit(int number) {
+        EnemyUnitData enemyUnitData = unitFactory.CreateEnemyUnitDataForBonus(number);
+        EnemyUnit enemy = Instantiate(bonusUnit, bonusUnitSpawnLocation).GetComponent<EnemyUnit>();
+
+        enemy.InitializeEnemyUnitGameObject(enemyUnitData, enemyUnitData.GetMaxHealth());
+        
+        return enemy;
+    }
+
     // Other functions
+    // these two functions should be copied into the PlayerUnit once i get around to it
     private void SetObjectName(GameObject obj) {
         SetObjectName(obj, "");
     }
@@ -239,28 +244,5 @@ public class UnitSpawner : MonoBehaviour {
         player.transform.position = Vector2.MoveTowards(player.transform.position, playerUnitSpawnLocationOffset.position, Time.deltaTime);
     }
 
-    private void SetEnemyColor(EnemyUnit enemy) {
-        Color32 enemyColor;
-        if (enemy.level < 6) {
-            enemyColor = new Color32(126, 141, 164, 255);
-        } else if (enemy.level < 11) {
-            enemyColor = new Color32(147, 212, 214, 255);
-        } else if (enemy.level < 16) {
-            enemyColor = new Color32(31, 166, 98, 255);
-        } else if (enemy.level < 21) {
-            enemyColor = new Color32(166, 162, 31, 255);
-        } else if (enemy.level < 26) {
-            enemyColor = new Color32(243, 122, 45, 255);
-        } else if (enemy.level < 31) {
-            enemyColor = new Color32(200, 39, 44, 255);
-        } else if (enemy.level < 36) {
-            enemyColor = new Color32(200, 139, 124, 255);
-        } else if (enemy.level < 41) {
-            enemyColor = new Color32(104, 68, 80, 255);
-        } else {
-            throw new GameplayException("Enemy level not recognized. Failed to set enemy color.");
-        }
-
-        enemy.transform.GetComponent<SpriteRenderer>().color = enemyColor;
-    }
+    
 }

@@ -133,14 +133,20 @@ public class AudioManager : MonoBehaviour {
         }
     }
 
-    public void PlaySpecialUnitDeathSound(string type) {
+    public void PlaySpecialUnitDeathSound(EnemyType enemyType) {
         string path;
-        switch (type) {
-            case "Bounty":
+        switch (enemyType) {
+            case EnemyType.BOUNTY:
                 path = "Audio/EnemyDeath/observer_death";
                 break;
+            case EnemyType.BONUS:
+                path = "";
+                break;
+            case EnemyType.BOSS:
+                path = "";
+                break;
             default:
-                throw new GameplayException("Unrecognized special unit: " + type + ". Unable to play special enemy death sound.");
+                throw new GameplayException("Unrecognized special unit: " + enemyType.ToString() + ". Unable to play special enemy death sound.");
         }
 
         PlayAudio(path, enemyDeathAudioSource);
@@ -356,7 +362,7 @@ public class AudioManager : MonoBehaviour {
             default:
                 throw new GameplayException("Unrecognized unit class: " + unitClass.ToString() + ". Cannot play projectile landing attack sound.");
         }
-        Debug.Log(path);
+        
         if (path.Length > 0) {
             PlayAudio(path, projectileLandingAudioSource);
         }
