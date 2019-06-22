@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour {
     public Transform splashDamageCircle;
     public Transform largeSplashDamageCircle;
 
-    public Unit targetUnit;
+    public EnemyUnit targetUnit;
     public PlayerUnit origin;
     public float movementSpeed;
     public float attackDamage;
@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour {
         transform.position = Vector2.MoveTowards(transform.position, targetUnit.transform.position, Time.deltaTime * movementSpeed);
     }
 
-    public void InitializeProperties(Unit targetUnit, PlayerUnit origin, float attackDamage) {
+    public void InitializeProperties(EnemyUnit targetUnit, PlayerUnit origin, float attackDamage) {
         this.targetUnit = targetUnit;
         this.origin = origin;
         this.movementSpeed = 5.0f;

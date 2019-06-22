@@ -312,8 +312,7 @@ public class UnitFactory {
         }
         return unitClass;
     }
-
-
+    
     // ---------- Enemy Unit Creation ----------
     public EnemyUnitData CreateEnemyUnitData(int level) {
         EnemyUnitData data = enemyUnitData[level];

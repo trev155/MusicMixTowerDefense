@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 
-public class EnemyUnit : Unit {
+public class EnemyUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
     //---------- Constants ----------
     public static readonly float SELECTED_ALPHA = 0.8f;
     public static readonly float UNSELECTED_ALPHA = 0;
@@ -49,7 +49,7 @@ public class EnemyUnit : Unit {
         selectedUnitCircle = enemyUnitCircle;
     }
 
-    public override void OnPointerClick(PointerEventData pointerEventData) {
+    public void OnPointerClick(PointerEventData pointerEventData) {
         // If currently selected a player unit, adjust accordingly
         if (GameEngine.GetInstance().playerUnitMovementAllowed) {
             GameEngine.GetInstance().DisablePlayerUnitMovement();
@@ -68,13 +68,13 @@ public class EnemyUnit : Unit {
         GameEngine.GetInstance().enemyUnitSelected = this;
 
         // Set alpha value
-        Utils.SetAlpha(this.selectedUnitCircle, SELECTED_ALPHA);
+        Utils.SetAlpha(selectedUnitCircle, SELECTED_ALPHA);
         
         // Show data on unit selection panel
         GameEngine.GetInstance().unitSelectionPanel.ShowUnitSelectionPanel(this);
     }
 
-    public override List<string> GetDisplayUnitData() {
+    public List<string> GetDisplayUnitData() {
         // TODO this should vary depending on the unit type
         List<string> unitData = new List<string>();
         string displayName = "Enemy: " + enemyUnitData.GetDisplayName();

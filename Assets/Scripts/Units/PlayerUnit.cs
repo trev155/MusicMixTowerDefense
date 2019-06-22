@@ -4,12 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class PlayerUnit : Unit {
+public class PlayerUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
     //---------- Constants ----------
     public static readonly float SELECTED_ALPHA = 0.5f;
     public static readonly float UNSELECTED_ALPHA = 0.05f;
 
     //---------- Fields ----------
+    public string displayName;
+    public float movementSpeed;
     public UnitClass unitClass;
     public PlayerUnitRank rank;
     public float attackDamage;
@@ -41,7 +43,7 @@ public class PlayerUnit : Unit {
         this.attackType = playerUnitData.GetAttackType();
     }
 
-    public override void OnPointerClick(PointerEventData pointerEventData) {
+    public void OnPointerClick(PointerEventData pointerEventData) {
         // Check that we actually selected the unit, as opposed to any of its child objects
         bool clickedOnPlayerUnit = pointerEventData.pointerEnter.gameObject.name == this.name;
         if (!clickedOnPlayerUnit) {
@@ -68,7 +70,7 @@ public class PlayerUnit : Unit {
         GameEngine.GetInstance().unitSelectionPanel.ShowUnitSelectionPanel(this);
     }
 
-    public override List<string> GetDisplayUnitData() {
+    public List<string> GetDisplayUnitData() {
         List<string> unitData = new List<string>();
         string title = "[" + this.rank + " Rank] " + this.displayName;
         string unitType = "Unit Class: " + Utils.CleanEnumString(this.unitClass.ToString());

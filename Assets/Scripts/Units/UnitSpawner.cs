@@ -206,7 +206,7 @@ public class UnitSpawner : MonoBehaviour {
         // Initialize health regenerator
         HealthRegenerator healthRegenerator = enemy.GetComponent<HealthRegenerator>();
         healthRegenerator.enemyUnit = enemy;
-        healthRegenerator.SetRegenerationRate(enemy.displayName);
+        healthRegenerator.SetRegenerationRate(enemy.GetEnemyUnitData().GetDisplayName());
 
         return enemy;
     }
