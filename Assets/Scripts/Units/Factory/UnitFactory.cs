@@ -211,12 +211,12 @@ public class UnitFactory {
             float movementSpeed = float.Parse(lineTokens[1]);
             float maxHealth = float.Parse(lineTokens[2]);
             float armor = float.Parse(lineTokens[3]);
-            float shields = float.Parse(lineTokens[4]);
+            float maxShields = float.Parse(lineTokens[4]);
             float shieldRegenRate = float.Parse(lineTokens[5]);
             if (displayName == "Bounty") {
                 enemyUnitData = EnemyUnitData.ConstructDataForBounty(displayName, movementSpeed, maxHealth, armor);
             } else {
-                enemyUnitData = EnemyUnitData.ConstructDataForBoss(displayName, movementSpeed, maxHealth, armor, shields, shieldRegenRate);
+                enemyUnitData = EnemyUnitData.ConstructDataForBoss(displayName, movementSpeed, maxHealth, armor, maxShields, shieldRegenRate);
             }
             specialEnemyData[displayName] = enemyUnitData;
             
@@ -250,9 +250,9 @@ public class UnitFactory {
             int number = int.Parse(lineTokens[0]);
             float maxHealth = float.Parse(lineTokens[1]);
             float armor = float.Parse(lineTokens[2]);
-            float shields = float.Parse(lineTokens[3]);
+            float maxShields = float.Parse(lineTokens[3]);
             float shieldRegenRate = float.Parse(lineTokens[4]);
-            EnemyUnitData enemyUnitData = EnemyUnitData.ConstructDataForBonus(maxHealth, armor, shields, shieldRegenRate);
+            EnemyUnitData enemyUnitData = EnemyUnitData.ConstructDataForBonus(maxHealth, armor, maxShields, shieldRegenRate);
             bonusUnitData[number] = enemyUnitData;
             
             lineIndex++;

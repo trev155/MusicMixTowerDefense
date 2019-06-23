@@ -3,7 +3,7 @@
     private float movementSpeed;
     private float maxHealth;
     private float armor;
-    private float shields;
+    private float maxShields;
     private float shieldRegenerationRate;
     private int level;
     private EnemyType enemyType;
@@ -14,7 +14,7 @@
         float movementSpeed, 
         float maxHealth,
         float armor,
-        float shields,
+        float maxShields,
         float shieldRegenerationRate,
         int level,
         EnemyType enemyType) {
@@ -22,7 +22,7 @@
         this.movementSpeed = movementSpeed;
         this.maxHealth = maxHealth;
         this.armor = armor;
-        this.shields = shields;
+        this.maxShields = maxShields;
         this.shieldRegenerationRate = shieldRegenerationRate;
         this.level = level;
         this.enemyType = enemyType;
@@ -61,8 +61,8 @@
         return armor;
     }
 
-    public float GetShields() {
-        return shields;
+    public float GetMaxShields() {
+        return maxShields;
     }
 
     public float GetShieldRegenerationRate() {
@@ -93,8 +93,8 @@
         this.armor = armor;
     }
 
-    public void SetShields(float shields) {
-        this.shields = shields;
+    public void SetMaxShields(float maxShields) {
+        this.maxShields = maxShields;
     }
 
     public void SetShieldRegenerationRate(float shieldRegenerationRate) {

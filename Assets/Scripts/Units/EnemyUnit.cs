@@ -12,6 +12,7 @@ public class EnemyUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
     // Data Fields
     private EnemyUnitData enemyUnitData;
     private float currentHealth;
+    private float currentShields;
     
     // Data Fields - Getters and setters
     public EnemyUnitData GetEnemyUnitData() {
@@ -22,12 +23,20 @@ public class EnemyUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
         return currentHealth;
     }
 
+    public float GetCurrentShields() {
+        return currentShields;
+    }
+
     public void SetEnemyUnitData(EnemyUnitData enemyUnitData) {
         this.enemyUnitData = enemyUnitData;
     }
 
     public void SetCurrentHealth(float currentHealth) {
         this.currentHealth = currentHealth;
+    }
+
+    public void SetCurrentShields(float currentShields) {
+        this.currentShields = currentShields;
     }
     
     // Other fields
@@ -81,7 +90,7 @@ public class EnemyUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
         string displayName = "Enemy: " + enemyUnitData.GetDisplayName();
         string health = "Health: " + currentHealth + " / " + enemyUnitData.GetMaxHealth();
         string armor = "Armor: " + enemyUnitData.GetArmor();
-        string shields = "Shields: " + enemyUnitData.GetShields();
+        string shields = "Shields: " + currentShields + " / " + enemyUnitData.GetMaxShields();
         string shieldRegenRate = "Shield Regeneration Rate: " + enemyUnitData.GetShieldRegenerationRate();
         string level = "Level: " + enemyUnitData.GetLevel();
         string movementSpeed = "Movement Speed: " + enemyUnitData.GetMovementSpeed();
