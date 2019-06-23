@@ -48,6 +48,7 @@ public class EnemyUnit : MonoBehaviour, IClickableUnit, IPointerClickHandler {
     public void InitializeEnemyUnitGameObject(EnemyUnitData enemyUnitData, float initialHealth) {
         SetEnemyUnitData(enemyUnitData);
         this.currentHealth = initialHealth;
+        this.currentShields = enemyUnitData.GetMaxShields();
 
         UnitSpawner.SetObjectName(gameObject);
         if (enemyUnitData.GetEnemyType() == EnemyType.NORMAL) {

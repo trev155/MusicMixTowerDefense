@@ -60,10 +60,26 @@ public class Projectile : MonoBehaviour {
 
     // ----- Inflict Damage -----
     public void InflictDamage(EnemyUnit enemyUnit, float damage) {
-        float damageToInflict = damage - enemyUnit.GetEnemyUnitData().GetArmor();
-        if (damageToInflict < 1) {
-            damageToInflict = 1;
+        float damageToInflict;
+        float shieldsToInflict;
+
+        bool hasShields = enemyUnit.GetEnemyUnitData().GetShieldRegenerationRate() > 0 && enemyUnit.GetCurrentShields() > 0;
+        if (hasShields) {
+            if (damage > enemyUnit.GetCurrentShields()) {
+                shieldsToInflict = enemyUnit.GetCurrentShields();
+                damageToInflict = damage - enemyUnit.GetCurrentShields() - enemyUnit.GetEnemyUnitData().GetArmor();
+            } else {
+                shieldsToInflict = damage;
+                damageToInflict = 0;
+            }
+            enemyUnit.SetCurrentShields(enemyUnit.GetCurrentShields() - shieldsToInflict);
+        } else {
+            damageToInflict = damage - enemyUnit.GetEnemyUnitData().GetArmor();
+            if (damageToInflict < 1) {
+                damageToInflict = 1;
+            }
         }
+        
         enemyUnit.SetCurrentHealth(enemyUnit.GetCurrentHealth() - damageToInflict);
         if (GameEngine.GetInstance().enemyUnitSelected == enemyUnit) {
             GameEngine.GetInstance().unitSelectionPanel.UpdateSelectedUnitDataPanel(enemyUnit);
