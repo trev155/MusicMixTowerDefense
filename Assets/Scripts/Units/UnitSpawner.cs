@@ -194,11 +194,8 @@ public class UnitSpawner : MonoBehaviour {
         EnemyUnit enemy = Instantiate(bountyUnit, enemyUnitSpawnLocation).GetComponent<EnemyUnit>();
 
         enemy.InitializeEnemyUnitGameObject(enemyUnitData, enemyUnitData.GetMaxHealth());
-
-        // Initialize health regenerator
-        HealthRegenerator healthRegenerator = enemy.GetComponent<HealthRegenerator>();
-        healthRegenerator.enemyUnit = enemy;
-        healthRegenerator.SetRegenerationRate(enemy.GetEnemyUnitData().GetDisplayName());
+        
+        GameEngine.GetInstance().IncrementEnemyUnitCount();
 
         return enemy;
     }

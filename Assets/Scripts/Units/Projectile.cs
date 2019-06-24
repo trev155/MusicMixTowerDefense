@@ -92,9 +92,11 @@ public class Projectile : MonoBehaviour {
 
     private void HandleEnemyUnitDeath(EnemyUnit enemyUnit) {
         // update stats
-        GameEngine.GetInstance().IncrementKills();
-        GameEngine.GetInstance().DecrementEnemyUnitCount();
-
+        if (enemyUnit.GetEnemyUnitData().GetEnemyType() != EnemyType.BONUS) {
+            GameEngine.GetInstance().IncrementKills();
+            GameEngine.GetInstance().DecrementEnemyUnitCount();
+        }
+        
         // remove enemy unit from other player unit lists
         RemoveCurrentTargetForAllUnitsAttackingTarget(enemyUnit);
 

@@ -340,18 +340,20 @@ public class GameEngine : MonoBehaviour {
 
     // Bonus Unit Kills
     public void BonusUnitKilled() {
-        bonusUnitKills++;
+        lock (this) {
+            bonusUnitKills++;
 
-        if (bonusUnitKills == 10) {
-            // create first boss
-        } else if (bonusUnitKills == 20) {
-            // create second boss
-        } else if (bonusUnitKills == 30) {
-            // create third boss
-        }
+            if (bonusUnitKills == 10) {
+                // create first boss
+            } else if (bonusUnitKills == 20) {
+                // create second boss
+            } else if (bonusUnitKills == 30) {
+                // create third boss
+            }
 
-        if (bonusUnitKills < 50) {
-            unitSpawner.CreateBonusUnit(bonusUnitKills + 1);
+            if (bonusUnitKills < 50) {
+                unitSpawner.CreateBonusUnit(bonusUnitKills);
+            }
         }
     }
 }

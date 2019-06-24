@@ -2,10 +2,13 @@
 using System.Collections;
 
 public class HealthRegenerator : MonoBehaviour {
-    public EnemyUnit enemyUnit;
+    private EnemyUnit enemyUnit;
     private bool isRegenerating = false;
-    private float regenerationRate;
-    
+
+    private void Awake() {
+        enemyUnit = GetComponentInParent<EnemyUnit>();
+    }
+
     private void Update() {
         if (ShouldStartHealthRegenLoop()) {
             StartCoroutine(HealthRegenLoop());
@@ -17,6 +20,7 @@ public class HealthRegenerator : MonoBehaviour {
     }
 
     private IEnumerator HealthRegenLoop() {
+        float regenerationRate = GetRegenerationRate(enemyUnit.GetEnemyUnitData().GetEnemyType());
         isRegenerating = true;
         while (true) {
             yield return new WaitForSeconds(regenerationRate);
@@ -33,14 +37,12 @@ public class HealthRegenerator : MonoBehaviour {
         isRegenerating = false;
     }
 
-    public void SetRegenerationRate(string unitType) {
-        switch (unitType) {
-            case "Bounty":
-                regenerationRate = 0.5f;
-                break;
+    private float GetRegenerationRate(EnemyType enemyType) {
+        switch (enemyType) {
+            case EnemyType.BOUNTY:
+                return 0.4f;
             default:
-                regenerationRate = 0.2f;
-                break;
+                throw new GameplayException("Enemy type not supported: " + enemyType.ToString());
         }
     }
 }
